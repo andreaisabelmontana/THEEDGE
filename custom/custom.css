@@ -1,0 +1,39 @@
+:root { --color--dark-green: #050505; }
+body { background: #000 url(/custom/stars.jpg) center / cover no-repeat fixed !important; }
+.taxi-w.style-guide, .taxi-w.off-track, .utility__switcher--w { background-color: transparent !important; }
+.stars-overlay { position: fixed; inset: 0; background: #000 url(/custom/stars.jpg) center / cover no-repeat; z-index: -2; pointer-events: none; }
+.home-hero-next-race-w { display: none !important; }
+.transition-w { background: #BC13FE !important; }
+.transition-rive { display: none !important; }
+.nav-middle, .home-hero-tablet-hero-text, .eyebrow-w.hero-next-race { display: none !important; }
+.marquee-gl-rive-target { display: none !important; }
+.marquee-gl-target-w { position: relative; }
+.andrea-note { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 1.2rem; padding: 0 8vw; pointer-events: none; z-index: 2; }
+.andrea-note p { text-shadow: 0 2px 22px rgba(0,0,0,0.85), 0 0 10px rgba(0,0,0,0.6); color: #f4f4ed; font-size: 1.6rem; line-height: 1.45; max-width: 34rem; margin: 0; }
+.andrea-note .andrea-note-accent { color: #BC13FE; font-size: 1.2rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.andrea-note { display: none !important; }
+.home-hero-logo-wrap, .impact-icon-w { display: none !important; }
+.s.is-horizontal-track { display: none !important; }
+/* home-marquee-tighten: pull content after the scholar moment up */
+.s.home-marquee, .s.home-marquee .c.is-marquee { height: 58vh !important; min-height: 0 !important; }
+img[src*="ln-home-helm-large"] { object-position: 50% 15% !important; }
+.s.is-otot-home h2, .s.is-otot-home p, .s.is-otot-home .char, .s.is-otot-home .line { color: #f4f4ed !important; }
+.sticky-track.is-home-otot { height: 185vh !important; }
+.otot-home-text-rive { filter: hue-rotate(215deg) saturate(1.1); }
+/* otot-final: enlarge in place, nudged inward so nothing clips */
+.otot-home-img-w.is-1 { transform: translateX(5vw) scale(1.5) !important; transform-origin: bottom left !important; }
+.otot-home-img-w.is-2 { transform: translateX(-5vw) scale(1.5) !important; transform-origin: bottom right !important; }
+/* astronaut-logo */
+.nav-brand svg { display: none !important; }
+.nav-brand { background: url(/custom/astronaut.png) center / contain no-repeat !important; width: 10rem !important; height: 7.5rem !important; }
+.nav-rive-w canvas { filter: hue-rotate(215deg) saturate(1.05); }
+.nav-ham canvas { filter: sepia(1) saturate(14) hue-rotate(252deg) brightness(0.82) contrast(1.15); }
+canvas[data-rive-file="phrases"] { filter: hue-rotate(215deg) saturate(1.1); }
+/* on-track: helmet only */
+.taxi-w.on-track section.s:not(:first-of-type):not(.is-footer) { display: none !important; }
+.taxi-w.on-track .impact-content-w .eyebrow-w, .taxi-w.on-track [class*="f1-highlight"], .taxi-w.on-track .on-t-hero-stats-ui-w { display: none !important; }
+.taxi-w.on-track section.s:has(.on-t-podium-text-layout), .taxi-w.on-track section.s.home-helmets { display: none !important; }
+.transition-btn { display: none !important; }
+.taxi-w.on-track .on-t-hero-info-grid { display: none !important; }
+.taxi-w.on-track .on-track-impact-text-w { transform: translateY(-14vh); }
+.taxi-w.off-track img[src*="signature"], .taxi-w.off-track .signature-rive, .taxi-w.off-track canvas[data-rive-file="signature"] { display: none !important; }
