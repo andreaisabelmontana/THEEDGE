@@ -1,9 +1,11 @@
-# landonorris.com — local study mirror
+# Local site snapshot — study copy
 
-A self-contained offline snapshot of https://landonorris.com for learning how the
-site is built. **Private study copy only — the design, photos, 3D models and
-animations are copyrighted (Lando Norris / OFF+BRAND). Do not publish, deploy,
-or push this folder to a public repo.**
+A self-contained offline snapshot of a commercial motorsport-driver website,
+kept for learning how the site is built. The name references, photos, and the
+agency's custom JS bundle have been removed, but the remaining material
+(the Webflow page design and stylesheet, the Rive animations, and the 3D
+models/textures) is **still the original studio's copyrighted work**.
+**Private study copy only — do not publish, deploy, or push to a public repo.**
 
 ## Run it
 
@@ -19,9 +21,6 @@ index.html directly with file:// breaks fetch/WASM).
 - **Webflow** — the pages (`index.html`, `calendar/`, `on-track/`, `off-track/`,
   `legal/*`) are Webflow-generated. One shared stylesheet + `webflow.*.js`
   (both under `assets/cdn.prod.website-files.com/`).
-- **Custom agency bundle** — `assets/lando.itsoffbrand.io/dev-js/lando.OFF+BRAND.*.js`
-  (~1.3 MB, by OFF+BRAND). Contains GSAP + Lenis smooth scroll + Three.js +
-  Rive runtime and all the site's custom animation/scene code.
 - **Rive animations** (`rive/*.riv`) — page transition, animated buttons,
   signature, circuits, phrases marquee, etc. Played via the Rive WASM runtime
   (`vendor/@rive-app/canvas-lite@2.26.4/rive.wasm`).
@@ -31,20 +30,17 @@ index.html directly with file:// breaks fetch/WASM).
   lighting, and MSDF font atlases for 3D text. Decoders in `gl/draco/` and
   `gl/basis/`.
 
-## Changes made vs the live site (so it runs offline)
+## Removed from this copy
 
-1. All CDN asset URLs rewritten to local relative paths (`assets/…`).
-2. `integrity`/`crossorigin` attributes stripped from `<link>`/`<script>` tags
-   (hashes no longer match the rewritten files; browsers reject them otherwise).
-3. Inside the JS bundles, `https://lando.itsoffbrand.io` and
-   `https://assets.itsoffbrand.io/lando` → root-relative (`/gl/…`, `/rive/…`),
-   and the unpkg Rive-WASM URL → `/vendor/…`.
-4. Webflow's analytics beacon 404s locally (harmless).
+1. All photos and raster images.
+2. The agency's custom animation/scene JS bundle (GSAP + Lenis + Three.js +
+   Rive orchestration) — the WebGL scene and animations no longer run.
+3. All name references in the HTML/CSS.
+
+Because of (2), the site renders as static Webflow pages only.
 
 ## Good places to start reading
 
-- `index.html` — search for `data-wf-page`, `w-embed`, and the two `<script>`
-  tags at the bottom to see how Webflow structures a page.
-- In the JS bundle, search for `window.landoGL` — the whole WebGL asset
-  manifest and scene state lives on that object (inspectable live in DevTools).
+- `index.html` — search for `data-wf-page` and `w-embed` to see how Webflow
+  structures a page.
 - Watch the Network tab while scrolling: Rive files and GL textures load lazily.

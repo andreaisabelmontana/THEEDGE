@@ -1,4 +1,4 @@
-"""Static server for the local landonorris.com study mirror.
+"""Static server for a local site snapshot.
 
 Same as `python -m http.server` but sends Cache-Control: no-store so the
 browser never serves stale copies of the patched files.
