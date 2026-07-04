@@ -1,9 +1,9 @@
 :root { --color--dark-green: #050505; }
-body { background: #000 url(/custom/stars.jpg) center / cover no-repeat fixed !important; }
+body { background: #000 url(stars.jpg) center / cover no-repeat fixed !important; }
 .taxi-w.style-guide, .taxi-w.off-track, .utility__switcher--w { background-color: transparent !important; }
-.stars-overlay { position: fixed; inset: 0; background: #000 url(/custom/stars.jpg) center / cover no-repeat; z-index: -2; pointer-events: none; }
+.stars-overlay { position: fixed; inset: 0; background: #000 url(stars.jpg) center / cover no-repeat; z-index: -2; pointer-events: none; }
 .home-hero-next-race-w { display: none !important; }
-.transition-w { background: #BC13FE !important; display: none !important; } /* agency JS that hid the overlay after the page transition is removed from this snapshot */
+.transition-w { background: #BC13FE !important; }
 .transition-rive { display: none !important; }
 .nav-middle, .home-hero-tablet-hero-text, .eyebrow-w.hero-next-race { display: none !important; }
 .marquee-gl-rive-target { display: none !important; }
@@ -25,7 +25,7 @@ img[src*="ln-home-helm-large"] { object-position: 50% 15% !important; }
 .otot-home-img-w.is-2 { transform: translateX(-5vw) scale(1.5) !important; transform-origin: bottom right !important; }
 /* astronaut-logo */
 .nav-brand svg { display: none !important; }
-.nav-brand { background: url(/custom/astronaut.png) center / contain no-repeat !important; width: 10rem !important; height: 7.5rem !important; }
+.nav-brand { background: url(astronaut.png) center / contain no-repeat !important; width: 10rem !important; height: 7.5rem !important; }
 .nav-rive-w canvas { filter: hue-rotate(215deg) saturate(1.05); }
 .nav-ham canvas { filter: sepia(1) saturate(14) hue-rotate(252deg) brightness(0.82) contrast(1.15); }
 canvas[data-rive-file="phrases"] { filter: hue-rotate(215deg) saturate(1.1); }
