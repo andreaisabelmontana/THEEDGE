@@ -2,8 +2,9 @@
 
 ## What the site is made of
 
-- **Webflow** — the pages (`index.html`, `calendar/`, `on-track/`, `off-track/`,
-  `legal/*`) are Webflow-generated. One shared stylesheet + `webflow.*.js`
+- **Webflow** — the pages (`index.html`, `calendar/`, `online/`, `offline/`,
+  `legal/*`; `on-track/` and `off-track/` are kept as legacy URLs whose
+  canonical points at the new pages) are Webflow-generated. One shared stylesheet + `webflow.*.js`
   (both under `assets/cdn.prod.website-files.com/`).
 - **Agency bundle** (`assets/lando.itsoffbrand.io/dev-js/`) — the studio's
   custom orchestration bundle (GSAP + Lenis + Three.js + Rive), restored from
