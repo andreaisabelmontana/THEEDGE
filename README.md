@@ -2,7 +2,7 @@
 
 ## What the site is made of
 
-- **Webflow** — the pages (`index.html`, `calendar/`, `on-track/`, `off-track/`,
+- **Webflow** — the pages (`index.html`, `calendar/`, `on-line/`, `off-line/`,
   `legal/*`) are Webflow-generated. One shared stylesheet + `webflow.*.js`
   (both under `assets/cdn.prod.website-files.com/`).
 - **Agency bundle** (`assets/lando.itsoffbrand.io/dev-js/`) — the studio's
