@@ -8,10 +8,12 @@ body { background: #000 url(stars.jpg) center / cover no-repeat fixed !important
 html[data-wf-page="67b5a02dc5d338960b17a7eb"] .s.home-helmets { display: none !important; }
 /* footer: let the stars run into the purple glow instead of the cream band */
 .s.is-footer { background-color: transparent !important; }
-/* skills scribble: replace the rive "Collabs" handwriting */
-.s.is-home-collabs .home-collab-rive canvas, .s.is-home-collabs .image.is-collab-placeholder { display: none !important; }
-.s.is-home-collabs .home-collab-rive-w { position: relative; }
-.s.is-home-collabs .home-collab-rive-w::after { content: "Skills"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: Brier, Georgia, serif; font-style: italic; font-size: 16rem; line-height: 1; color: #BC13FE; transform: rotate(-12deg); pointer-events: none; }
+/* skills scribble: marker-style SKILLS behind the heading (replaces the rive "Collabs" handwriting) */
+.s.is-home-collabs .home-collab-rive-w { display: none !important; } /* also removes the dead space it added before the footer */
+.s.is-home-collabs .c.is-home-collabs { position: relative; padding: 8rem 0 6rem; }
+.s.is-home-collabs .c.is-home-collabs::before { content: "SKILLS"; position: absolute; top: 1rem; left: 2vw; font-family: 'Permanent Marker', 'Segoe Print', cursive; font-size: 11rem; line-height: 1; color: #BC13FE; transform: rotate(-8deg); z-index: 0; pointer-events: none; }
+.s.is-home-collabs .title-layout { position: relative; z-index: 1; }
+.s.is-home-collabs .spacer { display: none !important; } /* the rive block + tail spacers created the dead space before the footer */
 /* collabs: light text + light logos on the star background */
 .s.is-home-collabs h2, .s.is-home-collabs .text-title-lg-mona, .s.is-home-collabs .text-title-lg-brier, .s.is-home-collabs p, .s.is-home-collabs .char, .s.is-home-collabs .line { color: #f4f4ed !important; }
 .s.is-home-collabs img[src*="collab-"] { filter: invert(1) !important; }
@@ -57,10 +59,20 @@ canvas[data-rive-file="phrases"] { filter: hue-rotate(235deg) saturate(8) bright
 .taxi-w.on-track section.s:not(:first-of-type):not(.is-footer) { display: none !important; }
 .taxi-w.on-track .impact-content-w .eyebrow-w, .taxi-w.on-track [class*="f1-highlight"], .taxi-w.on-track .on-t-hero-stats-ui-w { display: none !important; }
 .taxi-w.on-track section.s:has(.on-t-podium-text-layout) { display: none !important; }
-/* helmets hall of fame: shown on the online page, below the hero */
+/* projects hall of ideas: shown on the online page, directly below the hero helmet */
 .taxi-w.on-track section.s.home-helmets { display: block !important; }
+.taxi-w.on-track .s.is-on-track-home { height: 88vh !important; min-height: 0 !important; } /* trim hero dead space */
+.taxi-w.on-track .s-group.z-0 > section.s { display: none !important; } /* empty section that hid from the first-of-type rule (the hero is a div) */
+.taxi-w.on-track .s.home-helmets .spacer { display: none !important; } /* no gap between title and cards */
+.taxi-w.on-track .s.home-helmets .c.home-helmets { padding-top: 2rem !important; }
+.taxi-w.on-track .s.home-helmets .char, .taxi-w.on-track .s.home-helmets .line, .taxi-w.on-track .s.home-helmets h2, .taxi-w.on-track .s.home-helmets p { opacity: 1 !important; transform: none !important; visibility: visible !important; }
+.taxi-w.on-track .s.home-helmets .line { clip-path: none !important; }
+.taxi-w.on-track .s.home-helmets .high-line-reveal { display: none !important; }
 .helmet-grid-item-reveal-img, .helmet-grid-extender-img { display: none !important; } /* hover/extender art was scrubbed */
-.helmet-grid-item-img-helmet { width: 100% !important; height: 100% !important; object-fit: contain !important; }
+.helmet-grid-item-img-helmet { width: 100% !important; height: 100% !important; object-fit: contain !important; transform: perspective(900px) rotateY(30deg); } /* angled to the side */
+.helmet-grid-item:nth-child(even) .helmet-grid-item-img-helmet { transform: perspective(900px) rotateY(-30deg); }
+/* home page: callout + projects section live on the online page instead */
+html[data-wf-page="67b5a02dc5d338960b17a7eb"] section.s:has(.c.is-callout) { display: none !important; }
 .transition-btn { display: none !important; }
 .taxi-w.on-track .on-t-hero-info-grid { display: none !important; }
 .taxi-w.on-track .on-track-impact-text-w { transform: translateY(-14vh); }
