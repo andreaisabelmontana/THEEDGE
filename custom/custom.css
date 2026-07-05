@@ -53,6 +53,8 @@ canvas[data-rive-file="phrases"] { filter: hue-rotate(235deg) saturate(8) bright
 .taxi-w.on-track .on-t-hero-info-grid { display: none !important; }
 .taxi-w.on-track .on-track-impact-text-w { transform: translateY(-14vh); }
 .taxi-w.off-track img[src*="signature"], .taxi-w.off-track .signature-rive, .taxi-w.off-track canvas[data-rive-file="signature"] { display: none !important; }
+/* footer logo marquee: lime -> neon purple to match the buttons */
+.footer-marquee img { filter: hue-rotate(235deg) saturate(8) brightness(0.72); }
 /* footer centre: helmet-person cutout, kept fully in frame */
 .footer-bg-img { object-fit: contain !important; object-position: center bottom !important; }
 /* callout + nav menu: floating astronaut instead of the helmet-with-laurels animation */
