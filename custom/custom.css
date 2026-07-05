@@ -48,7 +48,11 @@ canvas[data-rive-file="phrases"] { filter: hue-rotate(235deg) saturate(8) bright
 /* on-track: helmet only */
 .taxi-w.on-track section.s:not(:first-of-type):not(.is-footer) { display: none !important; }
 .taxi-w.on-track .impact-content-w .eyebrow-w, .taxi-w.on-track [class*="f1-highlight"], .taxi-w.on-track .on-t-hero-stats-ui-w { display: none !important; }
-.taxi-w.on-track section.s:has(.on-t-podium-text-layout), .taxi-w.on-track section.s.home-helmets { display: none !important; }
+.taxi-w.on-track section.s:has(.on-t-podium-text-layout) { display: none !important; }
+/* helmets hall of fame: shown on the online page, below the hero */
+.taxi-w.on-track section.s.home-helmets { display: block !important; }
+.helmet-grid-item-reveal-img, .helmet-grid-extender-img { display: none !important; } /* hover/extender art was scrubbed */
+.helmet-grid-item-img-helmet { width: 100% !important; height: 100% !important; object-fit: contain !important; }
 .transition-btn { display: none !important; }
 .taxi-w.on-track .on-t-hero-info-grid { display: none !important; }
 .taxi-w.on-track .on-track-impact-text-w { transform: translateY(-14vh); }
