@@ -27,7 +27,11 @@ body { background: #000 url(stars.jpg) center / cover no-repeat fixed !important
 .s.is-horizontal-track { display: none !important; }
 /* home-marquee-tighten: pull content after the scholar moment up */
 .s.home-marquee, .s.home-marquee .c.is-marquee { height: 58vh !important; min-height: 0 !important; }
-img[src*="ln-home-helm-large"] { object-position: 50% 15% !important; }
+img[src*="ln-home-helm-large"] { display: none !important; } /* source file was scrubbed; hide the broken img */
+/* tighten the impact-statement -> ON/OFF transition (was ~47vh of empty stars) */
+.impact-content-w.is-home { padding-bottom: 0 !important; }
+.otot-home-layout { transform: translateY(-12vh); }
+.sticky-track.is-home-otot { margin-top: -14vh; }
 .s.is-otot-home h2, .s.is-otot-home p, .s.is-otot-home .char, .s.is-otot-home .line { color: #f4f4ed !important; }
 .sticky-track.is-home-otot { height: 185vh !important; }
 .otot-home-text-rive { filter: none; } /* filter lives on the canvas rule below; stacking both turned the scribble green */
