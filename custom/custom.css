@@ -1,5 +1,7 @@
 :root { --color--dark-green: #050505; }
 body { background: #000 url(stars.jpg) center / cover no-repeat fixed !important; }
+/* the exe-section visor strip has no positioned ancestor, so it parks as a black bar at the very top of the page */
+.exe-top-visor { display: none !important; }
 .taxi-w.style-guide, .taxi-w.off-track, .utility__switcher--w { background-color: transparent !important; }
 .stars-overlay { position: fixed; inset: 0; background: #000 url(stars.jpg) center / cover no-repeat; z-index: -2; pointer-events: none; }
 .home-hero-next-race-w { display: none !important; }
