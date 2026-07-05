@@ -4354,7 +4354,7 @@ if (diffuseColor.a < 0.02) discard;
               background = mix(
                 background,
                 uColorHover,
-                step(textureBackgroundNoise.g, -0.1 + uHover * 1.1)
+                step(textureBackgroundNoise.g, -0.1 + uHover * 2.0)
               );
             
 
@@ -4415,7 +4415,7 @@ final = mix(base, textureHelmet.rgb, helmetVis);
               end *= 0.75;
               end = blendHardLight(end, COLOR_FILTER);
 
-              vec3 transition = mix(final, end, uFilter * 0.45);
+              vec3 transition = mix(final, end, uFilter * 0.0);
             
               float lineGlow = smoothstep(0.02, 0.2, distance(background, COLOR_BACKGROUND));
 gl_FragColor = vec4(transition, max(max(textureDefaultDiffuse.a, helmetVis), lineGlow * 0.95 * (1.0 - helmetVis)));

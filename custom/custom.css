@@ -21,16 +21,17 @@ body { background: #000 url(stars.jpg) center / cover no-repeat fixed !important
 img[src*="ln-home-helm-large"] { object-position: 50% 15% !important; }
 .s.is-otot-home h2, .s.is-otot-home p, .s.is-otot-home .char, .s.is-otot-home .line { color: #f4f4ed !important; }
 .sticky-track.is-home-otot { height: 185vh !important; }
-.otot-home-text-rive { filter: hue-rotate(215deg) saturate(1.1); }
+.otot-home-text-rive { filter: none; } /* filter lives on the canvas rule below; stacking both turned the scribble green */
 /* otot-final: enlarge in place, nudged inward so nothing clips */
 .otot-home-img-w.is-1 { transform: translateX(5vw) scale(1.5) !important; transform-origin: bottom left !important; }
+.otot-home-img-w.is-1 .otot-home-img { object-position: 65% 22%; } /* keep the VR headset in frame */
 .otot-home-img-w.is-2 { transform: translateX(-5vw) scale(1.5) !important; transform-origin: bottom right !important; }
 /* astronaut-logo */
 .nav-brand svg { display: none !important; }
 .nav-brand { background: url(astronaut.png) center / contain no-repeat !important; width: 10rem !important; height: 7.5rem !important; }
 .nav-rive-w canvas { filter: hue-rotate(215deg) saturate(1.05); }
 .nav-ham canvas { filter: sepia(1) saturate(14) hue-rotate(252deg) brightness(0.82) contrast(1.15); }
-canvas[data-rive-file="phrases"] { filter: hue-rotate(215deg) saturate(1.1); }
+canvas[data-rive-file="phrases"] { filter: hue-rotate(235deg) saturate(8) brightness(0.72); } /* lime -> neon purple to match the buttons */
 /* on-track: helmet only */
 .taxi-w.on-track section.s:not(:first-of-type):not(.is-footer) { display: none !important; }
 .taxi-w.on-track .impact-content-w .eyebrow-w, .taxi-w.on-track [class*="f1-highlight"], .taxi-w.on-track .on-t-hero-stats-ui-w { display: none !important; }
@@ -39,3 +40,8 @@ canvas[data-rive-file="phrases"] { filter: hue-rotate(215deg) saturate(1.1); }
 .taxi-w.on-track .on-t-hero-info-grid { display: none !important; }
 .taxi-w.on-track .on-track-impact-text-w { transform: translateY(-14vh); }
 .taxi-w.off-track img[src*="signature"], .taxi-w.off-track .signature-rive, .taxi-w.off-track canvas[data-rive-file="signature"] { display: none !important; }
+/* footer centre: helmet-person cutout, kept fully in frame */
+.footer-bg-img { object-fit: contain !important; object-position: center bottom !important; }
+/* callout: floating astronaut instead of the helmet-with-laurels animation */
+.callout-rive-w .callout-icon canvas, .callout-rive-w .callout-icon svg { visibility: hidden !important; }
+.callout-rive-w { background: url(astronaut.png) center / contain no-repeat !important; }
