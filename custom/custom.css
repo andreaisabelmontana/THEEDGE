@@ -9,6 +9,8 @@ body { background: #000 url(stars.jpg) center / cover no-repeat fixed !important
 .s.is-home-collabs img[src*="collab-"] { filter: invert(1) !important; }
 /* footer signature removed */
 .footer-rive-w { display: none !important; }
+/* socials card-fan section removed */
+.s.is-callout-socials { display: none !important; }
 .taxi-w.style-guide, .taxi-w.off-track, .utility__switcher--w { background-color: transparent !important; }
 .stars-overlay { position: fixed; inset: 0; background: #000 url(stars.jpg) center / cover no-repeat; z-index: -2; pointer-events: none; }
 .home-hero-next-race-w { display: none !important; }
