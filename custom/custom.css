@@ -72,8 +72,9 @@ canvas[data-rive-file="phrases"] { filter: hue-rotate(235deg) saturate(8) bright
 .helmet-grid-item-reveal-img { width: 100%; height: 100%; object-fit: cover; } /* hover reveal: generated project cards */
 .helm-card-link { position: absolute; inset: 0; z-index: 6; } /* whole card opens the project */
 .helmet-grid-item-img-w.video-embed iframe { width: 88%; aspect-ratio: 16 / 9; border: 0; border-radius: 6px; } /* wrapper is flex-centered, card is square */
-.helmet-grid-item-img-helmet { width: 100% !important; height: 100% !important; object-fit: contain !important; transform: perspective(900px) rotateY(30deg); } /* angled to the side */
-.helmet-grid-item:nth-child(even) .helmet-grid-item-img-helmet { transform: perspective(900px) rotateY(-30deg); }
+.helmet-grid-item-img-helmet { position: absolute; inset: 0; width: 100% !important; height: 100% !important; object-fit: cover !important; border-radius: 10px; } /* card thumb = screenshot of the linked project */
+.helmet-grid-item { overflow: hidden; border-radius: 10px; } /* contain the hover zoom */
+.helmet-grid-item-reveal-img { border-radius: 10px; }
 /* home page: callout + projects section live on the online page instead */
 html[data-wf-page="67b5a02dc5d338960b17a7eb"] section.s:has(.c.is-callout) { display: none !important; }
 .transition-btn { display: none !important; }
