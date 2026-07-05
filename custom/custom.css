@@ -30,8 +30,8 @@ body { background: #000 url(stars.jpg) center / cover no-repeat fixed !important
 img[src*="ln-home-helm-large"] { display: none !important; } /* source file was scrubbed; hide the broken img */
 /* tighten the impact-statement -> ON/OFF transition (was ~47vh of empty stars) */
 .impact-content-w.is-home { padding-bottom: 0 !important; }
-.otot-home-layout { transform: translateY(-12vh); }
-.sticky-track.is-home-otot { margin-top: -14vh; }
+.otot-home-layout { transform: translateY(-8vh); }
+.sticky-track.is-home-otot { margin-top: -2vh; }
 .s.is-otot-home h2, .s.is-otot-home p, .s.is-otot-home .char, .s.is-otot-home .line { color: #f4f4ed !important; }
 .sticky-track.is-home-otot { height: 185vh !important; }
 .otot-home-text-rive { filter: none; } /* filter lives on the canvas rule below; stacking both turned the scribble green */
