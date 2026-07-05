@@ -4,6 +4,14 @@ body { background: #000 url(stars.jpg) center / cover no-repeat fixed !important
 .exe-top-visor { display: none !important; }
 /* merch/champion section removed */
 .s.is--exe { display: none !important; }
+/* projects hall of ideas lives on the online page now */
+html[data-wf-page="67b5a02dc5d338960b17a7eb"] .s.home-helmets { display: none !important; }
+/* footer: let the stars run into the purple glow instead of the cream band */
+.s.is-footer { background-color: transparent !important; }
+/* skills scribble: replace the rive "Collabs" handwriting */
+.s.is-home-collabs .home-collab-rive canvas, .s.is-home-collabs .image.is-collab-placeholder { display: none !important; }
+.s.is-home-collabs .home-collab-rive-w { position: relative; }
+.s.is-home-collabs .home-collab-rive-w::after { content: "Skills"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: Brier, Georgia, serif; font-style: italic; font-size: 16rem; line-height: 1; color: #BC13FE; transform: rotate(-12deg); pointer-events: none; }
 /* collabs: light text + light logos on the star background */
 .s.is-home-collabs h2, .s.is-home-collabs .text-title-lg-mona, .s.is-home-collabs .text-title-lg-brier, .s.is-home-collabs p, .s.is-home-collabs .char, .s.is-home-collabs .line { color: #f4f4ed !important; }
 .s.is-home-collabs img[src*="collab-"] { filter: invert(1) !important; }
