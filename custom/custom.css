@@ -55,6 +55,10 @@ canvas[data-rive-file="phrases"] { filter: hue-rotate(235deg) saturate(8) bright
 .taxi-w.off-track img[src*="signature"], .taxi-w.off-track .signature-rive, .taxi-w.off-track canvas[data-rive-file="signature"] { display: none !important; }
 /* footer logo marquee: lime -> neon purple to match the buttons */
 .footer-marquee img { filter: hue-rotate(235deg) saturate(8) brightness(0.72); }
+/* footer text must never depend on scroll-reveal state: keep it visible on every page */
+.s.is-footer .char, .s.is-footer .line, .s.is-footer .btn-text, .s.is-footer h2 { opacity: 1 !important; transform: none !important; visibility: visible !important; }
+.s.is-footer .line { clip-path: none !important; } /* split-text leaves lines clipped when the reveal never fires */
+.s.is-footer .high-line-reveal { display: none !important; } /* reveal wipe bars, pointless without the animation */
 /* footer centre: helmet-person cutout, kept fully in frame */
 .footer-bg-img { object-fit: contain !important; object-position: center bottom !important; }
 /* callout + nav menu: floating astronaut instead of the helmet-with-laurels animation */
