@@ -52,6 +52,10 @@ img[src*="ln-home-helm-large"] { display: none !important; } /* source file was 
 .otot-home-img-w.is-1 { transform: translateX(5vw) scale(1.5) !important; transform-origin: bottom left !important; }
 .otot-home-img .otot-home-img, .otot-home-img-w .otot-home-img { object-fit: contain; object-position: center bottom; } /* transparent cutouts: never crop */
 .otot-home-img-w.is-2 { transform: translateX(-5vw) scale(1.5) !important; transform-origin: bottom right !important; }
+/* nav menu: dark purple with white letters (was near-black with olive swirls) */
+.nav-menu-w { background-color: #1e0435 !important; color: #fff !important; }
+.nav-menu-bg { background-image: url(blobs-nav-purple.svg) !important; opacity: 0.2; }
+.nav-menu-w :is(a, div, span, h1, h2, h3, p) { color: #fff !important; }
 /* astronaut-logo */
 .nav-brand svg { display: none !important; }
 .nav-brand { background: url(astronaut.png) center / contain no-repeat !important; width: 10rem !important; height: 7.5rem !important; }
