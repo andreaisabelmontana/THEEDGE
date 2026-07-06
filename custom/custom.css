@@ -8,6 +8,9 @@ body { background: #000 url(stars.jpg) center / cover no-repeat fixed !important
 html[data-wf-page="67b5a02dc5d338960b17a7eb"] .s.home-helmets { display: none !important; }
 /* footer: let the stars run into the purple glow instead of the cream band */
 .s.is-footer { background-color: transparent !important; }
+/* skills: solid black band, starting right under the ON/OFF photos, so the section pops off the starfield */
+.s.is-home-collabs { position: relative; background-color: #050505 !important; }
+.s.is-home-collabs::before { content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: 85vh; background-color: #050505; }
 /* skills scribble: marker-style SKILLS behind the heading (replaces the rive "Collabs" handwriting) */
 .s.is-home-collabs .home-collab-rive-w { display: none !important; } /* also removes the dead space it added before the footer */
 .s.is-home-collabs .c.is-home-collabs { position: relative; padding: 8rem 0 6rem; }
