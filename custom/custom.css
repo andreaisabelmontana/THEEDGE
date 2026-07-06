@@ -38,6 +38,11 @@ html[data-wf-page="67b5a02dc5d338960b17a7eb"] .s.home-helmets { display: none !i
 .andrea-note { display: none !important; }
 .home-hero-logo-wrap, .impact-icon-w { display: none !important; }
 .s.is-horizontal-track { display: none !important; }
+/* offline page: the horizontal gallery is back in service, filled with her hobby photos */
+.taxi-w.off-track .s.is-horizontal-track { display: block !important; }
+.taxi-w.off-track .horizontal-rive-placeholder { display: none !important; } /* leftover rive doodads */
+.taxi-w.off-track .s.is-horizontal-track :is(.text-eyebrow, .horizontal-item-text, .text-descriptor, h2, .char, .line) { color: #f4f4ed !important; } /* dark-green palette is unreadable on stars */
+.taxi-w.off-track .s.is-horizontal-track :is(h3.text-title-reg-brier, h3.text-title-reg-brier .char, h3.text-title-reg-brier .line) { color: #BC13FE !important; } /* after the cream rule: split-text children must stay purple */
 /* home-marquee-tighten: pull content after the scholar moment up */
 .s.home-marquee, .s.home-marquee .c.is-marquee { height: 58vh !important; min-height: 0 !important; }
 img[src*="ln-home-helm-large"] { display: none !important; } /* source file was scrubbed; hide the broken img */
