@@ -108,6 +108,7 @@ html[data-wf-page="67b5a02dc5d338960b17a7eb"] section.s:has(.c.is-callout) { dis
 .taxi-w.off-track .off-t-hero-scroll-meda-img { display: none !important; } /* orphaned flip-effect feed images pile over the heading */
 .taxi-w.off-track .off-t-hero-img, .taxi-w.off-track .hero-img-layer { display: none !important; } /* the JS photo-flip widget paints layers over the heading */
 .taxi-w.off-track .off-t-hero-sub-para-w { margin-top: -3.5rem; } /* pull the paragraph up to its heading */
+.taxi-w.off-track .off-t-hero-sub-para-mw { grid-area: 1 / 1 / 2 / 2 !important; max-width: 26rem; } /* align under the heading instead of dangling mid-page */
 .taxi-w.off-track .s.is-on-track-home { height: 88vh !important; min-height: 0 !important; } /* trim the hero band */
 .taxi-w.off-track .text-impact-lg-mona strong, .taxi-w.off-track .text-impact-lg-mona strong .char { color: #BC13FE !important; }
 .taxi-w.off-track .high-line-reveal { display: none !important; } /* the stuck purple wipe bars */
