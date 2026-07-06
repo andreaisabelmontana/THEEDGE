@@ -19,8 +19,6 @@ html[data-wf-page="67b5a02dc5d338960b17a7eb"] .s.home-helmets { display: none !i
 /* collabs: light text + light logos on the star background */
 .s.is-home-collabs h2, .s.is-home-collabs .text-title-lg-mona, .s.is-home-collabs .text-title-lg-brier, .s.is-home-collabs p, .s.is-home-collabs .char, .s.is-home-collabs .line { color: #f4f4ed !important; }
 .s.is-home-collabs img[src*="collab-"] { filter: none !important; } /* wordmark SVGs are #BC13FE directly */
-/* footer signature removed */
-.footer-rive-w { display: none !important; }
 /* socials card-fan section removed */
 .s.is-callout-socials { display: none !important; }
 .taxi-w.style-guide, .taxi-w.off-track, .utility__switcher--w { background-color: transparent !important; }
@@ -91,7 +89,6 @@ html[data-wf-page="67b5a02dc5d338960b17a7eb"] section.s:has(.c.is-callout) { dis
 .transition-btn { display: none !important; }
 .taxi-w.on-track .on-t-hero-info-grid { display: none !important; }
 .taxi-w.on-track .on-track-impact-text-w { transform: translateY(-14vh); }
-.taxi-w.off-track img[src*="signature"], .taxi-w.off-track .signature-rive, .taxi-w.off-track canvas[data-rive-file="signature"] { display: none !important; }
 /* offline page: white hero, no company marquee, and no stuck reveal states */
 .text-on-t-hero-heading.is-off-t { color: #f4f4ed !important; }
 .taxi-w.off-track .marquee-offest-w { display: none !important; }
