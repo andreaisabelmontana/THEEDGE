@@ -8,18 +8,17 @@ body { background: #000 url(stars.jpg) center / cover no-repeat fixed !important
 html[data-wf-page="67b5a02dc5d338960b17a7eb"] .s.home-helmets { display: none !important; }
 /* footer: let the stars run into the purple glow instead of the cream band */
 .s.is-footer { background-color: transparent !important; }
-/* skills: solid black band, starting right under the ON/OFF photos, so the section pops off the starfield */
+/* skills: solid black band on the section itself, so it pops off the starfield without swallowing the ON/OFF area */
 .s.is-home-collabs { position: relative; background-color: #050505 !important; }
-.s.is-home-collabs::before { content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: 85vh; background-color: #050505; }
 /* skills scribble: marker-style SKILLS behind the heading (replaces the rive "Collabs" handwriting) */
 .s.is-home-collabs .home-collab-rive-w { display: none !important; } /* also removes the dead space it added before the footer */
-.s.is-home-collabs .c.is-home-collabs { position: relative; padding: 8rem 0 6rem; }
+.s.is-home-collabs .c.is-home-collabs { position: relative; padding-top: 8rem; padding-bottom: 6rem; } /* keep the container's own side padding — zeroing it clipped the heading at the viewport edge */
 .s.is-home-collabs .c.is-home-collabs::before { content: "SKILLS"; position: absolute; top: 1rem; left: 2vw; font-family: 'Permanent Marker', 'Segoe Print', cursive; font-size: 11rem; line-height: 1; color: #BC13FE; transform: rotate(-8deg); z-index: 0; pointer-events: none; }
 .s.is-home-collabs .title-layout { position: relative; z-index: 1; }
 .s.is-home-collabs .spacer { display: none !important; } /* the rive block + tail spacers created the dead space before the footer */
 /* collabs: light text + light logos on the star background */
 .s.is-home-collabs h2, .s.is-home-collabs .text-title-lg-mona, .s.is-home-collabs .text-title-lg-brier, .s.is-home-collabs p, .s.is-home-collabs .char, .s.is-home-collabs .line { color: #f4f4ed !important; }
-.s.is-home-collabs img[src*="collab-"] { filter: invert(1) !important; }
+.s.is-home-collabs img[src*="collab-"] { filter: none !important; } /* wordmark SVGs are #BC13FE directly */
 /* footer signature removed */
 .footer-rive-w { display: none !important; }
 /* socials card-fan section removed */

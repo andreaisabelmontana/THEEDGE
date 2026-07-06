@@ -1,5 +1,5 @@
 <svg width="222" height="82" viewBox="0 0 222 82" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path fill="#111112" fill-rule="evenodd" d="M8.5 45a15.5 15.5 0 1 0 31 0a15.5 15.5 0 1 0 -31 0Zm6.5 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0Z"/>
-  <path fill="#111112" fill-rule="evenodd" d="M31.5 45a15.5 15.5 0 1 0 31 0a15.5 15.5 0 1 0 -31 0Zm6.5 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0Z"/>
-  <text x="74" y="45" fill="#111112" font-family="'Arial Rounded MT Bold','Segoe UI Rounded','Century Gothic','Futura','Trebuchet MS',sans-serif" font-size="55" font-weight="700" letter-spacing="1" dominant-baseline="middle">Meta</text>
+  <path fill="#BC13FE" fill-rule="evenodd" d="M8.5 45a15.5 15.5 0 1 0 31 0a15.5 15.5 0 1 0 -31 0Zm6.5 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0Z"/>
+  <path fill="#BC13FE" fill-rule="evenodd" d="M31.5 45a15.5 15.5 0 1 0 31 0a15.5 15.5 0 1 0 -31 0Zm6.5 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0Z"/>
+  <text x="74" y="45" fill="#BC13FE" font-family="'Arial Rounded MT Bold','Segoe UI Rounded','Century Gothic','Futura','Trebuchet MS',sans-serif" font-size="55" font-weight="700" letter-spacing="1" dominant-baseline="middle">Meta</text>
 </svg>
