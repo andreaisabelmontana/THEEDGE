@@ -90,8 +90,7 @@ html[data-wf-page="67b5a02dc5d338960b17a7eb"] section.s:has(.c.is-callout) { dis
 .taxi-w.off-track .char, .taxi-w.off-track .line, .taxi-w.off-track h2, .taxi-w.off-track p, .taxi-w.off-track .text-impact-lg-mona, .taxi-w.off-track .text-eyebrow { opacity: 1 !important; transform: none !important; visibility: visible !important; }
 .taxi-w.off-track .line { clip-path: none !important; } /* split-text leaves lines clipped when the reveal never fires */
 .taxi-w.off-track .high-line-reveal { display: none !important; } /* the stuck purple wipe bars */
-/* footer logo marquee: lime -> neon purple to match the buttons */
-.footer-marquee img { filter: hue-rotate(235deg) saturate(8) brightness(0.72); }
+/* footer logo marquee: wordmark SVGs are #BC13FE directly — no filter, exact brand purple */
 /* footer text must never depend on scroll-reveal state: keep it visible on every page */
 .s.is-footer .char, .s.is-footer .line, .s.is-footer .btn-text, .s.is-footer h2 { opacity: 1 !important; transform: none !important; visibility: visible !important; }
 .s.is-footer .line { clip-path: none !important; } /* split-text leaves lines clipped when the reveal never fires */
