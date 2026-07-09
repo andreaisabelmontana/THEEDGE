@@ -134,3 +134,8 @@ html[data-wf-page="67b5a02dc5d338960b17a7eb"] section.s:has(.c.is-callout) { dis
 .taxi-w.off-track .horizontal-item-img-w.is-offt6 img[src*="hb-madrid"] { object-fit: contain; object-position: center; }
 /* home: trim the hero track's empty scroll runway - the pinned scene only fills the top, the rest was dead starfield before ON/OFFLINE arrives */
 .sticky-track.home-hero { height: 150vh; }
+/* off-track hero: intro copy slightly larger */
+.taxi-w.off-track .off-t-hero-stats-layout .text-body-lg-mona { font-size: 2.75rem; }
+.taxi-w.off-track .off-t-hero-sub-para-mw .text-body-sm-mona { font-size: 1.2rem; }
+.taxi-w.off-track .off-t-hero-stats-grid.grid-main { max-width: 48rem; }
+.taxi-w.off-track .off-t-hero-sub-para-w.grid-main, .taxi-w.off-track .off-t-hero-sub-para-mw { max-width: 40rem; }
