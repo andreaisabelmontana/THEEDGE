@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coursework — Andrea Isabel Montaña</title>
+<meta name="description" content="37 courses across the BCSAI degree at IE University — one interactive companion site per course.">
+<style>
+  @font-face {
+    font-family: 'Mona Sans';
+    src: url('../assets/cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67bc6274c5b4108b123aa4d5_MonaSans-VariableFont_wdth,wght.woff2') format('woff2');
+    font-weight: 200 900;
+    font-display: swap;
+  }
+  :root {
+    --bg: #0a0a0b;
+    --ink: #f2f0ea;
+    --dim: #9b9ba6;
+    --accent: #bc13fe;
+    --line: #232326;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Mona Sans', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    padding: 0 24px;
+  }
+  .wrap { max-width: 780px; margin: 0 auto; padding: 72px 0 96px; }
+  .eyebrow {
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+  }
+  h1 {
+    font-size: clamp(42px, 8vw, 72px);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .01em;
+    margin: 10px 0 14px;
+  }
+  .intro { color: var(--dim); font-size: 16px; line-height: 1.55; max-width: 56ch; }
+  .term {
+    margin-top: 56px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--line);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+  }
+  a.course {
+    display: block;
+    padding: 18px 8px;
+    border-bottom: 1px solid var(--line);
+    text-decoration: none;
+    color: inherit;
+  }
+  a.course:hover .name, a.course:focus-visible .name { color: var(--accent); }
+  a.course:hover { background: #101013; }
+  .name { font-size: 19px; font-weight: 700; transition: color .15s ease; }
+  .desc { color: var(--dim); font-size: 14.5px; line-height: 1.5; margin-top: 4px; }
+  .back {
+    display: inline-block;
+    margin-top: 64px;
+    color: var(--dim);
+    font-size: 14px;
+    text-decoration: none;
+  }
+  .back:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="eyebrow">Course portfolio</p>
+  <h1>Coursework.</h1>
+  <p class="intro">37 courses across the four-year Computer Science &amp; AI degree at IE University. Each one got its own interactive companion site — notes, live demos and projects, all built from scratch. Click any course to open it.</p>
+
+  <h2 class="term">Year 4 · Semester 2</h2>
+  <a class="course" href="https://andreaisabelmontana.github.io/blockchain-playground/" target="_blank" rel="noopener"><span class="name">Blockchain, Cryptocurrencies &amp; FinTech</span><p class="desc">Interactive playground of blockchain and fintech concepts — 17 in-browser modules.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/cs-ethics/" target="_blank" rel="noopener"><span class="name">Ethics, Policy &amp; Legislation in CS</span><p class="desc">Visual walkthroughs of the course's core ethics, policy and legislation concepts.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/Robotics-Automation/" target="_blank" rel="noopener"><span class="name">Robotics &amp; Automation</span><p class="desc">In-browser visualizations of 13 robotics concepts, from kinematics and ROS to planning.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/uxui-hci-interactive/" target="_blank" rel="noopener"><span class="name">UX/UI &amp; Human-Computer Interaction</span><p class="desc">Interactive concept map for UX, UI and human-computer interaction.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/apex-athlete/" target="_blank" rel="noopener"><span class="name">Capstone Project — APEX</span><p class="desc">Concept site for a unified digital infrastructure for high-performance multisport athletes.</p></a>
+
+  <h2 class="term">Year 3 · Semester 2</h2>
+  <a class="course" href="https://andreaisabelmontana.github.io/chatbots-recsys-lab/" target="_blank" rel="noopener"><span class="name">AI: Chatbots &amp; Recommendation Engines</span><p class="desc">24+ live demos covering conversational agents and recommendation engines.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/cs-vision/" target="_blank" rel="noopener"><span class="name">AI: Computer Vision</span><p class="desc">17 in-browser demos, from image formation through generative models.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/nlp-lab/" target="_blank" rel="noopener"><span class="name">AI: NLP &amp; Semantic Analysis</span><p class="desc">23 live demos from text preprocessing to transformers.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/reinforce-interactive/" target="_blank" rel="noopener"><span class="name">AI: Reinforcement Learning</span><p class="desc">Playground for every core RL idea — bandits, MDPs, temporal difference, REINFORCE, A2C.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/stat-learning/" target="_blank" rel="noopener"><span class="name">AI: Statistical Learning &amp; Prediction</span><p class="desc">Visual k-NN, SVMs, MLPs, trees, ensembles, PCA and k-means.</p></a>
+
+  <h2 class="term">Year 3 · Semester 1</h2>
+  <a class="course" href="https://andreaisabelmontana.github.io/java-study/" target="_blank" rel="noopener"><span class="name">Computer Programming II</span><p class="desc">Browser-only Java study companion — lessons, quiz mode and a cheatsheet.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/sddo-notes/" target="_blank" rel="noopener"><span class="name">Software Development &amp; DevOps</span><p class="desc">Course notes site for software development and DevOps practice.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/robotics-lab-interactive/" target="_blank" rel="noopener"><span class="name">Introduction to Robotics Lab</span><p class="desc">Kinematics, sensors, PID control and autonomy, interactive in the browser.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/ai-reasoning-games/" target="_blank" rel="noopener"><span class="name">AI: Reasoning &amp; Problem Solving</span><p class="desc">Playable Quoridor, Ghosts and UNO with simple AI opponents.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/hpc-lab/" target="_blank" rel="noopener"><span class="name">High Performance Computing</span><p class="desc">Interactive HPC companion — caches, parallelism and GPU computing demos.</p></a>
+  <a class="course" href="https://canva.link/hah28m2jrnhfj42" target="_blank" rel="noopener"><span class="name">IE Challenge</span><p class="desc">Team challenge deliverable — slide deck.</p></a>
+
+  <h2 class="term">Year 2 · Semester 2</h2>
+  <a class="course" href="https://andreaisabelmontana.github.io/ml-lab/" target="_blank" rel="noopener"><span class="name">AI: Machine Learning Foundations</span><p class="desc">Train/test splits, gradient descent and the foundations of ML, interactive.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/affect-lab/" target="_blank" rel="noopener"><span class="name">AI: Personality &amp; Emotion for AI Design</span><p class="desc">Personality and emotion for AI companions — from neurons to affect models.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/sql-lab/" target="_blank" rel="noopener"><span class="name">Designing and Using Databases</span><p class="desc">SQL playground running entirely in the browser, with a sample database and schema diagram.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/entrep-lab/" target="_blank" rel="noopener"><span class="name">IE Impact Entrepreneurship</span><p class="desc">Opportunity scoring and design-thinking tools for impact entrepreneurship.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/linalg-lab/" target="_blank" rel="noopener"><span class="name">Matrices &amp; Linear Transformations</span><p class="desc">Vectors, dot products and linear transformations you can drag around.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/stats-lab/" target="_blank" rel="noopener"><span class="name">Probability for Computing Science</span><p class="desc">Visual statistics and probability demos.</p></a>
+
+  <h2 class="term">Year 2 · Semester 1</h2>
+  <a class="course" href="https://andreaisabelmontana.github.io/algos-lab/" target="_blank" rel="noopener"><span class="name">Algorithms &amp; Data Structures</span><p class="desc">Sorting, pathfinding, graphs, hashing and backtracking, visualized step by step.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/calc-lab/" target="_blank" rel="noopener"><span class="name">Calculus for Computer Science</span><p class="desc">Tangents, Riemann sums, Taylor series, vector fields and 3D surfaces.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/cloud-lab/" target="_blank" rel="noopener"><span class="name">Cloud Computing</span><p class="desc">Service models, regions and scaling patterns, explained interactively.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/arch-lab/" target="_blank" rel="noopener"><span class="name">Computer Architecture, Networks &amp; OS</span><p class="desc">Interactive companion across architecture, networking and operating systems.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/cp1-lab/" target="_blank" rel="noopener"><span class="name">Computer Programming I</span><p class="desc">Variables to recursion — the full CP1 syllabus with runnable modules.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/tech-lab/" target="_blank" rel="noopener"><span class="name">Technology with Impact</span><p class="desc">Low-code tools and impact technology, hands-on.</p></a>
+
+  <h2 class="term">Year 1 · Semester 2</h2>
+  <a class="course" href="https://andreaisabelmontana.github.io/data-analysis-lab/" target="_blank" rel="noopener"><span class="name">Fundamentals of Data Analysis</span><p class="desc">Interactive companion for the fundamentals of data analysis.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/humanities-lab/" target="_blank" rel="noopener"><span class="name">Humanities</span><p class="desc">Reasoning companion for technology and the making of the modern world.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/physics-cs-lab/" target="_blank" rel="noopener"><span class="name">Physics for Computer Science</span><p class="desc">Physics demos built for computer scientists.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/programming-principles-lab/" target="_blank" rel="noopener"><span class="name">Principles of Programming</span><p class="desc">Programming principles with live, editable examples.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/modeling-lab/" target="_blank" rel="noopener"><span class="name">Simulating and Modeling to Understand Change</span><p class="desc">Simulation and modeling demos for understanding change.</p></a>
+
+  <h2 class="term">Year 1 · Semester 1</h2>
+  <a class="course" href="https://andreaisabelmontana.github.io/discrete-math-lab/" target="_blank" rel="noopener"><span class="name">Discrete Mathematics</span><p class="desc">Interactive logic, sets, relations and modular arithmetic.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/prob-stats-lab/" target="_blank" rel="noopener"><span class="name">Fundamentals of Probability &amp; Statistics</span><p class="desc">12 self-contained interactive probability and statistics demos.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/business-lab/" target="_blank" rel="noopener"><span class="name">Introduction to Business Management</span><p class="desc">10 interactive strategy, finance and market-structure demos.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/research-methods-lab/" target="_blank" rel="noopener"><span class="name">Learning to Observe, Experiment &amp; Survey</span><p class="desc">Sampling, experiments and surveys, visualized.</p></a>
+  <a class="course" href="https://andreaisabelmontana.github.io/big-history-lab/" target="_blank" rel="noopener"><span class="name">The Big History of Ideas and Innovation</span><p class="desc">Nine interactive timelines, S-curves and acceleration demos.</p></a>
+
+  <a class="back" href="../">&larr; back to theedge</a>
+</main>
+</body>
+</html>
