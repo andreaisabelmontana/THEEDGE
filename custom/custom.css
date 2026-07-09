@@ -133,7 +133,7 @@ html[data-wf-page="67b5a02dc5d338960b17a7eb"] section.s:has(.c.is-callout) { dis
 /* off-track track: show the Madrid winter-walks photo uncropped; contain beats the frame's fixed height */
 .taxi-w.off-track .horizontal-item-img-w.is-offt6 img[src*="hb-madrid"] { object-fit: contain; object-position: center; }
 /* home: trim the hero track's empty scroll runway - the pinned scene only fills the top, the rest was dead starfield before ON/OFFLINE arrives */
-.sticky-track.home-hero { height: 150vh; }
+.sticky-track.home-hero { height: 112vh; }
 /* off-track hero: intro copy slightly larger */
 .taxi-w.off-track .off-t-hero-stats-layout .text-body-lg-mona { font-size: 2.75rem; }
 .taxi-w.off-track .off-t-hero-sub-para-mw .text-body-sm-mona { font-size: 1.2rem; }
