@@ -1,7 +1,5 @@
 # THEEDGE
 
-Live: https://andreaisabelmontana.github.io/THEEDGE/
-
 ## What the site is made of
 
 - **Webflow** — the pages (`index.html`, `calendar/`, `on-track/`, `off-track/`,
@@ -28,3 +26,5 @@ Live: https://andreaisabelmontana.github.io/THEEDGE/
   structures a page, and `data-rive-` / `data-gl` for the animation hooks the
   agency bundle consumes.
 - Watch the Network tab while scrolling: Rive files and GL textures load lazily.
+
+Live: https://andreaisabelmontana.github.io/THEEDGE/
