@@ -124,3 +124,11 @@ html[data-wf-page="67b5a02dc5d338960b17a7eb"] section.s:has(.c.is-callout) { dis
 .callout-rive-w { background: url(astronaut.png) center / contain no-repeat !important; }
 .base-helmet-rive canvas, .base-helmet-rive svg { visibility: hidden !important; }
 .base-helmet-rive { background: url(astronaut.png) center / contain no-repeat !important; }
+/* off-track hero: intro copy centered directly under the OFFLINE title */
+.taxi-w.off-track .off-t-hero-stats-grid.grid-main { display: block; max-width: 42rem; margin: 2.5rem auto 0; text-align: center; }
+.taxi-w.off-track .off-t-hero-stats-layout { display: block; }
+.taxi-w.off-track .off-t-hero-stats-layout .eyebrow-w { justify-content: center; }
+.taxi-w.off-track .off-t-hero-sub-para-w.grid-main { display: block; max-width: 34rem; margin: 1.25rem auto 0; text-align: center; }
+.taxi-w.off-track .off-t-hero-sub-para-mw { max-width: 34rem; margin: 0 auto; }
+/* off-track track: show the Madrid winter-walks photo uncropped; contain beats the frame's fixed height */
+.taxi-w.off-track .horizontal-item-img-w.is-offt6 img[src*="hb-madrid"] { object-fit: contain; object-position: center; }
