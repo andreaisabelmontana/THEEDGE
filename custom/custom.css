@@ -119,6 +119,8 @@ html[data-wf-page="67b5a02dc5d338960b17a7eb"] section.s:has(.c.is-callout) { dis
 .s.is-footer .high-line-reveal { display: none !important; } /* reveal wipe bars, pointless without the animation */
 /* footer centre: helmet-person cutout, kept fully in frame */
 .footer-bg-img { object-fit: contain !important; object-position: center bottom !important; }
+/* footer statement ("Computer Science and AI") is position:absolute + full-width flex, so its empty side margins sit on top of and swallow clicks on footer-links-w beneath it; it has no interactive content of its own */
+.footer-statement-w { pointer-events: none !important; }
 /* callout + nav menu: floating astronaut instead of the helmet-with-laurels animation */
 .callout-rive-w .callout-icon canvas, .callout-rive-w .callout-icon svg { visibility: hidden !important; }
 .callout-rive-w { background: url(astronaut.png) center / contain no-repeat !important; }
