@@ -139,16 +139,3 @@ html[data-wf-page="67b5a02dc5d338960b17a7eb"] section.s:has(.c.is-callout) { dis
 .taxi-w.off-track .off-t-hero-sub-para-mw .text-body-sm-mona { font-size: 1.2rem; }
 .taxi-w.off-track .off-t-hero-stats-grid.grid-main { max-width: 48rem; }
 .taxi-w.off-track .off-t-hero-sub-para-w.grid-main, .taxi-w.off-track .off-t-hero-sub-para-mw { max-width: 40rem; }
-/* experience: same black band + marker-scribble treatment as skills, stacked role/date/desc rows instead of a marquee */
-.s.is-home-experience { position: relative; background-color: #050505 !important; }
-.s.is-home-experience .c.is-home-experience { position: relative; padding-top: 8rem; padding-bottom: 6rem; }
-.s.is-home-experience .c.is-home-experience::before { content: "WORK"; position: absolute; top: 1rem; right: 2vw; font-family: 'Permanent Marker', 'Segoe Print', cursive; font-size: 11rem; line-height: 1; color: #BC13FE; transform: rotate(6deg); z-index: 0; pointer-events: none; }
-.s.is-home-experience .title-layout, .s.is-home-experience .experience-list { position: relative; z-index: 1; }
-.s.is-home-experience h2, .s.is-home-experience .text-title-lg-mona, .s.is-home-experience .text-title-lg-brier, .s.is-home-experience p, .s.is-home-experience .char, .s.is-home-experience .line { color: #f4f4ed !important; }
-.experience-list { display: flex; flex-direction: column; }
-.experience-item { padding: 2rem 0; border-top: 1px solid rgba(244,244,237,0.18); }
-.experience-item:last-child { border-bottom: 1px solid rgba(244,244,237,0.18); }
-.experience-item-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.5rem 1.5rem; }
-.experience-role { color: #BC13FE !important; }
-.experience-date { color: rgba(244,244,237,0.6) !important; text-align: right; margin-left: auto; } /* auto margin keeps it flush right even when it wraps to its own line on narrow screens */
-.experience-desc { margin-top: 0.75rem; max-width: 46rem; }
