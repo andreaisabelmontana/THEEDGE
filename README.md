@@ -5,7 +5,7 @@
 - **Webflow** — the pages (`index.html`, `calendar/`, `on-track/`, `off-track/`,
   `online/`) are Webflow-generated. One shared stylesheet + `webflow.*.js`
   (both under `assets/cdn.prod.website-files.com/`).
-- **Agency bundle** 
+- **Bundle** 
   custom orchestration bundle (GSAP + Lenis + Three.js + Rive),. It drives the page transitions, the
   scroll choreography, all Rive canvases, and the WebGL scenes.
 - **Rive animations** (`rive/*.riv`) — page transition, animated buttons,
