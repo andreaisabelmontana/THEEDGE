@@ -5,10 +5,8 @@
 - **Webflow** — the pages (`index.html`, `calendar/`, `on-track/`, `off-track/`,
   `online/`) are Webflow-generated. One shared stylesheet + `webflow.*.js`
   (both under `assets/cdn.prod.website-files.com/`).
-- **Agency bundle** (`assets/lando.itsoffbrand.io/dev-js/`) — the studio's
-  custom orchestration bundle (GSAP + Lenis + Three.js + Rive), restored from
-  git history. Only the `gold-android-fix-03` variant is loaded by the pages;
-  the other file is kept for reference. It drives the page transitions, the
+- **Agency bundle** 
+  custom orchestration bundle (GSAP + Lenis + Three.js + Rive),. It drives the page transitions, the
   scroll choreography, all Rive canvases, and the WebGL scenes.
 - **Rive animations** (`rive/*.riv`) — page transition, animated buttons,
   signature, circuits, phrases marquee, etc. Played via the Rive runtime
