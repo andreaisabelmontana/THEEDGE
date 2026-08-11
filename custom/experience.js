@@ -147,19 +147,6 @@
     })(i);
   }
 
-  /* Hero marquee fallback: visible from first paint, hands over to the GL
-     text once the page has fully loaded. */
-  var fb = document.querySelector('.am-marquee-fallback');
-  if (fb) {
-    var hide = function () {
-      setTimeout(function () {
-        fb.classList.add('is-done');
-        setTimeout(function () { fb.style.display = 'none'; }, 900);
-      }, 6000);
-    };
-    if (document.readyState === 'complete') hide();
-    else window.addEventListener('load', hide);
-  }
 })();
 
 
