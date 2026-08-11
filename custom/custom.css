@@ -141,3 +141,64 @@ html[data-wf-page="67b5a02dc5d338960b17a7eb"] section.s:has(.c.is-callout) { dis
 .taxi-w.off-track .off-t-hero-sub-para-mw .text-body-sm-mona { font-size: 1.2rem; }
 .taxi-w.off-track .off-t-hero-stats-grid.grid-main { max-width: 48rem; }
 .taxi-w.off-track .off-t-hero-sub-para-w.grid-main, .taxi-w.off-track .off-t-hero-sub-para-mw { max-width: 40rem; }
+
+
+/* ---------- 2026-08-11 additions ---------- */
+
+/* Hero name above the head */
+.am-hero-name {
+  position: absolute; top: 2.2rem; left: 0; right: 0; z-index: 3;
+  text-align: center; pointer-events: none;
+  font-family: inherit; font-weight: 700;
+  font-size: clamp(1.6rem, 3.2vw, 3.2rem);
+  letter-spacing: 0.42em; text-indent: 0.42em;
+  color: #f5f0e8;
+}
+
+/* Instant marquee text, fades once the GL text is up */
+.am-marquee-fallback {
+  position: absolute; top: 0; left: 0; width: 100%; z-index: 2;
+  overflow: hidden; white-space: nowrap; pointer-events: none;
+  opacity: 0.92; transition: opacity 0.9s ease;
+  font-weight: 700; font-size: clamp(3rem, 7.5vw, 7rem);
+  color: #ece7da; line-height: 1.15;
+}
+.am-marquee-fallback.is-done { opacity: 0; }
+.am-marquee-fallback span { display: inline-block; padding-right: 2rem;
+  animation: am-marquee-slide 22s linear infinite; }
+@keyframes am-marquee-slide { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+
+/* Experience globe section */
+.s.am-exp { position: relative; padding: 6rem 0; }
+.c.am-exp { max-width: 72rem; margin: 0 auto; padding: 0 2rem; }
+.am-exp-head { display: flex; align-items: end; justify-content: space-between;
+  gap: 2rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.am-exp-title { font-size: clamp(2.6rem, 6vw, 5rem); line-height: 0.95;
+  color: #f5f0e8; margin: 0; }
+.am-exp-sub { color: #b9b3c6; max-width: 22rem; margin: 0; }
+.am-exp-layout { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 3rem; align-items: center; }
+@media (max-width: 820px) { .am-exp-layout { grid-template-columns: 1fr; } }
+.am-exp-globe-w { position: relative; }
+#am-globe { width: 100%; height: auto; display: block; cursor: grab; touch-action: none; }
+#am-globe:active { cursor: grabbing; }
+.am-exp-timeline { list-style: none; margin: 0; padding: 0; display: flex;
+  flex-direction: column; gap: 1rem; }
+.am-exp-timeline li { border: 1px solid rgba(245,240,232,0.22); border-radius: 12px;
+  padding: 1rem 1.2rem; cursor: pointer; display: grid; gap: 0.2rem;
+  transition: border-color 0.25s ease, background 0.25s ease; }
+.am-exp-timeline li:hover { border-color: rgba(191,64,255,0.7); }
+.am-exp-timeline li.is-active { border-color: #bf40ff; background: rgba(191,64,255,0.08); }
+.am-exp-year { color: #bf40ff; font-weight: 700; letter-spacing: 0.12em; font-size: 0.85rem; }
+.am-exp-role { color: #f5f0e8; font-weight: 600; }
+.am-exp-place { color: #b9b3c6; font-size: 0.9rem; }
+.am-exp-chip { justify-self: start; margin-top: 0.3rem; font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 0.14em; color: #12101c; background: #bf40ff; border-radius: 999px;
+  padding: 0.18rem 0.55rem; }
+
+/* Skills section now lives on the online page */
+.taxi-w.on-track section.s.is-home-collabs { display: block !important; }
+.taxi-w.on-track .s.is-home-collabs .char, .taxi-w.on-track .s.is-home-collabs .line,
+.taxi-w.on-track .s.is-home-collabs h2, .taxi-w.on-track .s.is-home-collabs p {
+  opacity: 1 !important; transform: none !important; visibility: visible !important; }
+.taxi-w.on-track .s.is-home-collabs .line { clip-path: none !important; }
