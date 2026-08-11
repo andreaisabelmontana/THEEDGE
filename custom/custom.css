@@ -214,9 +214,13 @@ html[data-wf-page="67b5a02dc5d338960b17a7eb"] section.s:has(.c.is-callout) { dis
 
 /* Journey list: star bullet timeline, no boxes */
 .am-exp-timeline { gap: 1.4rem; }
-.am-exp-timeline li { border: none !important; background: none !important;
-  border-radius: 0; padding: 0 0 0 1.9rem; position: relative; display: grid; gap: 0.28rem; }
-.am-exp-timeline li::before { content: '✦'; position: absolute; left: 0; top: 0.05rem;
+.am-exp-timeline li { border: 1px solid rgba(245,240,232,0.18) !important;
+  background: rgba(245,240,232,0.09) !important; backdrop-filter: blur(4px);
+  border-radius: 14px; padding: 0.95rem 1.2rem 0.95rem 2.9rem; position: relative;
+  display: grid; gap: 0.28rem; transition: background 0.25s ease, border-color 0.25s ease; }
+.am-exp-timeline li:hover, .am-exp-timeline li.is-active {
+  background: rgba(245,240,232,0.14) !important; border-color: rgba(191,64,255,0.75) !important; }
+.am-exp-timeline li::before { content: '✦'; position: absolute; left: 1.05rem; top: 1rem;
   color: #f5f0e8; font-size: 1.15rem; line-height: 1; transition: color 0.25s ease, text-shadow 0.25s ease; }
 .am-exp-timeline li:hover::before, .am-exp-timeline li.is-active::before {
   color: #bf40ff; text-shadow: 0 0 12px rgba(191,64,255,0.9); }

@@ -8,7 +8,7 @@
       degree: 'American AP diploma + Bachiller Colombiano',
       place: 'Bogota, Colombia', lat: 4.652, lon: -74.055 },
     { year: '2022 to 2023', title: 'Student', org: 'Trinity College Dublin',
-      degree: 'Bachelor of Computer Science',
+      degree: 'Bachelor of Computer Science (transferred to IE University)',
       place: 'Dublin, Ireland', lat: 53.3438, lon: -6.2546 },
     { year: '2023 to present', title: 'Student', org: 'IE University',
       degree: 'Bachelor of Computer Science and Artificial Intelligence',
