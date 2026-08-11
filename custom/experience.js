@@ -1,15 +1,15 @@
 /* Experience globe: canvas orthographic Earth with milestone pins and a
    timeline list. Land outlines come from Natural Earth 110m (same source
    Javier's globe uses), pre-decoded into custom/land-rings.json.
-   Entries below are PLACEHOLDERS: edit ENTRIES to make them real. */
+   Edit ENTRIES to change the journey. */
 (function () {
   var ENTRIES = [
-    { year: '2023 to 2027', title: 'BCSAI student', org: 'IE University',
-      place: 'Madrid, Spain', lat: 40.4168, lon: -3.7038, placeholder: true },
-    { year: '2026', title: 'AI agent platform intern', org: 'Acreditta',
-      place: 'Bogota, Colombia', lat: 4.711, lon: -74.072, placeholder: true },
-    { year: 'Ongoing', title: 'Painter', org: 'Arte de la Montana',
-      place: 'Canvases from Bogota to Madrid', lat: 4.62, lon: -74.15, placeholder: true }
+    { year: '2010 to 2022', title: 'Student', org: 'Colegio Nueva Granada',
+      place: 'Bogota, Colombia', lat: 4.652, lon: -74.055 },
+    { year: '2022 to 2023', title: 'Student', org: 'Trinity College Dublin',
+      place: 'Dublin, Ireland', lat: 53.3438, lon: -6.2546 },
+    { year: '2023 to present', title: 'BCSAI student', org: 'IE University',
+      place: 'Madrid, Spain', lat: 40.4168, lon: -3.7038 }
   ];
 
   var canvas = document.getElementById('am-globe');
@@ -186,13 +186,13 @@
     x.clearRect(0, 0, w, h);
     var glow = x.createRadialGradient(cx, cy, R * 0.92, cx, cy, R * 1.18);
     glow.addColorStop(0, 'rgba(150,80,255,0.0)');
-    glow.addColorStop(0.55, 'rgba(150,80,255,0.28)');
+    glow.addColorStop(0.55, 'rgba(150,80,255,0.36)');
     glow.addColorStop(1, 'rgba(150,80,255,0.0)');
     x.fillStyle = glow;
     x.beginPath(); x.arc(cx, cy, R * 1.18, 0, Math.PI * 2); x.fill();
     var sph = x.createRadialGradient(cx - R * 0.35, cy - R * 0.5, R * 0.2, cx, cy, R);
-    sph.addColorStop(0, '#1d1a33');
-    sph.addColorStop(1, '#0b0a16');
+    sph.addColorStop(0, '#2e2a4d');
+    sph.addColorStop(1, '#171429');
     x.fillStyle = sph;
     x.beginPath(); x.arc(cx, cy, R, 0, Math.PI * 2); x.fill();
     x.strokeStyle = 'rgba(245,240,232,0.35)';
@@ -210,7 +210,7 @@
           } else started = false;
         }
       }
-      x.strokeStyle = 'rgba(214,206,255,0.55)';
+      x.strokeStyle = 'rgba(228,222,255,0.85)';
       x.lineWidth = 0.9;
       x.stroke();
     }
