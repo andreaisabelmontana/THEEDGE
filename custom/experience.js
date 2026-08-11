@@ -184,7 +184,7 @@
   function frame() {
     rot += 0.03;
     var w = c.width, h = c.height;
-    var cx = w / 2, cy = h * 1.28, R = w * 0.40;
+    var cx = w / 2, cy = h * 1.22, R = w * 0.37;
     x.clearRect(0, 0, w, h);
     var glow = x.createRadialGradient(cx, cy, R * 0.92, cx, cy, R * 1.18);
     glow.addColorStop(0, 'rgba(150,80,255,0.0)');
@@ -216,6 +216,13 @@
       x.lineWidth = 0.9;
       x.stroke();
     }
+    var fade = x.createLinearGradient(0, h * 0.78, 0, h);
+    x.globalCompositeOperation = 'destination-out';
+    fade.addColorStop(0, 'rgba(0,0,0,0)');
+    fade.addColorStop(1, 'rgba(0,0,0,1)');
+    x.fillStyle = fade;
+    x.fillRect(0, h * 0.78, w, h * 0.22);
+    x.globalCompositeOperation = 'source-over';
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
