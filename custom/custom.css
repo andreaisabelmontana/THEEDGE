@@ -197,9 +197,9 @@ html[data-wf-page="67b5a02dc5d338960b17a7eb"] section.s:has(.c.is-callout) { dis
   padding: 0.18rem 0.55rem; }
 
 /* Skills section now lives on the online page */
-.taxi-w.on-track section.s.is-home-collabs { display: block !important; }
-.taxi-w.on-track .s.is-home-collabs .char, .taxi-w.on-track .s.is-home-collabs .line,
-.taxi-w.on-track .s.is-home-collabs h2, .taxi-w.on-track .s.is-home-collabs p {
+body .main-w .taxi-w.on-track section.s.is-home-collabs { display: block !important; }
+body .taxi-w.on-track .s.is-home-collabs .char, body .taxi-w.on-track .s.is-home-collabs .line,
+body .taxi-w.on-track .s.is-home-collabs h2, body .taxi-w.on-track .s.is-home-collabs p {
   opacity: 1 !important; transform: none !important; visibility: visible !important; }
 .taxi-w.on-track .s.is-home-collabs .line { clip-path: none !important; }
 
