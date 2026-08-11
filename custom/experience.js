@@ -107,7 +107,7 @@
   function goTo(i) {
     active = i;
     targetLon = -ENTRIES[i].lon;
-    targetLat = -ENTRIES[i].lat * 0.7;
+    targetLat = -ENTRIES[i].lat;
     auto = false;
     var items = list.querySelectorAll('li');
     for (var k = 0; k < items.length; k++)
