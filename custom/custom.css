@@ -226,3 +226,13 @@ html[data-wf-page="67b5a02dc5d338960b17a7eb"] section.s:has(.c.is-callout) { dis
 .am-exp-line2 { color: #cfc8e0; font-size: 0.92rem; }
 
 .am-exp-line3 { color: #9c95b3; font-size: 0.82rem; letter-spacing: 0.04em; }
+
+/* Purple menu button */
+.nav-ham { background: #a821e6 !important; border-color: #a821e6 !important; border-radius: 12px; }
+
+/* Photoreal earth: soft dissolve into the footer boundary */
+#am-earth { -webkit-mask-image: linear-gradient(to bottom, #000 76%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 76%, transparent 100%); }
+
+/* Gallery button living in the OFF LINE column */
+.am-gallery-off { margin-left: 0.9rem; vertical-align: middle; }

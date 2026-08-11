@@ -155,7 +155,7 @@
       setTimeout(function () {
         fb.classList.add('is-done');
         setTimeout(function () { fb.style.display = 'none'; }, 900);
-      }, 1400);
+      }, 6000);
     };
     if (document.readyState === 'complete') hide();
     else window.addEventListener('load', hide);
@@ -163,67 +163,85 @@
 })();
 
 
-/* Orbiting Earth before the footer: decorative, slow, no interaction. */
+/* Orbiting Earth before the footer: photoreal when three.js loads,
+   line-art fallback otherwise. */
 (function () {
   var c = document.getElementById('am-earth');
   if (!c) return;
-  var x = c.getContext('2d');
-  var rot = 0, RINGS2 = null;
-  fetch('./custom/land-rings.json').then(function (r) { return r.json(); })
-    .then(function (d) { RINGS2 = d; });
-  function pr(lat, lon, cx, cy, R) {
-    var la = lat * Math.PI / 180, lo = (lon + rot) * Math.PI / 180;
-    var px = Math.cos(la) * Math.sin(lo);
-    var py = Math.sin(la);
-    var pz = Math.cos(la) * Math.cos(lo);
-    var t = -0.38;
-    var y2 = py * Math.cos(t) - pz * Math.sin(t);
-    var z2 = py * Math.sin(t) + pz * Math.cos(t);
-    return { x: cx + R * px, y: cy - R * y2, vis: z2 > 0.02 };
-  }
-  function frame() {
-    rot += 0.03;
-    var w = c.width, h = c.height;
-    var cx = w / 2, cy = h * 1.22, R = w * 0.37;
-    x.clearRect(0, 0, w, h);
-    var glow = x.createRadialGradient(cx, cy, R * 0.92, cx, cy, R * 1.18);
-    glow.addColorStop(0, 'rgba(150,80,255,0.0)');
-    glow.addColorStop(0.55, 'rgba(150,80,255,0.36)');
-    glow.addColorStop(1, 'rgba(150,80,255,0.0)');
-    x.fillStyle = glow;
-    x.beginPath(); x.arc(cx, cy, R * 1.18, 0, Math.PI * 2); x.fill();
-    var sph = x.createRadialGradient(cx - R * 0.35, cy - R * 0.5, R * 0.2, cx, cy, R);
-    sph.addColorStop(0, '#2e2a4d');
-    sph.addColorStop(1, '#171429');
-    x.fillStyle = sph;
-    x.beginPath(); x.arc(cx, cy, R, 0, Math.PI * 2); x.fill();
-    x.strokeStyle = 'rgba(245,240,232,0.35)';
-    x.lineWidth = 1;
-    x.beginPath(); x.arc(cx, cy, R, 0, Math.PI * 2); x.stroke();
-    if (RINGS2) {
-      x.beginPath();
-      for (var r = 0; r < RINGS2.length; r++) {
-        var ring = RINGS2[r], started = false;
-        for (var i = 0; i < ring.length; i++) {
-          var p = pr(ring[i][1], ring[i][0], cx, cy, R);
-          if (p.vis && p.y < h + 40) {
-            if (!started) { x.moveTo(p.x, p.y); started = true; }
-            else x.lineTo(p.x, p.y);
-          } else started = false;
-        }
-      }
-      x.strokeStyle = 'rgba(228,222,255,0.85)';
-      x.lineWidth = 0.9;
-      x.stroke();
+
+  function vector() {
+    var x = c.getContext('2d');
+    var rot = 0, R2 = null;
+    fetch('./custom/land-rings.json').then(function (r) { return r.json(); })
+      .then(function (d) { R2 = d; });
+    function pr(lat, lon, cx, cy, R) {
+      var la = lat * Math.PI / 180, lo = (lon + rot) * Math.PI / 180;
+      var px = Math.cos(la) * Math.sin(lo), py = Math.sin(la), pz = Math.cos(la) * Math.cos(lo);
+      var t = -0.38;
+      var y2 = py * Math.cos(t) - pz * Math.sin(t), z2 = py * Math.sin(t) + pz * Math.cos(t);
+      return { x: cx + R * px, y: cy - R * y2, vis: z2 > 0.02 };
     }
-    var fade = x.createLinearGradient(0, h * 0.78, 0, h);
-    x.globalCompositeOperation = 'destination-out';
-    fade.addColorStop(0, 'rgba(0,0,0,0)');
-    fade.addColorStop(1, 'rgba(0,0,0,1)');
-    x.fillStyle = fade;
-    x.fillRect(0, h * 0.78, w, h * 0.22);
-    x.globalCompositeOperation = 'source-over';
-    requestAnimationFrame(frame);
+    (function frame() {
+      rot += 0.03;
+      var w = c.width, h = c.height, cx = w / 2, cy = h * 1.22, R = w * 0.37;
+      x.clearRect(0, 0, w, h);
+      x.fillStyle = '#211d3a';
+      x.beginPath(); x.arc(cx, cy, R, 0, Math.PI * 2); x.fill();
+      if (R2) {
+        x.beginPath();
+        for (var r = 0; r < R2.length; r++) {
+          var ring = R2[r], st = false;
+          for (var i = 0; i < ring.length; i++) {
+            var p = pr(ring[i][1], ring[i][0], cx, cy, R);
+            if (p.vis) { if (!st) { x.moveTo(p.x, p.y); st = true; } else x.lineTo(p.x, p.y); }
+            else st = false;
+          }
+        }
+        x.strokeStyle = 'rgba(228,222,255,0.85)'; x.lineWidth = 0.9; x.stroke();
+      }
+      requestAnimationFrame(frame);
+    })();
   }
-  requestAnimationFrame(frame);
+
+  if (!window.THREE) return vector();
+  try {
+    var renderer = new THREE.WebGLRenderer({ canvas: c, alpha: true, antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    var scene = new THREE.Scene();
+    var cam = new THREE.PerspectiveCamera(38, 2.5, 0.1, 100);
+    var failed = false;
+    var tex = new THREE.TextureLoader().load('./custom/vendor/earth-atmos.jpg',
+      null, undefined, function () { failed = true; vector(); });
+    if (tex.colorSpace !== undefined && THREE.SRGBColorSpace) tex.colorSpace = THREE.SRGBColorSpace;
+    var globe = new THREE.Mesh(new THREE.SphereGeometry(1.55, 96, 96),
+      new THREE.MeshStandardMaterial({ map: tex, roughness: 1, metalness: 0 }));
+    globe.position.y = -1.05;
+    globe.rotation.z = 0.1;
+    scene.add(globe);
+    scene.add(new THREE.AmbientLight(0x8888aa, 0.6));
+    var sun = new THREE.DirectionalLight(0xffffff, 2.4);
+    sun.position.set(-2.5, 2, 2.5);
+    scene.add(sun);
+    var glow = new THREE.Mesh(new THREE.SphereGeometry(1.63, 64, 64),
+      new THREE.MeshBasicMaterial({ color: 0x9a5cff, transparent: true, opacity: 0.16,
+        side: THREE.BackSide, blending: THREE.AdditiveBlending }));
+    glow.position.y = -1.05;
+    scene.add(glow);
+    cam.position.set(0, 0.35, 3.1);
+    function size() {
+      var w = c.clientWidth || (c.parentElement && c.parentElement.clientWidth) || 1200;
+      var h2 = Math.max(1, Math.round(w * 0.40));
+      renderer.setSize(w, h2, false);
+      cam.aspect = w / h2;
+      cam.updateProjectionMatrix();
+    }
+    size();
+    window.addEventListener('resize', size);
+    (function tick() {
+      if (failed) return;
+      globe.rotation.y += 0.0011;
+      renderer.render(scene, cam);
+      requestAnimationFrame(tick);
+    })();
+  } catch (e) { vector(); }
 })();
