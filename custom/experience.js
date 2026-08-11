@@ -107,7 +107,7 @@
   function goTo(i) {
     active = i;
     targetLon = -ENTRIES[i].lon;
-    targetLat = -ENTRIES[i].lat;
+    targetLat = ENTRIES[i].lat;
     auto = false;
     var items = list.querySelectorAll('li');
     for (var k = 0; k < items.length; k++)
@@ -139,9 +139,9 @@
     (function (i) {
       var en = ENTRIES[i];
       var li = document.createElement('li');
-      li.innerHTML = '<span class="am-exp-line1">' + (en.title + ' · ' + en.org).toUpperCase() + '</span>' +
-        '<span class="am-exp-line2">' + en.degree + '</span>' +
-        '<span class="am-exp-line3">' + en.place + ' · ' + en.year + '</span>';
+      li.innerHTML = '<span class="am-exp-line1 text-body-reg-mona">' + (en.title + ' · ' + en.org).toUpperCase() + '</span>' +
+        '<span class="am-exp-line2 text-body-reg-mona">' + en.degree + '</span>' +
+        '<span class="am-exp-line3 text-body-reg-mona">' + en.place + ' · ' + en.year + '</span>';
       li.addEventListener('click', function () { goTo(i); });
       list.appendChild(li);
     })(i);
