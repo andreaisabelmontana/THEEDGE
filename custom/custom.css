@@ -237,6 +237,8 @@ body .taxi-w.on-track .s.is-home-collabs h2, body .taxi-w.on-track .s.is-home-co
 /* Photoreal earth: soft dissolve into the footer boundary */
 #am-earth { -webkit-mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
   mask-image: linear-gradient(to bottom, #000 88%, transparent 100%); }
+/* close the starfield gap between the earth and the footer's dark-green clipped panel */
+.s.is-footer > .spacer._14rem { height: 0; }
 
 /* Footer statement ("Computer Science and AI") sits at the very bottom of a long, Lenis-smoothed
    scroll, so the shared data-anim-high scroll-triggered line wipe visibly lags behind arrival;
