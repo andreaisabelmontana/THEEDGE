@@ -68,10 +68,10 @@
     ctx.clearRect(0, 0, w, h);
     ctx.beginPath();
     ctx.arc(w / 2, h / 2, R, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(18,16,28,0.85)';
+    ctx.fillStyle = 'rgba(206,206,218,0.22)';
     ctx.fill();
-    ctx.strokeStyle = 'rgba(245,240,232,0.35)';
-    ctx.lineWidth = 1;
+    ctx.strokeStyle = 'rgba(245,240,232,0.55)';
+    ctx.lineWidth = 1.2;
     ctx.stroke();
     if (RINGS) {
       ctx.beginPath();
@@ -85,8 +85,8 @@
           } else started = false;
         }
       }
-      ctx.strokeStyle = 'rgba(245,240,232,0.5)';
-      ctx.lineWidth = 0.8;
+      ctx.strokeStyle = 'rgba(245,240,232,0.8)';
+      ctx.lineWidth = 1.0;
       ctx.stroke();
     }
     drawArc(ENTRIES[0], ENTRIES[1]);
