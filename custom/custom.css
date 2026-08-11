@@ -209,7 +209,7 @@ body .taxi-w.on-track .s.is-home-collabs h2, body .taxi-w.on-track .s.is-home-co
 .s.am-quote > *:not(.am-warp) { position: relative; z-index: 1; }
 
 /* Orbiting Earth before the footer */
-.s.am-earth-s { position: relative; overflow: hidden; padding: 0; line-height: 0; }
+.s.am-earth-s { position: relative; overflow: hidden; padding: 0; line-height: 0; margin-top: -11.5rem; z-index: 0; }
 #am-earth { display: block; width: 100%; height: auto; }
 
 /* Journey list: star bullet timeline, no boxes */
@@ -237,6 +237,12 @@ body .taxi-w.on-track .s.is-home-collabs h2, body .taxi-w.on-track .s.is-home-co
 /* Photoreal earth: soft dissolve into the footer boundary */
 #am-earth { -webkit-mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
   mask-image: linear-gradient(to bottom, #000 88%, transparent 100%); }
+
+/* Footer statement ("Computer Science and AI") sits at the very bottom of a long, Lenis-smoothed
+   scroll, so the shared data-anim-high scroll-triggered line wipe visibly lags behind arrival;
+   skip the wipe and keep it always shown */
+.footer-statement-layout h2 .line { clip-path: none !important; }
+.footer-statement-layout h2 .high-line-reveal { display: none !important; }
 
 /* Gallery button living in the OFF LINE column */
 .am-gallery-off { margin-left: 0.9rem; vertical-align: middle; }
