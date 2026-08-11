@@ -240,3 +240,15 @@ html[data-wf-page="67b5a02dc5d338960b17a7eb"] section.s:has(.c.is-callout) { dis
 
 /* Gallery button living in the OFF LINE column */
 .am-gallery-off { margin-left: 0.9rem; vertical-align: middle; }
+
+/* Offline hero: text left, big gallery button right */
+.off-t-hero-stats-layout { display: flex; align-items: center; justify-content: space-between;
+  gap: 2.5rem; flex-wrap: wrap; }
+.am-off-left { text-align: left; flex: 1 1 24rem; }
+.am-off-left .text-body-lg-mona, .am-off-left .text-eyebrow { text-align: left; }
+.am-gallery-big { background: #a821e6; border-radius: 18px; padding: 1.5rem 2.8rem;
+  display: inline-flex; align-items: center; gap: 1rem; font-weight: 700;
+  font-size: 1.6rem; letter-spacing: 0.04em; color: #0b0a14; text-decoration: none;
+  flex: 0 0 auto; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.am-gallery-big:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(168,33,230,0.5); }
+.am-gallery-big img { width: 2.2rem; height: 2.2rem; object-fit: contain; }
