@@ -159,3 +159,62 @@
     else window.addEventListener('load', hide);
   }
 })();
+
+
+/* Orbiting Earth before the footer: decorative, slow, no interaction. */
+(function () {
+  var c = document.getElementById('am-earth');
+  if (!c) return;
+  var x = c.getContext('2d');
+  var rot = 0, RINGS2 = null;
+  fetch('./custom/land-rings.json').then(function (r) { return r.json(); })
+    .then(function (d) { RINGS2 = d; });
+  function pr(lat, lon, cx, cy, R) {
+    var la = lat * Math.PI / 180, lo = (lon + rot) * Math.PI / 180;
+    var px = Math.cos(la) * Math.sin(lo);
+    var py = Math.sin(la);
+    var pz = Math.cos(la) * Math.cos(lo);
+    var t = -0.38;
+    var y2 = py * Math.cos(t) - pz * Math.sin(t);
+    var z2 = py * Math.sin(t) + pz * Math.cos(t);
+    return { x: cx + R * px, y: cy - R * y2, vis: z2 > 0.02 };
+  }
+  function frame() {
+    rot += 0.03;
+    var w = c.width, h = c.height;
+    var cx = w / 2, cy = h * 1.28, R = w * 0.40;
+    x.clearRect(0, 0, w, h);
+    var glow = x.createRadialGradient(cx, cy, R * 0.92, cx, cy, R * 1.18);
+    glow.addColorStop(0, 'rgba(150,80,255,0.0)');
+    glow.addColorStop(0.55, 'rgba(150,80,255,0.28)');
+    glow.addColorStop(1, 'rgba(150,80,255,0.0)');
+    x.fillStyle = glow;
+    x.beginPath(); x.arc(cx, cy, R * 1.18, 0, Math.PI * 2); x.fill();
+    var sph = x.createRadialGradient(cx - R * 0.35, cy - R * 0.5, R * 0.2, cx, cy, R);
+    sph.addColorStop(0, '#1d1a33');
+    sph.addColorStop(1, '#0b0a16');
+    x.fillStyle = sph;
+    x.beginPath(); x.arc(cx, cy, R, 0, Math.PI * 2); x.fill();
+    x.strokeStyle = 'rgba(245,240,232,0.35)';
+    x.lineWidth = 1;
+    x.beginPath(); x.arc(cx, cy, R, 0, Math.PI * 2); x.stroke();
+    if (RINGS2) {
+      x.beginPath();
+      for (var r = 0; r < RINGS2.length; r++) {
+        var ring = RINGS2[r], started = false;
+        for (var i = 0; i < ring.length; i++) {
+          var p = pr(ring[i][1], ring[i][0], cx, cy, R);
+          if (p.vis && p.y < h + 40) {
+            if (!started) { x.moveTo(p.x, p.y); started = true; }
+            else x.lineTo(p.x, p.y);
+          } else started = false;
+        }
+      }
+      x.strokeStyle = 'rgba(214,206,255,0.55)';
+      x.lineWidth = 0.9;
+      x.stroke();
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
