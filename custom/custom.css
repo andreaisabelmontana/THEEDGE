@@ -235,8 +235,8 @@ body .taxi-w.on-track .s.is-home-collabs h2, body .taxi-w.on-track .s.is-home-co
 .nav-ham { background: #a821e6 !important; border-color: #a821e6 !important; border-radius: 12px; }
 
 /* Photoreal earth: soft dissolve into the footer boundary */
-#am-earth { -webkit-mask-image: linear-gradient(to bottom, #000 76%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 76%, transparent 100%); }
+#am-earth { -webkit-mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 88%, transparent 100%); }
 
 /* Gallery button living in the OFF LINE column */
 .am-gallery-off { margin-left: 0.9rem; vertical-align: middle; }

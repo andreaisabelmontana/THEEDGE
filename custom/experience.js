@@ -202,22 +202,22 @@
     if (tex.colorSpace !== undefined && THREE.SRGBColorSpace) tex.colorSpace = THREE.SRGBColorSpace;
     var globe = new THREE.Mesh(new THREE.SphereGeometry(1.55, 96, 96),
       new THREE.MeshStandardMaterial({ map: tex, roughness: 1, metalness: 0 }));
-    globe.position.y = -1.05;
+    globe.position.y = -0.85;
     globe.rotation.z = 0.1;
     scene.add(globe);
-    scene.add(new THREE.AmbientLight(0x8888aa, 0.6));
-    var sun = new THREE.DirectionalLight(0xffffff, 2.4);
+    scene.add(new THREE.AmbientLight(0x9a9ac0, 1.05));
+    var sun = new THREE.DirectionalLight(0xffffff, 3.2);
     sun.position.set(-2.5, 2, 2.5);
     scene.add(sun);
     var glow = new THREE.Mesh(new THREE.SphereGeometry(1.63, 64, 64),
       new THREE.MeshBasicMaterial({ color: 0x9a5cff, transparent: true, opacity: 0.16,
         side: THREE.BackSide, blending: THREE.AdditiveBlending }));
-    glow.position.y = -1.05;
+    glow.position.y = -0.85;
     scene.add(glow);
-    cam.position.set(0, 0.35, 3.1);
+    cam.position.set(0, 0.32, 2.7);
     function size() {
       var w = c.clientWidth || (c.parentElement && c.parentElement.clientWidth) || 1200;
-      var h2 = Math.max(1, Math.round(w * 0.40));
+      var h2 = Math.max(1, Math.round(w * 0.52));
       renderer.setSize(w, h2, false);
       cam.aspect = w / h2;
       cam.updateProjectionMatrix();
