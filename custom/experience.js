@@ -136,10 +136,10 @@
     (function (i) {
       var en = ENTRIES[i];
       var li = document.createElement('li');
-      li.innerHTML = '<span class="am-exp-year">' + en.year + '</span>' +
-        '<span class="am-exp-role">' + en.title + ' · ' + en.org + '</span>' +
-        '<span class="am-exp-place">' + en.place + '</span>' +
-        (en.placeholder ? '<span class="am-exp-chip">PLACEHOLDER</span>' : '');
+      var city = en.place.split(',')[0];
+      li.innerHTML = '<span class="am-exp-line1">' + en.org.toUpperCase() +
+        ' · ' + city.toUpperCase() + '</span>' +
+        '<span class="am-exp-line2">' + en.title + ' · ' + en.year + '</span>';
       li.addEventListener('click', function () { goTo(i); });
       list.appendChild(li);
     })(i);
