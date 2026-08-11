@@ -202,3 +202,8 @@ html[data-wf-page="67b5a02dc5d338960b17a7eb"] section.s:has(.c.is-callout) { dis
 .taxi-w.on-track .s.is-home-collabs h2, .taxi-w.on-track .s.is-home-collabs p {
   opacity: 1 !important; transform: none !important; visibility: visible !important; }
 .taxi-w.on-track .s.is-home-collabs .line { clip-path: none !important; }
+
+/* Warp starfield behind the quote (off-track) */
+.s.am-quote { position: relative; overflow: hidden; }
+.am-warp { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.s.am-quote > *:not(.am-warp) { position: relative; z-index: 1; }
