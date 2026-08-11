@@ -5,10 +5,13 @@
 (function () {
   var ENTRIES = [
     { year: '2010 to 2022', title: 'Student', org: 'Colegio Nueva Granada',
+      degree: 'American AP diploma + Bachiller Colombiano',
       place: 'Bogota, Colombia', lat: 4.652, lon: -74.055 },
     { year: '2022 to 2023', title: 'Student', org: 'Trinity College Dublin',
+      degree: 'Bachelor of Computer Science',
       place: 'Dublin, Ireland', lat: 53.3438, lon: -6.2546 },
-    { year: '2023 to present', title: 'BCSAI student', org: 'IE University',
+    { year: '2023 to present', title: 'Student', org: 'IE University',
+      degree: 'Bachelor of Computer Science and Artificial Intelligence',
       place: 'Madrid, Spain', lat: 40.4168, lon: -3.7038 }
   ];
 
@@ -136,10 +139,9 @@
     (function (i) {
       var en = ENTRIES[i];
       var li = document.createElement('li');
-      var city = en.place.split(',')[0];
-      li.innerHTML = '<span class="am-exp-line1">' + en.org.toUpperCase() +
-        ' · ' + city.toUpperCase() + '</span>' +
-        '<span class="am-exp-line2">' + en.title + ' · ' + en.year + '</span>';
+      li.innerHTML = '<span class="am-exp-line1">' + (en.title + ' · ' + en.org).toUpperCase() + '</span>' +
+        '<span class="am-exp-line2">' + en.degree + '</span>' +
+        '<span class="am-exp-line3">' + en.place + ' · ' + en.year + '</span>';
       li.addEventListener('click', function () { goTo(i); });
       list.appendChild(li);
     })(i);

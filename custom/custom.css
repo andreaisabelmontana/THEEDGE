@@ -224,3 +224,5 @@ html[data-wf-page="67b5a02dc5d338960b17a7eb"] section.s:has(.c.is-callout) { dis
   font-size: 1.02rem; transition: color 0.25s ease; }
 .am-exp-timeline li.is-active .am-exp-line1 { color: #ffe89a; }
 .am-exp-line2 { color: #d9d3e8; font-size: 0.92rem; }
+
+.am-exp-line3 { color: #9c95b3; font-size: 0.82rem; letter-spacing: 0.04em; }
