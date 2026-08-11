@@ -147,10 +147,10 @@ html[data-wf-page="67b5a02dc5d338960b17a7eb"] section.s:has(.c.is-callout) { dis
 
 /* Hero name above the head */
 .am-hero-name {
-  position: absolute; top: 2.2rem; left: 0; right: 0; z-index: 3;
+  position: absolute; top: 3.1rem; left: 0; right: 0; z-index: 3;
   text-align: center; pointer-events: none;
   font-family: inherit; font-weight: 700;
-  font-size: clamp(1.6rem, 3.2vw, 3.2rem);
+  font-size: clamp(1.5rem, 2.95vw, 2.95rem);
   letter-spacing: 0.42em; text-indent: 0.42em;
   color: #f5f0e8;
 }
