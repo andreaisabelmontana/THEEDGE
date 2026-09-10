@@ -1,28 +1,58 @@
-# THEEDGE
+# edge-portfolio
 
-## What the site is made of
+Andrea Montaña's site. The landing runs her existing hero unchanged; the
+information architecture is being rebuilt around it.
 
-- **Webflow** — the pages (`index.html`, `calendar/`, `on-track/`, `off-track/`,
-  `online/`) are Webflow-generated. One shared stylesheet + `webflow.*.js`
-  (both under `assets/cdn.prod.website-files.com/`).
-- **Bundle** 
-  custom orchestration bundle (GSAP + Lenis + Three.js + Rive),. It drives the page transitions, the
-  scroll choreography, all Rive canvases, and the WebGL scenes.
-- **Rive animations** (`rive/*.riv`) — page transition, animated buttons,
-  signature, circuits, phrases marquee, etc. Played via the Rive runtime
-  embedded in the agency bundle (wasm in `vendor/@rive-app/canvas-lite@2.26.4/`).
-- **WebGL scene** (`gl/`) — Three.js assets: Draco-compressed GLB models
-  (helmet, head "disco" ball, track ribbons), PBR texture sets in two variants
-  (`webp` for desktop >991px, `ktx2` for mobile), HDRI environment maps for
-  lighting, and MSDF font atlases for 3D text. Decoders in `gl/draco/` and
-  `gl/basis/`.
+```bash
+python -m http.server 8920
+```
 
+## Why the whole runtime is here
 
-## Good places to start reading
+The hero cannot be extracted. It mounts on a single `<div data-gl="head">`, but
+the bundle that fills that div (`assets/lando.itsoffbrand.io/dev-js/`) boots the
+entire site first: its entry awaits `allriveloaded`, so it will not mount any
+scene until every Rive canvas on the page has loaded, and it expects Lenis and
+GSAP to be running too.
 
-- `index.html` — search for `data-wf-page` and `w-embed` to see how Webflow
-  structures a page, and `data-rive-` / `data-gl` for the animation hooks the
-  agency bundle consumes.
-- Watch the Network tab while scrolling: Rive files and GL textures load lazily.
+Lifting just the bundle, its GL assets and the mount div into a bare page was
+tried. `window.landoGL` appears and registers all six scenes, then the boot
+throws `Cannot read properties of undefined (reading 'style')` and nothing
+mounts: zero canvases. A working hero means the working page.
 
-Live: https://andreaisabelmontana.github.io/THEEDGE/
+That is the trade this repo takes: the full template, about 63MB, in exchange
+for a hero that behaves exactly as the live one does.
+
+## Layout
+
+```
+index.html      her landing, running the real hero
+custom/         her css and scripts
+gl/             models, textures, draco, basis, hdri, fonts
+assets/         the mirrored template bundles and images
+rive/           rive animations the bundle waits on
+online/ off-track/ calendar/ coursework/   her other pages
+structure/      the rebuilt landing, to be merged onto the above
+```
+
+`structure/` holds the version built on the portfolio layout: astronaut brand
+with no tabs, overlay menu, en/es/de, hero band, four section panels. It is the
+target arrangement. The job now is to move that structure onto the page above
+without disturbing the hero.
+
+## Not included on purpose
+
+**`CNAME`.** Her live repo claims `andreamontana.com`. A second repo publishing
+the same CNAME would fight the live site for the domain, so it is deliberately
+absent. Add it only when this repo is the one meant to serve that domain, and
+remove it from the other at the same time.
+
+## Notes
+
+- All internal links carry `data-taxi-ignore`; the Taxi.js page transitions
+  crash on subpages without it.
+- `custom/custom.css` is cache-busted with `?v=YYYYMMDDx` in every page's
+  `<link>`. Bump it on any CSS edit or the change will not take.
+- The loading screen is `custom/loading.mp4`: 2.45MB and not preloaded, so it
+  downloads before it can display. Worth revisiting.
+- `THEEDGE-README.md` is the original repo's readme, kept for its notes.

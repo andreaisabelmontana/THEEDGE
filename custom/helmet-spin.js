@@ -31,13 +31,16 @@
         gl.params.helmetScrollScene.PROGRESS = p;
 
         // position/size: big at the left, settling to centre
-        var endSize = Math.min(window.innerHeight * 0.85, window.innerWidth * 0.6);
-        var startSize = Math.min(window.innerHeight * 1.2, window.innerWidth * 0.85);
+        // sized down so the whole helmet clears the title block below it: at
+        // 0.85 of the viewport height its base ran past the hero and the chin
+        // was cut off
+        var endSize = Math.min(window.innerHeight * 0.62, window.innerWidth * 0.44);
+        var startSize = Math.min(window.innerHeight * 0.88, window.innerWidth * 0.62);
         var size = startSize + (endSize - startSize) * k;
         var startX = window.innerWidth * 0.2;
         var endX = window.innerWidth / 2;
         gl.bounds.helmetScroll.left = startX + (endX - startX) * k;
-        gl.bounds.helmetScroll.top = window.innerHeight * 0.52 - window.scrollY * 0.5;
+        gl.bounds.helmetScroll.top = window.innerHeight * 0.44 - window.scrollY * 0.5;
         gl.bounds.helmetScroll.width = size;
         gl.bounds.helmetScroll.height = size;
       }

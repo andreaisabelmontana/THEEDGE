@@ -1,0 +1,584 @@
+/* our landing layout: nav, menu, hero band, section panels.
+   the hero visual itself is her mounted scene, dropped into .hero-slot
+   by ui.js; see ui.css for how it is reframed. */
+
+/* ---- nav ---- */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  backdrop-filter: blur(14px);
+  background: rgba(5, 5, 5, 0.72);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* the brand is the astronaut, not a wordmark. it floats a little on hover so
+   the only mark in the bar still feels like a control. */
+.nav-brand {
+  display: inline-flex;
+  flex: none;
+}
+
+.nav-brand img {
+  width: 2.1rem;
+  height: 2.1rem;
+  object-fit: contain;
+  transition: transform 0.5s var(--ease-spring);
+}
+
+.nav-brand:hover img { transform: translateY(-2px) rotate(-6deg); }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.7rem, 1.8vw, 1.4rem);
+}
+
+/* language switcher. buttons rather than links: it changes the page in place
+   and there is no separate url to send anyone to. */
+.lang {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+}
+
+.lang button {
+  background: none;
+  border: 0;
+  padding: 0.15rem 0.1rem;
+  font: inherit;
+  color: var(--ink-faint);
+  cursor: pointer;
+  transition: color 0.25s var(--ease-out);
+}
+
+.lang button:hover { color: var(--ink); }
+.lang button.is-on { color: var(--edge); font-weight: 600; }
+
+.nav-menu {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: 0;
+  padding: 0.35rem 0;
+  font: inherit;
+  font-size: 0.82rem;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.nav-menu-bars {
+  display: grid;
+  gap: 4px;
+  width: 1.15rem;
+}
+
+.nav-menu-bars i {
+  display: block;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform 0.35s var(--ease-out);
+}
+
+.nav-menu[aria-expanded="true"] .nav-menu-bars i:first-child { transform: translateY(2.75px) rotate(45deg); }
+.nav-menu[aria-expanded="true"] .nav-menu-bars i:last-child { transform: translateY(-2.75px) rotate(-45deg); }
+
+/* ---- menu overlay ---- */
+
+.menu-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: var(--nav-height) var(--gutter) 3rem;
+  background: rgba(5, 5, 5, 0.97);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-out);
+}
+
+.menu-panel.is-open { opacity: 1; }
+
+.menu-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-width: var(--container);
+  margin-inline: auto;
+  width: 100%;
+}
+
+.menu-inner a {
+  display: flex;
+  align-items: baseline;
+  gap: 1.1rem;
+  padding: 0.5rem 0;
+  font-size: clamp(1.9rem, 6vw, 3.4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--ink-muted);
+  transition: color 0.3s var(--ease-out), transform 0.4s var(--ease-out);
+}
+
+.menu-inner a:hover {
+  color: var(--ink);
+  transform: translateX(0.6rem);
+}
+
+.menu-index {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  color: var(--edge);
+}
+
+.menu-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  max-width: var(--container);
+  margin-inline: auto;
+  width: 100%;
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+}
+
+.menu-social a { transition: color 0.25s var(--ease-out); }
+.menu-social a:hover { color: var(--edge); }
+
+/* ---- hero ---- */
+
+.home {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero {
+  padding-block: clamp(2.25rem, 5vw, 3.5rem);
+}
+
+.hero-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2.5rem;
+}
+
+.hero-copy > * + * { margin-top: 1.15rem; }
+.hero-copy .facts { margin-top: 0.8rem; }
+.hero-copy .status { margin-top: 1.75rem; }
+
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem 1.75rem;
+  margin-top: 1.5rem;
+}
+
+/* ---- panels ---- */
+
+.panels-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 1.25rem;
+}
+
+.panels {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  flex: 1;
+  padding-bottom: 1.5rem;
+}
+
+/* two of these now, and they read as buttons rather than tiles: a pill cta
+   sits bottom right and the whole card is the hit area. */
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 9rem;
+  padding: 1.25rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--void-raised);
+  box-shadow: var(--shadow-rest);
+  transition: transform 0.5s var(--ease-spring), box-shadow 0.5s var(--ease-out),
+    border-color 0.5s var(--ease-out);
+}
+
+/* the first panel sits pre-lit so the row never reads as empty before the
+   first hover */
+.panel.is-lit {
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-lift);
+}
+
+.panel:hover {
+  border-color: var(--edge-line);
+  box-shadow: var(--shadow-lift);
+  transform: perspective(1100px) rotateX(3deg) translateY(-8px);
+}
+
+.panel-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.18;
+  filter: saturate(0);
+  transition: opacity 0.7s var(--ease-out), filter 0.7s var(--ease-out),
+    transform 0.7s var(--ease-out);
+}
+
+.panel.is-lit .panel-bg { opacity: 0.42; filter: saturate(1); }
+
+.panel:hover .panel-bg {
+  opacity: 0.55;
+  filter: saturate(1);
+  transform: scale(1.05);
+}
+
+/* keeps the type legible once the photo comes up */
+.panel-scrim {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 70%;
+  background: linear-gradient(to top, var(--void-raised), rgba(13, 13, 19, 0.7) 45%, transparent);
+}
+
+/* panels without a photo get a plotted grid instead of a stock image */
+.panel-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 2.2rem 2.2rem;
+  mask-image: radial-gradient(circle at 70% 20%, #000 0%, transparent 72%);
+}
+
+.panel-arrow {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  color: var(--ink);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.4s var(--ease-spring), transform 0.4s var(--ease-spring);
+}
+
+.panel:hover .panel-arrow { opacity: 1; transform: translateX(0); }
+
+.panel-text { position: relative; z-index: 2; }
+
+.panel-title {
+  font-size: 1.3rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  transition: transform 0.5s var(--ease-spring);
+}
+
+.panel:hover .panel-title { transform: translateY(-2px); }
+
+.panel-desc {
+  margin-top: 0.3rem;
+  font-size: 0.83rem;
+  color: var(--ink-muted);
+  opacity: 0.75;
+  transition: opacity 0.4s var(--ease-out);
+}
+
+.panel.is-lit .panel-desc,
+.panel:hover .panel-desc { opacity: 1; }
+
+/* ---- responsive ---- */
+
+@media (min-width: 640px) {
+  .panels { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+}
+
+@media (min-width: 1024px) {
+  .home { min-height: calc(100dvh - var(--nav-height)); }
+  .hero-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+  }
+  .hero-slot { align-self: auto; }
+  .panels { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel:hover { transform: none; }
+  .menu-inner a:hover { transform: none; }
+}
+
+/* ---- panel as button ---- */
+
+.panel { min-height: 12rem; padding: 1.5rem; }
+
+.panel-cta {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: rgba(5, 5, 5, 0.55);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ink);
+  backdrop-filter: blur(6px);
+  transition: background 0.35s var(--ease-out), border-color 0.35s var(--ease-out),
+    transform 0.35s var(--ease-spring);
+}
+
+.panel:hover .panel-cta {
+  background: var(--edge);
+  border-color: var(--edge);
+  color: #0b0a14;
+  transform: translateX(3px);
+}
+
+.panel-cta svg { transition: transform 0.35s var(--ease-spring); }
+.panel:hover .panel-cta svg { transform: translateX(2px); }
+
+/* ---- projects / about, in her ON LINE and OFF LINE idiom ----
+
+   her panels are a big wordmark in Brier, a line of Mona underneath, a small
+   purple round button, and a cut-out photo of her standing in the panel. the
+   type classes and the scroll animation are hers (text-impact-reg-brier,
+   text-body-reg-mona, split-text, data-anim-high), so the bundle animates these
+   exactly as it animates the rest of her site. */
+
+.otot-card {
+  position: relative;
+  display: block;
+  min-height: 26rem;
+  padding: 2rem 1.75rem 0;
+  overflow: hidden;
+  border-radius: 1rem;
+  /* opaque enough to hold its own against the starfield and anything passing
+     behind it, rather than letting the background read through the copy */
+  background: rgba(8, 8, 12, 0.93);
+  border: 1px solid var(--line);
+  transition: border-color 0.5s var(--ease-out), background 0.5s var(--ease-out);
+}
+
+.otot-card:hover {
+  border-color: var(--edge-line);
+  background: rgba(14, 10, 22, 0.96);
+}
+
+.otot-card-text {
+  position: relative;
+  z-index: 2;
+  max-width: 15rem;
+}
+
+/* her Brier face is huge by default; hold it to the card */
+.otot-card .text-impact-reg-brier {
+  font-size: clamp(2.4rem, 4.4vw, 3.9rem);
+  line-height: 0.92;
+  margin: 0 0 0.75rem;
+  color: var(--ink);
+  text-transform: uppercase;
+}
+
+.otot-card .text-body-reg-mona {
+  margin: 0 0 1.25rem;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--ink-muted);
+}
+
+.otot-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 0.55rem;
+  background: var(--edge);
+  color: #0b0a14;
+  transition: transform 0.4s var(--ease-spring), box-shadow 0.4s var(--ease-out);
+}
+
+.otot-card:hover .otot-btn {
+  transform: translateX(4px);
+  box-shadow: 0 6px 24px rgba(188, 19, 254, 0.45);
+}
+
+/* she stands in the panel, anchored to the bottom right and bleeding off it */
+.otot-card-img {
+  position: absolute;
+  right: -1.5rem;
+  bottom: 0;
+  width: 68%;
+  max-width: 21rem;
+  object-fit: contain;
+  object-position: bottom right;
+  pointer-events: none;
+  transition: transform 0.7s var(--ease-out);
+}
+
+.otot-card:hover .otot-card-img { transform: translateY(-6px) scale(1.02); }
+
+@media (max-width: 639px) {
+  .otot-card { min-height: 21rem; }
+  .otot-card-text { max-width: 11rem; }
+  .otot-card-img { width: 62%; right: -1rem; }
+}
+
+/* ---- skills row ----
+
+   the four line grey paragraph was the least read thing on the page. every one
+   of these postings lists the same minimums, so the stack is broken out where
+   it can be scanned in a glance instead of buried in prose. */
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 1.1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  padding: 0.32rem 0.7rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  letter-spacing: 0.01em;
+  color: var(--ink-muted);
+  white-space: nowrap;
+  transition: border-color 0.3s var(--ease-out), color 0.3s var(--ease-out);
+}
+
+.tags li:hover { border-color: var(--edge-line); color: var(--ink); }
+
+/* her stylesheet puts markers on li, which were leaking through as stray dots
+   beside every tag. belt and braces, because they came from more than one rule. */
+.tags,
+.tags li {
+  list-style: none !important;
+}
+
+.tags li::marker { content: "" !important; }
+
+.tags li::before,
+.tags li::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* the hero was six stacked blocks at even spacing, which read as a wall. these
+   group it: label and name together, the statement apart, then the scannable
+   row, then the two calls to action. */
+body.edge-ready .hero-copy .eyebrow { margin-bottom: 0.35rem; }
+body.edge-ready .hero-copy .display { margin-bottom: 1.6rem; }
+body.edge-ready .hero-copy .lead { margin-bottom: 1.9rem; }
+body.edge-ready .hero-copy .tags { margin-bottom: 2rem; }
+body.edge-ready .hero-copy .status { margin-top: 0; margin-bottom: 1.6rem; }
+body.edge-ready .hero-copy .hero-links { margin-top: 0; }
+
+/* everything that is not her name is set in Mona Sans Variable, her other face.
+   Brier is reserved for the display line, which is what gives it its weight. */
+body.edge-ready .hero-copy .eyebrow,
+body.edge-ready .hero-copy .lead,
+body.edge-ready .hero-copy .status,
+body.edge-ready .hero-copy .hero-links,
+body.edge-ready .hero-copy .arrow-link,
+body.edge-ready .tags,
+body.edge-ready .tags li,
+body.edge-ready .otot-card .text-body-reg-mona,
+body.edge-ready .otot-btn,
+.nav .lang,
+.nav .lang button {
+  font-family: "Mona Sans Variable", Arial, sans-serif !important;
+}
+
+/* ---- hover sweep on the cards ----
+
+   ours, not hers, and deliberately so. data-anim-high covers the text with a
+   coloured bar and uncovers it when its scroll trigger fires. those triggers
+   cache their positions at init, and this page changes height well after that,
+   so they stopped firing and left the cards as solid lilac blocks with the copy
+   buried underneath.
+
+   this is pure css bound to hover. it starts at scaleX(0), so if it never runs
+   nothing is hidden: the failure mode is a missing animation rather than
+   unreadable content. */
+@keyframes edge-sweep {
+  0%    { transform: scaleX(0); transform-origin: left center; }
+  48%   { transform: scaleX(1); transform-origin: left center; }
+  52%   { transform: scaleX(1); transform-origin: right center; }
+  100%  { transform: scaleX(0); transform-origin: right center; }
+}
+
+.otot-card .text-impact-reg-brier,
+.otot-card .text-body-reg-mona {
+  position: relative;
+  display: inline-block;
+}
+
+.otot-card .text-impact-reg-brier::after,
+.otot-card .text-body-reg-mona::after {
+  content: "";
+  position: absolute;
+  inset: -0.08em -0.15em;
+  z-index: 5;
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+/* the title takes her purple, the body copy her off-white, matching the
+   colours the scroll version uses on each */
+.otot-card .text-impact-reg-brier::after { background: #bc13fe; }
+.otot-card .text-body-reg-mona::after { background: #f4f4ed; }
+
+.otot-card:hover .text-impact-reg-brier::after {
+  animation: edge-sweep 0.62s cubic-bezier(0.65, 0.05, 0, 1) forwards;
+}
+
+.otot-card:hover .text-body-reg-mona::after {
+  animation: edge-sweep 0.62s cubic-bezier(0.65, 0.05, 0, 1) 0.08s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .otot-card:hover .text-impact-reg-brier::after,
+  .otot-card:hover .text-body-reg-mona::after { animation: none; }
+}

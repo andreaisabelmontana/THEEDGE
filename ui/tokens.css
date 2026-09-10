@@ -1,0 +1,50 @@
+/* design tokens.
+
+   the palette is the one the live site already runs on: near-black ground,
+   off-white ink, one electric purple. everything else in the stylesheet reads
+   from here, so a reskin is an edit to this file and nothing else.
+
+   the type scale is fluid: clamp() rather than breakpoints, so the display
+   line never wraps awkwardly between the sizes we happened to test. */
+
+:root {
+  /* ground and ink */
+  --void: #050505;
+  --void-raised: #0d0d13;
+  --ink: #f4f4ed;
+  --ink-muted: #b9bcc4;
+  --ink-faint: #7e828d;
+
+  /* the one accent */
+  --edge: #bc13fe;
+  --edge-soft: rgba(188, 19, 254, 0.14);
+  --edge-line: rgba(188, 19, 254, 0.45);
+
+  /* rules and lifts */
+  --line: rgba(244, 244, 237, 0.12);
+  --line-strong: rgba(244, 244, 237, 0.26);
+  --shadow-rest: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-lift: 0 18px 40px rgba(0, 0, 0, 0.55);
+
+  /* layout */
+  --nav-height: 4.25rem;
+  --container: 78rem;
+  --gutter: clamp(1.15rem, 4vw, 3rem);
+
+  /* type */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", "Cascadia Mono", Consolas, monospace;
+  --type-display: clamp(2.2rem, 5.6vw, 4.3rem);
+  --type-lead: clamp(1.05rem, 1.6vw, 1.35rem);
+
+  /* motion. one curve for entrances, one springier one for hovers. */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ease-out: linear;
+    --ease-spring: linear;
+  }
+}

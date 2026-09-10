@@ -109,7 +109,9 @@ html[data-wf-page="67b5a02dc5d338960b17a7eb"] section.s:has(.c.is-callout) { dis
 .taxi-w.off-track .off-t-hero-img, .taxi-w.off-track .hero-img-layer { display: none !important; } /* the JS photo-flip widget paints layers over the heading */
 .taxi-w.off-track .off-t-hero-sub-para-w { margin-top: -3.5rem; } /* pull the paragraph up to its heading */
 .taxi-w.off-track .off-t-hero-sub-para-mw { grid-area: 1 / 1 / 2 / 2 !important; max-width: 26rem; } /* align under the heading instead of dangling mid-page */
-.taxi-w.off-track .s.is-on-track-home { height: 88vh !important; min-height: 0 !important; } /* trim the hero band */
+.taxi-w.off-track .s.is-on-track-home { height: auto !important; min-height: 0 !important; }
+/* was 88vh, which was right when a photo marquee filled the band. With the
+   photos gone it held ~220px of empty starfield above JOURNEY. */
 .taxi-w.off-track .text-impact-lg-mona strong, .taxi-w.off-track .text-impact-lg-mona strong .char { color: #BC13FE !important; }
 .taxi-w.off-track .high-line-reveal { display: none !important; } /* the stuck purple wipe bars */
 /* footer logo marquee: wordmark SVGs are #BC13FE directly — no filter, exact brand purple */
@@ -126,12 +128,15 @@ html[data-wf-page="67b5a02dc5d338960b17a7eb"] section.s:has(.c.is-callout) { dis
 .callout-rive-w { background: url(astronaut.png) center / contain no-repeat !important; }
 .base-helmet-rive canvas, .base-helmet-rive svg { visibility: hidden !important; }
 .base-helmet-rive { background: url(astronaut.png) center / contain no-repeat !important; }
-/* off-track hero: intro copy centered directly under the OFFLINE title */
-.taxi-w.off-track .off-t-hero-stats-grid.grid-main { display: block; max-width: 42rem; margin: 2.5rem auto 0; text-align: center; }
+/* off-track hero: intro copy in a left-aligned column under the EXPERIENCE
+   title. It was centred under a full-bleed title, which left it floating in
+   the middle of the page with its own description indented into a different
+   column again. Sharing a left edge with the title reads as one block. */
+.taxi-w.off-track .off-t-hero-stats-grid.grid-main { display: block; max-width: 42rem; margin: 2.5rem 0 0; text-align: left; }
 .taxi-w.off-track .off-t-hero-stats-layout { display: block; }
-.taxi-w.off-track .off-t-hero-stats-layout .eyebrow-w { justify-content: center; }
-.taxi-w.off-track .off-t-hero-sub-para-w.grid-main { display: block; max-width: 34rem; margin: 1.25rem auto 0; text-align: center; }
-.taxi-w.off-track .off-t-hero-sub-para-mw { max-width: 34rem; margin: 0 auto; }
+.taxi-w.off-track .off-t-hero-stats-layout .eyebrow-w { justify-content: flex-start; }
+.taxi-w.off-track .off-t-hero-sub-para-w.grid-main { display: block; max-width: 34rem; margin: 1.25rem 0 0; text-align: left; }
+.taxi-w.off-track .off-t-hero-sub-para-mw { max-width: 34rem; margin: 0; }
 /* off-track track: show the Madrid winter-walks photo uncropped; contain beats the frame's fixed height */
 .taxi-w.off-track .horizontal-item-img-w.is-offt6 img[src*="hb-madrid"] { object-fit: contain; object-position: center; }
 /* home: trim the hero track's empty scroll runway - the pinned scene only fills the top, the rest was dead starfield before ON/OFFLINE arrives */
@@ -169,7 +174,9 @@ html[data-wf-page="67b5a02dc5d338960b17a7eb"] section.s:has(.c.is-callout) { dis
 @keyframes am-marquee-slide { from { transform: translateX(0); } to { transform: translateX(-100%); } }
 
 /* Experience globe section */
-.s.am-exp { position: relative; padding: 4rem 0 1.5rem; }
+/* scroll-margin so an arrival at #journey from another page clears the fixed
+   bar instead of starting underneath it */
+.s.am-exp { position: relative; padding: 4rem 0 1.5rem; scroll-margin-top: 96px; }
 .c.am-exp { max-width: 72rem; margin: 0 auto; padding: 0 2rem; }
 .am-exp-head { display: flex; align-items: end; justify-content: space-between;
   gap: 2rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
@@ -260,3 +267,151 @@ body .taxi-w.on-track .s.is-home-collabs h2, body .taxi-w.on-track .s.is-home-co
   flex: 0 0 auto; transition: transform 0.2s ease, box-shadow 0.2s ease; }
 .am-gallery-big:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(168,33,230,0.5); }
 .am-gallery-big img { width: 2.2rem; height: 2.2rem; object-fit: contain; }
+
+/* hall of ideas filter row: the cards are static html, so filtering only adds
+   .edge-hidden to a card wrapper. keeping it to display:none means the css
+   hover reveal never has to know the filter exists. */
+.edge-hidden { display: none !important; }
+.edge-filter { display: flex; flex-direction: column; gap: 0.9rem;
+  margin: 0 0 3.25rem; }
+.edge-filter-row { display: flex; align-items: center; flex-wrap: wrap;
+  gap: 0.5rem; }
+.edge-filter-label { font-family: inherit; font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.22em; color: #BC13FE; min-width: 5.5rem; }
+.edge-filter-pill { background: rgba(244,244,237,0.05); color: #cfd2d8;
+  border: 1px solid rgba(244,244,237,0.18); border-radius: 999px;
+  padding: 0.4rem 0.95rem; font: inherit; font-size: 0.78rem; letter-spacing: 0.02em;
+  cursor: pointer; transition: background 0.2s ease, color 0.2s ease,
+  border-color 0.2s ease; }
+.edge-filter-pill:hover { border-color: rgba(188,19,254,0.6); color: #f4f4ed; }
+.edge-filter-pill.is-on { background: #BC13FE; border-color: #BC13FE;
+  color: #0b0a14; font-weight: 600; }
+.edge-filter-count { font-size: 0.72rem; letter-spacing: 0.18em;
+  color: rgba(244,244,237,0.5); text-transform: uppercase; }
+@media (max-width: 767px) {
+  .edge-filter-label { min-width: 100%; }
+}
+
+/* ---------------------------------------------------------------------------
+   The off-track page is the experience page now: education, roles and stack
+   for a recruiter, not the personal-life gallery it started as. Her template's
+   photo sections are hidden here rather than deleted, so the markup, the rive
+   canvases and the scroll machinery the bundle expects all stay intact.
+   --------------------------------------------------------------------------- */
+.taxi-w.off-track .s.is-horizontal-track,
+.taxi-w.off-track .s.am-quote,
+.taxi-w.off-track .s.is-callout-socials,
+.taxi-w.off-track .marquee-offest-w,
+.taxi-w.off-track .off-t-hero-scroll-w,
+.taxi-w.off-track .off-t-hero-media-w { display: none !important; }
+
+/* CV blocks. Same translucent card as the journey timeline, so the three
+   sections below the globe read as one set. */
+.s.am-cv { position: relative; padding: 3.5rem 0 1rem; scroll-margin-top: 96px; }
+.am-cv-list, .am-cv-skills { list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 1.15rem; }
+.am-cv-item, .am-cv-skill { border: 1px solid rgba(245,240,232,0.18);
+  background: rgba(245,240,232,0.09); backdrop-filter: blur(4px);
+  border-radius: 14px; padding: 1.1rem 1.35rem; position: relative;
+  transition: background 0.25s ease, border-color 0.25s ease; }
+.am-cv-item:hover, .am-cv-skill:hover { background: rgba(245,240,232,0.14);
+  border-color: rgba(191,64,255,0.75); }
+
+.am-cv-top { display: flex; align-items: baseline; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap; }
+.am-cv-role { color: #f5f0e8; font-weight: 700; font-size: 1.05rem; letter-spacing: 0.03em; }
+.am-cv-when { color: #bf40ff; font-weight: 700; font-size: 0.78rem;
+  letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; }
+.am-cv-org { color: #d9d3e6; font-size: 0.95rem; margin-top: 0.15rem; }
+.am-cv-place { color: #9c95b3; font-size: 0.82rem; letter-spacing: 0.04em; margin-top: 0.1rem; }
+
+.am-cv-points { list-style: none; margin: 0.75rem 0 0; padding: 0;
+  display: flex; flex-direction: column; gap: 0.4rem; }
+.am-cv-points li { color: #cfc8e0; font-size: 0.92rem; line-height: 1.45;
+  padding-left: 1.35rem; position: relative; }
+.am-cv-points li::before { content: '✦'; position: absolute; left: 0; top: 0.05rem;
+  color: #bf40ff; font-size: 0.85rem; line-height: 1.5; }
+
+.am-cv-skill { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+  gap: 0.4rem 1.5rem; align-items: baseline; }
+.am-cv-skill-label { color: #f5f0e8; font-weight: 700; font-size: 0.8rem;
+  letter-spacing: 0.12em; text-transform: uppercase; }
+.am-cv-skill-items { color: #cfc8e0; font-size: 0.92rem; line-height: 1.6; }
+@media (max-width: 820px) { .am-cv-skill { grid-template-columns: 1fr; } }
+
+/* EXPERIENCE is ten characters where OFFLINE was seven, so the word ran past
+   both edges of the viewport.
+
+   The template sizes this in rem against a viewport-relative root and then
+   steps it down again at its own breakpoints, so a fixed rem override fights
+   those steps and lands larger than the template at narrow widths. Sizing
+   straight off the viewport fits the word at every width instead, and the two
+   spans keep the 1.04 ratio between them that gives the two-tone split its
+   proportions. */
+.taxi-w.off-track .text-on-t-hero-heading { font-size: 9.6vw; }
+.taxi-w.off-track .text-on-t-hero-heading-mona.margin { font-size: 10vw; }
+
+/* Experience hero layout.
+
+   The template built this hero around a photo marquee and an image slot. With
+   both gone the grid still reserved their height, leaving ~230px of empty
+   starfield above JOURNEY, and the copy stayed in a centred 640px column that
+   floated under a full-bleed title with the description indented into a
+   different column again.
+
+   It is one left-aligned column now, sharing its left edge with the title, and
+   every fixed height is released so the section ends where the words do. */
+.taxi-w.off-track .c.is-on-track-home { height: auto; min-height: 0; padding-bottom: 4rem; }
+.taxi-w.off-track .off-t-hero-title-layout { height: auto; padding-bottom: 0; }
+
+.taxi-w.off-track .off-t-hero-stats-w { display: block; width: 100%; height: auto; }
+
+/* the template's signature flourish is not hers, and with the photos gone it
+   was the only thing left between the heading and its own description */
+.taxi-w.off-track .off-track-hero-signature-rive { display: none !important; }
+
+
+/* The hero read as one enormous word and then a thin purple serif over a
+   starfield, which is the least legible thing on the site. A recruiter's first
+   screen should answer where she studies, what she is doing now and whether
+   she is available, so the lead is three short facts at one readable weight and
+   the two organisations are the only colour in it. */
+.taxi-w.off-track .am-accent { color: #d9a8ff; font-family: inherit; }
+
+/* the leftover template stat sat in near-black over the starfield and read as a
+   smudge; the graduating year is in the eyebrow now */
+.taxi-w.off-track .off-t-hero-info-grid { display: none !important; }
+
+/* the lead needs room to break on its own sentences rather than mid-clause */
+.taxi-w.off-track .off-t-hero-stats-grid.grid-main { max-width: 64rem; }
+.taxi-w.off-track .on-t-hero-stats-para-w { max-width: 64rem; }
+.taxi-w.off-track .off-t-hero-sub-para-w.grid-main,
+.taxi-w.off-track .off-t-hero-sub-para-mw { max-width: 52rem; }
+
+/* ---------------------------------------------------------------------------
+   Contact page. Same translucent card as the journey timeline and the CV
+   blocks, so the three pages read as one set.
+   --------------------------------------------------------------------------- */
+.s.am-contact { position: relative; padding: 3.5rem 0 2rem; }
+.am-contact-list { list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 0.9rem; max-width: 58rem; }
+.am-contact-link { display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
+  gap: 0.35rem 1.5rem; align-items: baseline; text-decoration: none;
+  border: 1px solid rgba(245,240,232,0.18); background: rgba(245,240,232,0.09);
+  backdrop-filter: blur(4px); border-radius: 14px; padding: 1rem 1.35rem;
+  transition: background 0.25s ease, border-color 0.25s ease; }
+a.am-contact-link:hover { background: rgba(245,240,232,0.14);
+  border-color: rgba(191,64,255,0.75); }
+.am-contact-label { color: #9c95b3; font-weight: 700; font-size: 0.78rem;
+  letter-spacing: 0.14em; text-transform: uppercase; }
+.am-contact-value { color: #f5f0e8; font-size: 1rem; word-break: break-word; }
+a.am-contact-link:hover .am-contact-value { color: #d9a8ff; }
+@media (max-width: 820px) { .am-contact-link { grid-template-columns: 1fr; } }
+
+/* CONTACT is seven characters, the length the template's hero was drawn for,
+   so it takes the original scale rather than the step-down EXPERIENCE needed */
+.taxi-w.is-contact .text-on-t-hero-heading { font-size: 13.5vw; }
+.taxi-w.is-contact .text-on-t-hero-heading-mona.margin { font-size: 14vw; }
+
+/* the orbiting earth closes the page, so it keeps its own room */
+.taxi-w.is-contact .s.am-earth-s { margin-top: -2rem; }

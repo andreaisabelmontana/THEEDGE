@@ -1,0 +1,434 @@
+/* our layout, wrapped around her live hero.
+
+   everything here is inert until ui.js adds .edge-ready to the body, which it
+   only does once the head scene has actually mounted. before that the page is
+   hers and behaves exactly as it always has, which is what lets the bundle
+   boot. */
+
+.edge-ui { display: none; }
+
+body.edge-ready {
+  overflow-x: hidden;
+}
+
+/* her page, minus the parts we are replacing. the nav and the transition layer
+   stay in the dom because the bundle reads them; they are only taken out of
+   view. */
+body.edge-ready .transition-w,
+body.edge-ready .s:not(.home-hero):not(.is-footer):not(.home-marquee):not(.am-exp),
+body.edge-ready .home-title-w,
+/* her scroll tracks are divs, not sections, so the rule above walked straight
+   past them. is-home-otot alone was 1470px of empty starfield under the cards. */
+body.edge-ready .sticky-track:not(.home-hero),
+body.edge-ready .sticky-track-theme-change,
+body.edge-ready .hero-nav-theme {
+  display: none !important;
+}
+
+/* the hero's own furniture: her big wordmark and the leftover Next Race panel
+   from the template. the rive canvases inside it have already loaded by now. */
+body.edge-ready .am-hero-name,
+body.edge-ready .home-hero-next-race-w {
+  display: none !important;
+}
+
+/* her bar is the bar: the astronaut, then our languages, then her animated
+   hamburger. only the middle link cluster and the stray transition button go. */
+body.edge-ready .nav-middle,
+body.edge-ready .transition-btn {
+  display: none !important;
+}
+
+/* she had it at 122px, which reads as a slab across the top.
+
+   fixed rather than her sticky: our shell is injected ahead of her nav in the
+   document, so a sticky bar starts wherever it falls in that flow (measured at
+   y=932) and can only stick downward from there, which is why it appeared at
+   the bottom of the screen. fixed takes it out of flow so document order stops
+   mattering, and .edge-ui pads by the same 76px to make room for it. */
+body.edge-ready .nav {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  /* 100vw, not 100%: on a fixed element 100% resolves to the containing block
+     without the scrollbar, so the bar stopped short of the right edge while the
+     starfield behind it ran the full window width. 100vw includes the
+     scrollbar, and body already hides horizontal overflow. */
+  width: 100vw !important;
+  height: 76px !important;
+  min-height: 0 !important;
+  z-index: 40 !important;
+}
+
+body.edge-ready .edge-ui { padding-top: 76px; }
+
+body.edge-ready .nav-inner {
+  height: 76px !important;
+  min-height: 0 !important;
+  align-items: center !important;
+  padding-inline: clamp(1.25rem, 3vw, 2.5rem) !important;
+  gap: 1.5rem;
+}
+
+/* the astronaut came in at 140x105 and dwarfed everything beside it */
+body.edge-ready .nav-brand-link,
+body.edge-ready .nav-brand {
+  width: 58px !important;
+  height: 58px !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+body.edge-ready .nav-brand svg,
+body.edge-ready .nav-brand img,
+body.edge-ready .nav-brand canvas {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+}
+
+/* the languages sit at the scale of her hamburger, not tucked beside it.
+   not scoped to .edge-ready, because her other pages use this too. */
+.nav .lang {
+  margin-left: auto;
+  margin-right: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  /* px, not rem: her stylesheet sets a viewport-relative root font size, so
+     1.35rem resolved to 14px here rather than the ~22px it looks like. */
+  font-size: clamp(17px, 1.35vw, 23px) !important;
+  letter-spacing: 0.02em;
+  color: #7e828d;
+}
+
+.nav .lang button {
+  background: none;
+  border: 0;
+  padding: 0.2rem;
+  font: inherit;
+  font-size: clamp(17px, 1.35vw, 23px) !important;
+  line-height: 1;
+  color: inherit;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+/* her nav is pointer-events:none so the hero stays interactive underneath, and
+   her own controls opt back in. our switcher is injected, so it has to opt in
+   too or the buttons simply are not clickable. */
+.nav .lang,
+.nav .lang button {
+  pointer-events: auto !important;
+}
+
+.nav .lang button:hover { color: #f4f4ed; }
+.nav .lang button.is-on { color: #bc13fe; font-weight: 600; }
+
+@media (max-width: 639px) {
+  .nav .lang, .nav .lang button { font-size: 16px !important; }
+  .nav .lang { margin-right: 0.9rem; }
+}
+
+body.edge-ready .edge-ui { display: block; }
+
+/* her hero becomes a fixed, full-viewport backdrop.
+
+   the mount rect is what the scene takes its framing from, and only its HEIGHT
+   matters: give it less than the full viewport height and her crown and chin
+   fall outside the frame, which is what kept cutting her face off. horizontal
+   placement is not controllable at all, the head draws centred in the canvas
+   whatever the mount's x is. so the mount is restored to the full viewport and
+   the copy is laid out around where she lands. */
+body.edge-ready .sticky-track.home-hero {
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100vh !important;
+  margin: 0 !important;
+  z-index: -1 !important;
+}
+
+body.edge-ready .sticky-track.home-hero .sticky-item,
+body.edge-ready .sticky-track.home-hero .s,
+body.edge-ready .sticky-track.home-hero .c,
+body.edge-ready .sticky-track.home-hero .gl-canvas {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+
+/* she is centred and bright, so the copy needs its own ground to stay legible */
+body.edge-ready .home .hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(to right,
+    rgba(5,5,5,0.94) 0%, rgba(5,5,5,0.88) 24%, rgba(5,5,5,0.4) 42%, transparent 60%);
+}
+
+body.edge-ready .home .hero { position: relative; }
+body.edge-ready .hero-inner { position: relative; z-index: 1; }
+
+/* her hero is NOT resized or re-parented.
+
+   it was, for a while: the chain was pinned to the panel so the mount rect
+   equalled the panel. that is what kept cutting her face off. the scene takes
+   its framing from that rect while still drawing into the full-screen canvas,
+   so squeezing the mount into a small square gave the head a square projection
+   painted across a wide canvas, and the crown and chin fell outside the
+   viewport.
+
+   so the hero keeps its own full-viewport geometry and stays where her page put
+   it, as the backdrop. it renders exactly as it does on the live site, whole
+   and with the cursor true. our copy takes the left column and the panel below
+   just reserves the space it must not run into. */
+
+/* her JOURNEY section: the education timeline and the globe. it is real
+   experience content, so it stays on the page and the second card points at it
+   rather than at a route that does not exist. */
+body.edge-ready .s.am-exp {
+  display: block !important;
+  position: relative;
+  z-index: 3;
+  scroll-margin-top: 96px;
+}
+
+/* the clip layer stays untransformed, so its coordinate space is screen space
+   and the clip is written straight from the panel's rect. */
+.gl-clip {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.gl-clip .gl-wrap {
+  position: absolute !important;
+  inset: 0 !important;
+}
+
+/* her footer is kept: it already carries the contact link and the socials */
+/* the footer sits under our content, not over it. it used to carry z-index 6
+   against .edge-ui's 5, which let its marquee paint across the cards. */
+body.edge-ready .s.is-footer {
+  display: block !important;
+  position: relative;
+  z-index: 1 !important;
+}
+
+/* ---- our shell ---- */
+
+.edge-ui {
+  position: relative;
+  z-index: 10;
+}
+
+/* the head is the full-bleed backdrop, so the slot paints nothing. it only
+   reserves the right-hand column so the copy and her face do not collide. */
+.hero-slot {
+  position: relative;
+  width: clamp(17rem, 46vw, 36rem);
+  aspect-ratio: 1;
+  flex: none;
+  align-self: center;
+  pointer-events: none;
+}
+
+/* the hero needs enough height for her head to sit in behind it */
+body.edge-ready .home .hero {
+  min-height: 86vh;
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  /* the copy sits near the left edge and high, rather than centred in an
+     78rem container that pushed it into the middle of the screen and left a
+     dead margin down the left. */
+  body.edge-ready .home .hero {
+    align-items: flex-start;
+    padding-top: 9vh;
+    /* end the black on the same line the head ends on. --head-bottom is
+       measured from the top of the viewport by ui.js, and the hero starts
+       directly under the 76px bar, so the bar comes back off. */
+    min-height: calc(var(--head-bottom, 88vh) - 76px);
+  }
+  body.edge-ready .home .hero .container {
+    max-width: none;
+    padding-left: clamp(3rem, 9vw, 10rem);
+    padding-right: clamp(2rem, 5vw, 4rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  /* her head runs from roughly 17% to 74% of the viewport width and cannot be
+     moved, so the copy is held clear of it and the type comes down to fit. */
+  body.edge-ready .hero-copy {
+    max-width: 38rem;
+  }
+  /* the supporting copy was set too small against a name this large */
+  body.edge-ready .hero-copy .lead {
+    font-size: clamp(1.15rem, 1.55vw, 1.5rem);
+    max-width: 30ch;
+  }
+  body.edge-ready .hero-copy .facts {
+    font-size: 0.97rem;
+    max-width: 46ch;
+  }
+  body.edge-ready .hero-copy .status { font-size: 0.95rem; }
+  body.edge-ready .hero-copy .arrow-link { font-size: 1.02rem; }
+  body.edge-ready .hero-slot {
+    width: clamp(18rem, 34vw, 28rem);
+    aspect-ratio: 1;
+  }
+}
+
+/* ---- cards sized to the screen ----
+
+   they were sitting in the default 78rem container while the hero runs
+   edge to edge, so they read as a narrow strip with dead margin either side.
+   they now share the hero's gutter, which also lines their left edge up with
+   the name above them. */
+@media (min-width: 1024px) {
+  body.edge-ready .panels-wrap {
+    max-width: none;
+    padding-left: clamp(3rem, 9vw, 10rem);
+    padding-right: clamp(3rem, 9vw, 10rem);
+  }
+
+  body.edge-ready .panels { gap: 1.75rem; }
+
+  body.edge-ready .otot-card {
+    min-height: 34rem;
+    padding: 2.75rem 2.5rem 0;
+    border-radius: 1.25rem;
+  }
+
+  body.edge-ready .otot-card .text-impact-reg-brier {
+    font-size: clamp(3.2rem, 5.2vw, 5rem);
+    margin-bottom: 1rem;
+  }
+
+  body.edge-ready .otot-card .text-body-reg-mona {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    margin-bottom: 1.75rem;
+  }
+
+  body.edge-ready .otot-card-text { max-width: 20rem; }
+
+  body.edge-ready .otot-btn {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.7rem;
+  }
+
+  body.edge-ready .otot-card-img {
+    width: 62%;
+    max-width: 27rem;
+    right: -1rem;
+  }
+}
+
+/* ---- footer: olive out, neutral dark grey in ----
+
+   .footer-layout-clip paints rgb(40,44,32), an olive left over from the
+   template's green palette, and the two dark-green tints beside it carry the
+   same cast. neutralised to greys of the same lightness so nothing else in the
+   footer shifts. */
+body.edge-ready {
+  --color--dark-green-tint-1: #37373b;
+  --color--dark-green-tint-2: #4f4f54;
+}
+
+body.edge-ready .footer-layout-clip {
+  background-color: #1c1c20 !important;
+}
+
+/* ---- the scrolling marquee, behind the cards ----
+
+   ui.js moves .s.home-marquee out of the fixed hero and into .panels-wrap, so
+   it shares the cards' flow instead of being stranded in a band above them. it
+   is exempted from the rule that hides her other sections, laid over the full
+   card band, and held below them. */
+body.edge-ready .panels-wrap { position: relative; }
+
+body.edge-ready .panels-wrap > .s.home-marquee {
+  display: flex !important;
+  position: absolute !important;
+  top: 50% !important;
+  /* full bleed, not the container width: held to the container the cards
+     covered it completely, which is behind them but invisible. running it edge
+     to edge lets it read either side of the cards and through the gap between
+     them, so you can see it passing behind. */
+  left: 50% !important;
+  right: auto !important;
+  width: 100vw !important;
+  height: auto !important;
+  min-height: 0 !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 0 !important;
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+body.edge-ready .panels-wrap > .s.home-marquee .c.is-marquee {
+  width: 100% !important;
+  max-width: none !important;
+  padding: 0 !important;
+}
+
+/* the cards sit over it */
+body.edge-ready .panels { position: relative; z-index: 2; }
+
+/* ---- gallery removed site wide ----
+
+   every link to Arte de la Montaña goes: the bar, the menu and the footer. it
+   is targeted by href rather than class, because .btn-layout.is-nav also wraps
+   the hamburger and hiding that would take the menu with it. */
+a[href*="Arte-De-La-Montana"],
+a[href*="arte-de-la-montana"] {
+  display: none !important;
+}
+
+/* the filter row sat straight under the heading with no clearance and the two
+   collided */
+.edge-filter {
+  margin-top: 3.5rem !important;
+  position: relative;
+  z-index: 3;
+}
+
+/* ---- projects page: close the gap under the helmet ----
+
+   the helmet scene reserves a full viewport and the title block started only
+   after it, leaving a long empty drop between them. pulling the block up sits
+   PROJECTS under the helmet instead of a screen below it. */
+.s.home-helmets {
+  margin-top: -14vh !important;
+  /* the section paints its own ground, and once it overlaps the helmet that
+     ground cut the bottom of the helmet off. transparent here so the scene
+     shows through and only the type sits on top of it. */
+  background: transparent !important;
+  position: relative;
+  z-index: 2;
+}
+
+.s.home-helmets .c.home-helmets {
+  background: transparent !important;
+}
+
+@media (max-width: 1023px) {
+  .s.home-helmets { margin-top: -6vh !important; }
+}

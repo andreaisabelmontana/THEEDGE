@@ -1,18 +1,29 @@
 /* Experience globe: canvas orthographic Earth with milestone pins and a
-   timeline list. Land outlines come from Natural Earth 110m (same source
-   Javier's globe uses), pre-decoded into custom/land-rings.json.
-   Edit ENTRIES to change the journey. */
+   timeline list. Land outlines come from Natural Earth 110m, pre-decoded into
+   custom/land-rings.json. Edit ENTRIES to change the journey. */
+
+/* the coastline data was fetched as './custom/land-rings.json', which only
+   resolves from the site root. this section now also runs on /off-track/, where
+   that path looks for the file inside the subfolder and the globe comes up
+   empty, so it is resolved against the root the pages already publish. */
+var AM_LAND_RINGS = (window.__SITE_ROOT || '') + '/custom/land-rings.json';
+
 (function () {
+  /* the pins are cities, not qualifications.
+
+     they used to repeat one degree each, which now reads as a duplicate of the
+     education section directly below the globe. a place with everything that
+     happened there says something the list underneath does not. */
   var ENTRIES = [
-    { year: '2010 to 2022', title: 'Student', org: 'Colegio Nueva Granada',
-      degree: 'American AP diploma + Bachiller Colombiano',
-      place: 'Bogota, Colombia', lat: 4.652, lon: -74.055 },
-    { year: '2022 to 2023', title: 'Student', org: 'Trinity College Dublin',
-      degree: 'Bachelor of Computer Science (transferred to IE University)',
-      place: 'Dublin, Ireland', lat: 53.3438, lon: -6.2546 },
-    { year: '2023 to present', title: 'Student', org: 'IE University',
-      degree: 'Bachelor of Computer Science and Artificial Intelligence',
-      place: 'Madrid, Spain', lat: 40.4168, lon: -3.7038 }
+    { head: 'Bogota, Colombia',
+      detail: 'Colegio Nueva Granada, and the digital presence for Top Living Inmobiliaria',
+      when: '2010 to 2024', lat: 4.652, lon: -74.055 },
+    { head: 'Dublin, Ireland',
+      detail: 'Trinity College Dublin, first year of the degree',
+      when: '2022 to 2023', lat: 53.3438, lon: -6.2546 },
+    { head: 'Madrid, Spain',
+      detail: 'IE University, IEX Labs research and the Google Developer Group',
+      when: '2023 to present', lat: 40.4168, lon: -3.7038 }
   ];
 
   var canvas = document.getElementById('am-globe');
@@ -23,7 +34,7 @@
   var rotLon = 20, rotLat = -18, targetLon = null, targetLat = null;
   var auto = true, dragging = false, lastX = 0, lastY = 0, active = -1;
 
-  fetch('./custom/land-rings.json').then(function (r) { return r.json(); })
+  fetch(AM_LAND_RINGS).then(function (r) { return r.json(); })
     .then(function (d) { RINGS = d; });
 
   function proj(lat, lon, lift) {
@@ -139,9 +150,9 @@
     (function (i) {
       var en = ENTRIES[i];
       var li = document.createElement('li');
-      li.innerHTML = '<span class="am-exp-line1 text-body-reg-mona">' + (en.title + ' · ' + en.org).toUpperCase() + '</span>' +
-        '<span class="am-exp-line2 text-body-reg-mona">' + en.degree + '</span>' +
-        '<span class="am-exp-line3 text-body-reg-mona">' + en.place + ' · ' + en.year + '</span>';
+      li.innerHTML = '<span class="am-exp-line1 text-body-reg-mona">' + en.head.toUpperCase() + '</span>' +
+        '<span class="am-exp-line2 text-body-reg-mona">' + en.detail + '</span>' +
+        '<span class="am-exp-line3 text-body-reg-mona">' + en.when + '</span>';
       li.addEventListener('click', function () { goTo(i); });
       list.appendChild(li);
     })(i);
@@ -159,7 +170,7 @@
   function vector() {
     var x = c.getContext('2d');
     var rot = 0, R2 = null;
-    fetch('./custom/land-rings.json').then(function (r) { return r.json(); })
+    fetch(AM_LAND_RINGS).then(function (r) { return r.json(); })
       .then(function (d) { R2 = d; });
     function pr(lat, lon, cx, cy, R) {
       var la = lat * Math.PI / 180, lo = (lon + rot) * Math.PI / 180;
@@ -197,7 +208,7 @@
     var scene = new THREE.Scene();
     var cam = new THREE.PerspectiveCamera(38, 2.5, 0.1, 100);
     var failed = false;
-    var tex = new THREE.TextureLoader().load('./custom/vendor/earth-atmos.jpg',
+    var tex = new THREE.TextureLoader().load((window.__SITE_ROOT || '') + '/custom/vendor/earth-atmos.jpg',
       null, undefined, function () { failed = true; vector(); });
     if (tex.colorSpace !== undefined && THREE.SRGBColorSpace) tex.colorSpace = THREE.SRGBColorSpace;
     var globe = new THREE.Mesh(new THREE.SphereGeometry(1.55, 96, 96),
