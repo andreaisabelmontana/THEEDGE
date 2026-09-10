@@ -11,7 +11,7 @@
 
   function tick(t) {
     try {
-      var gl = window.landoGL;
+      var gl = window.edgeGL;
       if (gl && gl.params && gl.params.helmetScrollScene && gl.bounds && gl.bounds.helmetScroll) {
         if (startT === null) startT = t;
         var el = t - startT;

@@ -3054,7 +3054,7 @@ blockquote {
   position: absolute;
 }
 
-.page-ln4-pos {
+.page-edge-pos {
   z-index: 1;
   pointer-events: none;
   justify-content: center;
@@ -3213,13 +3213,13 @@ blockquote {
   inset: 0%;
 }
 
-.image.is-ln4-logo {
+.image.is-edge-logo {
   width: 1.875rem;
   height: 2.125rem;
   display: none;
 }
 
-.image.is-ln4-logo:where(.w-variant-88b83061-c887-c094-eb94-cbb8cabca5e0) {
+.image.is-edge-logo:where(.w-variant-88b83061-c887-c094-eb94-cbb8cabca5e0) {
   display: inline-block;
 }
 
@@ -5214,7 +5214,7 @@ blockquote {
 }
 
 .on-t-hero-stats-ui-img-fill {
-  background-image: url("../../../../assets/cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67d864ec2ce7efa1414e36a6_ln4-ui-pattern.webp");
+  background-image: url("../../../../assets/cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67d864ec2ce7efa1414e36a6_edge-ui-pattern.webp");
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: auto 130%;
@@ -5817,7 +5817,7 @@ blockquote {
   position: relative;
 }
 
-.ln-calendar-track-frame {
+.edge-calendar-track-frame {
   z-index: 5;
   pointer-events: none;
   color: var(--color--lime);
@@ -6388,7 +6388,7 @@ blockquote {
 }
 
 .off-t-hero-img {
-  background-image: url("../../../../assets/cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67dc366b25025ea1a39995c4_ln4-off-t-hero-img.webp");
+  background-image: url("../../../../assets/cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67dc366b25025ea1a39995c4_edge-off-t-hero-img.webp");
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -6534,7 +6534,7 @@ blockquote {
   inset: -12rem auto auto 0%;
 }
 
-.page-ln4-w {
+.page-edge-w {
   pointer-events: auto;
   color: var(--color--dark-green);
   grid-column-gap: var(--gap);
@@ -6544,7 +6544,7 @@ blockquote {
   display: flex;
 }
 
-.page-ln4-svg {
+.page-edge-svg {
   color: currentColor;
   width: 2.75rem;
   height: 2.75rem;
@@ -9484,11 +9484,11 @@ blockquote {
     display: flex;
   }
 
-  .ln-calendar-track-frame {
+  .edge-calendar-track-frame {
     display: none;
   }
 
-  .ln-calendar-track-frame.mobile {
+  .edge-calendar-track-frame.mobile {
     width: 100%;
     display: flex;
     position: absolute;
@@ -9639,7 +9639,7 @@ blockquote {
     top: 0;
   }
 
-  .page-ln4-svg {
+  .page-edge-svg {
     width: 2.5rem;
     height: 2.5rem;
   }

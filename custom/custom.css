@@ -44,7 +44,7 @@ html[data-wf-page="67b5a02dc5d338960b17a7eb"] .s.home-helmets { display: none !i
 .taxi-w.off-track .s.is-horizontal-track :is(h3.text-title-reg-brier, h3.text-title-reg-brier .char, h3.text-title-reg-brier .line) { color: #BC13FE !important; } /* after the cream rule: split-text children must stay purple */
 /* home-marquee-tighten: pull content after the scholar moment up */
 .s.home-marquee, .s.home-marquee .c.is-marquee { height: 58vh !important; min-height: 0 !important; }
-img[src*="ln-home-helm-large"] { display: none !important; } /* source file was scrubbed; hide the broken img */
+img[src*="edge-home-helm-large"] { display: none !important; } /* source file was scrubbed; hide the broken img */
 /* tighten the impact-statement -> ON/OFF transition (was ~47vh of empty stars) */
 .impact-content-w.is-home { padding-bottom: 0 !important; }
 .otot-home-layout { transform: translateY(-8vh); }
