@@ -231,12 +231,24 @@
     addEventListener('resize', fit);
   }
 
+  /* the wait used requestAnimationFrame alone, which browsers pause outright
+     in a hidden tab. Opening the site in a background tab and coming to it
+     later is ordinary behaviour, and it meant restructure() had never run: the
+     sections this layout hides were all still on the page, the head was
+     unframed and the language switcher was still sitting outside her nav. The
+     page only fixed itself if you happened to be watching it load.
+
+     a timer drives it instead, which keeps running while the tab is hidden.
+     120ms is well inside what anyone perceives here: this waits on a scene that
+     takes seconds to arrive, so it never needed frame resolution. */
+  var TICK = 120;
+
   function wait() {
     if (ready()) { restructure(); return; }
     // the loader alone runs ~10s on a cold cache, so this has to be patient,
     // but it must not hang the page forever if the scene never arrives
     if (performance.now() - started > 25000) { restructure(); return; }
-    requestAnimationFrame(wait);
+    setTimeout(wait, TICK);
   }
 
   wait();
