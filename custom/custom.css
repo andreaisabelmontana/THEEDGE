@@ -415,3 +415,31 @@ a.am-contact-link:hover .am-contact-value { color: #d9a8ff; }
 
 /* the orbiting earth closes the page, so it keeps its own room */
 .taxi-w.is-contact .s.am-earth-s { margin-top: -2rem; }
+
+/* ---------------------------------------------------------------------------
+   Projects page hero.
+
+   The template opened this page on the driver's identity: a Rive script "ON"
+   over a full-bleed "TRACK", with his age, his home town and a UK flag under
+   it. None of that is hers, and the page's real heading, PROJECTS / HALL OF
+   IDEAS, sits directly below. The band goes, so the page opens on the helmet
+   and then the heading.
+
+   Hidden rather than cut out: the bundle's page module reads this hero while it
+   boots, and removing the markup is what broke things the last two times.
+   --------------------------------------------------------------------------- */
+.taxi-w.on-track .on-t-hero-title-w,
+.taxi-w.on-track .on-t-hero-info-grid,
+.taxi-w.on-track .on-t-hero-title-rive-w,
+.taxi-w.on-track .on-t-hero-stats-grid,
+.taxi-w.on-track .on-t-hero-stats-w { display: none !important; }
+
+/* The band cannot collapse to nothing: the helmet is drawn into it by
+   helmet-spin.js, and with the band at its content height the helmet landed on
+   top of the title, the filters and the grid. It keeps just enough room for the
+   helmet and nothing else. The -14vh pull on the section below, which closed a
+   gap that no longer exists, would eat into that room, so it is released here.*/
+.taxi-w.on-track .s.is-on-track-home { height: 28vh !important; min-height: 0 !important; }
+.taxi-w.on-track .c.is-on-track-home { height: 100%; min-height: 0; padding-bottom: 0; }
+.taxi-w.on-track .on-t-hero-title-layout { height: auto; }
+.taxi-w.on-track .s.home-helmets { margin-top: 0 !important; }
