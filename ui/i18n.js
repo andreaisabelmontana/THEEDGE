@@ -252,6 +252,11 @@
     'AI and machine learning': { es: 'IA y aprendizaje automático', de: 'KI und Machine Learning' },
     'Languages': { es: 'Lenguajes', de: 'Sprachen' },
     'Frameworks and databases': { es: 'Frameworks y bases de datos', de: 'Frameworks und Datenbanken' },
+    'Cloud and deployment': { es: 'Cloud y despliegue', de: 'Cloud und Deployment' },
+    'Coursework: machine learning, computer vision, natural language processing, reinforcement learning, robotics, cloud computing, human-computer interaction.': {
+      es: 'Asignaturas: aprendizaje automático, visión por computador, procesamiento del lenguaje natural, aprendizaje por refuerzo, robótica, computación en la nube, interacción persona-computador.',
+      de: 'Kurse: Machine Learning, Computer Vision, Verarbeitung natürlicher Sprache, Reinforcement Learning, Robotik, Cloud Computing, Mensch-Computer-Interaktion.',
+    },
     'Tools and platforms': { es: 'Herramientas y plataformas', de: 'Werkzeuge und Plattformen' },
   };
 
