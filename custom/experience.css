@@ -106,3 +106,6 @@ body.experience-page {
   .experience-page .am-cv-skill { grid-template-columns: 1fr; gap: 8px; }
   .am-section-nav { gap: 6px 20px; }
 }
+
+/* Evidence at a glance, kept separate from role dates and location. */
+.experience-page .am-cv-proof { display: inline-block; margin: 14px 0 0; padding: 7px 11px; border: 1px solid #b589da44; border-radius: 8px; background: #b589da10; color: #e3c2ff; font-size: 12px; line-height: 1.5; }
