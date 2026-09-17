@@ -237,10 +237,6 @@
       es: 'Grado en Ciencias de la Computación e Inteligencia Artificial',
       de: 'BSc Computer Science and Artificial Intelligence',
     },
-    'BSc Computer Science and Artificial Intelligence, year one': {
-      es: 'Grado en Ciencias de la Computación e Inteligencia Artificial, primer año',
-      de: 'BSc Computer Science and Artificial Intelligence, erstes Jahr',
-    },
     'expected July 2028': { es: 'prevista julio de 2028', de: 'voraussichtlich Juli 2028' },
     'Coursework: machine learning, computer vision, natural language processing, reinforcement learning, robotics, human-computer interaction.': {
       es: 'Asignaturas: aprendizaje automático, visión por computador, procesamiento del lenguaje natural, aprendizaje por refuerzo, robótica, interacción persona-computador.',
