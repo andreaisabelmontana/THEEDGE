@@ -77,9 +77,6 @@
     "Supported ROBOPRENEUR’s IEEE ICRA 2026 submission by conducting the literature review and contributing to the final video prototype.": {"es": "Apoyé la presentación de ROBOPRENEUR a IEEE ICRA 2026 mediante la revisión bibliográfica y la colaboración en el prototipo final en vídeo.", "de": "Die Einreichung von ROBOPRENEUR bei IEEE ICRA 2026 durch Literaturrecherche und Mitarbeit am finalen Videoprototyp unterstützt."},
     "Contributed to DJthesia’s failure-free live demonstration at SIGGRAPH Real-Time Live! 2025 by testing the TouchDesigner–OptiTrack interface and calibrating cameras with a short-throw projector.": {"es": "Contribuí a la demostración en directo sin fallos de DJthesia en SIGGRAPH Real-Time Live! 2025 probando la interfaz TouchDesigner–OptiTrack y calibrando cámaras con un proyector de tiro corto.", "de": "Zur fehlerfreien Live-Demonstration von DJthesia bei SIGGRAPH Real-Time Live! 2025 beigetragen: die TouchDesigner–OptiTrack-Schnittstelle getestet und Kameras mit einem Kurzdistanzprojektor kalibriert."},
     "Prototyped interactive educational rewards with Intel RealSense projection mapping, and established a motion-capture-to-Blender workflow for character animation in Unity.": {"es": "Creé prototipos de recompensas educativas interactivas con proyección mapeada e Intel RealSense y establecí un flujo de captura de movimiento a Blender para animación de personajes en Unity.", "de": "Interaktive Lernbelohnungen mit Intel-RealSense-Projection-Mapping prototypisiert und einen Motion-Capture-zu-Blender-Workflow für Charakteranimation in Unity aufgebaut."},
-    "Equipped student developers with practical experience across three topics by leading workshops on Git/GitHub, AI agent development and Gemini CLI.": {"es": "Facilité experiencia práctica a estudiantes en tres temas mediante talleres de Git/GitHub, desarrollo de agentes de IA y Gemini CLI.", "de": "Studierenden praktische Erfahrung in drei Themenbereichen vermittelt: Workshops zu Git/GitHub, KI-Agentenentwicklung und Gemini CLI geleitet."},
-    "Helped deliver two hackathons—Build with AI and Tech Roulette—by co-organising logistics and supporting participants throughout.": {"es": "Contribuí a realizar dos hackathones, Build with AI y Tech Roulette, coorganizando la logística y apoyando a participantes durante los eventos.", "de": "Zwei Hackathons mit umgesetzt—Build with AI und Tech Roulette—durch Mitorganisation der Logistik und Betreuung der Teilnehmenden."},
-    "Brought two industry perspectives to campus by coordinating a Women in Tech Madrid leadership panel and a session on VR in patient care.": {"es": "Acerqué dos perspectivas profesionales al campus al coordinar un panel de liderazgo con Women in Tech Madrid y una sesión sobre realidad virtual en la atención a pacientes.", "de": "Zwei Branchenperspektiven auf den Campus gebracht: ein Führungspanel mit Women in Tech Madrid und eine Veranstaltung zu VR in der Patientenversorgung koordiniert."},
     "Helped build Top Living’s digital presence by contributing to its website, which has reached 11,000 users since its 2020 launch.": {"es": "Ayudé a desarrollar la presencia digital de Top Living contribuyendo a su web, que ha alcanzado 11.000 usuarios desde su lanzamiento en 2020.", "de": "Die digitale Präsenz von Top Living mit aufgebaut: an der Website mitgearbeitet, die seit ihrem Start 2020 insgesamt 11.000 Nutzer erreicht hat."},
     "Made a mobile app concept tangible through a clickable Adobe XD prototype; the team prioritised the existing website and social channels instead of launching the app.": {"es": "Concreté un concepto de aplicación móvil mediante un prototipo interactivo en Adobe XD; el equipo priorizó la web y las redes sociales existentes en lugar de lanzar la aplicación.", "de": "Ein mobiles App-Konzept durch einen klickbaren Adobe-XD-Prototyp greifbar gemacht; das Team priorisierte die bestehende Website und soziale Kanäle statt eines App-Starts."},
     "Supported a consistent brand presence across web and social media by helping define the visual identity, colour palette and digital marketing materials.": {"es": "Apoyé una presencia de marca coherente en web y redes sociales al contribuir a la identidad visual, la paleta de colores y los materiales de marketing digital.", "de": "Einen einheitlichen Markenauftritt im Web und in sozialen Medien unterstützt, indem visuelle Identität, Farbpalette und digitale Marketingmaterialien mitgestaltet wurden."},
@@ -94,7 +91,6 @@
     "Earned 80% tuition coverage through IE University’s High Potential Scholarship, awarded for academic excellence.": {"es": "Obtuve una cobertura del 80% de la matrícula mediante la beca High Potential de IE University, concedida por excelencia académica.", "de": "80 % der Studiengebühren durch das High-Potential-Stipendium der IE University gedeckt, das für akademische Exzellenz vergeben wird."},
     "Completed one academic year at Trinity College Dublin before transferring to IE University.": {"es": "Completé un año académico en Trinity College Dublin antes de trasladarme a IE University.", "de": "Ein Studienjahr am Trinity College Dublin abgeschlossen und anschließend an die IE University gewechselt."},
     "4 live metrics · SIGGRAPH 2025": {"es": "4 métricas en directo · SIGGRAPH 2025", "de": "4 Live-Kennzahlen · SIGGRAPH 2025"},
-    "2 hackathons · 3 workshop topics": {"es": "2 hackathones · 3 temas de talleres", "de": "2 Hackathons · 3 Workshop-Themen"},
     "11,000 website users · Adobe XD prototype": {"es": "11.000 usuarios web · Prototipo en Adobe XD", "de": "11.000 Website-Nutzer · Adobe-XD-Prototyp"},
     "Property sourcing · Sales & rentals": {"es": "Búsqueda de inmuebles · Compraventa y alquiler", "de": "Immobiliensuche · Verkauf & Vermietung"},
     "2 internal IE projects": {"es": "2 proyectos internos de IE", "de": "2 interne IE-Projekte"},
@@ -105,8 +101,6 @@
     "Conducted the literature review and contributed to ROBOPRENEUR’s video prototype for IEEE ICRA 2026.": {"es": "Realicé la revisión bibliográfica y contribuí al prototipo en vídeo de ROBOPRENEUR para IEEE ICRA 2026.", "de": "Literaturrecherche durchgeführt und am Videoprototyp von ROBOPRENEUR für IEEE ICRA 2026 mitgearbeitet."},
     "Set up and tested DJthesia’s real-time audiovisual interface with TouchDesigner and OptiTrack, calibrating cameras and a short-throw projector. The system was accepted to SIGGRAPH Real-Time Live! 2025; the live demonstration ran without failure.": {"es": "Configuré y probé la interfaz audiovisual en tiempo real de DJthesia con TouchDesigner y OptiTrack, calibrando cámaras y un proyector de tiro corto. El sistema fue aceptado en SIGGRAPH Real-Time Live! 2025; la demostración en directo funcionó sin fallos.", "de": "Die audiovisuelle Echtzeitschnittstelle von DJthesia mit TouchDesigner und OptiTrack eingerichtet und getestet sowie Kameras und einen Kurzdistanzprojektor kalibriert. Das System wurde für SIGGRAPH Real-Time Live! 2025 angenommen; die Live-Demonstration lief fehlerfrei."},
     "Built projection-mapping prototypes with Intel RealSense for interactive educational reward systems, and prototyped a motion-capture and Blender animation pipeline for a Unity game.": {"es": "Desarrollé prototipos de proyección mapeada con Intel RealSense para sistemas educativos de recompensas interactivas y un flujo de captura de movimiento y animación en Blender para un juego en Unity.", "de": "Projection-Mapping-Prototypen mit Intel RealSense für interaktive Belohnungssysteme im Bildungsbereich entwickelt und einen Motion-Capture- und Blender-Animationsworkflow für ein Unity-Spiel prototypisiert."},
-    "Led hands-on workshops across three topics: Git and GitHub, AI agent development, and the Gemini CLI.": {"es": "Impartí talleres prácticos sobre tres temas: Git y GitHub, desarrollo de agentes de IA y Gemini CLI.", "de": "Praxisworkshops zu drei Themen geleitet: Git und GitHub, KI-Agentenentwicklung und Gemini CLI."},
-    "Co-organised two hackathons, Build with AI and Tech Roulette, coordinating logistics and participant support.": {"es": "Coorganicé dos hackathones, Build with AI y Tech Roulette, coordinando la logística y el apoyo a participantes.", "de": "Zwei Hackathons mitorganisiert, Build with AI und Tech Roulette, einschließlich Logistik und Betreuung der Teilnehmenden."},
     "User Experience Researcher": {"es": "Investigadora de experiencia de usuario", "de": "UX-Researcherin"},
     "Apr 2022 to Apr 2024": {"es": "Abr 2022 a abr 2024", "de": "Apr. 2022 bis Apr. 2024"},
     "Bogotá, Colombia · Part-time": {"es": "Bogotá, Colombia · Tiempo parcial", "de": "Bogotá, Kolumbien · Teilzeit"},
@@ -233,7 +227,6 @@
       de: 'Madrid, Spanien · Abschluss 2028',
     },
     'Research assistant at': { es: 'Asistente de investigación en', de: 'Forschungsassistentin bei' },
-    'Technical lead of the': { es: 'Líder técnica del', de: 'Technical Lead der' },
     'BSc Computer Science and AI at IE University.': {
       es: 'Grado en Ciencias de la Computación e IA en IE University.',
       de: 'BSc Computer Science and AI an der IE University.',
@@ -244,11 +237,10 @@
     },
 
     'WORK': { es: 'TRABAJO', de: 'ARBEIT' },
-    'Research, developer community leadership and client work.': {
-      es: 'Investigación, liderazgo en comunidad de desarrolladores y trabajo con clientes.',
-      de: 'Forschung, Leitung einer Entwickler-Community und Kundenarbeit.',
+    'Research and client work.': {
+      es: 'Investigación y trabajo con clientes.',
+      de: 'Forschung und Kundenarbeit.',
     },
-    'Technical Lead': { es: 'Líder técnica', de: 'Technical Lead' },
     'Research Assistant': { es: 'Asistente de investigación', de: 'Forschungsassistentin' },
     'Real Estate Agent': { es: 'Agente inmobiliaria', de: 'Immobilienmaklerin' },
     'Sept 2025 to present': { es: 'sept 2025 a hoy', de: 'Sept 2025 bis heute' },
@@ -257,18 +249,6 @@
     'Madrid, Spain': { es: 'Madrid, España', de: 'Madrid, Spanien' },
     'Bogota, Colombia': { es: 'Bogotá, Colombia', de: 'Bogotá, Kolumbien' },
     'Dublin, Ireland': { es: 'Dublín, Irlanda', de: 'Dublin, Irland' },
-    'Led hands-on workshops on Git and GitHub, AI agent development and the Gemini CLI, upskilling student developers.': {
-      es: 'Impartí talleres prácticos sobre Git y GitHub, desarrollo de agentes de IA y Gemini CLI, formando a desarrolladores estudiantes.',
-      de: 'Praxis-Workshops zu Git und GitHub, KI-Agenten-Entwicklung und der Gemini CLI geleitet und studentische Entwickler weitergebildet.',
-    },
-    'Co-organised the Build with AI and Tech Roulette hackathons, running logistics and support throughout.': {
-      es: 'Coorganicé los hackathones Build with AI y Tech Roulette, encargándome de la logística y el soporte.',
-      de: 'Die Hackathons Build with AI und Tech Roulette mitorganisiert, samt Logistik und Betreuung.',
-    },
-    'Coordinated a female leadership panel with Women in Tech Madrid, and a session on VR applications in patient care.': {
-      es: 'Coordiné un panel de liderazgo femenino con Women in Tech Madrid y una sesión sobre aplicaciones de RV en la atención al paciente.',
-      de: 'Ein Panel zu weiblicher Führung mit Women in Tech Madrid koordiniert, dazu eine Session zu VR in der Patientenversorgung.',
-    },
     "Set up and tested DJESTHESIA's tangible multimedia interface using TouchDesigner and OptiTrack motion capture.": {
       es: 'Monté y probé la interfaz multimedia tangible de DJESTHESIA con TouchDesigner y captura de movimiento OptiTrack.',
       de: "DJESTHESIAs greifbare Multimedia-Schnittstelle mit TouchDesigner und OptiTrack-Motion-Capture aufgebaut und getestet.",

@@ -434,12 +434,11 @@ a.am-contact-link:hover .am-contact-value { color: #d9a8ff; }
 .taxi-w.on-track .on-t-hero-stats-grid,
 .taxi-w.on-track .on-t-hero-stats-w { display: none !important; }
 
-/* The band cannot collapse to nothing: the helmet is drawn into it by
-   helmet-spin.js, and with the band at its content height the helmet landed on
-   top of the title, the filters and the grid. It keeps just enough room for the
-   helmet and nothing else. The -14vh pull on the section below, which closed a
-   gap that no longer exists, would eat into that room, so it is released here.*/
-.taxi-w.on-track .s.is-on-track-home { height: 28vh !important; min-height: 0 !important; }
+/* helmet-spin.js centers the helmet at 28vh. Reserve that offset plus half
+   its largest (intro) size: min(56vh, 42vw). Otherwise the opaque project
+   group starts through the helmet's center and hides its lower half.
+   Keep the section below in normal flow so it cannot overlap this space. */
+.taxi-w.on-track .s.is-on-track-home { height: calc(28vh + min(28vh, 21vw)) !important; min-height: 0 !important; }
 .taxi-w.on-track .c.is-on-track-home { height: 100%; min-height: 0; padding-bottom: 0; }
 .taxi-w.on-track .on-t-hero-title-layout { height: auto; }
 .taxi-w.on-track .s.home-helmets { margin-top: 0 !important; }

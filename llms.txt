@@ -2,7 +2,7 @@
 
 Canonical site: https://andreamontana.com/
 
-Andrea Montaña is a Computer Science and Artificial Intelligence student at IE University, Research Assistant at IEX Labs and CyPhy Life, and Technical Lead for the Google Developer Group at IE University. Her work combines artificial intelligence, machine learning, computer vision, human-computer interaction, robotics, software development, and interactive systems.
+Andrea Montaña is a Computer Science and Artificial Intelligence student at IE University and Research Assistant at IEX Labs and CyPhy Life. Her work combines artificial intelligence, machine learning, computer vision, human-computer interaction, robotics, software development, and interactive systems.
 
 ## Portfolio pages
 
@@ -15,7 +15,6 @@ Andrea Montaña is a Computer Science and Artificial Intelligence student at IE 
 
 - Research Assistant since January 2025: built the Python and Mesa ROBOPRENEUR simulation, four live Solara metrics, and contributed work supporting an IEEE ICRA 2026 submission.
 - Contributed testing and calibration to DJthesia's successful SIGGRAPH Real-Time Live! 2025 demonstration using TouchDesigner and OptiTrack.
-- Technical Lead since September 2025: led workshops in three topics and co-organised two hackathons, Build with AI and Tech Roulette.
 - User Experience Researcher at Top Living Inmobiliaria from April 2022 to April 2024: contributed to a website that reached 11,000 users and created a clickable Adobe XD mobile-app prototype.
 - Independent visual artist: sold 50+ commissioned artworks across Colombia and Spain.
 - IE University High Potential Scholarship: 80% tuition coverage.
