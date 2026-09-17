@@ -42,14 +42,24 @@ body.experience-page {
 .experience-page .am-exp-head { align-items: flex-start; gap: 24px; margin-bottom: 28px; }
 .experience-page .am-exp-title { font-size: clamp(28px, 3.2vw, 44px); line-height: 1.08; letter-spacing: -.035em; max-width: 620px; }
 .experience-page .am-exp-sub { max-width: 310px; font-size: 14px; line-height: 1.6; color: #aaa7b8; }
-.experience-page .am-exp-layout { padding: 24px; border: 1px solid #ffffff16; border-radius: 20px; background: #101119; gap: 40px; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); }
-.experience-page .am-exp-globe-w { max-width: 350px; width: 100%; justify-self: center; }
-.experience-page .am-exp-timeline { gap: 12px; }
-.experience-page .am-exp-timeline li { background: #191a25 !important; border-color: #ffffff18 !important; border-radius: 10px; padding: 0 !important; backdrop-filter: none; }
-.experience-page .am-exp-timeline li::before { display: none; }
-.experience-page .am-exp-timeline li:is(:hover,.is-active) { background: #211b30 !important; border-color: #b589da !important; }
+.experience-page .am-exp-layout { padding: 36px; border: 1px solid #b589da66; border-radius: 24px; background: radial-gradient(ellipse at 18% 40%, #49326980, transparent 60%), #171320; gap: 44px; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); box-shadow: 0 24px 70px #0004; }
+.experience-page #journey .am-exp-title { color: #ddbcff; }
+.am-globe-caption { text-align: center; color: #d0bbdf; font-size: 12px; line-height: 1.6; margin: 10px 0 0; }
+.experience-page #am-globe { position: relative; z-index: 1; filter: drop-shadow(0 0 26px #be7cff30); }
+.experience-page .am-exp-globe-w::before { content: ''; position: absolute; inset: 4% 0 12%; border: 1px solid #d8acff26; border-radius: 50%; transform: rotate(-25deg) scaleY(.8); pointer-events: none; }
+.experience-page .am-exp-globe-w { max-width: 460px; width: 100%; justify-self: center; }
+.experience-page .am-exp-timeline { gap: 12px; position: relative; padding-left: 36px; counter-reset: journey; }
+.experience-page .am-exp-timeline::before { content: ''; position: absolute; left: 12px; top: 26px; bottom: 26px; width: 1px; background: linear-gradient(#d6a5ff, #77568f); }
+.experience-page .am-exp-timeline li { counter-increment: journey; background: #ffffff05 !important; border-color: transparent !important; border-radius: 14px; padding: 0 !important; backdrop-filter: none; }
+.experience-page .am-exp-timeline li::before { content: counter(journey, decimal-leading-zero); display: grid; place-items: center; position: absolute; left: -37px; top: 23px; width: 25px; height: 25px; border-radius: 50%; border: 1px solid #b88fd1; background: #231a30; color: #e8cfff; font: 10px/1 monospace; }
+.experience-page .am-exp-timeline li:hover { background: #ffffff0b !important; border-color: #b589da66 !important; }
+.experience-page .am-exp-timeline li.is-active { background: #e9d8fa !important; border-color: #efdfff !important; box-shadow: 0 8px 30px #0002; }
+.experience-page .am-exp-timeline li.is-active::before { background: #d5a2ff; color: #281337; border-color: #ebd5ff; box-shadow: 0 0 0 5px #b27be523; }
+.experience-page .am-exp-timeline li.is-active .am-exp-line1 { color: #301640; }
+.experience-page .am-exp-timeline li.is-active .am-exp-line2 { color: #483353; }
+.experience-page .am-exp-timeline li.is-active .am-exp-line3 { color: #674c78; }
 .am-journey-button { display: grid; width: 100%; gap: 5px; padding: 18px 22px; text-align: left; border: 0; border-radius: inherit; color: inherit; background: transparent; cursor: pointer; font: inherit; }
-.experience-page .am-exp-line1 { font-size: 13px; letter-spacing: .06em; }
+.experience-page .am-exp-line1 { font-size: 17px; letter-spacing: .06em; }
 .experience-page .am-exp-line2 { font-size: 13px; line-height: 1.45; }
 .experience-page .am-exp-line3 { font-size: 11px; color: #aaa3bc; }
 .experience-page .am-cv-list { gap: 14px; }
@@ -85,8 +95,10 @@ body.experience-page {
   .experience-page .am-exp-head { flex-direction: column; gap: 14px; }
   .experience-page .am-exp-sub { max-width: 440px; }
   .experience-page .s.am-exp, .experience-page .s.am-cv { padding-top: 40px; }
-  .experience-page .am-exp-layout { grid-template-columns: 1fr; padding: 18px; gap: 18px; }
-  .experience-page .am-exp-globe-w { max-width: 260px; }
+  .experience-page .am-exp-layout { grid-template-columns: 1fr; padding: 22px 16px; gap: 30px; }
+  .experience-page .am-exp-globe-w { max-width: 360px; }
+  .experience-page .am-journey-button { padding: 18px 14px; }
+  .experience-page .am-exp-line1 { font-size: 15px; }
   .experience-page .am-cv-item { padding: 22px; }
   .am-events-grid { grid-template-columns: 1fr; }
   .am-event-card { padding: 24px; }

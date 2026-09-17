@@ -64,8 +64,8 @@ var AM_LAND_RINGS = (window.__SITE_ROOT || '') + '/custom/land-rings.json';
         else ctx.lineTo(p.x, p.y);
       } else started = false;
     }
-    ctx.strokeStyle = 'rgba(191,64,255,0.65)';
-    ctx.lineWidth = 1.4;
+    ctx.strokeStyle = '#d6a0ff';
+    ctx.lineWidth = 2.4;
     ctx.stroke();
   }
 
@@ -80,7 +80,11 @@ var AM_LAND_RINGS = (window.__SITE_ROOT || '') + '/custom/land-rings.json';
     ctx.clearRect(0, 0, w, h);
     ctx.beginPath();
     ctx.arc(w / 2, h / 2, R, 0, Math.PI * 2);
-    ctx.fillStyle = '#222331';
+    var ocean = ctx.createRadialGradient(w * 0.32, h * 0.28, 0, w / 2, h / 2, R);
+    ocean.addColorStop(0, '#66517f');
+    ocean.addColorStop(0.65, '#352b4b');
+    ocean.addColorStop(1, '#1a182b');
+    ctx.fillStyle = ocean;
     ctx.fill();
     ctx.strokeStyle = 'rgba(245,240,232,0.85)';
     ctx.lineWidth = 1.6;
@@ -109,8 +113,15 @@ var AM_LAND_RINGS = (window.__SITE_ROOT || '') + '/custom/land-rings.json';
       if (!p2.vis) continue;
       ctx.beginPath();
       ctx.arc(p2.x, p2.y, (e === active ? 7 : 4.5) * pulse, 0, Math.PI * 2);
-      ctx.fillStyle = e === active ? '#bf40ff' : '#f5f0e8';
+      ctx.fillStyle = e === active ? '#e0aeff' : '#f5f0e8';
       ctx.fill();
+      if (e === active) {
+        ctx.beginPath();
+        ctx.arc(p2.x, p2.y, 15, 0, Math.PI * 2);
+        ctx.strokeStyle = '#e0aeff99';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
     }
     requestAnimationFrame(frame);
   }
@@ -168,6 +179,11 @@ var AM_LAND_RINGS = (window.__SITE_ROOT || '') + '/custom/land-rings.json';
     })(i);
   }
 
+  // Start at the current city so the map and highlighted stop agree.
+  goTo(ENTRIES.length - 1);
+  rotLon = -ENTRIES[ENTRIES.length - 1].lon;
+  rotLat = ENTRIES[ENTRIES.length - 1].lat;
+  targetLon = targetLat = null;
 })();
 
 

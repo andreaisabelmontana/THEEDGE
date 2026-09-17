@@ -72,6 +72,7 @@
      absent: LinkedIn, Instagram, Youtube, GitHub and GALLERY stay as they are
      in every language. */
   const PHRASES = {
+    'Select a city to explore the journey.': { es: 'Selecciona una ciudad para explorar la trayectoria.', de: 'Wähle eine Stadt, um den Werdegang zu erkunden.' },
     "Journey": { es: "Trayectoria", de: "Werdegang" },
     "Work": { es: "Trabajo", de: "Arbeit" },
     "Education": { es: "Educación", de: "Ausbildung" },
