@@ -32,7 +32,8 @@ var AM_LAND_RINGS = (window.__SITE_ROOT || '') + '/custom/land-rings.json';
   var ctx = canvas.getContext('2d');
   var RINGS = null;
   var rotLon = 20, rotLat = -18, targetLon = null, targetLat = null;
-  var auto = true, dragging = false, lastX = 0, lastY = 0, active = -1;
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var auto = !reducedMotion, dragging = false, lastX = 0, lastY = 0, active = -1;
 
   fetch(AM_LAND_RINGS).then(function (r) { return r.json(); })
     .then(function (d) { RINGS = d; });
@@ -79,7 +80,7 @@ var AM_LAND_RINGS = (window.__SITE_ROOT || '') + '/custom/land-rings.json';
     ctx.clearRect(0, 0, w, h);
     ctx.beginPath();
     ctx.arc(w / 2, h / 2, R, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(206,206,218,0.38)';
+    ctx.fillStyle = '#222331';
     ctx.fill();
     ctx.strokeStyle = 'rgba(245,240,232,0.85)';
     ctx.lineWidth = 1.6;
@@ -102,7 +103,7 @@ var AM_LAND_RINGS = (window.__SITE_ROOT || '') + '/custom/land-rings.json';
     }
     drawArc(ENTRIES[0], ENTRIES[1]);
     drawArc(ENTRIES[1], ENTRIES[2]);
-    var pulse = 1 + 0.35 * Math.sin(ts / 400);
+    var pulse = reducedMotion ? 1 : 1 + 0.18 * Math.sin(ts / 600);
     for (var e = 0; e < ENTRIES.length; e++) {
       var p2 = proj(ENTRIES[e].lat, ENTRIES[e].lon, 0);
       if (!p2.vis) continue;
@@ -121,8 +122,11 @@ var AM_LAND_RINGS = (window.__SITE_ROOT || '') + '/custom/land-rings.json';
     targetLat = ENTRIES[i].lat;
     auto = false;
     var items = list.querySelectorAll('li');
-    for (var k = 0; k < items.length; k++)
+    for (var k = 0; k < items.length; k++) {
       items[k].classList.toggle('is-active', k === i);
+      items[k].querySelector('button').setAttribute('aria-pressed', String(k === i));
+    }
+    if (reducedMotion) { rotLon = targetLon; rotLat = targetLat; targetLon = targetLat = null; }
   }
 
   canvas.addEventListener('pointerdown', function (ev) {
@@ -145,15 +149,21 @@ var AM_LAND_RINGS = (window.__SITE_ROOT || '') + '/custom/land-rings.json';
     targetLon = null; targetLat = null;
   });
   canvas.addEventListener('pointerup', function () { dragging = false; });
+  canvas.addEventListener('pointercancel', function () { dragging = false; });
 
   for (var i = 0; i < ENTRIES.length; i++) {
     (function (i) {
       var en = ENTRIES[i];
       var li = document.createElement('li');
-      li.innerHTML = '<span class="am-exp-line1 text-body-reg-mona">' + en.head.toUpperCase() + '</span>' +
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'am-journey-button';
+      button.setAttribute('aria-pressed', 'false');
+      button.innerHTML = '<span class="am-exp-line1 text-body-reg-mona">' + en.head.toUpperCase() + '</span>' +
         '<span class="am-exp-line2 text-body-reg-mona">' + en.detail + '</span>' +
         '<span class="am-exp-line3 text-body-reg-mona">' + en.when + '</span>';
-      li.addEventListener('click', function () { goTo(i); });
+      button.addEventListener('click', function () { goTo(i); });
+      li.appendChild(button);
       list.appendChild(li);
     })(i);
   }
@@ -243,3 +253,11 @@ var AM_LAND_RINGS = (window.__SITE_ROOT || '') + '/custom/land-rings.json';
     })();
   } catch (e) { vector(); }
 })();
+
+/* Keep section links native: the template's smooth-scroll handler discards
+   scroll-margin-top and would place headings behind the fixed navigation. */
+if (document.body.classList.contains('experience-page')) {
+  document.addEventListener('click', function (event) {
+    if (event.target.closest('.am-section-nav a')) event.stopImmediatePropagation();
+  }, true);
+}

@@ -72,6 +72,21 @@
      absent: LinkedIn, Instagram, Youtube, GitHub and GALLERY stay as they are
      in every language. */
   const PHRASES = {
+    "Journey": { es: "Trayectoria", de: "Werdegang" },
+    "Work": { es: "Trabajo", de: "Arbeit" },
+    "Education": { es: "Educación", de: "Ausbildung" },
+    "Skills": { es: "Habilidades", de: "Kenntnisse" },
+    "Beyond the classroom": { es: "Más allá del aula", de: "Über den Hörsaal hinaus" },
+    "BEYOND THE CLASSROOM": { es: "MÁS ALLÁ DEL AULA", de: "ÜBER DEN HÖRSAAL HINAUS" },
+    "HACKATHONS / DATATHONS / BOOTCAMPS": { es: "HACKATHONES / DATATHONES / BOOTCAMPS", de: "HACKATHONS / DATATHONS / BOOTCAMPS" },
+    "Building, experimenting and learning together.": { es: "Crear, experimentar y aprender en equipo.", de: "Gemeinsam entwickeln, experimentieren und lernen." },
+    "Hackathons": { es: "Hackathones", de: "Hackathons" },
+    "Datathons": { es: "Datathones", de: "Datathons" },
+    "Bootcamps": { es: "Bootcamps", de: "Bootcamps" },
+    "Co-organiser · Google Developer Group": { es: "Coorganizadora · Google Developer Group", de: "Mitorganisatorin · Google Developer Group" },
+    "Co-organised both hackathons, running logistics and supporting participants throughout.": { es: "Coorganicé ambos hackathones, coordinando la logística y apoyando a los participantes.", de: "Beide Hackathons mitorganisiert, die Logistik koordiniert und die Teilnehmenden unterstützt." },
+    "Details coming soon": { es: "Más detalles próximamente", de: "Details folgen bald" },
+    "Events, projects and takeaways will be added here.": { es: "Aquí se añadirán eventos, proyectos y aprendizajes.", de: "Hier folgen Veranstaltungen, Projekte und Erkenntnisse." },
     'Projects': { es: 'Proyectos', de: 'Projekte' },
     'PROJECTS': { es: 'PROYECTOS', de: 'PROJEKTE' },
     'ABOUT': { es: 'SOBRE MÍ', de: 'ÜBER MICH' },
