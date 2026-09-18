@@ -144,7 +144,7 @@
     "Datathons": { es: "Datathones", de: "Datathons" },
     "Bootcamps": { es: "Bootcamps", de: "Bootcamps" },
     "Co-organiser · Google Developer Group": { es: "Coorganizadora · Google Developer Group", de: "Mitorganisatorin · Google Developer Group" },
-    "Co-organised both hackathons, running logistics and supporting participants throughout.": { es: "Coorganicé ambos hackathones, coordinando la logística y apoyando a los participantes.", de: "Beide Hackathons mitorganisiert, die Logistik koordiniert und die Teilnehmenden unterstützt." },
+    "Co-organised the hackathon, running logistics and supporting participants throughout.": { es: "Coorganicé el hackathon, coordinando la logística y apoyando a los participantes.", de: "Den Hackathon mitorganisiert, die Logistik koordiniert und die Teilnehmenden unterstützt." },
     "Details coming soon": { es: "Más detalles próximamente", de: "Details folgen bald" },
     "Events, projects and takeaways will be added here.": { es: "Aquí se añadirán eventos, proyectos y aprendizajes.", de: "Hier folgen Veranstaltungen, Projekte und Erkenntnisse." },
     'Projects': { es: 'Proyectos', de: 'Projekte' },
