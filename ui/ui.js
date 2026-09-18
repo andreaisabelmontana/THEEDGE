@@ -76,7 +76,29 @@
     const vw = window.innerWidth;
     const vh = window.innerHeight;
 
-    // single column: she goes back to being the full backdrop
+    /* Clean single-column pages reserve a real portrait area below the copy.
+       The renderer still sees its original full-viewport mount; only its
+       output is contained in the slot, so projection and source assets stay
+       intact. Slot coordinates already account for scrolling. */
+    if (vw < 1024 && document.body.classList.contains('clean-portfolio') && s.width && s.height) {
+      // Fit the full source frame so the crown remains visible throughout
+      // the portrait's scroll and pointer animation.
+      const k = Math.min(s.width / vw, s.height / vh);
+      const tx = s.left + (s.width - k * vw) / 2;
+      const ty = s.top + (s.height - k * vh) / 2;
+      wrap.style.transformOrigin = '0 0';
+      wrap.style.transform = `translate(${tx}px, ${ty}px) scale(${k})`;
+      const top = Math.max(0, Math.min(vh, s.top));
+      const right = Math.max(0, vw - s.right);
+      const bottom = Math.max(0, Math.min(vh, vh - s.bottom));
+      const left = Math.max(0, s.left);
+      clip.style.clipPath = `inset(${top}px ${right}px ${bottom}px ${left}px)`;
+      map = { tx, ty, k, mobile: true, bounds: s };
+      document.documentElement.style.setProperty('--head-bottom', (s.bottom + window.scrollY) + 'px');
+      return;
+    }
+
+    // The original single-column layout keeps its full backdrop.
     if (vw < 1024 || !s.width) {
       clip.style.clipPath = 'none';
       wrap.style.transform = 'none';
@@ -140,12 +162,20 @@
      target. only move events are touched: clicks are left alone so her buttons
      and menu keep working on the coordinates the dom actually uses.
 
-     touch needs no handling because the frame is only applied at 1024 and up,
-     where fit() has already cleared the transform. */
+     On the clean mobile layout, correction is restricted to the portrait.
+     Native touch events remain untouched so page scrolling retains its real
+     deltas; a corrected mouse position updates the scene after each touch. */
   const CORRECTED = new WeakSet();
+
+  function inPortrait(x, y) {
+    if (!map || !map.mobile) return true;
+    const b = map.bounds;
+    return x >= b.left && x <= b.right && y >= b.top && y <= b.bottom;
+  }
 
   function correctPointer(e) {
     if (!map || CORRECTED.has(e)) return;
+    if (!inPortrait(e.clientX, e.clientY)) return;
 
     const x = (e.clientX - map.tx) / map.k;
     const y = (e.clientY - map.ty) / map.k;
@@ -172,9 +202,27 @@
     e.target.dispatchEvent(copy);
   }
 
+  function correctTouch(e) {
+    if (!map || !map.mobile || !e.touches || !e.touches.length) return;
+    const touch = e.touches[0];
+    if (!inPortrait(touch.clientX, touch.clientY)) return;
+    const copy = new MouseEvent('mousemove', {
+      bubbles: true,
+      composed: true,
+      view: window,
+      clientX: (touch.clientX - map.tx) / map.k,
+      clientY: (touch.clientY - map.ty) / map.k,
+    });
+    CORRECTED.add(copy);
+    e.target.dispatchEvent(copy);
+  }
+
   function armPointerCorrection() {
     ['mousemove', 'pointermove'].forEach((t) =>
       window.addEventListener(t, correctPointer, true),
+    );
+    ['touchstart', 'touchmove'].forEach((t) =>
+      window.addEventListener(t, correctTouch, { passive: true }),
     );
   }
 
@@ -229,6 +277,8 @@
     );
     addEventListener('scroll', fit, { passive: true });
     addEventListener('resize', fit);
+    document.addEventListener('edge:lang', () => requestAnimationFrame(fit));
+    if (document.fonts) document.fonts.ready.then(fit);
   }
 
   /* the wait used requestAnimationFrame alone, which browsers pause outright

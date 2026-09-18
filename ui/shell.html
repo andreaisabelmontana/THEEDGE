@@ -1,7 +1,7 @@
 <div class="edge-ui">
 
-  <!-- only the language switcher is ours now. her nav supplies the astronaut
-       and the animated menu button, and ui.js moves this into it. -->
+  <!-- The original nav supplies the astronaut and animated menu. ui.js adopts
+       this language switcher; clean-shell.js adds the desktop route links. -->
   <div class="lang" data-lang-switch role="group" aria-label="Language" hidden>
     <button type="button" data-lang="en" aria-pressed="true">en</button>
     <span aria-hidden="true">/</span>
@@ -12,7 +12,7 @@
 
   <main class="home">
 
-    <section class="hero">
+    <section class="hero" data-surface="dark">
       <div class="container hero-inner">
 
         <div class="hero-copy">
@@ -24,20 +24,12 @@
             I design at the edge where digital intelligence meets the physical world.
           </p>
 
-          <ul class="tags">
-            <li>Python</li>
-            <li>C++</li>
-            <li data-i18n="tag.js">JavaScript &amp; React</li>
-            <li data-i18n="tag.ml">Machine learning &amp; AI</li>
-            <li data-i18n="tag.cv">Computer vision</li>
-            <li data-i18n="tag.rt3d">Real-time 3D &amp; Unreal</li>
-            <li data-i18n="tag.dsa">Data structures &amp; algorithms</li>
-            <li data-i18n="tag.cloud">Docker &amp; cloud-native</li>
-          </ul>
+          <p class="hero-focus" data-i18n="hero.focus">AI &middot; Software &middot; Interactive experiences</p>
+          <p class="hero-stack">Python &middot; C++ &middot; React &middot; Three.js</p>
 
           <p class="status" data-reveal="180">
             <span class="status-dot" aria-hidden="true"></span>
-            <span data-i18n="hero.status">Open to internships and roles for fall 2026 and summer 2027</span>
+            <span data-i18n="hero.status">Open to internships &middot; Fall 2026 / Summer 2027</span>
           </p>
 
           <div class="hero-links" data-reveal="240">
@@ -55,13 +47,13 @@
 
     <hr class="rule">
 
-    <div class="container panels-wrap">
+    <div class="container panels-wrap" data-surface="light">
       <div class="panels">
 
         <a class="otot-card" data-taxi-ignore href="./online" data-reveal="0">
           <div class="otot-card-text">
-            <h2 class="text-impact-reg-brier">PROJECTS</h2>
-            <p class="text-body-reg-mona" data-i18n="panel.projects.desc">Computer vision, machine learning and real-time 3D, from a C engine to full-stack web. Live demo and source for every project.</p>
+            <h2 class="text-impact-reg-brier" data-i18n="panel.projects.title">Projects</h2>
+            <p class="text-body-reg-mona" data-i18n="panel.projects.desc">Selected builds, interactive demos and the thinking behind them.</p>
             <span class="otot-btn" aria-hidden="true">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </span>
@@ -69,14 +61,11 @@
           <img class="otot-card-img" src="custom/on-vr.webp" alt="" loading="lazy">
         </a>
 
-        <!-- the journey lives on the offline page now. this used to point at
-             #journey on this page, which sits inside the sticky track ui.css
-             hides to kill the dead space under these cards, so the card had
-             nowhere to go. -->
-        <a class="otot-card" data-taxi-ignore href="./off-track#journey" data-reveal="90">
+        <!-- Experience keeps its own route and complete toolkit. -->
+        <a class="otot-card" data-taxi-ignore href="./off-track" data-reveal="90">
           <div class="otot-card-text">
-            <h2 class="text-impact-reg-brier">EXPERIENCE</h2>
-            <p class="text-body-reg-mona" data-i18n="panel.about.desc">Bogota to Dublin to Madrid. Degree, competition wins and where the work has taken me.</p>
+            <h2 class="text-impact-reg-brier" data-i18n="panel.experience.title">Experience</h2>
+            <p class="text-body-reg-mona" data-i18n="panel.about.desc">Research, studies and the places that shaped my work.</p>
             <span class="otot-btn" aria-hidden="true">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </span>

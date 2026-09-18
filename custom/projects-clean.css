@@ -1,0 +1,92 @@
+/* The project index uses one subject navigation and readable, static cards. */
+.projects-page { --project-ink: #f4f1f8; --project-muted: #aaa6b7; }
+.projects-page .taxi-w.on-track { background: #101016 !important; }
+.projects-page .s-group.bg-black { background: #f1edf7 !important; }
+.projects-page .taxi-w.on-track .s.is-on-track-home {
+  height: clamp(430px, 56vh, 640px) !important;
+  min-height: 0 !important;
+  position: relative;
+}
+.projects-page .project-intro {
+  position: absolute; z-index: 6; top: 50%; left: max(48px, calc((100vw - 1200px) / 2));
+  transform: translateY(-28%); width: min(48%, 600px); color: var(--project-ink);
+}
+.project-kicker { font: 11px/1.5 ui-monospace, Consolas, monospace; letter-spacing: .14em; color: #c7a0ee; text-transform: uppercase; }
+.project-intro h1 { font-family: Brier, Georgia, serif; font-size: clamp(48px, 5.3vw, 78px); line-height: 1.06; font-weight: 400; letter-spacing: -.045em; margin: 20px 0; text-transform: none; }
+.project-intro p:last-child { font-size: 17px; line-height: 1.7; max-width: 390px; color: var(--project-muted); }
+.projects-page .taxi-w.on-track .s.home-helmets { margin: 0 !important; padding: 0 0 80px !important; }
+.projects-page .taxi-w.on-track .s.home-helmets .c.home-helmets {
+  width: min(1200px, calc(100% - 96px)); max-width: none; margin-inline: auto; padding: 0 !important;
+}
+.project-browser { border-top: 1px solid #ffffff1c; }
+.project-subjects { display: flex; flex-wrap: wrap; gap: 0 32px; padding: 0; margin: 0; border-bottom: 1px solid #ffffff1c; }
+.project-subjects button { position: relative; appearance: none; border: 0; background: transparent; color: #aaa6b7; font-family: inherit; font-size: 14px; line-height: 1.5; padding: 22px 0; cursor: pointer; white-space: nowrap; transition: color .2s; }
+.project-subjects button:hover { color: #f4f1f8; }
+.project-subjects button[aria-pressed="true"] { color: #eee2ff; }
+.project-subjects button[aria-pressed="true"]::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 2px; background: #c7a0ee; }
+.project-subjects button:focus-visible, .project-card:focus-visible { outline: 2px solid #c7a0ee; outline-offset: 6px; }
+.project-index-meta { display: flex; justify-content: space-between; gap: 24px; align-items: baseline; margin: 28px 0 30px; color: #aaa6b7; font-size: 12px; line-height: 1.5; }
+.project-index-meta p { margin: 0; }
+.project-count { color: #d4c5e6; font: 11px/1.5 ui-monospace, Consolas, monospace; letter-spacing: .05em; white-space: nowrap; }
+.project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px 32px; }
+.project-card { display: block; color: #f4f1f8; text-decoration: none; min-width: 0; }
+.project-card[hidden] { display: none !important; }
+.project-card-visual { position: relative; aspect-ratio: 16 / 10; overflow: hidden; border: 1px solid #ffffff18; border-radius: 12px; background: #1a1622; }
+.project-card-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; transition: transform .55s cubic-bezier(.2,.7,.2,1); }
+.project-card[data-slug="optitrack"] .project-card-visual img,
+.project-card[data-slug="notecrafted"] .project-card-visual img { object-fit: cover; }
+.project-card:hover .project-card-visual img { transform: scale(1.025); }
+.project-card-open { position: absolute; top: 16px; right: 16px; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: #101016df; color: #fff; font-size: 18px; }
+.project-card-meta { display: flex; justify-content: space-between; gap: 16px; margin: 22px 0 10px; color: #b3a7c2; font: 10px/1.5 ui-monospace, Consolas, monospace; letter-spacing: .07em; text-transform: uppercase; }
+.project-card h2 { font-size: 26px; line-height: 1.25; font-weight: 550; letter-spacing: -.035em; text-transform: none; margin: 0 0 10px; }
+.project-card-description { color: #aaa6b7; font-size: 15px; line-height: 1.65; max-width: 49ch; margin: 0; }
+.project-card-cta { display: inline-flex; gap: 10px; align-items: center; margin-top: 20px; font-size: 12px; color: #ded0ed; }
+.project-card:hover .project-card-cta { color: #fff; }
+.project-empty { padding: 48px 0; color: #aaa6b7; }
+.project-empty[hidden] { display: none; }
+/* Crossing from the animated intro into the work is an intentional light moment. */
+.projects-page .s.home-helmets[data-surface="light"] { background: #f1edf7 !important; color: #241a30; padding-top: 20px !important; }
+.project-browser, .project-subjects { border-color: #241a3025; }
+.project-subjects button { color: #706377; }
+.project-subjects button:hover, .project-subjects button[aria-pressed="true"] { color: #4f1b77; }
+.project-subjects button[aria-pressed="true"]::after { background: #7c3ca8; }
+.project-index-meta, .project-card-description { color: #6b6073; }
+.project-count { color: #6e447f; }
+.project-card { color: #241a30; }
+.project-card-meta { color: #765684; }
+.project-card-visual { border-color: #241a3014; background: #e6dfea; }
+.project-card-cta { color: #70418b; }
+.project-card:hover .project-card-cta { color: #471560; }
+.project-card.motion-ready { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.project-card.motion-ready.is-visible { opacity: 1; transform: none; }
+@media (max-width: 900px) {
+  .projects-page .taxi-w.on-track .s.is-on-track-home { height: 430px !important; }
+  .projects-page .project-intro { left: 32px; width: 52%; transform: translateY(-18%); }
+  .project-intro h1 { font-size: clamp(42px, 7vw, 62px); }
+  .projects-page .taxi-w.on-track .s.home-helmets .c.home-helmets { width: calc(100% - 64px); }
+  .project-subjects { gap: 0 23px; }
+  .project-subjects button { font-size: 12px; }
+  .project-grid { gap: 40px 24px; }
+}
+@media (max-width: 600px) {
+  .projects-page .taxi-w.on-track .s.is-on-track-home { height: 490px !important; }
+  .projects-page .project-intro { top: 310px; left: 24px; width: calc(100% - 48px); transform: none; }
+  .project-intro h1 { font-size: 43px; margin: 12px 0; }
+  .project-intro p:last-child { font-size: 14px; line-height: 1.6; max-width: 330px; }
+  .project-kicker { font-size: 10px; }
+  .projects-page .taxi-w.on-track .s.home-helmets .c.home-helmets { width: calc(100% - 48px); }
+  .project-subjects { gap: 0 20px; }
+  .project-subjects button { padding: 14px 0; font-size: 12px; }
+  .project-index-meta { margin: 22px 0; }
+  .project-index-meta > p:last-child { display: none; }
+  .project-grid { grid-template-columns: 1fr; gap: 38px; }
+  .project-card-meta { margin-top: 16px; }
+  .project-card h2 { font-size: 24px; }
+  .project-card-description { font-size: 14px; }
+  .project-card-cta { margin-top: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-card-visual img { transition: none; }
+  .project-card:hover .project-card-visual img { transform: none; }
+  .project-card.motion-ready { opacity: 1; transform: none; transition: none; }
+}
