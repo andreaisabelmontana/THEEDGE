@@ -11,9 +11,9 @@
     de: { skip: 'Zum Projekt springen', back: 'Alle Projekte', focus: 'Schwerpunkt', tools: 'Werkzeuge', role: 'Mein Beitrag', action: 'In Aktion', video: 'Aufgezeichnete Demo', preview: 'Projektvorschau', live: 'Demo öffnen', source: 'Quellcode ansehen', youtube: 'Auf YouTube ansehen', challenge: 'Die Aufgabe', idea: 'Die Idee', build: 'Die Umsetzung', outcome: 'Das Ergebnis', previous: 'Vorheriges Projekt', next: 'Nächstes Projekt', all: 'Alle Projekte', projects: 'Projekte', experience: 'Erfahrung', contact: 'Kontakt', menu: 'Menü', home: 'Andrea Montaña · Startseite', detail: 'Details zur Umsetzung', sourceIntro: 'Weitere technische Details stehen im Projekt-Repository.', videoNote: 'Ein aufgezeichneter Einblick in das Konzept. Wiedergabeoptionen sind auf YouTube verfügbar.', artNote: 'Projektmotiv. Die Demo zeigt die interaktive Oberfläche.', screenshotNote: 'Ein Einblick in das laufende Projekt. Die Demo lädt zum Erkunden ein.' }
   };
   const accessibility = {
-    en: {language:'Language', mobile:'Mobile navigation', more:'More projects'},
-    es: {language:'Idioma', mobile:'Navegación móvil', more:'Más proyectos'},
-    de: {language:'Sprache', mobile:'Mobile Navigation', more:'Weitere Projekte'}
+    en: {language:'Language', mobile:'Main navigation', more:'More projects'},
+    es: {language:'Idioma', mobile:'Navegación principal', more:'Más proyectos'},
+    de: {language:'Sprache', mobile:'Hauptnavigation', more:'Weitere Projekte'}
   };
   labels.en.play = 'Play demo';
   labels.es.play = 'Reproducir demo';

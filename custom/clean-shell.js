@@ -10,9 +10,6 @@
     de: ['Projekte', 'Erfahrung', 'Kontakt', 'Hauptnavigation', 'Sprache', 'Andrea Montaña · Startseite'],
   };
   const languageNames = { en: 'English', es: 'Español', de: 'Deutsch' };
-  const routes = ['/online/', '/off-track/', '/contact/'];
-  const root = String(window.__SITE_ROOT || '').replace(/\/$/, '');
-  let links;
   let surfaceFrame = 0;
 
   function updateSurface() {
@@ -40,13 +37,7 @@
   }
 
   function translate(lang) {
-    if (!links) return;
     const text = words[lang] || words.en;
-    links.setAttribute('aria-label', text[3]);
-    links.querySelectorAll('[data-clean-nav]').forEach(function (link) {
-      const label = text[Number(link.getAttribute('data-clean-nav'))];
-      if (link.textContent !== label) link.textContent = label;
-    });
     const switcher = document.querySelector('[data-lang-switch]');
     if (switcher) {
       switcher.setAttribute('aria-label', text[4]);
@@ -65,22 +56,8 @@
   function boot() {
     const inner = document.querySelector('.nav .nav-inner');
     if (!inner) return;
-    links = inner.querySelector('.clean-nav-links');
-    if (!links) {
-      links = document.createElement('nav');
-      links.className = 'clean-nav-links';
-      routes.forEach(function (route, index) {
-        const link = document.createElement('a');
-        link.href = root + route;
-        link.setAttribute('data-taxi-ignore', '');
-        link.setAttribute('data-clean-nav', String(index));
-        if (location.pathname.replace(/\/$/, '') === (root + route).replace(/\/$/, '')) {
-          link.setAttribute('aria-current', 'page');
-        }
-        links.appendChild(link);
-      });
-      inner.appendChild(links);
-    }
+    // Keep navigation in the existing menu, separate from language controls.
+    inner.querySelectorAll('.clean-nav-links').forEach(function (links) { links.remove(); });
     translate(language());
     updateSurface();
   }
