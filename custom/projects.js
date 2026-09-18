@@ -1,6 +1,45 @@
 /* Project catalog. Details and primary sources live in each case study. */
 window.EDGE_PROJECTS = [
   {
+    "slug": "sona",
+    "title": "Sona",
+    "helm": "02",
+    "year": 2025,
+    "date": "2025",
+    "tagline": "Song mood predicted from Spotify audio features.",
+    "label": "MACHINE LEARNING",
+    "track": "Coursework",
+    "categories": [
+      "AI & ML"
+    ],
+    "techstack": [
+      "Python",
+      "scikit-learn",
+      "XGBoost",
+      "pandas"
+    ],
+    "links": {
+      "github": "https://github.com/andreaisabelmontana/sona"
+    },
+    "featured": true,
+    "subjects": [
+      "ai"
+    ],
+    "typeLabel": "Machine learning",
+    "summary": {
+      "en": "Five moods learned from 232,725 songs, then predicted from audio alone.",
+      "es": "Cinco estados de ánimo aprendidos de 232.725 canciones y predichos solo desde el audio.",
+      "de": "Fünf Stimmungen, gelernt aus 232.725 Songs und allein aus dem Audio vorhergesagt."
+    },
+    "caseStudy": "./sona/",
+    "cover": "../custom/project-previews/sona.webp",
+    "typeLabels": {
+      "en": "Machine learning",
+      "es": "Aprendizaje automático",
+      "de": "Maschinelles Lernen"
+    }
+  },
+  {
     "slug": "notecrafted",
     "title": "NoteCrafted",
     "helm": "21",
@@ -36,46 +75,6 @@ window.EDGE_PROJECTS = [
     }
   },
   {
-    "slug": "encore",
-    "title": "Encore",
-    "helm": "03",
-    "year": 2026,
-    "date": "2026",
-    "tagline": "A map of live music memory, pin the shows that mattered, relive the ones you missed.",
-    "label": "LEAFLET / MAPS",
-    "track": "Coursework",
-    "categories": [
-      "Web",
-      "UI & UX"
-    ],
-    "techstack": [
-      "JavaScript",
-      "Leaflet"
-    ],
-    "links": {
-      "live": "https://andreaisabelmontana.github.io/encore-live-music-map/",
-      "github": "https://github.com/andreaisabelmontana/encore-live-music-map"
-    },
-    "featured": true,
-    "subjects": [
-      "software",
-      "ux"
-    ],
-    "typeLabel": "Maps & interaction",
-    "summary": {
-      "en": "A map of live-music memories. Find a moment, leave a story.",
-      "es": "Un mapa de recuerdos de música en vivo. Encuentra un momento y deja una historia.",
-      "de": "Eine Karte voller Live-Musik-Erinnerungen. Finde einen Moment, hinterlasse eine Geschichte."
-    },
-    "caseStudy": "./encore/",
-    "cover": "../custom/project-previews/encore.webp",
-    "typeLabels": {
-      "en": "Maps & interaction",
-      "es": "Mapas e interacción",
-      "de": "Karten & Interaktion"
-    }
-  },
-  {
     "slug": "ladybug-girl",
     "title": "Ladybug Girl",
     "helm": "12",
@@ -89,9 +88,12 @@ window.EDGE_PROJECTS = [
       "Games"
     ],
     "techstack": [
+      "JavaScript",
+      "HTML",
+      "CSS",
       "Three.js",
       "WebGL",
-      "JavaScript"
+      "Blender"
     ],
     "links": {
       "live": "https://andreaisabelmontana.github.io/ladybug-girl/",
@@ -129,8 +131,9 @@ window.EDGE_PROJECTS = [
       "UI & UX"
     ],
     "techstack": [
-      "HTML",
       "JavaScript",
+      "HTML",
+      "CSS",
       "Docker"
     ],
     "links": {
@@ -170,8 +173,7 @@ window.EDGE_PROJECTS = [
       "Real-time 3D"
     ],
     "techstack": [
-      "OptiTrack",
-      "Motion capture"
+      "OptiTrack Motive"
     ],
     "links": {
       "video": "https://www.youtube.com/watch?v=2mIqTu32k6E"
@@ -209,10 +211,11 @@ window.EDGE_PROJECTS = [
       "Cloud & DevOps"
     ],
     "techstack": [
-      "React",
-      "Vite",
       "JavaScript",
-      "Docker"
+      "HTML",
+      "CSS",
+      "React",
+      "Vite"
     ],
     "links": {
       "live": "https://andreaisabelmontana.github.io/Software-Development-And-Devops/",
@@ -252,8 +255,11 @@ window.EDGE_PROJECTS = [
       "Web"
     ],
     "techstack": [
+      "JavaScript",
+      "HTML",
+      "CSS",
       "Three.js",
-      "HTML"
+      "Trystero"
     ],
     "links": {
       "live": "https://andreaisabelmontana.github.io/polar-club/",
@@ -293,8 +299,10 @@ window.EDGE_PROJECTS = [
       "Algorithms"
     ],
     "techstack": [
-      "C",
-      "JavaScript"
+      "C11",
+      "JavaScript",
+      "HTML",
+      "Make"
     ],
     "links": {
       "live": "https://andreaisabelmontana.github.io/battleship/",
