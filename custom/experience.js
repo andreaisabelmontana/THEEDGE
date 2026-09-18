@@ -9,6 +9,8 @@
 var AM_LAND_RINGS = (window.__SITE_ROOT || '') + '/custom/land-rings.json';
 
 (function () {
+  // The experience page uses the satellite-textured WebGL scene in journey.js.
+  if (document.body.classList.contains('experience-page')) return;
   /* the pins are cities, not qualifications.
 
      they used to repeat one degree each, which now reads as a duplicate of the
@@ -235,7 +237,7 @@ var AM_LAND_RINGS = (window.__SITE_ROOT || '') + '/custom/land-rings.json';
     var cam = new THREE.PerspectiveCamera(38, 2.5, 0.1, 100);
     var failed = false;
     var tex = new THREE.TextureLoader().load((window.__SITE_ROOT || '') + '/custom/vendor/earth-atmos.jpg',
-      null, undefined, function () { failed = true; vector(); });
+      undefined, undefined, function () { failed = true; vector(); });
     if (tex.colorSpace !== undefined && THREE.SRGBColorSpace) tex.colorSpace = THREE.SRGBColorSpace;
     var globe = new THREE.Mesh(new THREE.SphereGeometry(1.55, 96, 96),
       new THREE.MeshStandardMaterial({ map: tex, roughness: 1, metalness: 0 }));

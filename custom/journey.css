@@ -1,0 +1,258 @@
+/* Journey: a planet and a short place index, without enclosing cards.
+   All rules stay inside this chapter of the experience page. */
+.experience-page #journey {
+  background: #0b0c12;
+}
+.experience-page #journey .am-exp-head {
+  margin-bottom: 30px;
+}
+.experience-page #journey .am-exp-title {
+  color: #f4f1ee;
+}
+.experience-page #journey .am-exp-sub {
+  color: #a5a2ad;
+}
+.experience-page #journey .am-exp-layout {
+  display: grid;
+  grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
+  align-items: center;
+  gap: clamp(32px, 5.5vw, 76px);
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible;
+}
+.experience-page #journey .am-exp-globe-w {
+  position: relative;
+  width: 100%;
+  max-width: 510px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  justify-self: center;
+  align-self: center;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.experience-page #journey .am-exp-globe-w::before,
+.experience-page #journey .am-exp-globe-w::after {
+  content: none !important;
+  display: none !important;
+}
+.experience-page #journey #am-globe {
+  display: block;
+  width: 100%;
+  max-width: 510px;
+  height: auto;
+  aspect-ratio: 1;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  filter: none !important;
+  box-shadow: none !important;
+}
+.experience-page #journey .am-globe-caption {
+  max-width: 300px;
+  margin: 12px auto 0;
+  padding: 0;
+  color: #96939e;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: .15px;
+  text-align: center;
+}
+.experience-page #journey .am-exp-timeline {
+  display: block;
+  min-width: 0;
+  margin: 0;
+  padding: 0 !important;
+  border: 0;
+  border-top: 1px solid #ffffff24;
+  list-style: none !important;
+  counter-reset: none;
+}
+.experience-page #journey .am-exp-timeline::before,
+.experience-page #journey .am-exp-timeline::after {
+  content: none !important;
+  display: none !important;
+}
+.experience-page #journey .am-exp-timeline li,
+.experience-page #journey .am-exp-timeline li:hover,
+.experience-page #journey .am-exp-timeline li.is-active {
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 0 !important;
+  border: 0 !important;
+  border-bottom: 1px solid #ffffff24 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  list-style: none !important;
+  counter-increment: none;
+  transition: none;
+}
+.experience-page #journey .am-exp-timeline li::before,
+.experience-page #journey .am-exp-timeline li::after {
+  content: none !important;
+  display: none !important;
+}
+.experience-page #journey .am-exp-timeline li::marker {
+  content: "";
+}
+.experience-page #journey .am-journey-button {
+  display: grid;
+  position: relative;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 9px;
+  width: 100%;
+  margin: 0;
+  padding: 25px 34px 25px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  box-shadow: none;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.experience-page #journey .am-journey-button::after {
+  content: "\2192";
+  position: absolute;
+  right: 2px;
+  top: 31px;
+  font: 20px/1 Arial, sans-serif;
+  color: #c6b4d6;
+  opacity: 0;
+  transform: translateX(-5px);
+  transition: opacity .2s ease, transform .2s ease;
+}
+.experience-page #journey .am-exp-timeline li.is-active .am-journey-button::after,
+.experience-page #journey .am-journey-button[aria-pressed="true"]::after,
+.experience-page #journey .am-journey-button:hover::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+.experience-page #journey .am-journey-button:focus-visible {
+  outline: 1px solid #bda8cf;
+  outline-offset: 5px;
+}
+.experience-page #journey .am-exp-line1,
+.experience-page #journey .am-exp-timeline li.is-active .am-exp-line1 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 13px;
+  margin: 0;
+  font-family: Brier, Georgia, serif;
+  font-size: clamp(27px, 2.6vw, 32px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -.6px;
+  text-transform: none;
+  color: #e4e0e6;
+  transition: color .2s ease;
+}
+.experience-page #journey .am-journey-city {
+  font: inherit;
+  letter-spacing: inherit;
+}
+.experience-page #journey .am-journey-country {
+  font-family: "Mona Sans Variable", Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #97939f;
+}
+.experience-page #journey .am-exp-line2,
+.experience-page #journey .am-exp-timeline li.is-active .am-exp-line2 {
+  max-width: 40ch;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0;
+  color: #aaa5b1;
+}
+.experience-page #journey .am-exp-line3,
+.experience-page #journey .am-exp-timeline li.is-active .am-exp-line3 {
+  margin: 1px 0 0;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: .3px;
+  color: #8d8896;
+}
+.experience-page #journey .am-journey-button:hover .am-exp-line1,
+.experience-page #journey .am-journey-button:focus-visible .am-exp-line1,
+.experience-page #journey .am-exp-timeline li.is-active .am-exp-line1 {
+  color: #fffaf4;
+}
+@media (max-width: 800px) {
+  .experience-page #journey .am-exp-head {
+    margin-bottom: 20px;
+  }
+  .experience-page #journey .am-exp-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 30px;
+  }
+  .experience-page #journey .am-exp-globe-w {
+    max-width: 360px;
+  }
+  .experience-page #journey .am-exp-timeline {
+    width: 100%;
+  }
+  .experience-page #journey .am-journey-button {
+    gap: 8px;
+    padding-block: 21px;
+  }
+  .experience-page #journey .am-exp-line1,
+  .experience-page #journey .am-exp-timeline li.is-active .am-exp-line1 {
+    font-size: 30px;
+  }
+  .experience-page #journey .am-journey-button::after {
+    top: 27px;
+  }
+}
+@media (max-width: 480px) {
+  .experience-page #journey .am-exp-globe-w {
+    max-width: 320px;
+  }
+  .experience-page #journey .am-globe-caption {
+    margin-top: 8px;
+  }
+  .experience-page #journey .am-exp-layout {
+    gap: 26px;
+  }
+  .experience-page #journey .am-exp-line1,
+  .experience-page #journey .am-exp-timeline li.is-active .am-exp-line1 {
+    font-size: 28px;
+  }
+  .experience-page #journey .am-exp-line2,
+  .experience-page #journey .am-exp-timeline li.is-active .am-exp-line2 {
+    font-size: 13px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .experience-page #journey .am-journey-button::after,
+  .experience-page #journey .am-exp-line1 {
+    transition: none;
+  }
+}
+
+.experience-page #journey #am-globe { cursor: grab; touch-action: pan-y; }
+.experience-page #journey #am-globe:active { cursor: grabbing; }
+.experience-page #journey #am-globe:focus-visible { outline: 1px solid #bda8cf; outline-offset: -8px; }
+.experience-page #journey #am-globe[hidden] { display: none; }
+.experience-page #journey .am-globe-caption a { color: #8e919c; text-decoration: underline; text-underline-offset: 3px; font-size: 9px; }
+.experience-page #journey .am-globe-caption a:hover { color: #efebe5; }
