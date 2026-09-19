@@ -214,7 +214,7 @@ body.clean-portfolio.edge-ready .panels { gap: 40px; padding-bottom: 0; }
 body.clean-portfolio.edge-ready .otot-card {
   display: flex;
   align-items: center;
-  min-height: 232px;
+  min-height: 300px;
   padding: 24px 0;
   border: 0;
   border-top: 1px solid #3b3044;
@@ -223,7 +223,9 @@ body.clean-portfolio.edge-ready .otot-card {
   overflow: hidden;
 }
 body.clean-portfolio.edge-ready .otot-card:hover { background: transparent; border-color: #c7a0ee; }
-body.clean-portfolio.edge-ready .otot-card-text { max-width: 68%; padding-right: 12px; }
+/* 56% leaves the figure its room and holds the description to roughly 48
+   characters a line, so both cards wrap to two lines and read as a pair. */
+body.clean-portfolio.edge-ready .otot-card-text { max-width: 52%; padding-right: 20px; }
 body.clean-portfolio.edge-ready .otot-card .text-impact-reg-brier {
   display: block;
   margin: 0 0 14px;
@@ -248,13 +250,24 @@ body.clean-portfolio.edge-ready .otot-btn {
   color: var(--clean-accent);
   box-shadow: none;
 }
+/* The cutouts are 1080x1350 and the top 275px of each is transparent, so only
+   the lower 80% of the file is actually her. Sized by width they came out
+   taller than the card and overflow clipped her head. Sized by height instead,
+   and overscaled to 116% so that empty fifth hangs above the card rather than
+   inside it: the figure reads about a quarter larger, and the only thing
+   overflow trims is transparent pixels. Both files are framed the same, so one
+   rule keeps the pair at a matched scale. */
 body.clean-portfolio.edge-ready .otot-card-img {
-  width: 34%;
-  max-width: 190px;
+  width: auto;
+  height: 116%;
+  max-width: 48%;
   right: -8px;
   bottom: 0;
-  opacity: .86;
+  opacity: 1;
 }
+/* The arrow lost its filled pill up in .otot-btn, so the glow the shared
+   stylesheet raises on hover had nothing to sit on. */
+body.clean-portfolio.edge-ready .otot-card:hover .otot-btn { box-shadow: none; }
 /* Visibility, rather than removal, leaves the template's Rive boot intact. */
 body.clean-portfolio.edge-ready .panels-wrap > .s.home-marquee { visibility: hidden; opacity: 0; pointer-events: none; }
 
@@ -267,6 +280,11 @@ body.clean-portfolio.edge-ready .panels-wrap > .s.home-marquee { visibility: hid
   body.clean-portfolio.edge-ready .hero-slot { width: 100%; max-width: 460px; height: clamp(360px, 108vw, 460px); aspect-ratio: auto; align-self: center; }
   body.clean-portfolio.edge-ready .home .hero::before { background: none; }
   body.clean-portfolio .nav .nav-inner { gap: 18px; }
+  /* Two columns below this leave each card near 330px, which squeezes the
+     description to four lines and shrinks the figure against its max-width.
+     One column per row keeps the measure and the figure intact. */
+  body.clean-portfolio.edge-ready .panels { grid-template-columns: 1fr; gap: 16px; }
+  body.clean-portfolio.edge-ready .otot-card-text { max-width: 58%; }
 }
 @media (max-width: 700px) {
   body.clean-portfolio .nav .nav-inner { padding-inline: 20px !important; gap: 12px; }
@@ -282,11 +300,11 @@ body.clean-portfolio.edge-ready .panels-wrap > .s.home-marquee { visibility: hid
   body.clean-portfolio.edge-ready .panels-wrap,
   body.clean-portfolio.edge-ready .panels-wrap[data-surface="light"] { padding-top: 18px; padding-bottom: 28px; }
   body.clean-portfolio.edge-ready .panels { grid-template-columns: 1fr; gap: 14px; }
-  body.clean-portfolio.edge-ready .otot-card { min-height: 215px; padding: 24px 0; }
-  body.clean-portfolio.edge-ready .otot-card-text { max-width: 70%; }
+  body.clean-portfolio.edge-ready .otot-card { min-height: 260px; padding: 24px 0; }
+  body.clean-portfolio.edge-ready .otot-card-text { max-width: 54%; padding-right: 14px; }
   body.clean-portfolio.edge-ready .otot-card .text-impact-reg-brier { font-size: 34px; }
   body.clean-portfolio.edge-ready .otot-card .text-body-reg-mona { font-size: 13px; }
-  body.clean-portfolio.edge-ready .otot-card-img { width: 34%; max-width: 150px; }
+  body.clean-portfolio.edge-ready .otot-card-img { width: auto; height: 114%; max-width: 42%; }
 }
 @media (prefers-reduced-motion: reduce) {
   body.clean-portfolio :is(.nav, .clean-nav-links a, .otot-card, .otot-card-img, .otot-btn, .arrow-link, .arrow-link span) { transition: none !important; }
