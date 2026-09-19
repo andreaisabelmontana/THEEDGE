@@ -6,23 +6,22 @@ window.EDGE_PROJECTS = [
     "helm": "04",
     "year": 2026,
     "date": "2026",
-    "tagline": "A robot that does paid work, collects the payment, and buys its own electricity.",
-    "label": "ROBOTICS & MECHANISM DESIGN",
+    "tagline": "A robot that does a job, gets paid for it, and buys its own electricity.",
+    "label": "ROBOTICS",
     "track": "Independent",
     "categories": [
       "Robotics",
-      "Systems",
       "Simulation"
     ],
     "techstack": [
-      "Solidity",
       "Python",
+      "Solidity",
       "JavaScript",
-      "Hardhat",
-      "FastAPI"
+      "ROS",
+      "Gazebo"
     ],
     "links": {
-      "live": "https://andreamontana.com/online/robopreneur/",
+      "live": "https://youtu.be/L5voOWKFLzk",
       "github": "https://github.com/andreaisabelmontana/robopreneur-andes"
     },
     "featured": true,
@@ -31,18 +30,18 @@ window.EDGE_PROJECTS = [
       "software",
       "spatial"
     ],
-    "typeLabel": "Robotics & systems",
+    "typeLabel": "Robotics & AI",
     "summary": {
-      "en": "A field replication that asks whether a robot can earn its own electricity.",
-      "es": "Una replicación de campo que pregunta si un robot puede ganarse su propia electricidad.",
-      "de": "Eine Feldreplikation mit der Frage, ob ein Roboter seinen eigenen Strom verdienen kann."
+      "en": "A robot that does a job, gets paid for it, and buys the electricity it needs to keep going.",
+      "es": "Un robot que hace un trabajo, cobra por él y se paga la electricidad que necesita para seguir.",
+      "de": "Ein Roboter, der eine Aufgabe erledigt, dafür bezahlt wird und sich seinen Strom kauft."
     },
     "caseStudy": "./robopreneur/",
     "cover": "../custom/project-previews/robopreneur.webp",
     "typeLabels": {
-      "en": "Robotics & systems",
-      "es": "Robótica y sistemas",
-      "de": "Robotik & Systeme"
+      "en": "Robotics & AI",
+      "es": "Robótica e IA",
+      "de": "Robotik & KI"
     }
   },
   {
