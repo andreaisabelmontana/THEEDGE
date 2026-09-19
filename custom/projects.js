@@ -37,7 +37,8 @@ window.EDGE_PROJECTS = [
       "en": "Machine learning",
       "es": "Aprendizaje automático",
       "de": "Maschinelles Lernen"
-    }
+    },
+    "course": "Machine Learning"
   },
   {
     "slug": "notecrafted",
@@ -239,7 +240,8 @@ window.EDGE_PROJECTS = [
       "en": "Software & web",
       "es": "Desarrollo web",
       "de": "Webentwicklung"
-    }
+    },
+    "course": "Software Development & DevOps"
   },
   {
     "slug": "polar-club",
