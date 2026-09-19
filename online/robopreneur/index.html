@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Robopreneur — Andrea Montaña</title>
+<meta name="description" content="A robot that does paid work, gets paid for it, and buys the electricity it needs to keep working. A field replication of the RODEO and iTrash experiments, relocated to a collection yard in the Colombian Andes.">
+
+<meta property="og:title" content="Robopreneur — can a robot earn its own electricity?">
+<meta property="og:description" content="Task market, verification oracle, smart bin station and deployment planner for a field replication in the Colombian Andes. The simulation on this page is the real model.">
+<meta property="og:type" content="article">
+
+<link rel="icon" href="../../assets/cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67b5a0969616f526f020ec0e_edge-favicon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="back" href="../">&larr; Hall of Ideas</a>
+    <nav aria-label="Sections">
+      <a href="#question">question</a>
+      <a href="#loop">the loop</a>
+      <a href="#station">the bin</a>
+      <a href="#proof">the proof</a>
+      <a href="#yard">the yard</a>
+      <a href="#frontier">frontier</a>
+      <a href="#choices">choices</a>
+      <a href="#limits">limits</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ------------------------------------------------------------------ hero -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <p class="eyebrow">Field replication &middot; robotics, mechanism design, embedded</p>
+    <h1>ROBOPRENEUR</h1>
+    <p class="sub">Can a robot do paid work, collect the payment, and buy the electricity it needs to <em>keep working</em>?</p>
+
+    <div class="chips">
+      <span class="chip live">live simulation on this page</span>
+      <span class="chip">Solidity &middot; Python &middot; JavaScript</span>
+      <span class="chip">118 tests, CI green</span>
+      <span class="chip">Colombian Andes, 2,600 m</span>
+      <span class="chip">IE Robotics &amp; AI Lab</span>
+      <span class="chip">MIT</span>
+    </div>
+
+    <div class="actions">
+      <a class="btn primary" href="https://github.com/andreaisabelmontana/robopreneur-andes">Read the code</a>
+      <a class="btn" href="#yard">Run the yard</a>
+      <a class="btn" href="#proof">Break a proof</a>
+    </div>
+
+    <div class="headline-figures">
+      <div class="figure">
+        <div class="n">0.8</div>
+        <div class="k">jobs an hour</div>
+        <div class="d">The demand a site needs before the robot pays for its own electricity in every run. Below half that, it goes flat and stands still.</div>
+      </div>
+      <div class="figure">
+        <div class="n">4</div>
+        <div class="k">pieces, two seams</div>
+        <div class="d">A task market, a verification service, a bin station and a planner. They meet only at a proof file and a one bit verdict.</div>
+      </div>
+      <div class="figure">
+        <div class="n">1</div>
+        <div class="k">trusted party</div>
+        <div class="d">The escrow cannot check whether a yard was swept, so one service does. The design narrows what that trust covers and says so out loud.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- -------------------------------------------------------------- question -->
+<section class="section" id="question">
+  <div class="wrap">
+    <div class="grid-2">
+      <div>
+        <p class="eyebrow">The question</p>
+        <h2>A robot with a bank balance</h2>
+        <div class="prose" style="margin-top:1.4rem">
+          <p>Almost every robot in the world is a cost centre. Somebody buys it, somebody powers it, and the value it produces shows up on a different line of a different spreadsheet. The <strong>ROBOPRENEUR</strong> line of work at the IE Robotics and AI Lab asks what happens if you close that loop: give the robot an account, let it sell its work, and make it pay for its own upkeep out of what it earns.</p>
+          <p>Two of their experiments matter here. <strong>RODEO</strong> put robot work on a blockchain, with payment held in escrow until evidence of completion is verified. <strong>iTrash</strong> put a camera and a light ring on a set of recycling bins and paid people for sorting correctly.</p>
+          <p>I work on that line as a research assistant at the lab, where I built the agent based simulation of the ROBOPRENEUR economy. This project is a separate thing: replicating both experiments at a <strong>collection yard in the eastern Colombian Andes</strong>, with a different waste code, a different electricity supply, intermittent uplink, and nobody on site whose job is babysitting a research prototype.</p>
+          <p>Everything on this page runs. The simulation below is the model itself, not a recording of one, and the verification service really does verify.</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <p class="code-label">What is in the repository</p>
+        <table class="table" style="margin-top:0">
+          <thead>
+            <tr><th>Piece</th><th>What it does</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>contracts</td><td>A capped token, a service registry, an escrow board and the matching rule. 27 tests.</td></tr>
+            <tr><td>oracle</td><td>Reads a proof bundle, judges it against a policy published before the work, sends one bit back to the escrow. 28 tests.</td></tr>
+            <tr><td>bin&#8209;station</td><td>Camera, three bins, a light ring, and the record of what people actually threw where. 32 tests.</td></tr>
+            <tr><td>planner</td><td>The yard, a minute at a time, to size the deployment before buying anything. 31 tests.</td></tr>
+            <tr><td>docs</td><td>Runbook, bill of materials, the protocol written before the run, and the ethics of putting a camera in a workplace.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ------------------------------------------------------------------ loop -->
+<section class="section" id="loop">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The loop</p>
+      <h2>From a job posted to a battery charged</h2>
+      <p class="lede">Eight steps, and the money only moves on the last two. Step through them.</p>
+    </div>
+
+    <div class="loop">
+      <div class="loop-stage">
+        <svg viewBox="0 0 980 372" role="img" aria-labelledby="loop-title">
+          <title id="loop-title">The task loop, from a member posting work to the robot buying a charge</title>
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="#7c7e74"/>
+            </marker>
+            <marker id="arrow-on" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="#bc13fe"/>
+            </marker>
+          </defs>
+
+          <!-- row one, left to right -->
+          <g class="loop-step" data-step="1">
+            <rect x="14" y="34" width="216" height="92" rx="14" fill="#1b1b20" stroke="#bc13fe"/>
+            <text x="34" y="66" fill="#bc13fe" font-family="ui-monospace, monospace" font-size="12" letter-spacing="1.5">01</text>
+            <text x="34" y="92" fill="#f4f4ed" font-size="16" font-weight="600">A member posts work</text>
+            <text x="34" y="112" fill="#b9bbad" font-size="12.5">the reward locks in escrow</text>
+          </g>
+          <line x1="236" y1="80" x2="272" y2="80" stroke="#7c7e74" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+          <g class="loop-step" data-step="2">
+            <rect x="262" y="34" width="216" height="92" rx="14" fill="#1b1b20" stroke="#bc13fe"/>
+            <text x="282" y="66" fill="#bc13fe" font-family="ui-monospace, monospace" font-size="12" letter-spacing="1.5">02</text>
+            <text x="282" y="92" fill="#f4f4ed" font-size="16" font-weight="600">The market matches</text>
+            <text x="282" y="112" fill="#b9bbad" font-size="12.5">cheapest provider that clears</text>
+          </g>
+          <line x1="484" y1="80" x2="520" y2="80" stroke="#7c7e74" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+          <g class="loop-step" data-step="3">
+            <rect x="510" y="34" width="216" height="92" rx="14" fill="#1b1b20" stroke="#bc13fe"/>
+            <text x="530" y="66" fill="#bc13fe" font-family="ui-monospace, monospace" font-size="12" letter-spacing="1.5">03</text>
+            <text x="530" y="92" fill="#f4f4ed" font-size="16" font-weight="600">The robot works</text>
+            <text x="530" y="112" fill="#b9bbad" font-size="12.5">drives out, picks up, carries back</text>
+          </g>
+          <line x1="732" y1="80" x2="768" y2="80" stroke="#7c7e74" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+          <g class="loop-step" data-step="4">
+            <rect x="758" y="34" width="208" height="92" rx="14" fill="#1b1b20" stroke="#bc13fe"/>
+            <text x="778" y="66" fill="#bc13fe" font-family="ui-monospace, monospace" font-size="12" letter-spacing="1.5">04</text>
+            <text x="778" y="92" fill="#f4f4ed" font-size="16" font-weight="600">The bin records</text>
+            <text x="778" y="112" fill="#b9bbad" font-size="12.5">which bin it landed in</text>
+          </g>
+
+          <path d="M862 130 L862 220" stroke="#7c7e74" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+          <!-- row two, right to left -->
+          <g class="loop-step" data-step="5">
+            <rect x="758" y="228" width="208" height="92" rx="14" fill="#1b1b20" stroke="#bc13fe"/>
+            <text x="778" y="260" fill="#bc13fe" font-family="ui-monospace, monospace" font-size="12" letter-spacing="1.5">05</text>
+            <text x="778" y="286" fill="#f4f4ed" font-size="16" font-weight="600">The robot publishes</text>
+            <text x="778" y="306" fill="#b9bbad" font-size="12.5">its logs, and their sha256</text>
+          </g>
+          <line x1="752" y1="274" x2="716" y2="274" stroke="#7c7e74" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+          <g class="loop-step" data-step="6">
+            <rect x="510" y="228" width="216" height="92" rx="14" fill="#1b1b20" stroke="#bc13fe"/>
+            <text x="530" y="260" fill="#bc13fe" font-family="ui-monospace, monospace" font-size="12" letter-spacing="1.5">06</text>
+            <text x="530" y="286" fill="#f4f4ed" font-size="16" font-weight="600">The oracle replays it</text>
+            <text x="530" y="306" fill="#b9bbad" font-size="12.5">route, arm, bin, work area</text>
+          </g>
+          <line x1="504" y1="274" x2="468" y2="274" stroke="#7c7e74" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+          <g class="loop-step" data-step="7">
+            <rect x="262" y="228" width="216" height="92" rx="14" fill="#1b1b20" stroke="#bc13fe"/>
+            <text x="282" y="260" fill="#bc13fe" font-family="ui-monospace, monospace" font-size="12" letter-spacing="1.5">07</text>
+            <text x="282" y="286" fill="#f4f4ed" font-size="16" font-weight="600">The escrow settles</text>
+            <text x="282" y="306" fill="#b9bbad" font-size="12.5">provider paid, surplus returned</text>
+          </g>
+          <line x1="256" y1="274" x2="220" y2="274" stroke="#7c7e74" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+          <g class="loop-step" data-step="8">
+            <rect x="14" y="228" width="200" height="92" rx="14" fill="#1b1b20" stroke="#bc13fe"/>
+            <text x="34" y="260" fill="#bc13fe" font-family="ui-monospace, monospace" font-size="12" letter-spacing="1.5">08</text>
+            <text x="34" y="286" fill="#f4f4ed" font-size="16" font-weight="600">It buys a charge</text>
+            <text x="34" y="306" fill="#b9bbad" font-size="12.5">from a person, at a price</text>
+          </g>
+
+          <path d="M114 224 L114 130" stroke="#7c7e74" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+          <text x="128" y="180" fill="#7c7e74" font-family="ui-monospace, monospace" font-size="11">and round again</text>
+        </svg>
+      </div>
+
+      <div class="loop-caption" aria-live="polite">
+        <div class="t" data-loop-title>01 &middot; A member posts work</div>
+        <p class="b" data-loop-body>The escrow is funded in the same transaction that advertises the job, so nobody can post work they cannot pay for. The reward sits in the contract from that moment until an oracle verdict, a cancellation, or the deadline.</p>
+      </div>
+
+      <div class="loop-controls">
+        <button class="btn" type="button" data-loop-prev>&larr; back</button>
+        <button class="btn primary" type="button" data-loop-play>Pause</button>
+        <button class="btn" type="button" data-loop-next>next &rarr;</button>
+        <div class="loop-dots" data-loop-dots role="tablist" aria-label="Loop step"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- --------------------------------------------------------------- station -->
+<section class="section" id="station">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The bin station</p>
+      <h2>Hold something up. Watch it decide.</h2>
+      <p class="lede">The same state machine that runs on the Raspberry Pi in the yard, minus the camera. Pick an item, then choose a bin.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <p class="code-label">1 &middot; show it something</p>
+        <div class="items" data-items></div>
+
+        <div class="screen wait" data-screen>
+          <p class="big" data-screen-big>Ready</p>
+          <p class="small" data-screen-small>Pick an item above to start a session.</p>
+        </div>
+
+        <p class="code-label" style="margin-top:1.4rem">2 &middot; throw it away</p>
+        <div class="bins" data-bins>
+          <button class="bin" type="button" data-bin="blanco" disabled>
+            <span class="swatch"></span>
+            <span class="name">Blanco</span>
+            <span class="label">aprovechables</span>
+          </button>
+          <button class="bin" type="button" data-bin="verde" disabled>
+            <span class="swatch"></span>
+            <span class="name">Verde</span>
+            <span class="label">orgánicos</span>
+          </button>
+          <button class="bin" type="button" data-bin="negro" disabled>
+            <span class="swatch"></span>
+            <span class="name">Negro</span>
+            <span class="label">no aprovechables</span>
+          </button>
+        </div>
+
+        <div class="tally">
+          <span>sessions <b data-tally-n>0</b></span>
+          <span>correct <b data-tally-ok>0</b></span>
+          <span>paid arm <b data-tally-paid>0</b></span>
+          <span>credited <b data-tally-credit>0.0</b> ANDE</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="panel">
+          <p class="code-label">the row it writes</p>
+          <pre class="code" data-station-row>{ "topic": "disposal", … }</pre>
+          <p class="prose" style="font-size:0.88rem;margin-top:0.9rem">That line is both the study's data and the evidence a robot attaches to its proof of work. The <code>expected</code> field is what the station lit; the <code>bin</code> field is what the person actually did.</p>
+        </div>
+
+        <div class="stack">
+          <div class="note">
+            <h3>Colombia's colour code, not the lab's</h3>
+            <p>The original used a European blue, yellow and brown scheme. Since 2021, Colombia has a single national code under Resolución 2184 de 2019: blanco for aprovechables, verde for orgánicos, negro for no aprovechables. A station that teaches the wrong code is worse than no station.</p>
+          </div>
+          <div class="note">
+            <h3>Some sessions pay, some do not</h3>
+            <p>The arm is decided by a coin flip before the item is shown, and it is written into the row with the outcome. The published iTrash study found a large accuracy gain but could not attribute it to the reward, because almost nobody claimed one. Randomising up front is what makes that question answerable at all.</p>
+          </div>
+          <div class="note">
+            <h3>Unsure is an answer</h3>
+            <p>Below a confidence threshold, and for any material outside the taxonomy, the station lights nothing and says so. A station that confidently sends a battery to the organics bin is worse than one that admits it does not know.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ----------------------------------------------------------------- proof -->
+<section class="section" id="proof">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Verification</p>
+      <h2>Try to get paid for work you did not do</h2>
+      <p class="lede">This is the oracle, ported to your browser: the same checks, the same thresholds, the same wording. Break the run and watch the money not move.</p>
+    </div>
+
+    <div class="grid-2 even">
+      <div class="panel">
+        <p class="code-label">tamper with the run</p>
+        <div class="toggles" data-proof-toggles>
+          <label class="toggle">
+            <input type="checkbox" data-break="route">
+            <span class="txt">Barely move<small>Drive one metre instead of twelve.</small></span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" data-break="arm">
+            <span class="txt">Keep the arm still<small>Never leave the rest pose, so nothing was picked up.</small></span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" data-break="bin">
+            <span class="txt">Use the wrong bin<small>Dispose in negro when the station asked for verde.</small></span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" data-break="area">
+            <span class="txt">Wander off the site<small>Log a position far outside the declared yard.</small></span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" data-break="pauses">
+            <span class="txt">Never stop<small>Drive straight through without pausing to work.</small></span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" data-break="swap">
+            <span class="txt">Swap the file after committing<small>Publish one bundle, hash a different one. The digest is checked before any other check runs.</small></span>
+          </label>
+        </div>
+
+        <p class="hashline" data-hashline>
+          committed <b data-hash-committed>…</b><br>
+          file hashes to <b data-hash-actual>…</b>
+        </p>
+
+        <p class="code-label" style="margin-top:1.3rem">the bundle, as the robot published it</p>
+        <pre class="code" data-proof-bundle style="max-height:14rem">…</pre>
+      </div>
+
+      <div>
+        <p class="code-label">the oracle's report</p>
+        <div class="verdict" data-verdict>…</div>
+        <div class="stack">
+          <div class="note">
+            <h3>Why the digest is on chain</h3>
+            <p>When the robot submits a proof it commits the file's sha256 in the same transaction. The oracle replays the file the robot committed to, or it refuses. Without that, evidence could be edited after the fact and a replay would still pass, which is exactly the spoofing weakness the original paper flags as open.</p>
+          </div>
+          <div class="note">
+            <h3>Every rejection carries its numbers</h3>
+            <p>Not "REJECTED" but "base travelled: 1.01 m recorded, 5.00 m required". The same line goes on chain as the rejection reason, so a member whose money did not move can read why, months later, from the ledger alone.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ------------------------------------------------------------------ yard -->
+<section class="section" id="yard">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The simulation</p>
+      <h2>Three days in the yard, in ten seconds</h2>
+      <p class="lede">This is the deployment planner, not an animation of one. Its results are checked minute by minute against the Python model in CI, so what you see here is what the repository computes.</p>
+    </div>
+
+    <div class="yard-layout">
+      <div>
+        <canvas class="yard-canvas" data-yard width="900" height="600" aria-label="The yard, with the robot, two people and the charging station"></canvas>
+        <div class="readout">
+          <div><div class="k">day</div><div class="v" data-out-day>1</div></div>
+          <div><div class="k">jobs done</div><div class="v" data-out-done>0</div></div>
+          <div><div class="k">robot balance</div><div class="v" data-out-balance>600</div></div>
+          <div><div class="k">battery</div><div class="v" data-out-battery>100%</div></div>
+        </div>
+        <div class="verdict-banner" data-out-verdict>Press play to run three simulated days.</div>
+      </div>
+
+      <div class="panel">
+        <div class="actions" style="margin-top:0">
+          <button class="btn primary" type="button" data-sim-play>Play</button>
+          <button class="btn" type="button" data-sim-reset>Reset</button>
+          <button class="btn" type="button" data-preset="andes" aria-pressed="true">Andes yard</button>
+          <button class="btn" type="button" data-preset="thin" aria-pressed="false">Thin demand</button>
+        </div>
+
+        <div class="control">
+          <label for="rate">jobs an hour <b data-val-rate>1.50</b></label>
+          <input id="rate" type="range" min="0.1" max="3" step="0.1" value="1.5" data-ctl-rate>
+        </div>
+        <div class="control">
+          <label for="charge">price of a charge <b data-val-charge>200</b></label>
+          <input id="charge" type="range" min="60" max="400" step="10" value="200" data-ctl-charge>
+        </div>
+        <div class="control">
+          <label for="ask">what the robot charges <b data-val-ask>110</b></label>
+          <input id="ask" type="range" min="40" max="260" step="5" value="110" data-ctl-ask>
+        </div>
+        <div class="control">
+          <label for="drain">battery drain, % a minute <b data-val-drain>0.35</b></label>
+          <input id="drain" type="range" min="0.1" max="0.9" step="0.05" value="0.35" data-ctl-drain>
+        </div>
+
+        <canvas class="chart" data-chart width="720" height="260" aria-label="Robot balance and battery over three days"></canvas>
+        <div class="chart-legend">
+          <span><i style="background:#bc13fe"></i>robot balance</span>
+          <span><i style="background:#4ade80"></i>battery</span>
+          <span><i style="background:#ff9f1c"></i>queue</span>
+        </div>
+
+        <p class="prose" style="font-size:0.86rem;margin-top:1rem">Drop the demand below roughly half a job an hour, or push the price of a charge past what a job pays, and the robot runs its battery down, cannot afford to buy a charge, and stands still. Those flat minutes are the result, not a glitch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- -------------------------------------------------------------- frontier -->
+<section class="section" id="frontier">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The number worth knowing first</p>
+      <h2>How much work does a site need?</h2>
+      <p class="lede">Seven seeds at each demand level, three simulated days each, run here and now. Everything below the line is a site where this should not be attempted.</p>
+    </div>
+
+    <canvas class="frontier-canvas" data-frontier width="1280" height="720" aria-label="Median change in the robot's balance against the number of jobs an hour"></canvas>
+    <p class="progress" data-frontier-progress>Ready.</p>
+    <div class="actions">
+      <button class="btn primary" type="button" data-frontier-run>Run the sweep</button>
+    </div>
+
+    <div class="prose" style="margin-top:1.8rem">
+      <p>The shape is the point. Solvency is not gradual: below about half a job an hour the robot spends most of the run flat, which also means the jobs that do arrive go unanswered, which makes it poorer still. Above roughly 0.8 jobs an hour every seed pays for itself. Past two jobs an hour the curve flattens and then dips, because a single robot starts queueing behind its own charging.</p>
+      <p>This is the sort of answer that is cheap now and expensive later. It costs a few seconds of arithmetic before anybody buys a robot, and a shipped deployment afterwards.</p>
+    </div>
+  </div>
+</section>
+
+<!-- --------------------------------------------------------------- choices -->
+<section class="section" id="choices">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Deliberate differences</p>
+      <h2>What the site changed, and what I changed</h2>
+      <p class="lede">A replication is only interesting where it departs from the original on purpose. Each of these is a choice with a reason.</p>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr><th>Change</th><th>Instead of</th><th>Why</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Colombian colour code</td>
+          <td>A blue, yellow and brown scheme</td>
+          <td>Resolución 2184 de 2019 gives Colombia one national code. Teaching a different one in a village yard is actively harmful.</td>
+        </tr>
+        <tr>
+          <td>Proof digest on chain</td>
+          <td>A proof URI alone</td>
+          <td>The original paper names evidence spoofing as an open weakness. Committing the sha256 at submission means the oracle replays the exact bytes the robot committed to, or refuses.</td>
+        </tr>
+        <tr>
+          <td>Surplus returns to the poster</td>
+          <td>Keeping the difference in the contract</td>
+          <td>A provider that wins a 100 job at its 60 price is paid 60 and the poster gets 40 back. Otherwise the members who post the most work quietly fund the contract.</td>
+        </tr>
+        <tr>
+          <td>A deadline on every task</td>
+          <td>Escrow held indefinitely</td>
+          <td>One crashed robot should not lock a member's money away forever. After the deadline the poster reclaims, and the provider's service is freed.</td>
+        </tr>
+        <tr>
+          <td>Matching reads buckets</td>
+          <td>Scanning every task ever posted</td>
+          <td>Open tasks and idle services are indexed by kind with swap and pop removal, and a scan ceiling caps the gas any one transaction can burn. The naive version is fine on day one and broken on day thirty.</td>
+        </tr>
+        <tr>
+          <td>The arm is randomised up front</td>
+          <td>Offering a reward to everyone</td>
+          <td>The published study could not attribute its accuracy gain to the incentive, because uptake was too low. Assigning paid and unpaid before the item is seen is what makes the comparison identifiable.</td>
+        </tr>
+        <tr>
+          <td>The station has no threads</td>
+          <td>A loop, a worker thread and sleeps</td>
+          <td>It is a state machine that takes a clock and returns effects. A five minute session replays in under a millisecond, so every timeout has a test instead of a stopwatch.</td>
+        </tr>
+        <tr>
+          <td>Verification needs no ROS</td>
+          <td>Replaying a rosbag through a live ROS graph</td>
+          <td>The proof is JSON Lines. It can be read by a person during a dispute, hashed in one line, and verified on a laptop that has never had ROS installed.</td>
+        </tr>
+        <tr>
+          <td>A geofence check</td>
+          <td>Route length and arm motion only</td>
+          <td>Indoors a corridor is its own boundary. Outdoors it is not, so every logged position has to fall inside the yard the task was posted for.</td>
+        </tr>
+        <tr>
+          <td>Both models are one model</td>
+          <td>A separate demo reimplementation</td>
+          <td>The simulation on this page is checked field by field against the Python planner in CI. The random source is 32 bit integer arithmetic precisely so the two agree exactly.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ----------------------------------------------------------------- field -->
+<section class="section" id="field">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The deployment</p>
+      <h2>What 2,600 metres does to a design</h2>
+    </div>
+
+    <div class="grid-2 even">
+      <div class="stack" style="margin-top:0">
+        <div class="note">
+          <h3>Cold nights, tired batteries</h3>
+          <p>Nights sit near freezing and packs hold less and age faster for it. Drain is a measured parameter in the planner, not a guess: a week of readings at the site goes into the config before any solvency claim is trusted.</p>
+        </div>
+        <div class="note">
+          <h3>Daily rain in the wet season</h3>
+          <p>The station lives under cover, everything outdoors is IP54 or better, and the work area polygon in the oracle's policy is drawn to exclude the part of the yard that floods.</p>
+        </div>
+        <div class="note">
+          <h3>The uplink comes and goes</h3>
+          <p>The chain runs on a laptop in the yard rather than a public network, and the classifier is a chain of backends that falls through rather than one remote call. A dead uplink slows the station down; it does not stop the study.</p>
+        </div>
+        <div class="note">
+          <h3>The nearest spare is a day away</h3>
+          <p>The parts that fail are the light ring, the beam breakers and the SD card, so those travel in duplicate. And the computer is a Raspberry Pi 4, not a 5: the addressable LED driver stack does not support the 5, which is a thing to learn before ordering, not after.</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <p class="code-label">the first paid job, from the runbook</p>
+        <pre class="code">$ npx hardhat run scripts/deploy.js --network localhost
+  <span class="s">taskBoard</span>  0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9
+
+  <span class="k"># the member posts, the escrow locks, the robot is matched</span>
+
+$ python -m rodeo_oracle hash proofs/task-1.jsonl
+  <span class="n">0xee15dac9e714ae4a57e0a177cf3529bfd17d293</span>…
+
+  <span class="k"># the digest on chain has to equal that, or the proof is refused</span>
+
+$ python -m rodeo_oracle verify proofs/task-1.jsonl
+  task 1 (WasteCollection)  digest 0xee15dac9e714ae
+    <span class="s">pass</span>  duration: 44.5 s
+    <span class="s">pass</span>  base travelled: 11.98 m recorded, 5.00 m required
+    <span class="s">pass</span>  motion shape: observed still moving still
+    <span class="s">pass</span>  work area: all 24 samples inside the boundary
+    <span class="s">pass</span>  arm moved: net drift 3.100 rad, 1.500 rad required
+    <span class="s">pass</span>  disposal: verde bin, matching the station
+  <span class="s">APPROVED</span>
+
+  <span class="k"># the escrow settles: 110 to the robot, 40 back to the poster</span></pre>
+        <p class="prose" style="font-size:0.86rem;margin-top:1rem">Exit status is the verdict, so the station laptop can act on it without parsing anything: 0 approved, 2 refused, 1 could not run at all.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------------------------------------------------------------- limits -->
+<section class="section" id="limits">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Honest limits</p>
+      <h2>What this is not</h2>
+    </div>
+
+    <div class="stack">
+      <div class="note">
+        <h3>The token is not money</h3>
+        <p>ANDE is capped at deployment, closed loop, redeemable only for services inside the yard, and never offered for sale. Nothing in the repository creates an exchange. It is a unit of account for an experiment about whether the accounting works, and the signage on site says exactly that, in Spanish.</p>
+      </div>
+      <div class="note">
+        <h3>The oracle is trusted</h3>
+        <p>An escrow cannot check whether a yard was swept, so one service with one key does. Committing the proof's digest closes the gap where evidence could be swapped afterwards, but it does not make the judgement trustless, and calling the system decentralised would be overselling it. The first thing a second version should attack is requiring several independent verifiers to agree.</p>
+      </div>
+      <div class="note">
+        <h3>The planner is a planner</h3>
+        <p>Open ground, straight line travel, no weather, and nobody changing their mind. Its job is to rule sites out, not to predict what a real Tuesday looks like.</p>
+      </div>
+      <div class="note">
+        <h3>Nothing has run at the site yet</h3>
+        <p>Every number on this page comes from the model or the test suite. The protocol in the repository says what will be measured, what the stopping rules are, and which outcomes would count as negative results, and it was written before the deployment rather than after it.</p>
+      </div>
+      <div class="note">
+        <h3>Where my work ends and the lab's begins</h3>
+        <p>RODEO, iTrash and the ROBOPRENEUR line are the IE Robotics and AI Lab's research. I work on that line as a research assistant, where I built the agent based simulation of the ROBOPRENEUR economy. Everything in this repository is separate from that: my own design for a field replication at a new site, written against the published papers and artifacts. The papers are linked below and are worth reading first.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ----------------------------------------------------------------- links -->
+<section class="section" id="links">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Go deeper</p>
+      <h2>Code, papers and the field notes</h2>
+    </div>
+
+    <div class="links">
+      <a href="https://github.com/andreaisabelmontana/robopreneur-andes">
+        <span class="l">robopreneur-andes</span>
+        <span class="r">contracts, oracle, station, planner &middot; 118 tests</span>
+      </a>
+      <a href="https://github.com/andreaisabelmontana/robopreneur-andes/blob/main/docs/PROTOCOL.md">
+        <span class="l">The protocol, written before the run</span>
+        <span class="r">arms, stopping rules, what counts as a negative result</span>
+      </a>
+      <a href="https://github.com/andreaisabelmontana/robopreneur-andes/blob/main/docs/RUNBOOK.md">
+        <span class="l">The runbook</span>
+        <span class="r">bringing a site up, and what to check at each step</span>
+      </a>
+      <a href="https://github.com/andreaisabelmontana/robopreneur-andes/blob/main/docs/ARCHITECTURE.md">
+        <span class="l">Architecture and where trust sits</span>
+        <span class="r">four components, two seams, one trusted party</span>
+      </a>
+      <a href="https://arxiv.org/abs/2603.06058">
+        <span class="l">RODEO: Robotic Decentralized Organization</span>
+        <span class="r">the original paper &middot; ICRA 2026</span>
+      </a>
+      <a href="https://arxiv.org/abs/2502.18161">
+        <span class="l">iTrash: incentivised sorting</span>
+        <span class="r">the original paper</span>
+      </a>
+      <a href="https://youtu.be/L5voOWKFLzk">
+        <span class="l">RODEO, demonstrated</span>
+        <span class="r">video from the lab that published it</span>
+      </a>
+      <a href="https://cyphy.life/research-line/robopreneur/">
+        <span class="l">The ROBOPRENEUR research line</span>
+        <span class="r">IE Robotics and AI Lab</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;width:min(100% - var(--gutter) * 2, var(--container))">
+    <span>Andrea Montaña &middot; Computer Science and AI, IE University</span>
+    <span><a href="../">Hall of Ideas</a> &middot; <a href="../../">andreamontana.com</a></span>
+  </div>
+</footer>
+
+<script type="module" src="page.js"></script>
+</body>
+</html>

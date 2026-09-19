@@ -1,6 +1,51 @@
 /* Project catalog. Details and primary sources live in each case study. */
 window.EDGE_PROJECTS = [
   {
+    "slug": "robopreneur",
+    "title": "Robopreneur",
+    "helm": "04",
+    "year": 2026,
+    "date": "2026",
+    "tagline": "A robot that does paid work, collects the payment, and buys its own electricity.",
+    "label": "ROBOTICS & MECHANISM DESIGN",
+    "track": "Independent",
+    "categories": [
+      "Robotics",
+      "Systems",
+      "Simulation"
+    ],
+    "techstack": [
+      "Solidity",
+      "Python",
+      "JavaScript",
+      "Hardhat",
+      "FastAPI"
+    ],
+    "links": {
+      "live": "https://andreamontana.com/online/robopreneur/",
+      "github": "https://github.com/andreaisabelmontana/robopreneur-andes"
+    },
+    "featured": true,
+    "subjects": [
+      "ai",
+      "software",
+      "spatial"
+    ],
+    "typeLabel": "Robotics & systems",
+    "summary": {
+      "en": "A field replication that asks whether a robot can earn its own electricity.",
+      "es": "Una replicación de campo que pregunta si un robot puede ganarse su propia electricidad.",
+      "de": "Eine Feldreplikation mit der Frage, ob ein Roboter seinen eigenen Strom verdienen kann."
+    },
+    "caseStudy": "./robopreneur/",
+    "cover": "../custom/project-previews/robopreneur.webp",
+    "typeLabels": {
+      "en": "Robotics & systems",
+      "es": "Robótica y sistemas",
+      "de": "Robotik & Systeme"
+    }
+  },
+  {
     "slug": "sona",
     "title": "Sona",
     "helm": "02",

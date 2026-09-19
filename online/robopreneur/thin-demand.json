@@ -1,0 +1,95 @@
+{
+  "name": "thin-demand",
+  "seed": 7,
+  "minutes": 4320,
+  "yard": [
+    60.0,
+    40.0
+  ],
+  "station": [
+    3.0,
+    3.0
+  ],
+  "arrival_rate_per_hour": 0.35,
+  "org_wealth": 20000.0,
+  "services": {
+    "WasteCollection": {
+      "duration_min": 12,
+      "duration_max": 28,
+      "failure": 0.05
+    },
+    "ItemTransport": {
+      "duration_min": 18,
+      "duration_max": 40,
+      "failure": 0.08
+    },
+    "PerimeterPatrol": {
+      "duration_min": 30,
+      "duration_max": 60,
+      "failure": 0.02
+    },
+    "BatteryCharging": {
+      "duration_min": 30,
+      "duration_max": 90,
+      "failure": 0.01
+    }
+  },
+  "demand": {
+    "WasteCollection": 5,
+    "ItemTransport": 3,
+    "PerimeterPatrol": 2
+  },
+  "robots": [
+    {
+      "id": "rodeo-01",
+      "start": [
+        3.0,
+        3.0
+      ],
+      "speed": 15.0,
+      "wealth": 320.0,
+      "skill": 0.95,
+      "battery": 100.0,
+      "drain": 0.35,
+      "recharge_rate": 1.2,
+      "recharge_trigger": 30.0,
+      "min_accept": 40.0,
+      "offers": {
+        "WasteCollection": 110.0,
+        "ItemTransport": 130.0,
+        "PerimeterPatrol": 160.0
+      }
+    }
+  ],
+  "humans": [
+    {
+      "id": "ana",
+      "start": [
+        3.0,
+        3.0
+      ],
+      "speed": 55.0,
+      "wealth": 800.0,
+      "skill": 0.97,
+      "offers": {
+        "BatteryCharging": 260.0,
+        "WasteCollection": 140.0,
+        "ItemTransport": 150.0
+      }
+    },
+    {
+      "id": "jairo",
+      "start": [
+        30.0,
+        20.0
+      ],
+      "speed": 55.0,
+      "wealth": 800.0,
+      "skill": 0.97,
+      "offers": {
+        "BatteryCharging": 270.0,
+        "ItemTransport": 145.0
+      }
+    }
+  ]
+}

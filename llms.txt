@@ -7,6 +7,7 @@ Andrea Montaña is a Computer Science and Artificial Intelligence student at IE 
 ## Portfolio pages
 
 - Projects: https://andreamontana.com/online/
+- Robopreneur, a field replication asking whether a robot can earn its own electricity: https://andreamontana.com/online/robopreneur/ (code: https://github.com/andreaisabelmontana/robopreneur-andes)
 - Experience, education, events, and skills: https://andreamontana.com/off-track/
 - Coursework: https://andreamontana.com/coursework/
 - Contact: https://andreamontana.com/contact/
