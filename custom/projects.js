@@ -1,6 +1,53 @@
 /* Project catalog. Details and primary sources live in each case study. */
 window.EDGE_PROJECTS = [
   {
+    "slug": "top-living",
+    "title": "Top Living",
+    "helm": "18",
+    "year": 2024,
+    "date": "2022 to 2024",
+    "tagline": "A live real estate website for a Bogotá agency, fed by its listings platform.",
+    "label": "REAL ESTATE",
+    "track": "Work",
+    "categories": [
+      "Web",
+      "UI & UX"
+    ],
+    "techstack": [
+      "PHP",
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "Flight",
+      "Blade",
+      "Guzzle",
+      "PHPMailer",
+      "Leaflet"
+    ],
+    "links": {
+      "live": "https://topliving.com.co/",
+      "github": "https://github.com/andreaisabelmontana/top-living"
+    },
+    "featured": true,
+    "subjects": [
+      "software",
+      "ux"
+    ],
+    "typeLabel": "Web & real estate",
+    "summary": {
+      "en": "A live real estate site for a Bogotá agency, with listings pulled straight from its property platform.",
+      "es": "Un sitio inmobiliario en producción para una agencia de Bogotá, con inmuebles que llegan directo de su plataforma.",
+      "de": "Eine live geschaltete Immobilienseite für eine Agentur in Bogotá, gespeist direkt aus ihrer Objektplattform."
+    },
+    "caseStudy": "./top-living/",
+    "cover": "../custom/project-previews/top-living.webp",
+    "typeLabels": {
+      "en": "Web & real estate",
+      "es": "Web e inmobiliaria",
+      "de": "Web & Immobilien"
+    }
+  },
+  {
     "slug": "robopreneur",
     "title": "Robopreneur",
     "helm": "04",
