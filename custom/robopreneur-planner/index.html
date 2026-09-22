@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>ROBOPRENEUR deployment planner</title>
+  <link rel="stylesheet" href="planner.css">
+  <script type="module" src="controller.js"></script>
+</head>
+<body>
+  <main class="planner" aria-labelledby="planner-title">
+    <header class="planner-heading">
+      <div>
+        <p class="eyebrow" data-text="eyebrow">SIMULATED · 72 HOURS · SEED 7</p>
+        <h1 id="planner-title" data-text="title">Can the work pay for the power?</h1>
+      </div>
+      <span class="model-tag" data-text="modelTag">Yard model</span>
+    </header>
+    <p class="intro" data-text="intro">Change demand to see how the robot’s wallet and battery evolve over three simulated days.</p>
+    <form id="controls">
+      <div class="demand-control">
+        <div class="control-label"><label for="demand" data-text="demand">Incoming jobs</label><output id="demand-value" for="demand">1.5 jobs / hour</output></div>
+        <input type="range" id="demand" name="demand" min="0.2" max="2" step="0.1" value="1.5" aria-describedby="demand-help">
+        <div id="demand-help" class="range-ends"><span data-text="lowDemand">Quiet yard · 0.2 / h</span><span data-text="highDemand">Busy yard · 2.0 / h</span></div>
+      </div>
+      <button type="submit" id="run" data-text="run">Run again <span aria-hidden="true">↗</span></button>
+    </form>
+    <p id="status" class="sr-only" role="status" aria-live="polite" data-text="loading">Loading the yard model.</p>
+    <section class="metrics" aria-label="Simulation results" id="metrics">
+      <div><span class="metric-label" data-text="jobs">Robot jobs completed</span><strong id="jobs">—</strong></div>
+      <div><span class="metric-label" data-text="wallet">Final robot wallet</span><strong id="wallet">—</strong><span class="metric-unit">ANDE</span></div>
+      <div><span class="metric-label" data-text="battery">Final battery</span><strong id="battery">—</strong></div>
+      <div><span class="metric-label" data-text="flat">Minutes with flat battery</span><strong id="flat">—</strong></div>
+    </section>
+    <figure class="chart">
+      <svg id="history" viewBox="0 0 900 254" role="img" aria-labelledby="chart-title chart-description">
+        <title id="chart-title">Robot wallet and battery over 72 simulated hours</title>
+        <desc id="chart-description">Results will appear when the model has loaded.</desc>
+      </svg>
+      <figcaption id="chart-caption" data-text="chartCaption">Both charts share the same time axis. Wallet in ANDE; battery in percent.</figcaption>
+    </figure>
+    <p id="outcome" class="outcome"></p>
+    <details class="assumptions">
+      <summary data-text="assumptions">What this model assumes</summary>
+      <p data-text="assumptionsBody">One robot, two human providers, a 60 × 40 m yard and a 4,320-minute run. The robot starts with 600 ANDE and 100% battery. Battery drain is 0.35 percentage points per minute; a charge is requested at 30% and costs at least 200 ANDE. The robot only accepts new work with at least 40% battery. Arrivals are random; the seed stays fixed at 7. Providers compete on price. ANDE is a closed accounting unit, not cash. This is a planning simulation, not a deployed robot or a live wallet.</p>
+      <p data-text="metricsNote">Robot jobs exclude human work and charging. “Minutes with flat battery” counts sampled minutes at 0%. The model’s stalled counter also includes the first failed attempt to buy a charge. The charts retain every simulated minute.</p>
+      <p><a href="andes-yard.json" target="_blank" data-text="config">Model configuration ↗</a><span aria-hidden="true"> · </span><a href="https://github.com/andreaisabelmontana/robopreneur-andes/tree/70a7cde2b37826b549004cdf9b5dab7be7bf3e00/planner" target="_blank" rel="noopener" data-text="source">Source model ↗</a></p>
+    </details>
+    <noscript><p class="error">JavaScript is needed to run this model. <a href="golden-run.json">Read the recorded reference run.</a></p></noscript>
+  </main>
+</body>
+</html>

@@ -84,7 +84,7 @@ window.EDGE_PROJECTS = [
       "de": "Ein Roboter, der eine Aufgabe erledigt, dafür bezahlt wird und sich seinen Strom kauft."
     },
     "caseStudy": "./robopreneur/",
-    "cover": "../custom/project-previews/robopreneur.webp",
+    "cover": "../custom/project-previews/robopreneur-preview.webp",
     "typeLabels": {
       "en": "Robotics & AI",
       "es": "Robótica e IA",

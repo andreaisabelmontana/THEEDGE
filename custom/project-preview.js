@@ -2,14 +2,15 @@
   'use strict';
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   var labels = {
-    en: { pause: 'Pause preview', play: 'Play preview', pauseLabel: 'Pause Top Living website preview', playLabel: 'Play Top Living website preview' },
-    es: { pause: 'Pausar vista previa', play: 'Reproducir vista previa', pauseLabel: 'Pausar la vista previa del sitio Top Living', playLabel: 'Reproducir la vista previa del sitio Top Living' },
-    de: { pause: 'Vorschau pausieren', play: 'Vorschau abspielen', pauseLabel: 'Vorschau der Top Living Website pausieren', playLabel: 'Vorschau der Top Living Website abspielen' }
+    en: { pause: 'Pause preview', play: 'Play preview', pauseLabel: 'Pause {project} preview', playLabel: 'Play {project} preview' },
+    es: { pause: 'Pausar vista previa', play: 'Reproducir vista previa', pauseLabel: 'Pausar la vista previa de {project}', playLabel: 'Reproducir la vista previa de {project}' },
+    de: { pause: 'Vorschau pausieren', play: 'Vorschau abspielen', pauseLabel: '{project}-Vorschau pausieren', playLabel: '{project}-Vorschau abspielen' }
   };
   var previews = Array.from(document.querySelectorAll('[data-project-preview]')).map(function (host) {
     var media = host.querySelector('.project-preview-media') || host;
     var video = media.querySelector('.project-preview-video');
     var button = host.querySelector('.project-preview-toggle');
+    var projectName = host.getAttribute('data-preview-name') || 'Top Living';
     if (!video || !button) return null;
     var visible = false, userPaused = false, loaded = false, failed = false;
     var pending = false, requestId = 0;
@@ -23,7 +24,7 @@
       var copy = labels[document.documentElement.lang] || labels.en;
       button.hidden = !loaded || failed || reducedMotion.matches;
       button.textContent = userPaused ? copy.play : copy.pause;
-      button.setAttribute('aria-label', userPaused ? copy.playLabel : copy.pauseLabel);
+      button.setAttribute('aria-label', (userPaused ? copy.playLabel : copy.pauseLabel).replace('{project}', projectName));
     }
     function pause() {
       requestId++;
