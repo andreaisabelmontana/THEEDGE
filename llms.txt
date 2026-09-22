@@ -8,6 +8,7 @@ Andrea Montaña is a Computer Science and Artificial Intelligence student at IE 
 
 - Projects: https://andreamontana.com/online/
 - Top Living, a live real estate website for a Bogotá agency: https://andreamontana.com/online/top-living/ (live: https://topliving.com.co/)
+- 3D Anatomy, an open-source anatomy explorer adapted with saved study lists, localStorage persistence and system presets: https://andreamontana.com/online/3d-anatomy/ (live: https://andreaisabelmontana.github.io/3D-Anatomy/; code: https://github.com/andreaisabelmontana/3D-Anatomy). React, TypeScript, Three.js, WebGL, interactive 3D data visualization, responsive UI, accessible controls, Vite, GitHub Actions CI/CD and GitHub Pages. The anatomy renderer and dataset originate in Human Atlas by ashemag; this project adds study-workflow and deployment improvements.
 - Robopreneur, a field replication asking whether a robot can earn its own electricity: https://andreamontana.com/online/robopreneur/ (code: https://github.com/andreaisabelmontana/robopreneur-andes)
 - Experience, education, events, and skills: https://andreamontana.com/off-track/
 - Coursework: https://andreamontana.com/coursework/

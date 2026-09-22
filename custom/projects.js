@@ -48,6 +48,57 @@ window.EDGE_PROJECTS = [
     }
   },
   {
+    "slug": "3d-anatomy",
+    "title": "3D Anatomy",
+    "helm": "12",
+    "year": 2026,
+    "date": "2026",
+    "tagline": "An open-source anatomy explorer enhanced with saved study lists and system presets. React, TypeScript, Three.js and WebGL connect interactive 3D visualization with thoughtful UX.",
+    "label": "INTERACTIVE 3D",
+    "track": "Personal",
+    "categories": [
+      "Real-time 3D",
+      "Web",
+      "UI & UX"
+    ],
+    "techstack": [
+      "React",
+      "TypeScript",
+      "Three.js",
+      "WebGL",
+      "HTML",
+      "CSS",
+      "Vite",
+      "localStorage",
+      "GitHub Actions",
+      "GitHub Pages"
+    ],
+    "links": {
+      "live": "https://andreaisabelmontana.github.io/3D-Anatomy/",
+      "github": "https://github.com/andreaisabelmontana/3D-Anatomy",
+      "original": "https://github.com/ashemag/human-atlas"
+    },
+    "featured": true,
+    "subjects": [
+      "spatial",
+      "software",
+      "ux"
+    ],
+    "typeLabel": "3D & data visualization",
+    "summary": {
+      "en": "An open-source anatomy explorer enhanced with saved study lists and system presets. React, TypeScript, Three.js and WebGL connect interactive 3D visualization with thoughtful UX.",
+      "es": "Un explorador anatómico de código abierto mejorado con listas de estudio y grupos de sistemas. React, TypeScript, Three.js y WebGL unen visualización 3D interactiva y una UX cuidada.",
+      "de": "Ein Open-Source-Anatomieexplorer, ergänzt um Lernlisten und Systemvoreinstellungen. React, TypeScript, Three.js und WebGL verbinden interaktive 3D-Visualisierung mit durchdachter UX."
+    },
+    "caseStudy": "./3d-anatomy/",
+    "cover": "../custom/project-previews/3d-anatomy-preview.webp",
+    "typeLabels": {
+      "en": "3D & data visualization",
+      "es": "3D y visualización de datos",
+      "de": "3D & Datenvisualisierung"
+    }
+  },
+  {
     "slug": "robopreneur",
     "title": "Robopreneur",
     "helm": "04",
