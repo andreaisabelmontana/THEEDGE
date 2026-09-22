@@ -341,51 +341,6 @@ window.EDGE_PROJECTS = [
     }
   },
   {
-    "slug": "the-shop",
-    "title": "The Shop",
-    "helm": "22",
-    "year": 2025,
-    "date": "2025",
-    "tagline": "A React + Vite storefront for a cloud-native marketplace, the SDDO capstone.",
-    "label": "MARKETPLACE",
-    "track": "Coursework",
-    "categories": [
-      "Web",
-      "Cloud & DevOps"
-    ],
-    "techstack": [
-      "JavaScript",
-      "HTML",
-      "CSS",
-      "React",
-      "Vite"
-    ],
-    "links": {
-      "live": "https://andreaisabelmontana.github.io/Software-Development-And-Devops/",
-      "github": "https://github.com/andreaisabelmontana/Software-Development-And-Devops",
-      "referenceBackend": "https://github.com/Geethika2506/Devopsfinalproject"
-    },
-    "featured": false,
-    "subjects": [
-      "software",
-      "ux"
-    ],
-    "typeLabel": "Software & web",
-    "summary": {
-      "en": "A React storefront that connects discovery, cart and a demo checkout.",
-      "es": "Una tienda en React que conecta catálogo, carrito y compra de demostración.",
-      "de": "Ein React-Shop, der Produktsuche, Warenkorb und Demo-Checkout verbindet."
-    },
-    "caseStudy": "./the-shop/",
-    "cover": "../custom/project-previews/the-shop.webp",
-    "typeLabels": {
-      "en": "Software & web",
-      "es": "Desarrollo web",
-      "de": "Webentwicklung"
-    },
-    "course": "Software Development & DevOps"
-  },
-  {
     "slug": "polar-club",
     "title": "Polar Club",
     "helm": "15",
