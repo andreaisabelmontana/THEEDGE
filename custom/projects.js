@@ -53,42 +53,42 @@ window.EDGE_PROJECTS = [
     "helm": "04",
     "year": 2026,
     "date": "2026",
-    "tagline": "A robot that does a job, gets paid for it, and buys its own electricity.",
+    "tagline": "Built an agent-based robotics simulation in Python and Mesa, with task allocation, battery management, and live performance dashboards in Solara.",
     "label": "ROBOTICS",
-    "track": "Independent",
+    "track": "Research",
     "categories": [
       "Robotics",
       "Simulation"
     ],
     "techstack": [
       "Python",
-      "Solidity",
-      "JavaScript",
-      "ROS",
-      "Gazebo"
+      "Mesa",
+      "Solara",
+      "pandas",
+      "NumPy",
+      "Matplotlib",
+      "Docker"
     ],
     "links": {
       "live": "https://youtu.be/L5voOWKFLzk",
-      "github": "https://github.com/andreaisabelmontana/robopreneur-andes"
+      "github": "https://github.com/andreaisabelmontana/robopreneur-sim"
     },
     "featured": true,
     "subjects": [
-      "ai",
-      "software",
-      "spatial"
+      "robotics"
     ],
-    "typeLabel": "Robotics & AI",
+    "typeLabel": "Robotics & simulation",
     "summary": {
-      "en": "A robot that does a job, gets paid for it, and buys the electricity it needs to keep going.",
-      "es": "Un robot que hace un trabajo, cobra por él y se paga la electricidad que necesita para seguir.",
-      "de": "Ein Roboter, der eine Aufgabe erledigt, dafür bezahlt wird und sich seinen Strom kauft."
+      "en": "Built an agent-based robotics simulation in Python and Mesa, with task allocation, battery management, and live performance dashboards in Solara.",
+      "es": "Desarrollé una simulación robótica basada en agentes con Python y Mesa: asignación de tareas, gestión de batería y paneles de rendimiento en vivo con Solara.",
+      "de": "Entwickelt: eine agentenbasierte Robotiksimulation mit Python und Mesa für Aufgabenverteilung und Akkumanagement, ergänzt durch Live-Dashboards in Solara."
     },
     "caseStudy": "./robopreneur/",
     "cover": "../custom/project-previews/robopreneur-preview.webp",
     "typeLabels": {
-      "en": "Robotics & AI",
-      "es": "Robótica e IA",
-      "de": "Robotik & KI"
+      "en": "Robotics & simulation",
+      "es": "Robótica y simulación",
+      "de": "Robotik & Simulation"
     }
   },
   {
