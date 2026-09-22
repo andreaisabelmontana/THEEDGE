@@ -5,7 +5,7 @@ window.EDGE_PROJECTS = [
     "title": "Top Living",
     "helm": "18",
     "year": 2024,
-    "date": "2022 to 2024",
+    "date": "2020–2024",
     "tagline": "Designed and built a live real estate website for a Bogotá agency, integrating DOMUS property listings, search filters, and interactive maps.",
     "label": "REAL ESTATE",
     "track": "Work",
