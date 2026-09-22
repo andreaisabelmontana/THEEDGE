@@ -6,7 +6,7 @@ window.EDGE_PROJECTS = [
     "helm": "18",
     "year": 2024,
     "date": "2022 to 2024",
-    "tagline": "A live real estate website for a Bogotá agency, fed by its listings platform.",
+    "tagline": "Designed and built a live real estate website for a Bogotá agency, integrating DOMUS property listings, search filters, and interactive maps.",
     "label": "REAL ESTATE",
     "track": "Work",
     "categories": [
@@ -35,12 +35,12 @@ window.EDGE_PROJECTS = [
     ],
     "typeLabel": "Web & real estate",
     "summary": {
-      "en": "A live real estate site for a Bogotá agency, with listings pulled straight from its property platform.",
-      "es": "Un sitio inmobiliario en producción para una agencia de Bogotá, con inmuebles que llegan directo de su plataforma.",
-      "de": "Eine live geschaltete Immobilienseite für eine Agentur in Bogotá, gespeist direkt aus ihrer Objektplattform."
+      "en": "Designed and built a live real estate website for a Bogotá agency, integrating DOMUS property listings, search filters, and interactive maps.",
+      "es": "Diseñé y desarrollé un sitio inmobiliario en producción para una agencia de Bogotá, integrando inmuebles de DOMUS, filtros de búsqueda y mapas interactivos.",
+      "de": "Gestaltung und Entwicklung einer produktiven Immobilienwebsite für eine Agentur in Bogotá, mit DOMUS-Objektangeboten, Suchfiltern und interaktiven Karten."
     },
     "caseStudy": "./top-living/",
-    "cover": "../custom/project-previews/top-living.webp",
+    "cover": "../custom/project-previews/top-living-preview.webp",
     "typeLabels": {
       "en": "Web & real estate",
       "es": "Web e inmobiliaria",

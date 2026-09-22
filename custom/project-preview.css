@@ -1,0 +1,23 @@
+/* Recorded website previews keep a real screenshot underneath the video. */
+.project-preview-card { position: relative; }
+.project-card-link { display: block; color: inherit; text-decoration: none; }
+.project-card-link:focus-visible { outline: 2px solid #7c3ca8; outline-offset: 6px; border-radius: 12px; }
+.project-preview-media { position: relative; }
+.project-preview-media .project-preview-video { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; pointer-events: none; visibility: hidden; }
+.project-preview-has-frame .project-preview-video { visibility: visible; }
+.project-preview-card .project-card-visual img { object-fit: cover; }
+.project-preview-card:hover .project-card-visual img { transform: none; }
+.project-preview-media.case-media { aspect-ratio: 16 / 10; }
+.project-preview-media.case-media img,
+.project-preview-media.case-media .project-preview-video { object-fit: contain; }
+.project-preview-toggle { position: absolute; z-index: 3; top: 16px; left: 16px; display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: 9px 13px; border: 1px solid #ffffff50; border-radius: 999px; background: #101016ed; color: #fff; font: 500 12px/1.4 system-ui, sans-serif; cursor: pointer; box-shadow: 0 2px 8px #0002; }
+.project-preview-toggle:hover { background: #30243b; }
+.project-preview-toggle:focus-visible { outline: 3px solid #c7a0ee; outline-offset: 3px; }
+.project-preview-toggle[hidden] { display: none !important; }
+@media (max-width: 600px) {
+  .project-preview-toggle { top: 10px; left: 10px; padding: 8px 11px; font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-preview-media .project-preview-video,
+  .project-preview-toggle { display: none !important; }
+}
