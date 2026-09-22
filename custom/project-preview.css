@@ -21,3 +21,11 @@
   .project-preview-media .project-preview-video,
   .project-preview-toggle { display: none !important; }
 }
+
+/* Fill the Alma card with the approved motion, cropping its encoded matte. */
+.project-card[data-slug="alma-de-maria"] .project-card-visual img,
+.project-card[data-slug="alma-de-maria"]:hover .project-card-visual img,
+.project-card[data-slug="alma-de-maria"] .project-preview-video {
+  transform: scale(1.12);
+  transform-origin: center;
+}
