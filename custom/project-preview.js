@@ -11,7 +11,7 @@
     var video = media.querySelector('.project-preview-video');
     var button = host.querySelector('.project-preview-toggle');
     var projectName = host.getAttribute('data-preview-name') || 'Top Living';
-    if (!video || !button) return null;
+    if (!video) return null;
     var visible = false, userPaused = false, loaded = false, failed = false;
     var pending = false, requestId = 0;
     video.muted = true;
@@ -21,6 +21,7 @@
       return visible && !document.hidden && !host.closest('[hidden]') && !reducedMotion.matches && !userPaused && !failed;
     }
     function render() {
+      if (!button) return;
       var copy = labels[document.documentElement.lang] || labels.en;
       button.hidden = !loaded || failed || reducedMotion.matches;
       button.textContent = userPaused ? copy.play : copy.pause;
@@ -76,7 +77,7 @@
       media.classList.remove('project-preview-has-frame');
       render();
     });
-    button.addEventListener('click', function () {
+    if (button) button.addEventListener('click', function () {
       userPaused = !userPaused;
       sync();
     });
