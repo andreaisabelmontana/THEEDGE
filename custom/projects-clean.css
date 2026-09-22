@@ -33,8 +33,10 @@
 .project-card[hidden] { display: none !important; }
 .project-card-visual { position: relative; aspect-ratio: 16 / 10; overflow: hidden; border: 1px solid #ffffff18; border-radius: 12px; background: #1a1622; }
 .project-card-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; transition: transform .55s cubic-bezier(.2,.7,.2,1); }
-.project-card[data-slug="optitrack"] .project-card-visual img,
-.project-card[data-slug="notecrafted"] .project-card-visual img { object-fit: cover; }
+.project-card[data-slug="optitrack"] .project-card-visual img { object-fit: cover; }
+.project-card[data-slug="notecrafted"] .project-card-visual { background: #031127; }
+.project-card[data-slug="notecrafted"] .project-card-visual picture { display: block; width: 100%; height: 100%; }
+.project-card[data-slug="notecrafted"] .project-card-visual img { object-fit: contain; }
 .project-card:hover .project-card-visual img { transform: scale(1.025); }
 .project-card-open { position: absolute; top: 16px; right: 16px; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: #101016df; color: #fff; font-size: 18px; }
 .project-card-meta { display: flex; justify-content: space-between; gap: 16px; margin: 22px 0 10px; color: #b3a7c2; font: 10px/1.5 ui-monospace, Consolas, monospace; letter-spacing: .07em; text-transform: uppercase; }

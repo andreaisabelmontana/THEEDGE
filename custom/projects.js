@@ -210,7 +210,7 @@ window.EDGE_PROJECTS = [
       "de": "Von Lernnotizen zu Übungsfragen, begleitet von einem KI-Tutor."
     },
     "caseStudy": "./notecrafted/",
-    "cover": "../custom/project-previews/notecrafted.webp",
+    "cover": "../custom/project-previews/notecrafted-animated.webp",
     "typeLabels": {
       "en": "AI & learning",
       "es": "IA y aprendizaje",
