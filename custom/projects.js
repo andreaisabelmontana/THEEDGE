@@ -295,7 +295,7 @@ window.EDGE_PROJECTS = [
       "de": "Ein sorgfältig gestalteter Shop für die kolumbianische Schmuckmarke meiner Familie."
     },
     "caseStudy": "./alma-de-maria/",
-    "cover": "../custom/project-previews/alma-de-maria.webp",
+    "cover": "../custom/project-previews/alma-hand-preview.webp?v=20260922-handmotion",
     "typeLabels": {
       "en": "Web & interaction",
       "es": "Diseño y comercio",
