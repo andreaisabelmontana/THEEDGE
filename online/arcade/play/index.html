@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101016">
+<title>Arcade · Andrea Montaña</title>
+<meta name="description" content="Six classic games, each with an opponent or solver whose thinking you can switch on: probability, entropy, constraint solving, adversarial search, heuristic search and graph search.">
+<link rel="canonical" href="https://andreamontana.com/online/arcade/play/">
+<link rel="icon" href="../../../custom/astronaut.png" type="image/png">
+<link rel="stylesheet" href="arcade.css?v=1">
+</head>
+<body>
+<a class="skip" href="#app">Skip to the games</a>
+<header class="top">
+  <a class="top-back" href="../"><span aria-hidden="true">←</span> About this project</a>
+  <a class="top-brand" href="#" aria-label="Arcade home"><span class="brand-mark" aria-hidden="true">✦</span> Arcade</a>
+  <label class="think-toggle" title="Show what the algorithm is computing">
+    <input type="checkbox" id="think-global">
+    <span class="track" aria-hidden="true"><span class="knob"></span></span>
+    <span class="think-label">Show the thinking</span>
+  </label>
+</header>
+<nav class="tabs" aria-label="Games" id="tabs"></nav>
+<main id="app" tabindex="-1"></main>
+<footer class="foot">
+  <p>Built by <a href="../../../">Andrea Montaña</a>. Every solver runs in your browser, no server and no trained model.</p>
+</footer>
+<noscript><p class="noscript">The arcade needs JavaScript to run the games.</p></noscript>
+<script src="js/core.js?v=1"></script>
+<script src="js/engine.js?v=1"></script>
+<script src="js/battleship.js?v=1"></script>
+<script src="js/words.js?v=1"></script>
+<script src="js/wordle.js?v=1"></script>
+<script src="js/minesweeper.js?v=1"></script>
+<script src="js/connect4.js?v=1"></script>
+<script src="js/slide.js?v=1"></script>
+<script src="js/snake.js?v=1"></script>
+<script>Arcade.start();</script>
+</body>
+</html>

@@ -384,28 +384,29 @@ window.EDGE_PROJECTS = [
     }
   },
   {
-    "slug": "battleship",
-    "title": "Battleship",
+    "slug": "arcade",
+    "title": "Arcade",
     "helm": "19",
-    "year": 2024,
-    "date": "2024",
-    "tagline": "10x10 Battleship against a probability-density AI, or pass-and-play.",
-    "label": "C ENGINE",
+    "year": 2026,
+    "date": "2026",
+    "tagline": "Six classic games with solvers you can watch think: probability, entropy, constraint solving, negamax, IDA* and BFS.",
+    "label": "ALGORITHMS",
     "track": "Coursework",
     "categories": [
-      "AI & ML",
+      "Algorithms",
       "Games",
-      "Algorithms"
+      "AI & ML"
     ],
     "techstack": [
-      "C11",
       "JavaScript",
       "HTML",
-      "Make"
+      "CSS",
+      "C11",
+      "Web Workers"
     ],
     "links": {
-      "live": "https://andreaisabelmontana.github.io/battleship/",
-      "github": "https://github.com/andreaisabelmontana/battleship"
+      "live": "https://andreamontana.com/online/arcade/play/",
+      "github": "https://github.com/andreaisabelmontana/THEEDGE/tree/main/online/arcade/play"
     },
     "featured": false,
     "subjects": [
@@ -415,12 +416,12 @@ window.EDGE_PROJECTS = [
     ],
     "typeLabel": "Algorithms & games",
     "summary": {
-      "en": "A classic game with an opponent that reasons from every shot.",
-      "es": "Un juego clásico con un oponente que razona a partir de cada disparo.",
-      "de": "Ein Spieleklassiker mit einem Gegner, der aus jedem Schuss Schlüsse zieht."
+      "en": "Six classic games, each with a solver you can watch think.",
+      "es": "Seis juegos clásicos, cada uno con un solucionador que puedes ver pensar.",
+      "de": "Sechs Spieleklassiker, jeder mit einem Löser, dem man beim Denken zusieht."
     },
-    "caseStudy": "./battleship/",
-    "cover": "../custom/project-previews/battleship.webp",
+    "caseStudy": "./arcade/",
+    "cover": "../custom/project-previews/arcade.webp",
     "typeLabels": {
       "en": "Algorithms & games",
       "es": "Algoritmos y juegos",
