@@ -15,7 +15,7 @@
       detail: 'Trinity College Dublin, first year of the degree',
       when: '2022 to 2023', lat: 53.3438, lon: -6.2546 },
     { city: ['Madrid', 'Madrid', 'Madrid'], country: ['Spain', 'España', 'Spanien'],
-      detail: 'IE University, IEX Labs research and the Google Developer Group',
+      detail: 'IE University, IEX Labs research and AI Global Markets',
       when: '2023 to present', lat: 40.4168, lon: -3.7038 }
   ];
   var root = window.__SITE_ROOT || '';
