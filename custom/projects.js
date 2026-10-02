@@ -5,8 +5,8 @@ window.EDGE_PROJECTS = [
     "title": "Top Living",
     "helm": "18",
     "year": 2024,
-    "date": "2020–2024",
-    "tagline": "Designed and built a live real estate website for a Bogotá agency, integrating DOMUS property listings, search filters, and interactive maps.",
+    "date": "2021–2024",
+    "tagline": "Built property search with REST/DOMUS APIs, map-based filters and automated lead routing for a real estate website supporting 11,000+ active users.",
     "label": "REAL ESTATE",
     "track": "Work",
     "categories": [
@@ -22,7 +22,11 @@ window.EDGE_PROJECTS = [
       "Blade",
       "Guzzle",
       "PHPMailer",
-      "Leaflet"
+      "Leaflet",
+      "REST APIs",
+      "DOMUS API",
+      "Google Maps",
+      "Adobe XD"
     ],
     "links": {
       "live": "https://topliving.com.co/",
@@ -35,9 +39,9 @@ window.EDGE_PROJECTS = [
     ],
     "typeLabel": "Web & real estate",
     "summary": {
-      "en": "Designed and built a live real estate website for a Bogotá agency, integrating DOMUS property listings, search filters, and interactive maps.",
-      "es": "Diseñé y desarrollé un sitio inmobiliario en producción para una agencia de Bogotá, integrando inmuebles de DOMUS, filtros de búsqueda y mapas interactivos.",
-      "de": "Gestaltung und Entwicklung einer produktiven Immobilienwebsite für eine Agentur in Bogotá, mit DOMUS-Objektangeboten, Suchfiltern und interaktiven Karten."
+      "en": "Built property search with REST/DOMUS APIs, map-based filters and automated lead routing for a real estate website supporting 11,000+ active users.",
+      "es": "Desarrollé la búsqueda de inmuebles con API REST/DOMUS, filtros con mapas y asignación automática de contactos para un sitio con más de 11.000 usuarios activos.",
+      "de": "Immobiliensuche mit REST/DOMUS-APIs, Kartenfiltern und automatischer Anfrageweiterleitung für eine Website mit über 11.000 aktiven Nutzern."
     },
     "caseStudy": "./top-living/",
     "cover": "../custom/project-previews/top-living-preview.webp",
@@ -53,7 +57,7 @@ window.EDGE_PROJECTS = [
     "helm": "12",
     "year": 2026,
     "date": "2026",
-    "tagline": "An open-source anatomy explorer enhanced with saved study lists and system presets. React, TypeScript, Three.js and WebGL connect interactive 3D visualization with thoughtful UX.",
+    "tagline": "An open-source anatomy explorer with 2,234 BodyParts3D structures, system filters, camera controls and an explode view, extended with saved study lists.",
     "label": "INTERACTIVE 3D",
     "track": "Personal",
     "categories": [
@@ -86,9 +90,9 @@ window.EDGE_PROJECTS = [
     ],
     "typeLabel": "3D & data visualization",
     "summary": {
-      "en": "An open-source anatomy explorer enhanced with saved study lists and system presets. React, TypeScript, Three.js and WebGL connect interactive 3D visualization with thoughtful UX.",
-      "es": "Un explorador anatómico de código abierto mejorado con listas de estudio y grupos de sistemas. React, TypeScript, Three.js y WebGL unen visualización 3D interactiva y una UX cuidada.",
-      "de": "Ein Open-Source-Anatomieexplorer, ergänzt um Lernlisten und Systemvoreinstellungen. React, TypeScript, Three.js und WebGL verbinden interaktive 3D-Visualisierung mit durchdachter UX."
+      "en": "An open-source anatomy explorer with 2,234 BodyParts3D structures, system filters, camera controls and an explode view, extended with saved study lists.",
+      "es": "Un explorador anatómico de código abierto con 2.234 estructuras de BodyParts3D, filtros, controles de cámara y vista explosionada, ampliado con listas de estudio.",
+      "de": "Ein Open-Source-Anatomieexplorer mit 2.234 BodyParts3D-Strukturen, Systemfiltern, Kamerasteuerung und Explosionsansicht, erweitert um Lernlisten."
     },
     "caseStudy": "./3d-anatomy/",
     "cover": "../custom/project-previews/3d-anatomy-preview.webp",
@@ -104,7 +108,7 @@ window.EDGE_PROJECTS = [
     "helm": "04",
     "year": 2026,
     "date": "2026",
-    "tagline": "Built an agent-based robotics simulation in Python and Mesa, with task allocation, battery management, and live performance dashboards in Solara.",
+    "tagline": "Research contribution: Python/Mesa human–robot simulation with cryptocurrency-based task rewards and Solara dashboards, supporting work accepted at IEEE ICRA 2026.",
     "label": "ROBOTICS",
     "track": "Research",
     "categories": [
@@ -130,9 +134,9 @@ window.EDGE_PROJECTS = [
     ],
     "typeLabel": "Robotics & simulation",
     "summary": {
-      "en": "Built an agent-based robotics simulation in Python and Mesa, with task allocation, battery management, and live performance dashboards in Solara.",
-      "es": "Desarrollé una simulación robótica basada en agentes con Python y Mesa: asignación de tareas, gestión de batería y paneles de rendimiento en vivo con Solara.",
-      "de": "Entwickelt: eine agentenbasierte Robotiksimulation mit Python und Mesa für Aufgabenverteilung und Akkumanagement, ergänzt durch Live-Dashboards in Solara."
+      "en": "Research contribution: Python/Mesa human–robot simulation with cryptocurrency-based task rewards and Solara dashboards, supporting work accepted at IEEE ICRA 2026.",
+      "es": "Contribución de investigación: simulación humano–robot en Python/Mesa con recompensas en criptomonedas y paneles Solara, como apoyo a trabajo aceptado en IEEE ICRA 2026.",
+      "de": "Forschungsbeitrag: Mensch–Roboter-Simulation mit Python/Mesa, kryptowährungsbasierten Vergütungen und Solara-Dashboards, zur Unterstützung von für die IEEE ICRA 2026 angenommener Forschung."
     },
     "caseStudy": "./robopreneur/",
     "cover": "../custom/project-previews/robopreneur-preview.webp",

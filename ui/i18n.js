@@ -23,6 +23,7 @@
 
   const DICT = {
     es: {
+      "hero.experience": "Experiencia",
       'nav.menu': 'menú',
       'hero.eyebrow': 'CS e IA · IE University, Madrid · Graduación 2028',
       'tag.ml': 'Aprendizaje automático e IA',
@@ -31,11 +32,11 @@
       'tag.ui': 'Interfaces interactivas e IPC',
       'tag.js': 'JavaScript y React',
       'tag.cloud': 'Docker y cloud-native',
-      'hero.lead': 'Diseño en el borde donde la inteligencia digital se encuentra con el mundo físico.',
+      'hero.lead': 'Desarrollo software que conecta la IA, el 3D interactivo y el mundo físico.',
       'hero.facts': 'Aprendizaje automático, visión por computador e interacción persona-computador, llevados a 3D interactivo y desarrollo web completo.',
       'tag.dsa': 'Estructuras de datos y algoritmos',
-      'hero.focus': 'IA · Software · Experiencias interactivas',
-      'hero.stack': 'Desarrollo full-stack · Aprendizaje automático · 3D en tiempo real · UX/UI',
+      'hero.focus': 'Asistente de investigación en IEX Labs · Ingeniera de software',
+      'hero.stack': 'Python · TypeScript · React · Three.js · Unity / ROS',
       'hero.status': 'Disponible para prácticas · Verano 2027 / Otoño 2027',
       'hero.work': 'Ver el trabajo',
       'panel.projects.title': 'Proyectos',
@@ -48,6 +49,7 @@
       'cta.view': 'Ver',
     },
     de: {
+      "hero.experience": "Erfahrung",
       'nav.menu': 'Menü',
       'hero.eyebrow': 'CS & KI · IE University, Madrid · Abschluss 2028',
       'tag.ml': 'Machine Learning und KI',
@@ -56,11 +58,11 @@
       'tag.ui': 'Interaktive UI und MCI',
       'tag.js': 'JavaScript und React',
       'tag.cloud': 'Docker und Cloud-native',
-      'hero.lead': 'Ich gestalte dort, wo digitale Intelligenz auf die physische Welt trifft.',
+      'hero.lead': 'Ich entwickle Software, die KI, interaktives 3D und die physische Welt verbindet.',
       'hero.facts': 'Machine Learning, Computer Vision und Mensch-Computer-Interaktion, umgesetzt als interaktives 3D und Full-Stack-Web.',
       'tag.dsa': 'Datenstrukturen und Algorithmen',
-      'hero.focus': 'KI · Software · Interaktive Erlebnisse',
-      'hero.stack': 'Full-Stack-Entwicklung · Machine Learning · Echtzeit-3D · UX/UI',
+      'hero.focus': 'Forschungsassistentin bei IEX Labs · Softwareentwicklerin',
+      'hero.stack': 'Python · TypeScript · React · Three.js · Unity / ROS',
       'hero.status': 'Offen für Praktika · Sommer 2027 / Herbst 2027',
       'hero.work': 'Zur Arbeit',
       'panel.projects.title': 'Projekte',
@@ -78,6 +80,9 @@
      absent: LinkedIn, Instagram, Youtube, GitHub and GALLERY stay as they are
      in every language. */
   const PHRASES = {
+    "Spanish (native) \u00b7 English (fluent) \u00b7 German (beginner)": {"es": "Español (nativo) · Inglés (fluido) · Alemán (principiante)", "de": "Spanisch (Muttersprache) · Englisch (fließend) · Deutsch (Anfänger)"},
+    "Internship agreement": {"es": "Convenio de prácticas", "de": "Praktikumsvereinbarung"},
+    "Eligible through IE University": {"es": "Elegible a través de IE University", "de": "Über die IE University möglich"},
     "Enabled experiments in human–robot interaction by building ROBOPRENEUR with Python and Mesa, modelling agent behaviour and cryptocurrency-based task rewards.": {"es": "Facilité experimentos de interacción humano-robot al desarrollar ROBOPRENEUR con Python y Mesa, modelando el comportamiento de agentes y recompensas por tareas basadas en criptomonedas.", "de": "Experimente zur Mensch-Roboter-Interaktion ermöglicht, indem ROBOPRENEUR mit Python und Mesa entwickelt wurde, einschließlich Agentenverhalten und kryptowährungsbasierter Aufgabenbelohnungen."},
     "Made four simulation metrics available for live analysis by developing interactive Solara controls for wealth, battery levels, inequality and time allocation.": {"es": "Habilité el análisis en tiempo real de cuatro métricas mediante controles interactivos en Solara: riqueza, batería, desigualdad y distribución del tiempo.", "de": "Vier Simulationskennzahlen live analysierbar gemacht: interaktive Solara-Steuerung für Vermögen, Akkustand, Ungleichheit und Zeitverteilung entwickelt."},
     "Supported ROBOPRENEUR’s IEEE ICRA 2026 submission by conducting the literature review and contributing to the final video prototype.": {"es": "Apoyé la presentación de ROBOPRENEUR a IEEE ICRA 2026 mediante la revisión bibliográfica y la colaboración en el prototipo final en vídeo.", "de": "Die Einreichung von ROBOPRENEUR bei IEEE ICRA 2026 durch Literaturrecherche und Mitarbeit am finalen Videoprototyp unterstützt."},
@@ -145,7 +150,6 @@
     "Hackathons": { es: "Hackathones", de: "Hackathons" },
     "Datathons": { es: "Datathones", de: "Datathons" },
     "Bootcamps": { es: "Bootcamps", de: "Bootcamps" },
-    "Co-organiser · Google Developer Group": { es: "Coorganizadora · Google Developer Group", de: "Mitorganisatorin · Google Developer Group" },
     "Co-organised the hackathon, running logistics and supporting participants throughout.": { es: "Coorganicé el hackathon, coordinando la logística y apoyando a los participantes.", de: "Den Hackathon mitorganisiert, die Logistik koordiniert und die Teilnehmenden unterstützt." },
     "Details coming soon": { es: "Más detalles próximamente", de: "Details folgen bald" },
     "Events, projects and takeaways will be added here.": { es: "Aquí se añadirán eventos, proyectos y aprendizajes.", de: "Hier folgen Veranstaltungen, Projekte und Erkenntnisse." },
@@ -220,9 +224,9 @@
       es: 'Trinity College Dublin, primer año del grado',
       de: 'Trinity College Dublin, erstes Studienjahr',
     },
-    'IE University, IEX Labs research and the Google Developer Group': {
-      es: 'IE University, investigación en IEX Labs y el Google Developer Group',
-      de: 'IE University, Forschung bei IEX Labs und die Google Developer Group',
+    'IE University, IEX Labs research and AI Global Markets': {
+      es: 'IE University, investigación en IEX Labs y AI Global Markets',
+      de: 'IE University, Forschung bei IEX Labs und AI Global Markets',
     },
     '2010 to 2024': { es: '2010 a 2024', de: '2010 bis 2024' },
     '2022 to 2023': { es: '2022 a 2023', de: '2022 bis 2023' },
