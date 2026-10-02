@@ -3,6 +3,58 @@
   'use strict';
   if (!document.body.classList.contains('experience-page')) return;
   var copy = {
+
+  "credentials-heading": {
+    "en": "Certificates & training",
+    "es": "Certificados y formación",
+    "de": "Zertifikate & Weiterbildung"
+  },
+  "specialization": {
+    "en": "Specialization",
+    "es": "Especialización",
+    "de": "Spezialisierung"
+  },
+  "course-certificate": {
+    "en": "Course certificate",
+    "es": "Certificado de curso",
+    "de": "Kurszertifikat"
+  },
+  "anthropic-collection": {
+    "en": "Certificate collection · includes Claude 101",
+    "es": "Colección de certificados · incluye Claude 101",
+    "de": "Zertifikatsammlung · inklusive Claude 101"
+  },
+  "training-badge": {
+    "en": "Training badge",
+    "es": "Insignia de formación",
+    "de": "Schulungsabzeichen"
+  },
+  "credential-open": {
+    "en": "View credential",
+    "es": "Ver credencial",
+    "de": "Nachweis ansehen"
+  },
+  "date-2026-09": {
+    "en": "September 2026",
+    "es": "Septiembre de 2026",
+    "de": "September 2026"
+  },
+  "date-2026-06": {
+    "en": "June 2026",
+    "es": "Junio de 2026",
+    "de": "Juni 2026"
+  },
+  "date-2024-11": {
+    "en": "November 2024",
+    "es": "Noviembre de 2024",
+    "de": "November 2024"
+  },
+  "robo-video": {
+    "en": "ROBOPRENEUR video",
+    "es": "Vídeo de ROBOPRENEUR",
+    "de": "ROBOPRENEUR-Video"
+  }
+,
   "eyebrow": {
     "en": "MADRID, SPAIN / CLASS OF 2028",
     "es": "MADRID, ESPAÑA / PROMOCIÓN DE 2028",
