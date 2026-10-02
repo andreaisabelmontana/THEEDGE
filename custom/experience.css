@@ -125,3 +125,22 @@ body.experience-page {
   .experience-page .am-career-hero { padding-top: 0; }
   .experience-page .am-career-role, .experience-page .am-career-study { break-inside: avoid; }
 }
+
+/* Direct evidence links grouped with education, without another project grid. */
+.experience-page .am-credentials { margin-top: 32px; scroll-margin-top: 105px; }
+.experience-page .am-credentials h3 { margin: 0 0 20px; font-size: 22px; font-weight: 550; line-height: 1.3; letter-spacing: -.02em; text-transform: none; }
+.experience-page .am-credential-list { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--career-line); }
+.experience-page .am-credential-list li { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--career-line); }
+.experience-page .am-credential-list li::marker { content: ''; }
+.experience-page .am-credential-list a { display: flex; justify-content: space-between; align-items: center; gap: 22px; padding: 20px 0; color: var(--career-ink); text-decoration: none; }
+.experience-page .am-credential-list a:hover strong { color: var(--career-accent); }
+.experience-page .am-credential-info { min-width: 0; }
+.experience-page .am-credential-info strong { display: block; font-size: 15px; font-weight: 500; line-height: 1.5; }
+.experience-page .am-credential-meta { display: block; margin-top: 5px; color: var(--career-muted); font-size: 11px; line-height: 1.7; }
+.experience-page .am-credential-tail { flex-shrink: 0; display: flex; align-items: center; gap: 15px; color: var(--career-accent); font-size: 12px; }
+.experience-page .am-credential-tail time { color: var(--career-dim); font-size: 11px; }
+@media (max-width: 620px) {
+  .experience-page .am-credential-list a { align-items: flex-start; flex-direction: column; gap: 9px; padding: 18px 0; }
+  .experience-page .am-credential-tail { width: 100%; font-size: 11px; }
+  .experience-page .am-credential-tail time { margin-right: auto; }
+}
