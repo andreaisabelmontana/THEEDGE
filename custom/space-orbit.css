@@ -1,0 +1,55 @@
+/* A decorative scene in the former monogram slot. Its canvas is transparent. */
+.experience-page .am-career-space {
+  position: relative;
+  flex: 0 0 176px;
+  width: 176px;
+  height: 128px;
+  margin-right: 8px;
+  isolation: isolate;
+}
+.experience-page .am-career-space :is(canvas, [data-space-fallback]) {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.experience-page .am-career-space [data-space-fallback] { z-index: 1; }
+.experience-page .am-career-space[data-renderer="webgl"] [data-space-fallback] { visibility: hidden; }
+.experience-page .am-career-space [hidden] { display: none !important; }
+.experience-page .am-space-toggle {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--theme-line, #D5E0FA);
+  border-radius: 50%;
+  background: var(--theme-bg, #fff);
+  color: var(--theme-accent-ink, #164CC9);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.experience-page .am-space-toggle:hover { border-color: var(--theme-accent, #3369E8); }
+.experience-page .am-space-toggle svg { width: 10px; height: 10px; }
+.experience-page .am-space-toggle [data-space-play] { display: none; }
+.experience-page .am-space-toggle[data-action="resume"] [data-space-pause] { display: none; }
+.experience-page .am-space-toggle[data-action="resume"] [data-space-play] { display: block; }
+@media (max-width: 900px) {
+  .experience-page .am-career-space { flex-basis: 148px; width: 148px; height: 104px; margin-right: 0; }
+}
+@media (max-width: 620px) {
+  .experience-page .am-career-space { flex-basis: 76px; width: 76px; height: 76px; margin-left: 8px; }
+  .experience-page .am-space-toggle { width: 24px; height: 24px; right: -2px; bottom: -8px; }
+}
+@media (max-width: 359px) {
+  .experience-page .am-career-space { flex-basis: 56px; width: 56px; height: 64px; margin-left: 4px; }
+}
+@media print {
+  .experience-page .am-career-space { display: none !important; }
+}

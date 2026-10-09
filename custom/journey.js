@@ -30,6 +30,50 @@
   var fallbackContext, fallbackPixels, fallbackWidth, fallbackHeight;
   var buttons = [];
 
+  // Tint only the satellite surface. Palette stops keep their original linear
+  // luminance, so coasts, terrain and bright ice retain their tonal separation.
+  var surfaceLuma = [0.2126, 0.7152, 0.0722];
+  function srgbToLinear(value) {
+    return value <= 0.04045 ? value / 12.92 : Math.pow((value + 0.055) / 1.055, 2.4);
+  }
+  function linearToSrgb(value) {
+    value = Math.max(0, Math.min(1, value));
+    return value <= 0.0031308 ? value * 12.92 : 1.055 * Math.pow(value, 1 / 2.4) - 0.055;
+  }
+  var surfacePalette = [0x000000, 0x051332, 0x3369e8, 0xd5e0fa, 0xffffff].map(function (hex) {
+    var rgb = [hex >> 16 & 255, hex >> 8 & 255, hex & 255].map(function (channel) {
+      return srgbToLinear(channel / 255);
+    });
+    return { rgb: rgb, luma: rgb[0] * surfaceLuma[0] + rgb[1] * surfaceLuma[1] + rgb[2] * surfaceLuma[2] };
+  });
+  var surfaceLinearLookup = Array.from({ length: 256 }, function (_, channel) {
+    return srgbToLinear(channel / 255);
+  });
+  function blueSurfaceShader() {
+    function number(value) { return value.toFixed(9); }
+    function color(stop) { return 'vec3(' + stop.rgb.map(number).join(',') + ')'; }
+    var source = 'vec3 journeyBlueSurface(vec3 texel) {\n' +
+      'float luminance = clamp(dot(texel, vec3(0.2126, 0.7152, 0.0722)), 0.0, 1.0);\n';
+    for (var i = 1; i < surfacePalette.length; i++) {
+      var low = surfacePalette[i - 1], high = surfacePalette[i];
+      source += 'if (luminance <= ' + number(high.luma) + ') return mix(' + color(low) + ',' + color(high) +
+        ', (luminance - ' + number(low.luma) + ') / ' + number(high.luma - low.luma) + ');\n';
+    }
+    return source + 'return vec3(1.0);\n}\n';
+  }
+  function fallbackBlueSurface(source, index, light, output, pixel) {
+    var luminance = surfaceLinearLookup[source[index]] * surfaceLuma[0] +
+      surfaceLinearLookup[source[index + 1]] * surfaceLuma[1] + surfaceLinearLookup[source[index + 2]] * surfaceLuma[2];
+    var i = 1;
+    while (i < surfacePalette.length - 1 && luminance > surfacePalette[i].luma) i++;
+    var low = surfacePalette[i - 1], high = surfacePalette[i];
+    var amount = (luminance - low.luma) / (high.luma - low.luma);
+    for (var channel = 0; channel < 3; channel++) {
+      var linear = low.rgb[channel] + (high.rgb[channel] - low.rgb[channel]) * amount;
+      output[pixel + channel] = Math.round(linearToSrgb(linear * light) * 255);
+    }
+  }
+
   entries.forEach(function (entry, index) {
     var item = document.createElement('li');
     var button = document.createElement('button');
@@ -129,6 +173,15 @@
       earth = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({
         color: 0xffffff, shininess: 12, specular: 0x05080b
       }));
+      earth.material.onBeforeCompile = function (shader) {
+        // Three r149 decodes the sRGB map before map_fragment. Recolor in linear
+        // space before the existing Phong lighting, specular and output encoding.
+        shader.fragmentShader = blueSurfaceShader() + shader.fragmentShader.replace(
+          '#include <map_fragment>',
+          '#include <map_fragment>\n#ifdef USE_MAP\ndiffuseColor.rgb = journeyBlueSurface(diffuseColor.rgb);\n#endif'
+        );
+      };
+      earth.material.customProgramCacheKey = function () { return 'journey-blue-surface-v1'; };
       world.add(earth);
       scene.add(new THREE.AmbientLight(0xd9e2ef, 0.52));
       var sun = new THREE.DirectionalLight(0xfff4e4, 1.6);
@@ -297,7 +350,7 @@
       var source = (Math.min(fallbackHeight - 1, Math.floor(v * fallbackHeight)) * fallbackWidth + Math.floor(u * fallbackWidth)) * 4;
       var pixel = (y * size + x) * 4;
       var light = 0.44 + 0.66 * Math.max(0, -nx * 0.42 + ny * 0.45 + nz * 0.78);
-      for (var channel = 0; channel < 3; channel++) output.data[pixel + channel] = fallbackPixels[source + channel] * light;
+      fallbackBlueSurface(fallbackPixels, source, light, output.data, pixel);
       output.data[pixel + 3] = 255;
     }
     fallbackContext.putImageData(output, 0, 0);
