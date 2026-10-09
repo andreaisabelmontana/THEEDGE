@@ -27,8 +27,29 @@
       "organization": "CyPhy Life",
       "source": "https://cyphy.life/static/images/cpl.svg",
       "notes": "Original black CPL wordmark from official navigation. Official home page identifies group as IEX Labs, School of Science and Technology, IE University. Pair with a white tile."
+    },
+    {
+      "organization": "Colegio Nueva Granada",
+      "file": "colegio-nueva-granada.png",
+      "width": 64,
+      "height": 64,
+      "discoveredOn": "https://www.cng.edu/",
+      "source": "https://resources.finalsite.net/images/v1688750920/cngedu/adrjeffc2k3jtzvegf5e/favicon-colegio-nueva-granada.ico",
+      "notes": "Official school identification crest. Largest 64px ICO frame decoded losslessly to PNG; pixel equality verified. No crop, redraw, or recoloring.",
+      "sha256": "6A9749A961ED959BF58C5C75429D0EE0E5B6CF3F07ACE34BFE64943BC2CF4BE8"
+    },
+    {
+      "organization": "Trinity College Dublin",
+      "file": "trinity-college-dublin.png",
+      "width": 464,
+      "height": 124,
+      "discoveredOn": "https://www.tcd.ie/",
+      "source": "https://www.tcd.ie/media/tcd/site-assets/images/tcd-logo.png",
+      "notes": "Exact official homepage PNG, including shield and complete bilingual wordmark. Preserve full image and aspect ratio; use a wider white badge for readability.",
+      "sha256": "F604018964C3DAFC4124356589A620184A946C1B5B6829C84121C6A0070A4D63"
     }
   ],
   "retrievedUtc": "2026-10-08T08:07:24Z",
-  "presentation": "Use consistent tile dimensions, object-fit: contain, padding, and source aspect ratios. Do not invert the source logos. If organization name is adjacent, use empty alt on decorative logo; otherwise alt should name the organization."
+  "presentation": "Use consistent tile dimensions, object-fit: contain, padding, and source aspect ratios. Do not invert the source logos. If organization name is adjacent, use empty alt on decorative logo; otherwise alt should name the organization.",
+  "educationLogosRetrievedDate": "2026-10-09"
 }

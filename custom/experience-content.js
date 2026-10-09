@@ -278,6 +278,11 @@
     "es": "Graduación: junio de 2022",
     "de": "Abschluss: Juni 2022"
   },
+  "cng-curriculum": {
+    "en": "U.S. High School Diploma and Colombian Bachillerato program, with Advanced Placement offerings and a Mind, Body & Character focus on academics, athletics, leadership and service.",
+    "es": "Programa de U.S. High School Diploma y Bachillerato colombiano, con oferta de Advanced Placement y un enfoque Mind, Body & Character en formación académica, deporte, liderazgo y servicio.",
+    "de": "US-High-School-Diploma- und kolumbianisches Bachillerato-Programm mit Advanced-Placement-Angeboten und einem Mind, Body & Character-Fokus auf akademische Bildung, Sport, Führung und soziales Engagement."
+  },
   "skills-heading": {
     "en": "Skills",
     "es": "Habilidades",

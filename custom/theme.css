@@ -79,6 +79,8 @@ html[data-theme] body .menu-panel { background: var(--theme-bg) !important; colo
 html[data-theme] body .nav-menu-w :is(a, div, span, h1, h2, h3, p) { color: var(--theme-ink) !important; }
 html[data-theme] body .nav-menu-w a:is(:hover, :focus-visible) :is(div, span),
 html[data-theme] body .nav-menu-w .w--current :is(div, span) { color: var(--theme-accent) !important; }
+/* Give the original current-page stroke its own color; the label stays purple. */
+html[data-theme] body .nav-menu-w .nav-menu-link-w.w--current .nav-menu-link-current-svg { color: #2e807d !important; }
 html[data-theme] body .nav-menu-bg { background-image: none !important; }
 /* Keep the original animated current-page squiggle. Only the rectangular
    reveal bars are hidden so they cannot cover the smaller menu labels. */
