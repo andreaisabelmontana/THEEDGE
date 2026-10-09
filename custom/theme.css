@@ -282,16 +282,6 @@ html[data-theme] body .footer-marquee-svg img[src*="custom/logos/kw-"] {
 @media (max-width: 1023px) {
   html[data-theme] body.clean-portfolio.edge-ready .home .hero::before { background: none; }
 }
-/* Blend the portrait's lower output edge into the following blue surface.
-   The overlay is scoped to this hero; it never masks the shared GL canvas. */
-html[data-theme] body.clean-portfolio.edge-ready .home > .hero::before {
-  background-image: linear-gradient(to bottom, transparent calc(100% - 72px), var(--theme-soft) 100%), linear-gradient(90deg, var(--theme-bg) 0%, rgba(var(--theme-bg-rgb), .98) 26%, rgba(var(--theme-bg-rgb), .76) 43%, transparent 66%);
-}
-@media (max-width: 1023px) {
-  html[data-theme] body.clean-portfolio.edge-ready .home > .hero::before {
-    background-image: linear-gradient(to bottom, transparent calc(100% - 56px), var(--theme-soft) 100%);
-  }
-}
 @media (max-width: 700px) {
   html[data-theme] body.clean-portfolio.edge-ready .home .otot-card-img {
     -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 24px), transparent 100%);
