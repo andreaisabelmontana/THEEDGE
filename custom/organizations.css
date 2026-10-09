@@ -5,31 +5,29 @@
 .experience-page .am-org-logo img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .experience-page .am-org-logo--ie { background: #152c43; }
 .experience-page .am-career-role-body::before { display: none; }
-.experience-page .am-career-period .am-org-logo { width: 120px; height: 120px; padding: 14px; margin-top: 18px; }
+.experience-page :is(.am-career-role, .am-career-study, .am-career-prior) { grid-template-columns: 210px minmax(0, 1fr); column-gap: 44px; align-items: start; }
+.experience-page .am-career-logo-column { min-width: 0; }
+.experience-page .am-career-logo-column .am-org-logo { width: 120px; height: 120px; padding: 14px; margin: 0; }
+.experience-page .am-career-period { display: block; margin: 0 0 12px; }
+.experience-page .am-career-study-body, .experience-page .am-career-prior-body { min-width: 0; }
 .experience-page .am-career-role-body .am-org-row { margin-top: 6px; }
-.experience-page .am-career-study > div:has(.am-org-logo) { position: relative; min-height: 120px; padding-left: 140px; }
-.experience-page :is(.am-career-study, .am-career-prior-body) .am-org-logo { position: absolute; top: 0; left: 0; width: 120px; height: 120px; padding: 14px; }
-.experience-page .am-career-prior-body { position: relative; min-height: 120px; padding-left: 140px; }
-/* Keep Trinity's complete horizontal wordmark readable without cropping it. */
-.experience-page .am-career-prior-body--trinity { padding-left: 220px; }
-.experience-page .am-career-prior-body .am-org-logo--trinity { width: 200px; padding: 9px; }
+.experience-page .am-career-prior-body > strong { display: block; }
+/* One shared logo column keeps every date and heading aligned, including the
+   complete Trinity wordmark, without cropping or shrinking official artwork. */
+.experience-page .am-career-logo-column .am-org-logo--trinity { width: 200px; padding: 9px; }
 .experience-page .am-career-additional { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .experience-page #leadership { position: relative; }
 .experience-page .am-anchor-alias { position: absolute; top: 0; scroll-margin-top: 100px; }
 .experience-page #skills { padding-bottom: 64px; }
+@media (max-width: 900px) {
+  .experience-page :is(.am-career-role, .am-career-study, .am-career-prior) { column-gap: 34px; }
+}
 @media (max-width: 620px) {
   .experience-page .am-org-logo { flex-basis: 52px; width: 52px; height: 52px; padding: 7px; border-radius: 8px; }
-  .experience-page .am-career-study > div:has(.am-org-logo) { min-height: 92px; padding-left: 108px; }
-  .experience-page :is(.am-career-study, .am-career-prior-body) .am-org-logo { width: 92px; height: 92px; padding: 10px; }
-  .experience-page :is(.am-career-study-copy, .am-career-scholarship) { margin-left: -108px; }
-  .experience-page .am-career-prior-body { min-height: 92px; padding-left: 108px; }
-  .experience-page .am-career-prior-body:not(.am-career-prior-body--trinity) > strong { display: block; min-height: 92px; }
-  .experience-page .am-career-prior-body:not(.am-career-prior-body--trinity) > p { margin-left: -108px; }
-  .experience-page .am-career-prior-body--trinity { padding-left: 0; }
-  .experience-page .am-career-prior-body .am-org-logo--trinity { position: relative; width: 184px; padding: 8px; margin-bottom: 14px; }
-  .experience-page .am-career-prior-body--trinity > strong { display: block; }
-  .experience-page .am-career-period { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px 14px; }
-  .experience-page .am-career-period .am-org-logo { grid-column: 1 / -1; width: 92px; height: 92px; padding: 10px; margin-top: 6px; }
+  .experience-page :is(.am-career-role, .am-career-study, .am-career-prior) { grid-template-columns: minmax(0, 1fr); gap: 17px; }
+  .experience-page .am-career-logo-column .am-org-logo { width: 92px; height: 92px; padding: 10px; }
+  .experience-page .am-career-logo-column .am-org-logo--trinity { width: 184px; padding: 8px; }
+  .experience-page .am-career-period .am-career-place { margin: 5px 0 0; text-align: left; }
   .experience-page .am-career-role h3, .experience-page .am-career-study h3 { overflow-wrap: anywhere; }
   .experience-page .am-career-additional { grid-template-columns: 1fr; }
 }

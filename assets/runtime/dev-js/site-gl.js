@@ -4369,6 +4369,7 @@ if (diffuseColor.a < 0.02) discard;
                 Diffuse
               */
               vec4 textureDefaultDiffuse = texture2D(tDefaultDiffuse, vUv);
+              textureDefaultDiffuse.a *= smoothstep(0.0, 0.12, vUv.y);
               // vec4 textureShadowDiffuse = texture2D(tShadowDiffuse, vUv);
 
               // textureDefaultDiffuse.rgb = mix(textureDefaultDiffuse.rgb, textureShadowDiffuse.rgb, cursorEffect);

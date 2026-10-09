@@ -3,6 +3,41 @@
   'use strict';
   if (!document.body.classList.contains('experience-page')) return;
   var copy = {
+  "microsoft-leadership-date": {
+    "en": "Sep 2026 — Present",
+    "es": "Sept 2026 — Actualidad",
+    "de": "Sept. 2026 — heute"
+  },
+  "microsoft-leadership-title": {
+    "en": "Student Ambassador",
+    "es": "Student Ambassador",
+    "de": "Student Ambassador"
+  },
+  "microsoft-leadership-copy": {
+    "en": "Connect IE University’s student developers with Microsoft’s AI and cloud technologies as a Student Ambassador.",
+    "es": "Conecto a los estudiantes desarrolladores de IE University con las tecnologías de IA y nube de Microsoft como Student Ambassador.",
+    "de": "Verbinde als Student Ambassador studentische Entwicklerinnen und Entwickler der IE University mit den KI- und Cloud-Technologien von Microsoft."
+  },
+  "gdg-leadership-date": {
+    "en": "Sep 2025 — Present",
+    "es": "Sept 2025 — Actualidad",
+    "de": "Sept. 2025 — heute"
+  },
+  "gdg-leadership-title": {
+    "en": "Technical Lead",
+    "es": "Líder técnica",
+    "de": "Technische Leitung"
+  },
+  "gdg-leadership-copy": {
+    "en": "Co-organized 3 GDG events and taught AI, Git/GitHub and Gemini CLI workshops to engage student developers.",
+    "es": "Coorganicé 3 eventos de GDG e impartí talleres de IA, Git/GitHub y Gemini CLI para ampliar la participación de estudiantes desarrolladores.",
+    "de": "3 GDG-Veranstaltungen mitorganisiert und Workshops zu KI, Git/GitHub und Gemini CLI geleitet, um mehr Studierende in die Entwicklergemeinschaft einzubinden."
+  },
+  "credential-preview-unavailable": {
+    "en": "Preview unavailable",
+    "es": "Vista previa no disponible",
+    "de": "Keine Vorschau verfügbar"
+  },
   "credentials-heading": {
     "en": "Certificates & training",
     "es": "Certificados y formación",
