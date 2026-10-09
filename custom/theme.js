@@ -17,5 +17,5 @@
     meta.name = 'theme-color';
     document.head.appendChild(meta);
   }
-  meta.content = '#f7f5f9';
+  meta.content = '#ffffff';
 })();

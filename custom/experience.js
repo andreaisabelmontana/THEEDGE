@@ -211,7 +211,7 @@ var AM_LAND_RINGS = (window.__SITE_ROOT || '') + '/custom/land-rings.json';
       rot += 0.03;
       var w = c.width, h = c.height, cx = w / 2, cy = h * 1.22, R = w * 0.37;
       x.clearRect(0, 0, w, h);
-      x.fillStyle = '#211d3a';
+      x.fillStyle = '#051332';
       x.beginPath(); x.arc(cx, cy, R, 0, Math.PI * 2); x.fill();
       if (R2) {
         x.beginPath();
@@ -223,7 +223,7 @@ var AM_LAND_RINGS = (window.__SITE_ROOT || '') + '/custom/land-rings.json';
             else st = false;
           }
         }
-        x.strokeStyle = 'rgba(228,222,255,0.85)'; x.lineWidth = 0.9; x.stroke();
+        x.strokeStyle = 'rgba(213,224,250,0.85)'; x.lineWidth = 0.9; x.stroke();
       }
       requestAnimationFrame(frame);
     })();
@@ -249,7 +249,7 @@ var AM_LAND_RINGS = (window.__SITE_ROOT || '') + '/custom/land-rings.json';
     sun.position.set(-2.5, 2, 2.5);
     scene.add(sun);
     var glow = new THREE.Mesh(new THREE.SphereGeometry(1.63, 64, 64),
-      new THREE.MeshBasicMaterial({ color: 0x9a5cff, transparent: true, opacity: 0.16,
+      new THREE.MeshBasicMaterial({ color: 0x3369e8, transparent: true, opacity: 0.16,
         side: THREE.BackSide, blending: THREE.AdditiveBlending }));
     glow.position.y = -0.85;
     scene.add(glow);

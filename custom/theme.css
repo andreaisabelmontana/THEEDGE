@@ -2,31 +2,35 @@
    styles loaded near </body>. System appearance does not change this palette. */
 :root, html[data-theme="light"] {
   color-scheme: light;
-  --theme-bg: #f7f5f9;
-  --theme-bg-rgb: 247, 245, 249;
+  --theme-bg: #ffffff;
+  --theme-bg-rgb: 255, 255, 255;
   --theme-surface: #ffffff;
-  --theme-soft: #eee8f3;
+  --theme-soft: #D5E0FA;
   --theme-ink: #281f30;
   --theme-muted: #615569;
   --theme-dim: #6c5d77;
-  --theme-accent: #713693;
-  --theme-accent-hover: #51226d;
+  --theme-accent: #3369E8;
+  --theme-accent-ink: #164CC9;
+  --theme-accent-hover: #164CC9;
   --theme-on-accent: #ffffff;
-  --theme-line: #d8cede;
-  --theme-line-strong: #9983a9;
-  --theme-shadow: 0 12px 36px #3121390d;
+  --theme-line: #D5E0FA;
+  --theme-line-strong: #5985EC;
+  --theme-shadow: 0 12px 36px #1039970d;
 }
 html[data-theme], html[data-theme] body {
+  --color--lime: var(--theme-accent);
+  --color--lime-off: var(--theme-accent-ink);
+  --color--lime-zero: #3369e800;
   --clean-bg: var(--theme-bg);
   --clean-surface: var(--theme-surface);
   --clean-ink: var(--theme-ink);
   --clean-muted: var(--theme-muted);
-  --clean-accent: var(--theme-accent);
+  --clean-accent: var(--theme-accent-ink);
   --clean-line: var(--theme-line);
   --career-ink: var(--theme-ink);
   --career-muted: var(--theme-muted);
   --career-dim: var(--theme-dim);
-  --career-accent: var(--theme-accent);
+  --career-accent: var(--theme-accent-ink);
   --career-line: var(--theme-line);
   --project-ink: var(--theme-ink);
   --project-muted: var(--theme-muted);
@@ -37,7 +41,7 @@ html[data-theme], html[data-theme] body {
   --ink-muted: var(--theme-muted);
   --ink-faint: var(--theme-dim);
   --dim: var(--theme-dim);
-  --accent: var(--theme-accent);
+  --accent: var(--theme-accent-ink);
   --edge: var(--theme-accent);
   --edge-soft: var(--theme-soft);
   --edge-line: var(--theme-line-strong);
@@ -72,39 +76,47 @@ html[data-theme] body.clean-portfolio .nav [data-lang-switch] button { color: va
 /* Keep legacy color transitions from briefly showing pale text. */
 html[data-theme] body.clean-portfolio .nav [data-lang-switch] button { transition: none; }
 html[data-theme] body.clean-portfolio .nav [data-lang-switch] button:hover,
-html[data-theme] body.clean-portfolio .nav [data-lang-switch] button:is(.is-on, [aria-pressed="true"]) { color: var(--theme-accent); }
-html[data-theme] body.clean-portfolio .nav .nav-ham { border-color: var(--theme-line-strong) !important; background: #c7a0ee !important; }
+html[data-theme] body.clean-portfolio .nav [data-lang-switch] button:is(.is-on, [aria-pressed="true"]) { color: var(--theme-accent-ink); }
+html[data-theme] body.clean-portfolio .nav .nav-ham { border-color: var(--theme-accent) !important; background: var(--theme-accent) !important; isolation: isolate; }
+/* The Rive control remains animated. Its light fill blends into the blue
+   button while its dark icon keeps its contrast, without the old pink filter. */
+html[data-theme] body .nav-ham canvas { filter: grayscale(1) contrast(3) !important; mix-blend-mode: multiply; }
+/* Keep the original floating-astronaut raster unchanged on disk. Restyle only
+   its three image wrappers; shading, alpha, geometry and animation remain. */
+html[data-theme] body :is(.nav-brand, .callout-rive-w, .base-helmet-rive) {
+  filter: hue-rotate(-47.059288deg) saturate(3.081892) brightness(1.079153);
+}
 html[data-theme] body .nav-menu-w,
 html[data-theme] body .menu-panel { background: var(--theme-bg) !important; color: var(--theme-ink) !important; }
 html[data-theme] body .nav-menu-w :is(a, div, span, h1, h2, h3, p) { color: var(--theme-ink) !important; }
 html[data-theme] body .nav-menu-w a:is(:hover, :focus-visible) :is(div, span),
 html[data-theme] body .nav-menu-w .w--current :is(div, span) { color: var(--theme-accent) !important; }
-/* Give the original current-page stroke its own color; the label stays purple. */
-html[data-theme] body .nav-menu-w .nav-menu-link-w.w--current .nav-menu-link-current-svg { color: #2e807d !important; }
+/* Preserve the original animated stroke as the sole red interface accent. */
+html[data-theme] body .nav-menu-w .nav-menu-link-w.w--current .nav-menu-link-current-svg { color: #EA4335 !important; }
 html[data-theme] body .nav-menu-bg { background-image: none !important; }
 /* Keep the original animated current-page squiggle. Only the rectangular
    reveal bars are hidden so they cannot cover the smaller menu labels. */
 html[data-theme] body .nav-menu-w .high-line-reveal { display: none !important; }
 html[data-theme] body .nav-menu-w [data-nav-link-highlight] .line { clip-path: none !important; }
 html[data-theme] body .menu-inner a { color: var(--theme-muted); }
-html[data-theme] body .menu-inner a:hover { color: var(--theme-accent); }
+html[data-theme] body .menu-inner a:hover { color: var(--theme-accent-ink); }
 
-/* The portrait, project media and astronaut artwork retain their original
-   pixels. Only their surrounding surfaces and readable copy change. */
+/* Portrait and project media retain their original pixels. The floating
+   astronaut asset is unchanged; its displayed palette is styled above. */
 html[data-theme] body.clean-portfolio.edge-ready .home .hero::before {
   background: linear-gradient(90deg, var(--theme-bg) 0%, rgba(var(--theme-bg-rgb), .98) 26%, rgba(var(--theme-bg-rgb), .76) 43%, transparent 66%);
 }
 html[data-theme] body.clean-portfolio.edge-ready .hero-copy :is(.eyebrow, .hero-stack),
 html[data-theme] body.clean-portfolio .hero-stack { color: var(--theme-dim); }
 html[data-theme] body.clean-portfolio.edge-ready .hero-copy .lead { color: var(--theme-muted); }
-html[data-theme] body.clean-portfolio.edge-ready .hero-copy .status { color: var(--theme-accent); background: var(--theme-soft); border-color: var(--theme-line-strong); }
-html[data-theme] body.clean-portfolio.edge-ready .hero-copy .arrow-link { color: var(--theme-accent); }
+html[data-theme] body.clean-portfolio.edge-ready .hero-copy .status { color: var(--theme-accent-ink); background: var(--theme-soft); border-color: var(--theme-line-strong); }
+html[data-theme] body.clean-portfolio.edge-ready .hero-copy .arrow-link { color: var(--theme-accent-ink); }
 html[data-theme] body.clean-portfolio.edge-ready .hero-copy .arrow-link:hover { color: var(--theme-accent-hover); }
 html[data-theme] body.clean-portfolio .home > .rule { border-color: var(--theme-line); }
 html[data-theme] body.clean-portfolio.edge-ready .panels-wrap[data-surface] {
   --clean-bg: var(--theme-soft);
   --clean-ink: var(--theme-ink);
-  --clean-accent: var(--theme-accent);
+  --clean-accent: var(--theme-accent-ink);
   background: var(--theme-soft);
   color: var(--theme-ink);
 }
@@ -112,22 +124,31 @@ html[data-theme] body.clean-portfolio.edge-ready .panels-wrap .otot-card { borde
 html[data-theme] body.clean-portfolio.edge-ready .panels-wrap .otot-card:hover { border-color: var(--theme-accent); }
 html[data-theme] body.clean-portfolio.edge-ready .panels-wrap .otot-card .text-impact-reg-brier { color: var(--theme-ink); }
 html[data-theme] body.clean-portfolio.edge-ready .panels-wrap .otot-card .text-body-reg-mona { color: var(--theme-muted); }
+html[data-theme] body.clean-portfolio .otot-card .text-impact-reg-brier::after { background: var(--theme-accent); }
+html[data-theme] body .otot-btn { background: var(--theme-accent); color: var(--theme-on-accent); }
+html[data-theme] body .status-dot { background: var(--theme-accent); animation-name: am-theme-pulse; }
+@keyframes am-theme-pulse {
+  0% { box-shadow: 0 0 0 0 #3369e899; }
+  70% { box-shadow: 0 0 0 .55rem #3369e800; }
+  100% { box-shadow: 0 0 0 0 #3369e800; }
+}
 
 /* Experience, education, credentials and journey. */
 html[data-theme] .experience-page .am-career-hero { background: radial-gradient(ellipse at 88% 6%, var(--theme-soft), transparent 48%); }
 html[data-theme] .experience-page :is(.am-career-lead, .am-career-org, .am-career-prior strong, .am-career-skills dt) { color: var(--theme-ink); }
 html[data-theme] .experience-page :is(.am-career-eligibility, .am-career-stack, .am-career-additional .am-career-org) { color: var(--theme-dim); }
 html[data-theme] .experience-page .am-career-summary > .am-career-eligibility { color: var(--theme-dim); }
-html[data-theme] .experience-page :is(.am-career-index, .am-career-scholarship, .am-section-nav a > span:first-child) { color: var(--theme-accent); }
-html[data-theme] .experience-page :is(.am-career-actions a, .am-career-evidence a) { color: var(--theme-accent); border-color: var(--theme-line-strong); }
+html[data-theme] .experience-page :is(.am-career-index, .am-career-scholarship, .am-section-nav a > span:first-child) { color: var(--theme-accent-ink); }
+html[data-theme] .experience-page :is(.am-career-actions a, .am-career-evidence a) { color: var(--theme-accent-ink); border-color: var(--theme-line-strong); }
 html[data-theme] .experience-page :is(.am-career-actions a:hover, .am-career-evidence a:hover, .am-section-nav a:hover) { color: var(--theme-accent-hover); border-color: var(--theme-accent); }
-html[data-theme] .experience-page .am-career-status { background: var(--theme-soft); color: var(--theme-accent); border-color: var(--theme-line-strong); }
+html[data-theme] .experience-page .am-career-status { background: var(--theme-soft); color: var(--theme-accent-ink); border-color: var(--theme-line-strong); }
 html[data-theme] .experience-page :is(.am-career-prior, .am-career-skills > div, #journey.am-career-section) { border-color: var(--theme-line); }
 html[data-theme] .experience-page .am-career-role-body::before { background: var(--theme-dim); }
 html[data-theme] .experience-page .am-career-role-current .am-career-role-body::before { background: var(--theme-accent); box-shadow: 0 0 0 5px var(--theme-soft); }
-html[data-theme] .experience-page .am-career-bullets li::before { color: var(--theme-accent); }
+html[data-theme] .experience-page .am-career-bullets li::before { color: var(--theme-accent-ink); }
 html[data-theme] .experience-page .am-career-orbit,
 html[data-theme] .experience-page .am-career-orbit::before { border-color: var(--theme-line-strong); }
+html[data-theme] .experience-page .am-career-orbit::after { box-shadow: 0 0 16px #3369e880; }
 html[data-theme] .experience-page #journey { background: var(--theme-bg); }
 html[data-theme] .experience-page #journey :is(.am-exp-title, .am-exp-line1),
 html[data-theme] .experience-page #journey .am-exp-timeline li.is-active .am-exp-line1 { color: var(--theme-ink); }
@@ -137,7 +158,7 @@ html[data-theme] .experience-page #journey :is(.am-globe-caption, .am-globe-capt
 html[data-theme] .experience-page #journey .am-exp-timeline li.is-active .am-exp-line3 { color: var(--theme-dim); }
 html[data-theme] .experience-page #journey .am-journey-button::after,
 html[data-theme] .experience-page #journey .am-journey-button:is(:hover, :focus-visible) .am-exp-line1,
-html[data-theme] .experience-page #journey .am-exp-timeline li.is-active .am-exp-line1 { color: var(--theme-accent); }
+html[data-theme] .experience-page #journey .am-exp-timeline li.is-active .am-exp-line1 { color: var(--theme-accent-ink); }
 html[data-theme] .experience-page #journey .am-exp-timeline,
 html[data-theme] .experience-page #journey .am-exp-timeline li { border-color: var(--theme-line) !important; }
 html[data-theme] body.contact-page .am-contact-label { color: var(--theme-dim); }
@@ -146,14 +167,14 @@ html[data-theme] body.contact-page .am-contact-label { color: var(--theme-dim); 
 html[data-theme] body.contact-page .taxi-w.is-contact .text-on-t-hero-heading,
 html[data-theme] body.contact-page .taxi-w.is-contact .text-on-t-hero-heading * { color: var(--theme-ink) !important; }
 html[data-theme] body.contact-page .off-t-hero-stats-layout .text-eyebrow,
-html[data-theme] body.contact-page .off-t-hero-stats-layout .text-eyebrow * { color: var(--theme-accent) !important; }
+html[data-theme] body.contact-page .off-t-hero-stats-layout .text-eyebrow * { color: var(--theme-accent-ink) !important; }
 
 /* Project index. */
 html[data-theme] .projects-page .taxi-w.on-track,
 html[data-theme] .projects-page .s-group.bg-black,
 html[data-theme] .projects-page .s.home-helmets[data-surface="light"] { background: var(--theme-bg) !important; color: var(--theme-ink); }
 html[data-theme] :is(.project-browser, .project-subjects) { border-color: var(--theme-line); }
-html[data-theme] :is(.project-kicker, .project-count, .project-card-cta) { color: var(--theme-accent); }
+html[data-theme] :is(.project-kicker, .project-count, .project-card-cta) { color: var(--theme-accent-ink); }
 html[data-theme] :is(.project-index-meta, .project-card-description, .project-subjects button, .project-empty) { color: var(--theme-muted); }
 html[data-theme] .project-card-meta { color: var(--theme-dim); }
 html[data-theme] .project-card { color: var(--theme-ink); }
@@ -164,7 +185,7 @@ html[data-theme] .projects-page .project-subjects button { transition: none; }
 html[data-theme] .project-card-visual { background: var(--theme-soft); border-color: var(--theme-line); }
 
 /* Case studies: continuous theme through narrative, navigation and controls. */
-html[data-theme] .case-page :is(.case-back, .case-eyebrow, .case-section-label, .case-pager-label) { color: var(--theme-accent) !important; }
+html[data-theme] .case-page :is(.case-back, .case-eyebrow, .case-section-label, .case-pager-label) { color: var(--theme-accent-ink) !important; }
 html[data-theme] .case-page :is(.case-intro, .case-section p, .case-media-note, .case-pager .case-all) { color: var(--theme-muted); }
 html[data-theme] .case-page :is(.case-meta dt, .case-year, .case-stack-label, .case-showcase-heading > span, .case-source-line, .case-section-number) { color: var(--theme-dim); }
 html[data-theme] .case-page :is(.case-meta dd, .case-section h2, .case-section.is-outcome p) { color: var(--theme-ink); }
@@ -176,12 +197,18 @@ html[data-theme] .case-page .case-chips li { color: var(--theme-ink); border-col
 html[data-theme] .case-page .case-button:hover { border-color: var(--theme-accent); }
 html[data-theme] .case-page .case-button.is-primary { background: var(--theme-accent); color: var(--theme-on-accent) !important; border-color: var(--theme-accent); }
 html[data-theme] .case-page .case-button.is-primary:hover { background: var(--theme-accent-hover); }
+html[data-theme] body.case-page .case-media .case-play { background: var(--theme-accent); border-color: var(--theme-accent); color: var(--theme-on-accent); }
+html[data-theme] body.case-page .case-media .case-play:hover { background: var(--theme-accent-hover); border-color: var(--theme-accent-hover); }
+html[data-theme] body .project-preview-toggle,
+html[data-theme] body.robo-page .robo-preview .project-preview-toggle { background: var(--theme-accent); border-color: var(--theme-accent); color: var(--theme-on-accent); }
+html[data-theme] body .project-preview-toggle:hover,
+html[data-theme] body.robo-page .robo-preview .project-preview-toggle:hover { background: var(--theme-accent-hover); border-color: var(--theme-accent-hover); }
 html[data-theme] .case-page .case-narrative { background: var(--theme-soft); color: var(--theme-ink); }
 html[data-theme] .case-page .case-narrative .case-section p { color: var(--theme-muted); }
 html[data-theme] .case-page .case-narrative .case-section.is-outcome p { color: var(--theme-ink); }
-html[data-theme] .case-page .case-pager > a:hover .case-pager-title { color: var(--theme-accent); }
+html[data-theme] .case-page .case-pager > a:hover .case-pager-title { color: var(--theme-accent-ink); }
 html[data-theme] .case-page .case-footer { color: var(--theme-dim); }
-html[data-theme] body.case-page .case-mobile-menu summary { color: var(--theme-accent); background: var(--theme-surface); border-color: var(--theme-line-strong); }
+html[data-theme] body.case-page .case-mobile-menu summary { color: var(--theme-accent-ink); background: var(--theme-surface); border-color: var(--theme-line-strong); }
 html[data-theme] .case-page .case-mobile-menu nav { color: var(--theme-ink); background: var(--theme-surface); border-color: var(--theme-line-strong); box-shadow: var(--theme-shadow); }
 html[data-theme] .case-page .case-mobile-menu nav a:hover { background: var(--theme-soft); }
 html[data-theme] .case-page .skip-link { color: var(--theme-on-accent); background: var(--theme-accent); }
@@ -189,9 +216,9 @@ html[data-theme] .case-page .skip-link { color: var(--theme-on-accent); backgrou
 /* Standalone coursework has its own typography and no shared navbar. */
 html[data-theme] a.course:is(:hover, :focus-visible) { background: var(--theme-soft); }
 html[data-theme] .wrap :is(.intro, .desc, .back) { color: var(--theme-muted); }
-html[data-theme] .wrap :is(.eyebrow, .term), html[data-theme] .wrap .back:hover { color: var(--theme-accent); }
+html[data-theme] .wrap :is(.eyebrow, .term), html[data-theme] .wrap .back:hover { color: var(--theme-accent-ink); }
 html[data-theme] .wrap .course .name { color: var(--theme-ink); transition: none; }
-html[data-theme] .wrap .course:is(:hover, :focus-visible) .name { color: var(--theme-accent); }
+html[data-theme] .wrap .course:is(:hover, :focus-visible) .name { color: var(--theme-accent-ink); }
 html[data-theme] .case-page .case-button,
 html[data-theme] .nav-menu-w .text-nav-link,
 html[data-theme] .experience-page #journey .am-exp-line1 { transition: none; }
@@ -210,13 +237,22 @@ html[data-theme] body .footer-layout-clip {
   color: var(--theme-ink);
 }
 html[data-theme] body .footer-layout-clip :is(.btn-text, .text-impact-sm-mona, .footer-links-col) { color: var(--theme-ink); }
-html[data-theme] body .footer-layout-clip .text-impact-sm-brier { color: var(--theme-accent); }
+html[data-theme] body .footer-layout-clip .text-impact-sm-brier { color: var(--theme-accent-ink); }
 html[data-theme] body .footer-layout-clip .btn-w { color: var(--theme-on-accent); background: var(--theme-accent); border-color: var(--theme-accent); }
 html[data-theme] body .footer-layout-clip .btn-w .btn-text { color: var(--theme-on-accent); }
 html[data-theme] body .footer-layout-clip .text-link-w:hover .btn-text { color: var(--theme-accent-hover); }
 html[data-theme] body .footer-layout-clip .btn-w:hover { background: var(--theme-accent-hover); border-color: var(--theme-accent-hover); }
-html[data-theme] body .footer-legal-links-w { color: var(--theme-muted); }
+html[data-theme] body .footer-legal-links-w,
+html[data-theme] body .footer-legal-links-w :is(a, div, span, p) { color: var(--theme-on-accent) !important; }
+html[data-theme] body .footer-legal-links-w :focus-visible { outline-color: var(--theme-on-accent) !important; }
 html[data-theme] body .footer-layout-clip :focus-visible { outline-color: var(--theme-accent) !important; }
+html[data-theme] body .footer-bg-gradient { background: radial-gradient(circle farthest-corner at 50% -190%, #3369e800 68%, var(--theme-accent) 83%); }
+/* These footer SVGs are monochrome keyword text, not institutional logos.
+   Recolor only that decoration; photographs and organization artwork retain
+   their original pixels. The filter maps black to approximately #3369E8. */
+html[data-theme] body .footer-marquee-svg img[src*="custom/logos/kw-"] {
+  filter: brightness(0) saturate(100%) invert(30.5717%) sepia(100%) saturate(958.3564%) hue-rotate(200.2832deg);
+}
 
 @media (max-width: 1023px) {
   html[data-theme] body.clean-portfolio.edge-ready .home .hero::before { background: none; }
@@ -236,7 +272,7 @@ html[data-theme] body .footer-layout-clip :focus-visible { outline-color: var(--
     --theme-ink: #201825;
     --theme-muted: #403547;
     --theme-dim: #56455f;
-    --theme-accent: #54256f;
+    --theme-accent: #3369E8;
     --theme-line: #cccccc;
   }
 }
