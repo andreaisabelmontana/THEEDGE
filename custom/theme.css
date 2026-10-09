@@ -254,6 +254,25 @@ html[data-theme] body .footer-marquee-svg img[src*="custom/logos/kw-"] {
   filter: brightness(0) saturate(100%) invert(30.5717%) sepia(100%) saturate(958.3564%) hue-rotate(200.2832deg);
 }
 
+/* The desktop portrait ends at the measured canvas edge. Fixed hero padding
+   and a 530px floor used to extend the section beyond it on short screens.
+   Keep the usual top breathing room when it fits, then let that space shrink
+   before the copy. Intrinsic minimum sizing keeps text safe at high zoom. */
+@media (min-width: 1024px) {
+  html[data-theme] body.clean-portfolio.edge-ready .home .hero {
+    height: calc(var(--head-bottom, 86vh) - 76px);
+    min-height: min-content;
+    padding-block: 0;
+    flex-direction: column;
+  }
+  html[data-theme] body.clean-portfolio.edge-ready .home .hero::after {
+    content: "";
+    order: -1;
+    flex: 1 1 0;
+    max-height: clamp(58px, 8vh, 96px);
+  }
+  html[data-theme] body.clean-portfolio.edge-ready .home .hero > .hero-inner { flex: none; }
+}
 @media (max-width: 1023px) {
   html[data-theme] body.clean-portfolio.edge-ready .home .hero::before { background: none; }
 }
