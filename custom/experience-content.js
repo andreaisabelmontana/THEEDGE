@@ -254,9 +254,29 @@
     "de": "Kurse: Algorithmen und Datenstrukturen, Machine Learning, Computer Vision, natürliche Sprachverarbeitung, Reinforcement Learning, Robotik und Cloud Computing."
   },
   "prior": {
-    "en": "Prior study in Computer Science; completed one academic year before transferring to IE University.",
-    "es": "Estudios previos en Computer Science; completé un año académico antes de trasladarme a IE University.",
-    "de": "Vorheriges Informatikstudium; ein Studienjahr abgeschlossen, anschließend Wechsel zur IE University."
+    "en": "Computer Science studies; later transferred to IE University.",
+    "es": "Estudios de Computer Science; posteriormente me trasladé a IE University.",
+    "de": "Informatikstudium; späterer Wechsel zur IE University."
+  },
+  "prior-label": {
+    "en": "Prior study",
+    "es": "Estudios previos",
+    "de": "Früheres Studium"
+  },
+  "prior-coursework": {
+    "en": "Relevant coursework: programming, mathematics, digital logic, electronics and information technology, and computers and society.",
+    "es": "Asignaturas relevantes: programación, matemáticas, lógica digital, electrónica y tecnología de la información, e informática y sociedad.",
+    "de": "Relevante Lehrveranstaltungen: Programmierung, Mathematik, digitale Logik, Elektronik und Informationstechnologie sowie Computer und Gesellschaft."
+  },
+  "prior-handbook": {
+    "en": "Programme handbook",
+    "es": "Manual del programa",
+    "de": "Studienhandbuch"
+  },
+  "cng-date": {
+    "en": "Graduated June 2022",
+    "es": "Graduación: junio de 2022",
+    "de": "Abschluss: Juni 2022"
   },
   "skills-heading": {
     "en": "Skills",

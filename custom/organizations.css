@@ -18,6 +18,6 @@
   .experience-page .am-org-logo { flex-basis: 52px; width: 52px; height: 52px; padding: 7px; border-radius: 8px; }
   .experience-page .am-career-role-body, .experience-page .am-career-study > div:has(.am-org-logo) { padding-left: 68px; }
   .experience-page .am-career-role h3, .experience-page .am-career-study h3 { overflow-wrap: anywhere; }
-  .experience-page .am-career-bullets, .experience-page .am-career-evidence, .experience-page .am-career-stack { margin-left: -68px; }
+  .experience-page .am-career-bullets, .experience-page .am-career-role-body .am-career-evidence, .experience-page .am-career-stack { margin-left: -68px; }
   .experience-page .am-career-additional { grid-template-columns: 1fr; }
 }
