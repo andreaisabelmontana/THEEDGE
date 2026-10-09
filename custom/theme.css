@@ -1,0 +1,283 @@
+/* Shared theme layer. Keep last in <head>; specificity also wins over legacy
+   styles loaded near </body>. No media-query default: first visits are light. */
+:root, html[data-theme="light"] {
+  color-scheme: light;
+  --theme-bg: #f7f5f9;
+  --theme-bg-rgb: 247, 245, 249;
+  --theme-surface: #ffffff;
+  --theme-soft: #eee8f3;
+  --theme-ink: #281f30;
+  --theme-muted: #615569;
+  --theme-dim: #6c5d77;
+  --theme-accent: #713693;
+  --theme-accent-hover: #51226d;
+  --theme-on-accent: #ffffff;
+  --theme-line: #d8cede;
+  --theme-line-strong: #9983a9;
+  --theme-shadow: 0 12px 36px #3121390d;
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --theme-bg: #100e14;
+  --theme-bg-rgb: 16, 14, 20;
+  --theme-surface: #19141f;
+  --theme-soft: #281e32;
+  --theme-ink: #f4f0f6;
+  --theme-muted: #bbb1c5;
+  --theme-dim: #ac9ebb;
+  --theme-accent: #d1acf2;
+  --theme-accent-hover: #ebd6ff;
+  --theme-on-accent: #241331;
+  --theme-line: #3c3047;
+  --theme-line-strong: #8e74a0;
+  --theme-shadow: 0 12px 36px #0003;
+}
+html[data-theme], html[data-theme] body {
+  --clean-bg: var(--theme-bg);
+  --clean-surface: var(--theme-surface);
+  --clean-ink: var(--theme-ink);
+  --clean-muted: var(--theme-muted);
+  --clean-accent: var(--theme-accent);
+  --clean-line: var(--theme-line);
+  --career-ink: var(--theme-ink);
+  --career-muted: var(--theme-muted);
+  --career-dim: var(--theme-dim);
+  --career-accent: var(--theme-accent);
+  --career-line: var(--theme-line);
+  --project-ink: var(--theme-ink);
+  --project-muted: var(--theme-muted);
+  --void: var(--theme-bg);
+  --void-raised: var(--theme-surface);
+  --bg: var(--theme-bg);
+  --ink: var(--theme-ink);
+  --ink-muted: var(--theme-muted);
+  --ink-faint: var(--theme-dim);
+  --dim: var(--theme-dim);
+  --accent: var(--theme-accent);
+  --edge: var(--theme-accent);
+  --edge-soft: var(--theme-soft);
+  --edge-line: var(--theme-line-strong);
+  --line: var(--theme-line);
+  --line-strong: var(--theme-line-strong);
+  background: var(--theme-bg) !important;
+  color: var(--theme-ink);
+}
+html[data-theme] ::selection { background: var(--theme-accent); color: var(--theme-on-accent); }
+html[data-theme] body :focus-visible { outline: 2px solid var(--theme-accent) !important; outline-offset: 5px; }
+html[data-theme] body .stars-overlay { background: none !important; }
+/* The existing homepage WebGL layer is at z-index -1. Paint its backdrop on
+   html so a second, opaque body background does not cover the portrait. */
+html[data-theme] body.edge-ready { background: transparent !important; }
+/* Keep template boot canvases mounted without covering readable content. */
+html[data-theme] body .transition-w { visibility: hidden !important; opacity: 0 !important; pointer-events: none !important; }
+
+/* Shared navigation. Scroll-linked surface attributes no longer recolor the
+   navbar against an explicit visitor choice. */
+html[data-theme] body.clean-portfolio .nav {
+  background: var(--theme-bg) !important;
+  border-color: var(--theme-line);
+  color: var(--theme-ink);
+  transition: none;
+}
+html[data-theme] body.clean-portfolio .nav [data-lang-switch] {
+  order: 1;
+  color: var(--theme-dim);
+  margin-left: auto !important;
+  margin-right: 0 !important;
+}
+html[data-theme] body.clean-portfolio .nav [data-lang-switch] button { color: var(--theme-muted); }
+/* A theme change must not animate pale text across a newly light surface. */
+html[data-theme] body.clean-portfolio .nav [data-lang-switch] button { transition: none; }
+html[data-theme] body.clean-portfolio .nav [data-lang-switch] button:hover,
+html[data-theme] body.clean-portfolio .nav [data-lang-switch] button:is(.is-on, [aria-pressed="true"]) { color: var(--theme-accent); }
+html[data-theme] body.clean-portfolio .nav .nav-ham { border-color: var(--theme-line-strong) !important; background: #c7a0ee !important; }
+html[data-theme] body .am-theme-toggle {
+  order: 2;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  gap: 8px;
+  min-width: 44px;
+  min-height: 44px;
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--theme-line-strong);
+  border-radius: 10px;
+  background: var(--theme-surface);
+  color: var(--theme-ink);
+  font: 500 12px/1.4 "Mona Sans Variable", "Mona Sans", Arial, sans-serif;
+  cursor: pointer;
+  pointer-events: auto !important;
+  touch-action: manipulation;
+}
+html[data-theme] body .am-theme-toggle:hover { background: var(--theme-soft); border-color: var(--theme-accent); }
+.am-theme-toggle svg { width: 18px; height: 18px; flex: none; }
+html[data-theme="light"] .am-theme-moon, html[data-theme="dark"] .am-theme-sun { display: none; }
+.am-theme-tools { position: fixed; top: 14px; right: 20px; z-index: 60; }
+html[data-theme] body .nav-menu-w,
+html[data-theme] body .menu-panel { background: var(--theme-bg) !important; color: var(--theme-ink) !important; }
+html[data-theme] body .nav-menu-w :is(a, div, span, h1, h2, h3, p) { color: var(--theme-ink) !important; }
+html[data-theme] body .nav-menu-w a:is(:hover, :focus-visible) :is(div, span),
+html[data-theme] body .nav-menu-w .w--current :is(div, span) { color: var(--theme-accent) !important; }
+html[data-theme] body .nav-menu-bg { background-image: none !important; }
+/* The template's decorative current-page strike and reveal bars cover labels
+   when its menu timeline has not finished. Keep the links readable throughout. */
+html[data-theme] body .nav-menu-w :is(.high-line-reveal, .nav-menu-link-current-svg) { display: none !important; }
+html[data-theme] body .nav-menu-w [data-nav-link-highlight] .line { clip-path: none !important; }
+html[data-theme] body .menu-inner a { color: var(--theme-muted); }
+html[data-theme] body .menu-inner a:hover { color: var(--theme-accent); }
+
+/* The portrait, project media and astronaut artwork retain their original
+   pixels. Only their surrounding surfaces and readable copy change. */
+html[data-theme] body.clean-portfolio.edge-ready .home .hero::before {
+  background: linear-gradient(90deg, var(--theme-bg) 0%, rgba(var(--theme-bg-rgb), .98) 26%, rgba(var(--theme-bg-rgb), .76) 43%, transparent 66%);
+}
+html[data-theme] body.clean-portfolio.edge-ready .hero-copy :is(.eyebrow, .hero-stack),
+html[data-theme] body.clean-portfolio .hero-stack { color: var(--theme-dim); }
+html[data-theme] body.clean-portfolio.edge-ready .hero-copy .lead { color: var(--theme-muted); }
+html[data-theme] body.clean-portfolio.edge-ready .hero-copy .status { color: var(--theme-accent); background: var(--theme-soft); border-color: var(--theme-line-strong); }
+html[data-theme] body.clean-portfolio.edge-ready .hero-copy .arrow-link { color: var(--theme-accent); }
+html[data-theme] body.clean-portfolio.edge-ready .hero-copy .arrow-link:hover { color: var(--theme-accent-hover); }
+html[data-theme] body.clean-portfolio .home > .rule { border-color: var(--theme-line); }
+html[data-theme] body.clean-portfolio.edge-ready .panels-wrap[data-surface] {
+  --clean-bg: var(--theme-soft);
+  --clean-ink: var(--theme-ink);
+  --clean-accent: var(--theme-accent);
+  background: var(--theme-soft);
+  color: var(--theme-ink);
+}
+html[data-theme] body.clean-portfolio.edge-ready .panels-wrap .otot-card { border-color: var(--theme-line); }
+html[data-theme] body.clean-portfolio.edge-ready .panels-wrap .otot-card:hover { border-color: var(--theme-accent); }
+html[data-theme] body.clean-portfolio.edge-ready .panels-wrap .otot-card .text-impact-reg-brier { color: var(--theme-ink); }
+html[data-theme] body.clean-portfolio.edge-ready .panels-wrap .otot-card .text-body-reg-mona { color: var(--theme-muted); }
+
+/* Experience, education, credentials and journey. */
+html[data-theme] .experience-page .am-career-hero { background: radial-gradient(ellipse at 88% 6%, var(--theme-soft), transparent 48%); }
+html[data-theme] .experience-page :is(.am-career-lead, .am-career-org, .am-career-prior strong, .am-career-skills dt) { color: var(--theme-ink); }
+html[data-theme] .experience-page :is(.am-career-eligibility, .am-career-stack, .am-career-additional .am-career-org) { color: var(--theme-dim); }
+html[data-theme] .experience-page .am-career-summary > .am-career-eligibility { color: var(--theme-dim); }
+html[data-theme] .experience-page :is(.am-career-index, .am-career-scholarship, .am-section-nav a > span:first-child) { color: var(--theme-accent); }
+html[data-theme] .experience-page :is(.am-career-actions a, .am-career-evidence a) { color: var(--theme-accent); border-color: var(--theme-line-strong); }
+html[data-theme] .experience-page :is(.am-career-actions a:hover, .am-career-evidence a:hover, .am-section-nav a:hover) { color: var(--theme-accent-hover); border-color: var(--theme-accent); }
+html[data-theme] .experience-page .am-career-status { background: var(--theme-soft); color: var(--theme-accent); border-color: var(--theme-line-strong); }
+html[data-theme] .experience-page :is(.am-career-prior, .am-career-skills > div, #journey.am-career-section) { border-color: var(--theme-line); }
+html[data-theme] .experience-page .am-career-role-body::before { background: var(--theme-dim); }
+html[data-theme] .experience-page .am-career-role-current .am-career-role-body::before { background: var(--theme-accent); box-shadow: 0 0 0 5px var(--theme-soft); }
+html[data-theme] .experience-page .am-career-bullets li::before { color: var(--theme-accent); }
+html[data-theme] .experience-page .am-career-orbit,
+html[data-theme] .experience-page .am-career-orbit::before { border-color: var(--theme-line-strong); }
+html[data-theme] .experience-page #journey { background: var(--theme-bg); }
+html[data-theme] .experience-page #journey :is(.am-exp-title, .am-exp-line1),
+html[data-theme] .experience-page #journey .am-exp-timeline li.is-active .am-exp-line1 { color: var(--theme-ink); }
+html[data-theme] .experience-page #journey :is(.am-exp-sub, .am-exp-line2),
+html[data-theme] .experience-page #journey .am-exp-timeline li.is-active .am-exp-line2 { color: var(--theme-muted); }
+html[data-theme] .experience-page #journey :is(.am-globe-caption, .am-globe-caption a, .am-journey-country, .am-exp-line3),
+html[data-theme] .experience-page #journey .am-exp-timeline li.is-active .am-exp-line3 { color: var(--theme-dim); }
+html[data-theme] .experience-page #journey .am-journey-button::after,
+html[data-theme] .experience-page #journey .am-journey-button:is(:hover, :focus-visible) .am-exp-line1,
+html[data-theme] .experience-page #journey .am-exp-timeline li.is-active .am-exp-line1 { color: var(--theme-accent); }
+html[data-theme] .experience-page #journey .am-exp-timeline,
+html[data-theme] .experience-page #journey .am-exp-timeline li { border-color: var(--theme-line) !important; }
+html[data-theme] body.contact-page .am-contact-label { color: var(--theme-dim); }
+/* These two template declarations carry !important in custom.css. Include
+   split-text descendants so the heading stays readable after animation boot. */
+html[data-theme] body.contact-page .taxi-w.is-contact .text-on-t-hero-heading,
+html[data-theme] body.contact-page .taxi-w.is-contact .text-on-t-hero-heading * { color: var(--theme-ink) !important; }
+html[data-theme] body.contact-page .off-t-hero-stats-layout .text-eyebrow,
+html[data-theme] body.contact-page .off-t-hero-stats-layout .text-eyebrow * { color: var(--theme-accent) !important; }
+
+/* Project index. */
+html[data-theme] .projects-page .taxi-w.on-track,
+html[data-theme] .projects-page .s-group.bg-black,
+html[data-theme] .projects-page .s.home-helmets[data-surface="light"] { background: var(--theme-bg) !important; color: var(--theme-ink); }
+html[data-theme] :is(.project-browser, .project-subjects) { border-color: var(--theme-line); }
+html[data-theme] :is(.project-kicker, .project-count, .project-card-cta) { color: var(--theme-accent); }
+html[data-theme] :is(.project-index-meta, .project-card-description, .project-subjects button, .project-empty) { color: var(--theme-muted); }
+html[data-theme] .project-card-meta { color: var(--theme-dim); }
+html[data-theme] .project-card { color: var(--theme-ink); }
+html[data-theme] .project-subjects button:is(:hover, [aria-pressed="true"]),
+html[data-theme] .project-card:hover .project-card-cta { color: var(--theme-accent-hover); }
+html[data-theme] .project-subjects button[aria-pressed="true"]::after { background: var(--theme-accent); }
+html[data-theme] .projects-page .project-subjects button { transition: none; }
+html[data-theme] .project-card-visual { background: var(--theme-soft); border-color: var(--theme-line); }
+
+/* Case studies: continuous theme through narrative, navigation and controls. */
+html[data-theme] .case-page :is(.case-back, .case-eyebrow, .case-section-label, .case-pager-label) { color: var(--theme-accent) !important; }
+html[data-theme] .case-page :is(.case-intro, .case-section p, .case-media-note, .case-pager .case-all) { color: var(--theme-muted); }
+html[data-theme] .case-page :is(.case-meta dt, .case-year, .case-stack-label, .case-showcase-heading > span, .case-source-line, .case-section-number) { color: var(--theme-dim); }
+html[data-theme] .case-page :is(.case-meta dd, .case-section h2, .case-section.is-outcome p) { color: var(--theme-ink); }
+html[data-theme] .case-page :is(.case-story, .case-section, .case-stack, .case-pager, .case-footer, .case-media) { border-color: var(--theme-line); }
+html[data-theme] .case-page .case-media { background-color: var(--theme-soft); }
+html[data-theme] .case-page .case-media:is(.is-art, .is-report) { background-color: #f7f6f8; }
+html[data-theme] .case-page .case-button,
+html[data-theme] .case-page .case-chips li { color: var(--theme-ink); border-color: var(--theme-line-strong); background: var(--theme-soft); }
+html[data-theme] .case-page .case-button:hover { border-color: var(--theme-accent); }
+html[data-theme] .case-page .case-button.is-primary { background: var(--theme-accent); color: var(--theme-on-accent) !important; border-color: var(--theme-accent); }
+html[data-theme] .case-page .case-button.is-primary:hover { background: var(--theme-accent-hover); }
+html[data-theme] .case-page .case-narrative { background: var(--theme-soft); color: var(--theme-ink); }
+html[data-theme] .case-page .case-narrative .case-section p { color: var(--theme-muted); }
+html[data-theme] .case-page .case-narrative .case-section.is-outcome p { color: var(--theme-ink); }
+html[data-theme] .case-page .case-pager > a:hover .case-pager-title { color: var(--theme-accent); }
+html[data-theme] .case-page .case-footer { color: var(--theme-dim); }
+html[data-theme] body.case-page .case-mobile-menu summary { color: var(--theme-accent); background: var(--theme-surface); border-color: var(--theme-line-strong); }
+html[data-theme] .case-page .case-mobile-menu nav { color: var(--theme-ink); background: var(--theme-surface); border-color: var(--theme-line-strong); box-shadow: var(--theme-shadow); }
+html[data-theme] .case-page .case-mobile-menu nav a:hover { background: var(--theme-soft); }
+html[data-theme] .case-page .skip-link { color: var(--theme-on-accent); background: var(--theme-accent); }
+
+/* Standalone coursework has its own typography and no shared navbar. */
+html[data-theme] a.course:is(:hover, :focus-visible) { background: var(--theme-soft); }
+html[data-theme] .wrap :is(.intro, .desc, .back) { color: var(--theme-muted); }
+html[data-theme] .wrap :is(.eyebrow, .term), html[data-theme] .wrap .back:hover { color: var(--theme-accent); }
+html[data-theme] .wrap .course .name { color: var(--theme-ink); transition: none; }
+html[data-theme] .wrap .course:is(:hover, :focus-visible) .name { color: var(--theme-accent); }
+html[data-theme] .case-page .case-button,
+html[data-theme] .nav-menu-w .text-nav-link,
+html[data-theme] .experience-page #journey .am-exp-line1 { transition: none; }
+
+/* Preserve the sculpted astronaut footer as a dark artwork panel in both
+   themes; its small-print links outside that panel follow the page theme. */
+html[data-theme] body .footer-layout-clip {
+  --color--white: #f4f0f6;
+  --color--lime: #c7a0ee;
+  --color--lime-off: #d1acf2;
+  background-color: #1c1723 !important;
+  color: #f4f0f6;
+}
+html[data-theme] body .footer-layout-clip :is(.btn-text, .text-impact-sm-mona, .footer-links-col) { color: #f4f0f6; }
+html[data-theme] body .footer-layout-clip .text-impact-sm-brier { color: #d1acf2; }
+html[data-theme] body .footer-layout-clip .btn-w { color: #241331; background: #d1acf2; border-color: #d1acf2; }
+html[data-theme] body .footer-layout-clip .btn-w .btn-text { color: #241331; }
+html[data-theme] body .footer-layout-clip a:hover { color: #ebd6ff; }
+html[data-theme] body .footer-legal-links-w { color: var(--theme-muted); }
+html[data-theme] body .footer-layout-clip :focus-visible { outline-color: #d1acf2 !important; }
+
+@media (max-width: 1023px) {
+  html[data-theme] body.clean-portfolio.edge-ready .home .hero::before { background: none; }
+}
+@media (max-width: 600px) {
+  html[data-theme] body.clean-portfolio .nav .nav-inner { gap: 8px !important; }
+  html[data-theme] body .am-theme-toggle { width: 44px; padding: 10px; }
+  .am-theme-label { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+  html[data-theme] body.clean-portfolio .nav [data-lang-switch] { gap: 0; }
+}
+@media (max-width: 359px) {
+  html[data-theme] body.clean-portfolio .nav .nav-inner { padding-inline: 12px !important; gap: 6px !important; }
+}
+@media (forced-colors: active) {
+  html[data-theme] body .am-theme-toggle { border-color: ButtonText; }
+}
+@media print {
+  html[data-theme] body .am-theme-toggle, .am-theme-tools { display: none !important; }
+  html[data-theme], html[data-theme] body {
+    --theme-bg: #ffffff;
+    --theme-surface: #ffffff;
+    --theme-soft: #f4f2f6;
+    --theme-ink: #201825;
+    --theme-muted: #403547;
+    --theme-dim: #56455f;
+    --theme-accent: #54256f;
+    --theme-line: #cccccc;
+  }
+}

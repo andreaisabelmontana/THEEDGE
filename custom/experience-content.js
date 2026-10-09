@@ -3,7 +3,6 @@
   'use strict';
   if (!document.body.classList.contains('experience-page')) return;
   var copy = {
-
   "credentials-heading": {
     "en": "Certificates & training",
     "es": "Certificados y formación",
@@ -20,9 +19,9 @@
     "de": "Kurszertifikat"
   },
   "anthropic-collection": {
-    "en": "Certificate collection · includes Claude 101",
-    "es": "Colección de certificados · incluye Claude 101",
-    "de": "Zertifikatsammlung · inklusive Claude 101"
+    "en": "CV-provided certificate packet · includes Claude 101",
+    "es": "Certificados incluidos en el CV · incluye Claude 101",
+    "de": "Zertifikate aus dem Lebenslauf · inklusive Claude 101"
   },
   "training-badge": {
     "en": "Training badge",
@@ -53,8 +52,7 @@
     "en": "ROBOPRENEUR video",
     "es": "Vídeo de ROBOPRENEUR",
     "de": "ROBOPRENEUR-Video"
-  }
-,
+  },
   "eyebrow": {
     "en": "MADRID, SPAIN / CLASS OF 2028",
     "es": "MADRID, ESPAÑA / PROMOCIÓN DE 2028",
@@ -91,14 +89,14 @@
     "de": "Kontakt aufnehmen"
   },
   "nav-experience": {
-    "en": "Work",
-    "es": "Trabajo",
-    "de": "Berufserfahrung"
+    "en": "Experience",
+    "es": "Experiencia",
+    "de": "Erfahrung"
   },
   "nav-education": {
     "en": "Education",
-    "es": "Formación",
-    "de": "Studium"
+    "es": "Educación",
+    "de": "Ausbildung"
   },
   "nav-skills": {
     "en": "Skills",
@@ -106,9 +104,9 @@
     "de": "Kenntnisse"
   },
   "nav-community": {
-    "en": "Beyond work",
-    "es": "Más allá del trabajo",
-    "de": "Neben der Arbeit"
+    "en": "Leadership",
+    "es": "Liderazgo",
+    "de": "Engagement"
   },
   "nav-journey": {
     "en": "Journey",
@@ -116,9 +114,9 @@
     "de": "Stationen"
   },
   "experience-heading": {
-    "en": "Selected experience",
-    "es": "Experiencia profesional",
-    "de": "Berufserfahrung"
+    "en": "Experience",
+    "es": "Experiencia",
+    "de": "Erfahrung"
   },
   "experience-sub": {
     "en": "From research prototypes to software used by real people.",
@@ -181,9 +179,9 @@
     "de": "Madrid, Spanien"
   },
   "ie-role": {
-    "en": "Project Manager · 112 & 114",
-    "es": "Project Manager · 112 y 114",
-    "de": "Projektmanagerin · 112 & 114"
+    "en": "Project Manager (112&114)",
+    "es": "Project Manager (112&114)",
+    "de": "Project Manager (112&114)"
   },
   "ie-point": {
     "en": "Restructured internal learning assets across IE departments, using AI agents and Microsoft Copilot workflows in place of manual editing.",
@@ -226,9 +224,9 @@
     "de": "Website öffnen"
   },
   "education-heading": {
-    "en": "A foundation in CS & AI",
-    "es": "Una base en CS e IA",
-    "de": "Fundament in Informatik & KI"
+    "en": "Education",
+    "es": "Educación",
+    "de": "Ausbildung"
   },
   "education-sub": {
     "en": "Learning the principles. Applying them in the lab.",
@@ -241,9 +239,9 @@
     "de": "Voraussichtlicher Abschluss: Juli 2028"
   },
   "degree": {
-    "en": "B.S. Computer Science & Artificial Intelligence",
-    "es": "B.S. Computer Science & Artificial Intelligence",
-    "de": "B.S. Computer Science & Artificial Intelligence"
+    "en": "B.S. in Computer Science & Artificial Intelligence",
+    "es": "B.S. in Computer Science & Artificial Intelligence",
+    "de": "B.S. in Computer Science & Artificial Intelligence"
   },
   "scholarship": {
     "en": "IE High Potential Scholarship",
@@ -261,9 +259,9 @@
     "de": "Vorheriges Informatikstudium; ein Studienjahr abgeschlossen, anschließend Wechsel zur IE University."
   },
   "skills-heading": {
-    "en": "The toolkit",
-    "es": "Herramientas",
-    "de": "Werkzeuge"
+    "en": "Skills",
+    "es": "Habilidades",
+    "de": "Kenntnisse"
   },
   "skills-sub": {
     "en": "Languages, systems and tools I bring to the work.",
@@ -311,9 +309,9 @@
     "de": "UI/UX-Design · Prototyping · Videoschnitt · Technisches Schreiben"
   },
   "community-heading": {
-    "en": "Beyond the technical work",
-    "es": "Más allá del trabajo técnico",
-    "de": "Neben der technischen Arbeit"
+    "en": "Leadership",
+    "es": "Liderazgo",
+    "de": "Engagement"
   },
   "community-sub": {
     "en": "Building with people, on campus and beyond.",
@@ -326,9 +324,9 @@
     "de": "Aug. 2023 — Aug. 2026"
   },
   "campus-title": {
-    "en": "Club Officer & Basketball Co-Captain",
-    "es": "Directiva de clubes y cocapitana de baloncesto",
-    "de": "Clubvorstand & Basketball-Co-Kapitänin"
+    "en": "Club Officer & BB Co-Captain",
+    "es": "Club Officer & BB Co-Captain",
+    "de": "Club Officer & BB Co-Captain"
   },
   "campus-copy": {
     "en": "Led student engagement across Basketball, Venezuela Club, Colombia Club and Art Club through events and campus programming.",
@@ -341,9 +339,9 @@
     "de": "Aug. 2023 — Heute"
   },
   "hack-title": {
-    "en": "Hackathons & Tech Venture Programs",
-    "es": "Hackathons y programas Tech Venture",
-    "de": "Hackathons & Tech-Venture-Programme"
+    "en": "Participant",
+    "es": "Participante",
+    "de": "Teilnehmerin"
   },
   "hack-copy": {
     "en": "Built applied AI and venture solutions through the Sustainability Datathon, Tech Venture Bootcamp and hackathon-style product challenges.",
@@ -366,14 +364,24 @@
     "de": "150 Immobilienangebote verwaltet und Besichtigungen koordiniert, um Kunden, darunter die niederländische Botschaft, mit passenden Wohnungen zusammenzubringen."
   },
   "journey-heading": {
-    "en": "Three cities. One journey.",
-    "es": "Tres ciudades. Un recorrido.",
-    "de": "Drei Städte. Ein Weg."
+    "en": "Journey",
+    "es": "Recorrido",
+    "de": "Stationen"
   },
   "journey-sub": {
     "en": "The places that shaped how I learn, build and collaborate.",
     "es": "Los lugares que marcaron mi forma de aprender, crear y colaborar.",
     "de": "Die Orte, die mein Lernen, Arbeiten und Zusammenarbeiten geprägt haben."
+  },
+  "resume-link": {
+    "en": "Request résumé",
+    "es": "Solicitar currículum",
+    "de": "Lebenslauf anfordern"
+  },
+  "packet-open": {
+    "en": "View packet (PDF)",
+    "es": "Ver certificados (PDF)",
+    "de": "Sammlung öffnen (PDF)"
   }
 };
   function localize(language) {

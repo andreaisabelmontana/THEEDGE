@@ -1,0 +1,34 @@
+{
+  "assets": [
+    {
+      "organization": "Top Living Inmobiliaria",
+      "file": "top-living-dark.png",
+      "height": 188,
+      "discoveredOn": "https://topliving.com.co/",
+      "source": "https://topliving.com.co/assets/img/logo-dark.png",
+      "width": 384,
+      "sha256": "BF6293F53F5AA31A4EBC24107042003B1E4DF4DC221BF415A4BC951E9629F95F",
+      "notes": "Original dark transparent PNG from official navigation. Pair with a white tile."
+    },
+    {
+      "file": "ie-university-white.svg",
+      "viewBox": "0 0 71 60",
+      "discoveredOn": "https://www.ie.edu/",
+      "sha256": "0DB8AB430F17E3F0DB2120797B8883EB39CC8FE6DE674B66BE6CAB9CD5FA9E82",
+      "organization": "IE University",
+      "source": "https://www.ie.edu/",
+      "notes": "Exact SVG artwork extracted from official page inline Logo University navigation element. Removed site-specific class attribute and added SVG namespace. White artwork needs dark backing."
+    },
+    {
+      "file": "cyphy-life.svg",
+      "viewBox": "0 0 622 291",
+      "discoveredOn": "https://cyphy.life/",
+      "sha256": "51FFBA3DEE52F0D235BAC43E9A8D7A11FA88806ACE8005CBC2C5B42D8D332C49",
+      "organization": "CyPhy Life",
+      "source": "https://cyphy.life/static/images/cpl.svg",
+      "notes": "Original black CPL wordmark from official navigation. Official home page identifies group as IEX Labs, School of Science and Technology, IE University. Pair with a white tile."
+    }
+  ],
+  "retrievedUtc": "2026-10-08T08:07:24Z",
+  "presentation": "Use consistent tile dimensions, object-fit: contain, padding, and source aspect ratios. Do not invert the source logos. If organization name is adjacent, use empty alt on decorative logo; otherwise alt should name the organization."
+}

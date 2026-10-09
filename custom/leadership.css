@@ -1,0 +1,77 @@
+/* Leadership gallery: shared career colors follow the active site theme. */
+.experience-page .am-leadership { position: relative; }
+.experience-page .am-leadership-anchor { position: absolute; top: 0; scroll-margin-top: 100px; }
+.experience-page .am-leadership-gallery-head { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; margin: 42px 0 22px; }
+.experience-page .am-leadership-gallery-head h3,
+.experience-page .am-leadership-resources h3 { margin: 0; color: var(--career-ink, #f3eef7); font-size: 22px; font-weight: 520; line-height: 1.35; letter-spacing: -.025em; text-transform: none; }
+.experience-page .am-leadership-gallery-head > p { margin: 0; color: var(--career-dim, #998ba7); font-size: 12px; line-height: 1.7; }
+.experience-page .am-leadership-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px 22px; }
+.experience-page .am-leadership-card { min-width: 0; margin: 0; }
+.experience-page .am-leadership-photo { position: relative; display: grid; place-items: center; aspect-ratio: 16 / 11; overflow: hidden; border: 1px solid var(--career-line, #3a2e44); border-radius: 5px; background: var(--theme-surface, #19151f); color: var(--career-ink, #f3eef7); text-decoration: none; }
+.experience-page .am-leadership-photo img { display: block; width: 100%; height: 100%; min-height: 0; object-fit: contain; transition: filter .2s ease; }
+.experience-page .am-leadership-photo:hover img { filter: brightness(1.07); }
+.experience-page .am-leadership-photo:focus-visible { outline: 2px solid var(--career-accent, #d2acf2); outline-offset: 5px; }
+.experience-page .am-leadership-expand { position: absolute; display: grid; place-items: center; right: 10px; bottom: 10px; width: 30px; height: 30px; border: 1px solid #ffffff50; border-radius: 50%; background: #17111ed9; color: #fff; font-size: 19px; line-height: 1; }
+.experience-page .am-leadership-card figcaption { padding: 16px 0 0; }
+.experience-page .am-leadership-card h4 { margin: 0; color: var(--career-ink, #f3eef7); font-size: 16px; line-height: 1.45; letter-spacing: -.015em; font-weight: 530; text-transform: none; overflow-wrap: anywhere; }
+.experience-page .am-leadership-card figcaption > p { margin: 7px 0 0; color: var(--career-muted, #b9b0c1); font-size: 12px; line-height: 1.75; }
+.experience-page .am-leadership-resources { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-top: 38px; padding: 25px 0; border-block: 1px solid var(--career-line, #3a2e44); }
+.experience-page .am-leadership-resources h3 { font-size: 19px; }
+.experience-page .am-leadership-resources p { margin: 7px 0 0; color: var(--career-muted, #b9b0c1); font-size: 13px; line-height: 1.7; }
+.experience-page .am-leadership-resources > a { display: inline-flex; align-items: center; gap: 12px; flex-shrink: 0; padding: 8px 0; border-bottom: 1px solid var(--career-line, #3a2e44); color: var(--career-accent, #d2acf2); font-size: 13px; line-height: 1.6; text-decoration: none; }
+.experience-page .am-leadership-resources > a:hover { border-color: currentColor; }
+.am-leadership-viewing { overflow: hidden; }
+.experience-page .am-leadership-dialog { box-sizing: border-box; width: min(1120px, calc(100vw - 32px)); max-width: none; max-height: calc(100vh - 32px); max-height: calc(100svh - 32px); margin: auto; padding: 0; overflow: auto; overscroll-behavior: contain; border: 1px solid var(--career-line, #3a2e44); border-radius: 8px; background: var(--theme-bg, #100e14); color: var(--career-ink, #f3eef7); box-shadow: 0 24px 90px #0008; }
+.experience-page .am-leadership-dialog:not([open]) { display: none; }
+.experience-page .am-leadership-dialog::backdrop { background: #08060deb; }
+.experience-page .am-leadership-dialog-inner { padding: 20px; }
+.experience-page .am-leadership-dialog-head { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 16px; }
+.experience-page .am-leadership-dialog-head > p { margin: 0; color: var(--career-accent, #d2acf2); font-size: 11px; line-height: 1.6; letter-spacing: .12em; text-transform: uppercase; }
+.experience-page .am-leadership-close { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-width: 44px; min-height: 44px; padding: 8px 14px; border: 1px solid var(--career-line, #3a2e44); border-radius: 4px; background: var(--theme-surface, #19151f); color: var(--career-ink, #f3eef7); font: inherit; font-size: 13px; cursor: pointer; }
+.experience-page .am-leadership-close:hover { border-color: var(--career-accent, #d2acf2); }
+.experience-page .am-leadership-close > span:last-child { font-size: 23px; line-height: 1; }
+.experience-page .am-leadership-dialog figure { margin: 0; }
+.experience-page .am-leadership-dialog-image { display: block; width: 100%; max-height: 68vh; max-height: 68svh; object-fit: contain; background: var(--theme-surface, #19151f); }
+.experience-page .am-leadership-dialog figcaption { padding: 19px 2px 3px; }
+.experience-page .am-leadership-dialog h2 { margin: 0; color: var(--career-ink, #f3eef7); font-size: clamp(20px, 3vw, 27px); font-weight: 530; line-height: 1.3; letter-spacing: -.025em; text-transform: none; }
+.experience-page .am-leadership-dialog figcaption > p { margin: 8px 0 0; color: var(--career-muted, #b9b0c1); font-size: 13px; line-height: 1.7; }
+@media (max-width: 900px) {
+  .experience-page .am-leadership-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 620px) {
+  .experience-page .am-leadership-gallery-head { display: block; margin-top: 32px; }
+  .experience-page .am-leadership-gallery-head > p { margin-top: 8px; }
+  .experience-page .am-leadership-grid { grid-template-columns: minmax(0, 1fr); gap: 27px; }
+  .experience-page .am-leadership-card h4 { font-size: 18px; }
+  .experience-page .am-leadership-card figcaption > p { font-size: 13px; }
+  .experience-page .am-leadership-resources { display: block; margin-top: 30px; }
+  .experience-page .am-leadership-resources > a { margin-top: 14px; }
+  .experience-page .am-leadership-dialog { width: calc(100vw - 20px); max-height: calc(100svh - 20px); }
+  .experience-page .am-leadership-dialog-inner { padding: 14px; }
+  .experience-page .am-leadership-dialog-image { max-height: 62svh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .experience-page .am-leadership-photo img { transition: none; }
+}
+@media print {
+  .experience-page .am-leadership-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .experience-page .am-leadership-card { break-inside: avoid; }
+  .experience-page .am-leadership-dialog, .experience-page .am-leadership-expand { display: none !important; }
+}
+
+.experience-page .am-leadership-card figcaption, .experience-page .am-leadership-dialog figcaption { text-align: left; }
+.experience-page .am-credentials h3 { color: var(--career-ink); }
+.experience-page .am-credential-list li:has(.am-credential-preview) { display: grid; grid-template-columns: 160px minmax(0, 1fr); align-items: center; gap: 24px; padding-block: 18px; }
+.experience-page .am-credential-list .am-credential-preview { display: block; padding: 0; border: 1px solid var(--career-line); border-radius: 5px; overflow: hidden; background: #fff; }
+.experience-page .am-credential-preview img { display: block; width: 100%; height: auto; }
+.experience-page .am-credential-list li > a:not(.am-credential-preview) { min-width: 0; }
+.experience-page .am-credential-list li:has(.am-credential-preview) .am-credential-tail { flex-wrap: wrap; justify-content: flex-end; }
+@media (max-width: 760px) {
+  .experience-page .am-credential-list li:has(.am-credential-preview) { grid-template-columns: 112px minmax(0, 1fr); gap: 16px; }
+  .experience-page .am-credential-list li > a:not(.am-credential-preview) { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .experience-page .am-credential-list li:has(.am-credential-preview) .am-credential-tail { justify-content: flex-start; }
+}
+@media (max-width: 400px) {
+  .experience-page .am-credential-list li:has(.am-credential-preview) { grid-template-columns: 1fr; gap: 10px; }
+  .experience-page .am-credential-list .am-credential-preview { width: min(240px, 100%); }
+}
