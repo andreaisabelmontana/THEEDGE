@@ -33,11 +33,13 @@
 
 /* Entry-specific leadership marks stay compact; footer lockups are unchanged. */
 .experience-page #leadership .am-career-additional .am-org-logo { flex-basis: 96px; width: 96px; height: 96px; padding: 0; }
+.experience-page #leadership .am-org-logo--campus-life img { width: auto; height: 94px; }
 .experience-page #leadership .am-org-logo--science img { width: auto; height: 84px; }
 .experience-page #leadership .am-org-logo--microsoft img { width: 48px; height: 48px; }
 .experience-page #leadership .am-org-logo--gdg img { width: 66px; height: auto; }
 @media (max-width: 620px) {
   .experience-page #leadership .am-career-additional .am-org-logo { flex-basis: 80px; width: 80px; height: 80px; }
+  .experience-page #leadership .am-org-logo--campus-life img { width: auto; height: 78px; }
   .experience-page #leadership .am-org-logo--science img { width: auto; height: 68px; }
   .experience-page #leadership .am-org-logo--microsoft img { width: 40px; height: 40px; }
   .experience-page #leadership .am-org-logo--gdg img { width: 55px; }
