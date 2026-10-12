@@ -307,3 +307,46 @@ html[data-theme] body .footer-marquee-svg img[src*="custom/logos/kw-"] {
     --theme-line: #cccccc;
   }
 }
+
+/* Icy mobile control. Keep Rive mounted for its existing menu handlers while
+   drawing crisp, softer blue strokes independently of its black raster art. */
+@media (max-width: 1023px) {
+  html[data-theme] body.clean-portfolio .nav .nav-ham {
+    position: relative;
+    background: #e8f0fe !important;
+    border-color: #6683ad !important;
+  }
+  html[data-theme] body.clean-portfolio .nav .nav-ham canvas { opacity: 0 !important; }
+  html[data-theme] body.clean-portfolio .nav .nav-ham::before,
+  html[data-theme] body.clean-portfolio .nav .nav-ham::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    top: 17px;
+    width: 18px;
+    height: 2px;
+    border-radius: 2px;
+    background: #476b9e;
+    pointer-events: none;
+    transition: transform .18s ease;
+  }
+  html[data-theme] body.clean-portfolio .nav .nav-ham::after { top: 23px; }
+  html[data-theme] body.clean-portfolio .nav .nav-ham[aria-expanded="true"]::before { transform: translateY(3px) rotate(45deg); }
+  html[data-theme] body.clean-portfolio .nav .nav-ham[aria-expanded="true"]::after { transform: translateY(-3px) rotate(-45deg); }
+  html[data-theme] body.clean-portfolio .nav .nav-ham:hover { background: #d9e7fd !important; }
+}
+.hero-portrait-fallback { display: none; }
+@media (max-width: 1023px) {
+  body.clean-portfolio.edge-ready.portrait-static .hero-portrait-fallback {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+  }
+  body.clean-portfolio.edge-ready.portrait-static .gl-clip { visibility: hidden; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme] body.clean-portfolio .nav .nav-ham::before,
+  html[data-theme] body.clean-portfolio .nav .nav-ham::after { transition: none; }
+}

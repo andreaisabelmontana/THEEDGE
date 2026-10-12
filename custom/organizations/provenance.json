@@ -23,7 +23,7 @@
       "file": "cyphy-life.svg",
       "viewBox": "0 0 622 291",
       "discoveredOn": "https://cyphy.life/",
-      "sha256": "51FFBA3DEE52F0D235BAC43E9A8D7A11FA88806ACE8005CBC2C5B42D8D332C49",
+      "sha256": "A0E01D94380731D21405F12BE399A0EDAB6D728C3FA795277EDA03CC9E9EA610",
       "organization": "CyPhy Life",
       "source": "https://cyphy.life/static/images/cpl.svg",
       "notes": "Original black CPL wordmark from official navigation. Official home page identifies group as IEX Labs, School of Science and Technology, IE University. Pair with a white tile."
@@ -47,9 +47,41 @@
       "source": "https://www.tcd.ie/media/tcd/site-assets/images/tcd-logo.png",
       "notes": "Exact official homepage PNG, including shield and complete bilingual wordmark. Preserve full image and aspect ratio; use a wider white badge for readability.",
       "sha256": "F604018964C3DAFC4124356589A620184A946C1B5B6829C84121C6A0070A4D63"
+    },
+    {
+      "organization": "IE University",
+      "file": "ie-university-horizontal.svg",
+      "source": "https://study-eu.s3.eu-west-1.amazonaws.com/uploads/university/ie-university-logo.svg",
+      "notes": "Exact user-selected SVG; complete horizontal logo and Driving Innovation tagline. Parsed and checked for scripts, event handlers and remote resource references.",
+      "sha256": "BACEB9A196B9870FBEEE0AE1BB0AB8B1B5ACB6BD6FB73D4E3E508EBA9E7C97D7"
+    },
+    {
+      "organization": "IE University",
+      "file": "ie-university-symbol.svg",
+      "source": "ie-university-horizontal.svg",
+      "notes": "Exact XMLID_2_ symbol group from user-selected SVG; original navy paths and cyan dot, with symbol-only viewBox. No redraw or recoloring.",
+      "sha256": "1551603869121C2F31F0A66B184005CC81AC06F1A98660AF60C900391BB17F29"
+    },
+    {
+      "organization": "Colegio Nueva Granada",
+      "file": "colegio-nueva-granada-horizontal.svg",
+      "source": "https://resources.finalsite.net/images/v1693982454/cngedu/lpk3z7buhakp2sbsruyq/GNG-fullwhite1.svg",
+      "discoveredOn": "https://www.cng.edu/",
+      "notes": "Exact official current header/mobile horizontal white wordmark, transparent embedded PNG in SVG. Needs dark backing. Used because supplied Library raster could not materialize in Windows executor.",
+      "sha256": "545549A7ED4FA10EC56FBE7C7A1BCCECBEEB901E3A5260A3526AD012E1A605B9"
+    },
+    {
+      "organization": "Trinity College Dublin",
+      "file": "trinity-shield.svg",
+      "source": "trinity-college-dublin.png",
+      "discoveredOn": "https://www.tcd.ie/",
+      "notes": "SVG viewport displays only the left 96 x 124 shield region of the exact embedded official PNG. Original pixels and colors retained; no raster rewrite, redraw or scaling. Complete horizontal PNG retained for carousel.",
+      "sha256": "005CAEDF7FDA52BBD022FFCD17138439615A8352DE00B526ABFA9A7F4E4117EF"
     }
   ],
   "retrievedUtc": "2026-10-08T08:07:24Z",
   "presentation": "Use consistent tile dimensions, object-fit: contain, padding, and source aspect ratios. Do not invert the source logos. If organization name is adjacent, use empty alt on decorative logo; otherwise alt should name the organization.",
-  "educationLogosRetrievedDate": "2026-10-09"
+  "educationLogosRetrievedDate": "2026-10-09",
+  "menuOrganizationLogosRetrievedDate": "2026-10-11",
+  "menuOrganizationScope": "Organizations already listed under Experience and education. No employment or sponsorship claim is added. CyPhy Life pairs the official CPL mark with readable text rather than inventing an official lockup."
 }

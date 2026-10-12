@@ -17,6 +17,30 @@
   if (!slot || !hero) return;
 
   const started = performance.now();
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let watchedCanvas = null;
+  let contextLost = false;
+
+  function updatePortraitMode() {
+    const canvas = document.querySelector('.gl-wrap canvas.gl');
+    if (canvas && canvas !== watchedCanvas) {
+      watchedCanvas = canvas;
+      canvas.addEventListener('webglcontextlost', function () {
+        contextLost = true;
+        document.body.dataset.portraitRendered = 'false';
+        updatePortraitMode();
+      });
+      canvas.addEventListener('webglcontextrestored', function () {
+        contextLost = false;
+        updatePortraitMode();
+      });
+    }
+    const mobile = window.innerWidth < 1024;
+    const unavailable = !canvas || contextLost || document.body.dataset.portraitRendered !== 'true';
+    document.body.classList.toggle('portrait-static', mobile && (reducedMotion.matches || unavailable));
+  }
+  reducedMotion.addEventListener('change', updatePortraitMode);
+  document.addEventListener('edge:portrait-ready', updatePortraitMode);
 
   /* the mount div stays empty by design, so "has it mounted" cannot be asked of
      it. the honest signal is the shared gl canvas existing and her loader
@@ -71,6 +95,7 @@
   }
 
   function fit() {
+    updatePortraitMode();
     if (!clip || !wrap) return;
     const s = slot.getBoundingClientRect();
     const vw = window.innerWidth;
@@ -257,6 +282,7 @@
 
   function restructure() {
     document.body.classList.add('edge-ready');
+    updatePortraitMode();
     adoptNav();
     marqueeBehindCards();
     tagJourney();
@@ -277,6 +303,7 @@
     );
     addEventListener('scroll', fit, { passive: true });
     addEventListener('resize', fit);
+    if (window.visualViewport) window.visualViewport.addEventListener('resize', fit);
     document.addEventListener('edge:lang', () => requestAnimationFrame(fit));
     if (document.fonts) document.fonts.ready.then(fit);
   }

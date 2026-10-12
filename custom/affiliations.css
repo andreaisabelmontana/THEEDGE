@@ -1,0 +1,46 @@
+/* Verified organizations from the Experience page. Artwork retains its colors
+   and intrinsic proportions; this track replaces only the astronaut's word strip. */
+html[data-theme] body .footer-marquee.am-org-marquee {
+  height: 80px;
+  z-index: auto;
+  overflow: visible;
+  pointer-events: auto;
+}
+.am-org-viewport { position: relative; z-index: 1; height: 100%; overflow-x: auto; scrollbar-width: thin; scrollbar-color: #678aba transparent; }
+.am-org-marquee[data-motion-ready] .am-org-viewport { overflow: hidden; }
+.am-org-track { display: flex; width: max-content; }
+.am-org-marquee[data-motion-ready] .am-org-track { animation: am-org-scroll 70s linear infinite; }
+.am-org-group[aria-hidden="true"] { display: none; }
+.am-org-marquee[data-motion-ready] .am-org-group[aria-hidden="true"] { display: flex; }
+.am-org-group { display: flex; flex: none; align-items: center; gap: 24px; padding: 0 24px 0 0; }
+.am-org-lockup { display: flex; flex: none; align-items: center; justify-content: center; gap: 14px; height: 64px; padding: 6px 12px; box-sizing: border-box; border-radius: 6px; background: #fff; }
+.am-org-lockup img { display: block; flex: none; width: auto; height: 48px; max-width: none; object-fit: contain; filter: none !important; }
+.am-org-lockup img[hidden] { display: none; }
+.am-org-lockup--ie { width: 168px; }
+.am-org-lockup--ie img { height: 56px; }
+.am-org-lockup--cyphy { width: 226px; }
+.am-org-lockup--cyphy img { height: 42px; width: 90px; }
+.am-org-lockup--cyphy span { color: #222 !important; font-family: Arial, sans-serif; font-size: 17px; font-weight: 700; line-height: 1.15; white-space: nowrap; }
+.am-org-lockup--cyphy small { display: block; margin-top: 5px; font-size: 11px; font-weight: 400; letter-spacing: .05em; }
+.am-org-lockup--top { width: 146px; }
+.am-org-lockup--top img { height: 56px; }
+.am-org-lockup--trinity { width: 246px; }
+.am-org-lockup--trinity img { height: 58px; }
+.am-org-lockup--cng { width: 286px; background: #003865; }
+.am-org-lockup--cng img { width: 262px; height: auto; }
+.am-org-motion { position: absolute; right: 10px; bottom: -26px; z-index: 4; min-width: 44px; min-height: 44px; padding: 5px 8px; border: 1px solid #99b8e8; border-radius: 5px; background: #f2f7ff; color: #234c83 !important; font: 600 10px/1 Arial, sans-serif; cursor: pointer; }
+.am-org-marquee:is(:hover, :focus-within) .am-org-track,
+.am-org-marquee[data-paused="true"] .am-org-track { animation-play-state: paused; }
+.am-org-marquee :focus-visible { outline: 2px solid #3369e8; outline-offset: 3px; }
+@keyframes am-org-scroll { to { transform: translateX(-50%); } }
+@media (max-width: 479px) {
+  html[data-theme] body .footer-marquee.am-org-marquee { top: 18px; bottom: auto; height: 64px; }
+  .am-org-group { gap: 18px; padding-right: 18px; }
+  .am-org-motion { bottom: -26px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .am-org-marquee[data-motion-ready] .am-org-track { animation: none; transform: none; }
+  .am-org-marquee[data-motion-ready] .am-org-group[aria-hidden="true"] { display: none; }
+  .am-org-marquee[data-motion-ready] .am-org-viewport { overflow-x: auto; scrollbar-width: thin; scrollbar-color: #678aba transparent; }
+  .am-org-motion { display: none; }
+}
