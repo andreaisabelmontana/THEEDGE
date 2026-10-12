@@ -30,10 +30,10 @@
   var fallbackContext, fallbackPixels, fallbackWidth, fallbackHeight;
   var buttons = [];
 
-  // Keep the entire lit surface between Google blue and icy blue. Lift the
-  // satellite's near-black oceans before lighting so their curvature stays visible,
-  // then apply the palette after lighting so shadows never fall back to navy.
+  // Classify the unlit satellite texture first. Lighting stays inside separate
+  // ocean and land color bands, so bright water cannot wash into shadowed land.
   var surfaceLuma = [0.2126, 0.7152, 0.0722];
+  var surfaceLighting = { ambient: 0.7, directional: 0.65 };
   function srgbToLinear(value) {
     return value <= 0.04045 ? value / 12.92 : Math.pow((value + 0.055) / 1.055, 2.4);
   }
@@ -41,45 +41,53 @@
     value = Math.max(0, Math.min(1, value));
     return value <= 0.0031308 ? value * 12.92 : 1.055 * Math.pow(value, 1 / 2.4) - 0.055;
   }
-  var surfaceLightMaximum = 0.52 + 1.6;
-  var surfacePalette = [
-    [0, 0x4285f4], [0.2, 0x8ab6fb], [0.5, 0xc5ddfe], [0.8, 0xe2efff], [1, 0xf1f7ff]
-  ].map(function (stop) {
-    var hex = stop[1];
-    var rgb = [hex >> 16 & 255, hex >> 8 & 255, hex & 255].map(function (channel) {
+  var surfacePalette = {
+    ocean: 0x4285f4, oceanLight: 0x4e8df5,
+    land: 0xd6e7ff, landLight: 0xedf5ff
+  };
+  Object.keys(surfacePalette).forEach(function (key) {
+    var hex = surfacePalette[key];
+    surfacePalette[key] = [hex >> 16 & 255, hex >> 8 & 255, hex & 255].map(function (channel) {
       return srgbToLinear(channel / 255);
     });
-    return { rgb: rgb, position: stop[0] };
   });
   var surfaceLinearLookup = Array.from({ length: 256 }, function (_, channel) {
     return srgbToLinear(channel / 255);
   });
+  function surfaceSmoothstep(low, high, value) {
+    var amount = Math.max(0, Math.min(1, (value - low) / (high - low)));
+    return amount * amount * (3 - 2 * amount);
+  }
   function blueSurfaceShader() {
     function number(value) { return value.toFixed(9); }
-    function color(stop) { return 'vec3(' + stop.rgb.map(number).join(',') + ')'; }
-    var source = 'vec3 journeySurfaceReflectance(vec3 texel) {\n' +
+    function color(key) { return 'vec3(' + surfacePalette[key].map(number).join(',') + ')'; }
+    return 'vec3 journeyBlueSurface(vec3 texel, vec3 litSurface) {\n' +
       'float luminance = clamp(dot(texel, vec3(0.2126, 0.7152, 0.0722)), 0.0, 1.0);\n' +
-      'return vec3(0.18 + 0.82 * sqrt(luminance));\n}\n' +
-      'vec3 journeyBlueSurface(vec3 litSurface) {\n' +
-      'float luminance = clamp(dot(litSurface, vec3(0.2126, 0.7152, 0.0722)) / ' + number(surfaceLightMaximum) + ', 0.0, 1.0);\n';
-    for (var i = 1; i < surfacePalette.length; i++) {
-      var low = surfacePalette[i - 1], high = surfacePalette[i];
-      source += 'if (luminance <= ' + number(high.position) + ') return mix(' + color(low) + ',' + color(high) +
-        ', (luminance - ' + number(low.position) + ') / ' + number(high.position - low.position) + ');\n';
-    }
-    return source + 'return ' + color(surfacePalette[surfacePalette.length - 1]) + ';\n}\n';
+      'float warm = (max(texel.r, texel.g) - texel.b) / max(max(max(texel.r, texel.g), texel.b), 0.0001);\n' +
+      // Neutral snow/ice is land; saturated cyan shallows must stay ocean.
+      'float neutral = min(min(texel.r, texel.g), texel.b) / max(max(max(texel.r, texel.g), texel.b), 0.0001);\n' +
+      'float ice = smoothstep(0.08, 0.30, luminance) * smoothstep(0.25, 0.60, neutral);\n' +
+      'float land = max(smoothstep(0.10, 0.35, warm), ice);\n' +
+      'float light = clamp((dot(litSurface, vec3(0.2126, 0.7152, 0.0722)) - ' + number(surfaceLighting.ambient) +
+        ') / ' + number(surfaceLighting.directional) + ', 0.0, 1.0);\n' +
+      'vec3 ocean = mix(' + color('ocean') + ', ' + color('oceanLight') + ', light);\n' +
+      'vec3 terrain = mix(' + color('land') + ', ' + color('landLight') + ', 0.72 * light + 0.28 * sqrt(luminance));\n' +
+      'return mix(ocean, terrain, land);\n}\n';
   }
   function fallbackBlueSurface(source, index, light, output, pixel) {
-    var luminance = surfaceLinearLookup[source[index]] * surfaceLuma[0] +
-      surfaceLinearLookup[source[index + 1]] * surfaceLuma[1] + surfaceLinearLookup[source[index + 2]] * surfaceLuma[2];
-    luminance = Math.max(0, Math.min(1, (0.18 + 0.82 * Math.sqrt(luminance)) * light / surfaceLightMaximum));
-    var i = 1;
-    while (i < surfacePalette.length - 1 && luminance > surfacePalette[i].position) i++;
-    var low = surfacePalette[i - 1], high = surfacePalette[i];
-    var amount = (luminance - low.position) / (high.position - low.position);
+    var red = surfaceLinearLookup[source[index]], green = surfaceLinearLookup[source[index + 1]];
+    var blue = surfaceLinearLookup[source[index + 2]];
+    var luminance = red * surfaceLuma[0] + green * surfaceLuma[1] + blue * surfaceLuma[2];
+    var warm = (Math.max(red, green) - blue) / Math.max(red, green, blue, 0.0001);
+    var neutral = Math.min(red, green, blue) / Math.max(red, green, blue, 0.0001);
+    var ice = surfaceSmoothstep(0.08, 0.30, luminance) * surfaceSmoothstep(0.25, 0.60, neutral);
+    var land = Math.max(surfaceSmoothstep(0.10, 0.35, warm), ice);
+    light = Math.max(0, Math.min(1, (light - surfaceLighting.ambient) / surfaceLighting.directional));
+    var detail = 0.72 * light + 0.28 * Math.sqrt(luminance);
     for (var channel = 0; channel < 3; channel++) {
-      var linear = low.rgb[channel] + (high.rgb[channel] - low.rgb[channel]) * amount;
-      output[pixel + channel] = Math.round(linearToSrgb(linear) * 255);
+      var ocean = surfacePalette.ocean[channel] + (surfacePalette.oceanLight[channel] - surfacePalette.ocean[channel]) * light;
+      var terrain = surfacePalette.land[channel] + (surfacePalette.landLight[channel] - surfacePalette.land[channel]) * detail;
+      output[pixel + channel] = Math.round(linearToSrgb(ocean + (terrain - ocean) * land) * 255);
     }
   }
 
@@ -179,24 +187,23 @@
       // Rotate the standard SphereGeometry UV seam to match geographic lon/lat.
       var geometry = new THREE.SphereGeometry(1, 80, 48);
       geometry.rotateY(-Math.PI / 2);
-      earth = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({
-        color: 0xffffff, shininess: 12, specular: 0x05080b
-      }));
+      // Diffuse-only illumination keeps specular highlights out of both palettes.
+      earth = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: 0xffffff }));
       earth.material.onBeforeCompile = function (shader) {
-        // Three r149 decodes the sRGB map before map_fragment. Preserve its
-        // terrain detail in linear light, then tint the completed Phong shading.
+        // Three r149 decodes the sRGB map before map_fragment. Save the unlit
+        // texel for geography, and shade white to measure illumination separately.
         shader.fragmentShader = blueSurfaceShader() + shader.fragmentShader.replace(
           '#include <map_fragment>',
-          '#include <map_fragment>\n#ifdef USE_MAP\ndiffuseColor.rgb = journeySurfaceReflectance(diffuseColor.rgb);\n#endif'
+          '#include <map_fragment>\nvec3 journeyTexel = diffuseColor.rgb;\ndiffuseColor.rgb = vec3(1.0);'
         ).replace(
           '#include <output_fragment>',
-          'outgoingLight = journeyBlueSurface(outgoingLight);\n#include <output_fragment>'
+          'outgoingLight = journeyBlueSurface(journeyTexel, outgoingLight);\n#include <output_fragment>'
         );
       };
-      earth.material.customProgramCacheKey = function () { return 'journey-icy-blue-surface-v2'; };
+      earth.material.customProgramCacheKey = function () { return 'journey-ocean-land-surface-v3'; };
       world.add(earth);
-      scene.add(new THREE.AmbientLight(0xffffff, 0.52));
-      var sun = new THREE.DirectionalLight(0xffffff, 1.6);
+      scene.add(new THREE.AmbientLight(0xffffff, surfaceLighting.ambient));
+      var sun = new THREE.DirectionalLight(0xffffff, surfaceLighting.directional);
       sun.position.set(-3, 4, 5);
       scene.add(sun);
       // A thin blue atmospheric edge, lit with the surface rather than a glow halo.
@@ -361,7 +368,7 @@
       var v = 0.5 - Math.asin(Math.max(-1, Math.min(1, ly))) / Math.PI;
       var source = (Math.min(fallbackHeight - 1, Math.floor(v * fallbackHeight)) * fallbackWidth + Math.floor(u * fallbackWidth)) * 4;
       var pixel = (y * size + x) * 4;
-      var light = 0.52 + 1.6 * Math.max(0, -nx * 0.42 + ny * 0.45 + nz * 0.78);
+      var light = surfaceLighting.ambient + surfaceLighting.directional * Math.max(0, (-3 * nx + 4 * ny + 5 * nz) / Math.sqrt(50));
       fallbackBlueSurface(fallbackPixels, source, light, output.data, pixel);
       output.data[pixel + 3] = 255;
     }

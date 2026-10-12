@@ -77,11 +77,60 @@
       "discoveredOn": "https://www.tcd.ie/",
       "notes": "SVG viewport displays only the left 96 x 124 shield region of the exact embedded official PNG. Original pixels and colors retained; no raster rewrite, redraw or scaling. Complete horizontal PNG retained for carousel.",
       "sha256": "005CAEDF7FDA52BBD022FFCD17138439615A8352DE00B526ABFA9A7F4E4117EF"
+    },
+    {
+      "organization": "IE Campus Life",
+      "file": "ie-campus-life.png",
+      "source": "https://campuslife.ie.edu/wp-content/uploads/sites/556/CL_logo-1.png",
+      "discoveredOn": "https://campuslife.ie.edu/",
+      "retrievedDate": "2026-10-12",
+      "width": 432,
+      "height": 478,
+      "sha256": "B0B2373E41D6D5D93331E13A89C5535070D76CA1C80FA38570C77A21C620F7E9",
+      "notes": "Exact complete official header PNG. Original navy/cyan colors and transparent clear space retained. Embedded wording is small; adjacent organization text remains readable."
+    },
+    {
+      "organization": "IE School of Science & Technology",
+      "file": "ie-science-technology.svg",
+      "source": "https://design.ie.edu/20e25b183/v/latest/p/767cfa-logo",
+      "discoveredOn": "https://design.ie.edu/20e25b183/v/latest/p/767cfa-logo",
+      "retrievedDate": "2026-10-12",
+      "width": 224,
+      "height": 304,
+      "viewBox": "0 0 224 304",
+      "sha256": "4C9761BB58C9295B7AF61FDC9D63E03FE28B75600E3C349BDAFBD2FFD295F935",
+      "officialAssetVersion": 977769914,
+      "officialAssetItem": 592306835,
+      "notes": "Exact official IE design-guide SVG export: School of Science & Technology, vertical, light theme, accent color. Complete 40-path vector, native navy/cyan/green colors and proportions retained. No redraw, retracing, cropping or recoloring. Replaces the enlarged favicon with sharp scalable artwork; adjacent program label remains readable."
+    },
+    {
+      "organization": "Microsoft",
+      "file": "microsoft-symbol.svg",
+      "source": "https://learn.microsoft.com/en-us/entra/identity-platform/media/howto-add-branding-in-apps/ms-symbollockup_mssymbol_19.svg",
+      "discoveredOn": "https://learn.microsoft.com/en-us/entra/identity-platform/howto-add-branding-in-apps",
+      "retrievedDate": "2026-10-12",
+      "width": 21,
+      "height": 21,
+      "sha256": "929F48F88C8CA7F3F5D294BE47EC4CAF51ACC28AC25340C19A903125D7ECD84A",
+      "notes": "Exact standalone four-square SVG supplied by official Microsoft branding documentation. Native paths, colors and viewBox retained."
+    },
+    {
+      "organization": "Google Developer Groups",
+      "file": "gdg-symbol.svg",
+      "source": "https://developers.google.com/static/assets/img/icons/google-bracket.svg",
+      "discoveredOn": "https://developers.google.com/community",
+      "retrievedDate": "2026-10-12",
+      "width": 32,
+      "height": 17,
+      "sha256": "10E5F1477DB75FACA8F1D7EC664FB2A86AF835EF3D80276D98846837DBB69851",
+      "notes": "Exact compact four-color developer bracket SVG referenced by the Google Developer Groups card on the official community page. Native paths, colors and viewBox retained."
     }
   ],
   "retrievedUtc": "2026-10-08T08:07:24Z",
   "presentation": "Use consistent tile dimensions, object-fit: contain, padding, and source aspect ratios. Do not invert the source logos. If organization name is adjacent, use empty alt on decorative logo; otherwise alt should name the organization.",
   "educationLogosRetrievedDate": "2026-10-09",
   "menuOrganizationLogosRetrievedDate": "2026-10-11",
-  "menuOrganizationScope": "Organizations already listed under Experience and education. No employment or sponsorship claim is added. CyPhy Life pairs the official CPL mark with readable text rather than inventing an official lockup."
+  "menuOrganizationScope": "Organizations already listed under Experience and education. No employment or sponsorship claim is added. CyPhy Life pairs the official CPL mark with readable text rather than inventing an official lockup.",
+  "leadershipEntryLogosRetrievedDate": "2026-10-12",
+  "leadershipEntryLogoScope": "Four Leadership entry marks only: Campus Life, IE School of Science & Technology for Hackathons/Tech Ventures, Microsoft, and GDG. Existing descriptions, dates and footer carousel retained."
 }
