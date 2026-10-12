@@ -6,8 +6,9 @@ html[data-theme] body .footer-marquee.am-org-marquee {
   overflow: visible;
   pointer-events: auto;
 }
-.am-org-viewport { position: relative; z-index: 1; height: 100%; overflow-x: auto; scrollbar-width: thin; scrollbar-color: #678aba transparent; }
-.am-org-marquee[data-motion-ready] .am-org-viewport { overflow: hidden; }
+/* Auto height includes the native scrollbar below the full-height logo row. */
+.am-org-viewport { position: relative; z-index: 1; height: auto; min-height: 100%; overflow-x: auto; scrollbar-width: thin; scrollbar-color: #678aba transparent; }
+.am-org-marquee[data-motion-ready] .am-org-viewport { height: 100%; overflow: hidden; }
 .am-org-track { display: flex; width: max-content; }
 .am-org-marquee[data-motion-ready] .am-org-track { animation: am-org-scroll 70s linear infinite; }
 .am-org-group[aria-hidden="true"] { display: none; }
@@ -28,19 +29,21 @@ html[data-theme] body .footer-marquee.am-org-marquee {
 .am-org-lockup--trinity img { height: 58px; }
 .am-org-lockup--cng { width: 286px; background: #003865; }
 .am-org-lockup--cng img { width: 262px; height: auto; }
-.am-org-motion { position: absolute; right: 10px; bottom: -26px; z-index: 4; min-width: 44px; min-height: 44px; padding: 5px 8px; border: 1px solid #99b8e8; border-radius: 5px; background: #f2f7ff; color: #234c83 !important; font: 600 10px/1 Arial, sans-serif; cursor: pointer; }
-.am-org-marquee:is(:hover, :focus-within) .am-org-track,
-.am-org-marquee[data-paused="true"] .am-org-track { animation-play-state: paused; }
+/* Hide the legacy control before JavaScript removes it. */
+.am-org-motion { display: none; }
+.am-org-marquee:hover .am-org-track { animation-play-state: paused; }
+/* Focus gives keyboard users a stationary row they can scroll end to end. */
+.am-org-marquee[data-motion-ready]:focus-within .am-org-track { animation: none; transform: none; }
+.am-org-marquee[data-motion-ready]:focus-within .am-org-group[aria-hidden="true"] { display: none; }
+.am-org-marquee[data-motion-ready]:focus-within .am-org-viewport { height: auto; overflow-x: auto; }
 .am-org-marquee :focus-visible { outline: 2px solid #3369e8; outline-offset: 3px; }
 @keyframes am-org-scroll { to { transform: translateX(-50%); } }
 @media (max-width: 479px) {
   html[data-theme] body .footer-marquee.am-org-marquee { top: 18px; bottom: auto; height: 64px; }
   .am-org-group { gap: 18px; padding-right: 18px; }
-  .am-org-motion { bottom: -26px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .am-org-marquee[data-motion-ready] .am-org-track { animation: none; transform: none; }
   .am-org-marquee[data-motion-ready] .am-org-group[aria-hidden="true"] { display: none; }
-  .am-org-marquee[data-motion-ready] .am-org-viewport { overflow-x: auto; scrollbar-width: thin; scrollbar-color: #678aba transparent; }
-  .am-org-motion { display: none; }
+  .am-org-marquee[data-motion-ready] .am-org-viewport { height: auto; overflow-x: auto; scrollbar-width: thin; scrollbar-color: #678aba transparent; }
 }

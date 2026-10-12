@@ -4,6 +4,8 @@
 
   const words = {
     en: {
+      "professionalCertificate": "Professional Certificate",
+      "microsoftCertificateAlt": "Microsoft AI & ML Engineering certificate for Andrea Isabel Montaña, issued September 4, 2026.",
 "anthropicCertificateTitle":"Claude 101 · Anthropic Academy","anthropicCertificateCaption":"First page of the 19-page CV-provided packet. No issue dates or verification IDs are shown.","anthropicCertificateAlt":"Claude 101 certificate naming Andrea Montana, from the CV-provided Anthropic Academy packet.",
 "googleCertificateTitle":"Google AI","googleCertificateCaption":"Google · Specialization · September 2026. Use the credential link for the public completion record.","googleCertificateAlt":"Google AI course completion certificate for Andrea Isabel Montaña.","neuralCertificateTitle":"Neural Networks and Deep Learning","neuralCertificateCaption":"DeepLearning.AI · Course certificate · June 2026. Use the credential link for the public completion record.","neuralCertificateAlt":"Neural Networks and Deep Learning course certificate for Andrea Isabel Montaña.","awsCertificateTitle":"AWS Educate Getting Started with Serverless","awsCertificateCaption":"Training badge artwork. The public Credly record identifies Andrea Montana as the recipient.","awsCertificateAlt":"AWS Educate Getting Started with Serverless training badge artwork.",
       heading: 'Leadership',
@@ -19,7 +21,7 @@
       stageTitle: 'Tech Venture Bootcamp at IE',
       stageCaption: 'A group photo with the bootcamp community at IE University.',
       stageAlt: 'Participants posing on stage in front of IE Tech Venture Bootcamp screens.',
-      labTitle: 'IEX Labs / CyPhy Life',
+      labTitle: 'Robotics Club / IE SciTech',
       labCaption: 'Hands-on work with a robotic arm.',
       labAlt: 'Two people working with a robotic arm at a laboratory table.',
       datathonTitle: 'Ryanair datathon at IE',
@@ -39,6 +41,8 @@
       openPhoto: 'View full image: '
     },
     es: {
+      "professionalCertificate": "Certificado profesional",
+      "microsoftCertificateAlt": "Certificado de Microsoft AI & ML Engineering para Andrea Isabel Montaña, emitido el 4 de septiembre de 2026.",
 "anthropicCertificateTitle":"Claude 101 · Anthropic Academy","anthropicCertificateCaption":"Primera página del documento de 19 páginas aportado con el CV. No muestra fechas ni identificadores de verificación.","anthropicCertificateAlt":"Certificado de Claude 101 a nombre de Andrea Montana, del documento de Anthropic Academy aportado con el CV.",
 "googleCertificateTitle":"Google AI","googleCertificateCaption":"Google · Especialización · Septiembre de 2026. El enlace de la credencial abre el registro público.","googleCertificateAlt":"Certificado de finalización de Google AI para Andrea Isabel Montaña.","neuralCertificateTitle":"Neural Networks and Deep Learning","neuralCertificateCaption":"DeepLearning.AI · Certificado de curso · Junio de 2026. El enlace de la credencial abre el registro público.","neuralCertificateAlt":"Certificado de Neural Networks and Deep Learning para Andrea Isabel Montaña.","awsCertificateTitle":"AWS Educate Getting Started with Serverless","awsCertificateCaption":"Imagen de la insignia de formación. El registro público de Credly identifica a Andrea Montana como destinataria.","awsCertificateAlt":"Insignia de formación AWS Educate Getting Started with Serverless.",
       heading: 'Liderazgo',
@@ -54,7 +58,7 @@
       stageTitle: 'Tech Venture Bootcamp en IE',
       stageCaption: 'Foto de grupo con la comunidad del bootcamp en IE University.',
       stageAlt: 'Participantes posando en un escenario frente a pantallas del Tech Venture Bootcamp de IE.',
-      labTitle: 'IEX Labs / CyPhy Life',
+      labTitle: 'Club de Robótica / IE SciTech',
       labCaption: 'Trabajo práctico con un brazo robótico.',
       labAlt: 'Dos personas trabajando con un brazo robótico en una mesa de laboratorio.',
       datathonTitle: 'Datathon de Ryanair en IE',
@@ -74,6 +78,8 @@
       openPhoto: 'Ver imagen completa: '
     },
     de: {
+      "professionalCertificate": "Berufszertifikat",
+      "microsoftCertificateAlt": "Microsoft-AI-&-ML-Engineering-Zertifikat für Andrea Isabel Montaña, ausgestellt am 4. September 2026.",
 "anthropicCertificateTitle":"Claude 101 · Anthropic Academy","anthropicCertificateCaption":"Erste Seite der 19-seitigen Sammlung aus dem Lebenslauf. Ausstellungsdaten oder Verifizierungsnummern werden nicht angezeigt.","anthropicCertificateAlt":"Claude-101-Zertifikat für Andrea Montana aus der Anthropic-Academy-Sammlung des Lebenslaufs.",
 "googleCertificateTitle":"Google AI","googleCertificateCaption":"Google · Spezialisierung · September 2026. Der Nachweislink öffnet den öffentlichen Abschlussnachweis.","googleCertificateAlt":"Google-AI-Abschlusszertifikat für Andrea Isabel Montaña.","neuralCertificateTitle":"Neural Networks and Deep Learning","neuralCertificateCaption":"DeepLearning.AI · Kurszertifikat · Juni 2026. Der Nachweislink öffnet den öffentlichen Abschlussnachweis.","neuralCertificateAlt":"Neural-Networks-and-Deep-Learning-Zertifikat für Andrea Isabel Montaña.","awsCertificateTitle":"AWS Educate Getting Started with Serverless","awsCertificateCaption":"Grafik des Schulungsabzeichens. Der öffentliche Credly-Nachweis nennt Andrea Montana als Empfängerin.","awsCertificateAlt":"AWS-Educate-Schulungsabzeichen Getting Started with Serverless.",
       heading: 'Engagement & Führung',
@@ -89,7 +95,7 @@
       stageTitle: 'Tech Venture Bootcamp an der IE',
       stageCaption: 'Ein Gruppenfoto mit der Bootcamp-Gemeinschaft an der IE University.',
       stageAlt: 'Teilnehmende posieren auf einer Bühne vor Bildschirmen des IE Tech Venture Bootcamps.',
-      labTitle: 'IEX Labs / CyPhy Life',
+      labTitle: 'Robotikclub / IE SciTech',
       labCaption: 'Praktische Arbeit mit einem Roboterarm.',
       labAlt: 'Zwei Personen arbeiten an einem Labortisch mit einem Roboterarm.',
       datathonTitle: 'Ryanair-Datathon an der IE',

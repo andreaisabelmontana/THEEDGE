@@ -94,6 +94,24 @@ html[data-theme] body .nav-menu-w .w--current :is(div, span) { color: var(--them
 /* Preserve the original animated stroke as the sole red interface accent. */
 html[data-theme] body .nav-menu-w .nav-menu-link-w.w--current .nav-menu-link-current-svg { color: #EA4335 !important; }
 html[data-theme] body .nav-menu-bg { background-image: none !important; }
+/* Illuminate the Projects portrait only from its related navigation word.
+   Keep the resting olive treatment; fine-pointer hover and visible keyboard
+   focus reveal the original portrait against the existing Projects blue. */
+html[data-theme] body .nav-menu-img-w[data-nav-img="2"] .menu-img-top {
+  opacity: 0 !important;
+  transition: opacity .2s ease;
+}
+html[data-theme] body .nav-menu-w:has(.nav-menu-link-w:is([href$="/online/"], [href$="/online"]):focus-visible) .nav-menu-img-w[data-nav-img="2"] { background-color: var(--theme-accent); }
+html[data-theme] body .nav-menu-w:has(.nav-menu-link-w:is([href$="/online/"], [href$="/online"]):focus-visible) .nav-menu-img-w[data-nav-img="2"] :is(.menu-img-blend-1, .menu-img-blend-2, .menu-img-blend-3) { display: none; }
+html[data-theme] body .nav-menu-w:has(.nav-menu-link-w:is([href$="/online/"], [href$="/online"]):focus-visible) .nav-menu-img-w[data-nav-img="2"] .menu-img-top { opacity: 1 !important; }
+@media (hover: hover) and (pointer: fine) {
+  html[data-theme] body .nav-menu-w:has(.nav-menu-link-w:is([href$="/online/"], [href$="/online"]):hover) .nav-menu-img-w[data-nav-img="2"] { background-color: var(--theme-accent); }
+  html[data-theme] body .nav-menu-w:has(.nav-menu-link-w:is([href$="/online/"], [href$="/online"]):hover) .nav-menu-img-w[data-nav-img="2"] :is(.menu-img-blend-1, .menu-img-blend-2, .menu-img-blend-3) { display: none; }
+  html[data-theme] body .nav-menu-w:has(.nav-menu-link-w:is([href$="/online/"], [href$="/online"]):hover) .nav-menu-img-w[data-nav-img="2"] .menu-img-top { opacity: 1 !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme] body .nav-menu-img-w[data-nav-img="2"] .menu-img-top { transition: none; }
+}
 /* Keep the original animated current-page squiggle. Only the rectangular
    reveal bars are hidden so they cannot cover the smaller menu labels. */
 html[data-theme] body .nav-menu-w .high-line-reveal { display: none !important; }

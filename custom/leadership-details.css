@@ -1,0 +1,47 @@
+/* Card details share the career palette and remain independent of the photo viewer. */
+.experience-page [data-leadership-detail] { position: relative; }
+.experience-page .am-career-additional [data-leadership-detail] > p[data-experience-copy$="-copy"] { margin: 18px 0 0; color: var(--career-muted); font-size: 13px; line-height: 1.8; }
+.experience-page .am-leadership-details-trigger { display: inline-flex; align-items: center; gap: 14px; min-height: 44px; margin-top: 20px; padding: 9px 14px; border: 1px solid var(--career-line); border-radius: 999px; background: transparent; color: var(--career-ink); font: inherit; font-size: 12px; cursor: pointer; }
+.experience-page .am-leadership-details-trigger[hidden] { display: none; }
+.experience-page .am-leadership-details-trigger::after { content: ''; position: absolute; inset: 0; border-radius: 8px; }
+.experience-page .am-leadership-details-trigger:hover { background: var(--theme-surface); border-color: var(--career-accent); }
+.experience-page .am-leadership-details-trigger:focus-visible { outline: none; }
+.experience-page .am-leadership-details-trigger:focus-visible::after { outline: 2px solid var(--career-accent, #4285f4); outline-offset: 6px; }
+html.am-leadership-details-viewing { overflow: hidden !important; }
+.experience-page .am-leadership-details { box-sizing: border-box; width: min(960px, calc(100vw - 32px)); max-width: none; max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px); margin: auto; padding: 0; overflow: auto; overscroll-behavior: contain; border: 1px solid var(--career-line); border-radius: 14px; background: var(--theme-bg, #fff); color: var(--career-ink, #172d50); box-shadow: 0 24px 90px #10244750; }
+.experience-page .am-leadership-details:not([open]) { display: none; }
+.experience-page .am-leadership-details::backdrop { background: #142b4bcc; }
+.experience-page .am-leadership-details-bar { position: sticky; z-index: 1; top: 0; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 16px 24px; border-bottom: 1px solid var(--career-line); background: var(--theme-bg, #fff); }
+.experience-page .am-leadership-details-bar > p { margin: 0; color: var(--career-dim); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+.experience-page .am-leadership-details-close { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 44px; min-width: 44px; padding: 8px 14px; border: 1px solid var(--career-line); border-radius: 999px; background: var(--theme-surface, #edf4ff); color: var(--career-ink); font: inherit; font-size: 13px; cursor: pointer; }
+.experience-page .am-leadership-details-close > span:last-child { font-size: 23px; line-height: 1; }
+.experience-page .am-leadership-details :is(button, a):focus-visible { outline: 2px solid var(--career-accent, #4285f4); outline-offset: 4px; }
+.experience-page .am-leadership-details-content { padding: clamp(22px, 4vw, 40px); }
+.experience-page .am-leadership-details h2 { margin: 0 0 18px; font-size: clamp(25px, 4vw, 38px); line-height: 1.2; font-weight: 530; letter-spacing: -.03em; text-transform: none; color: var(--career-ink); }
+.experience-page .am-leadership-details-summary .am-org-row { margin: 0 0 20px; }
+.experience-page .am-leadership-details-summary .am-career-date { margin: 0 0 14px; }
+.experience-page .am-leadership-details-summary > p:last-child { max-width: 68ch; margin: 0; color: var(--career-muted); font-size: 15px; line-height: 1.8; }
+.experience-page .am-leadership-details-section { margin-top: 32px; }
+.experience-page .am-leadership-details-section > h3 { margin: 0 0 18px; font-size: 20px; font-weight: 530; letter-spacing: -.02em; text-transform: none; color: var(--career-ink); }
+.experience-page .am-leadership-details-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 22px; }
+.experience-page .am-leadership-details-photo { min-width: 0; margin: 0; }
+.experience-page .am-leadership-details-photo:only-child { grid-column: 1 / -1; }
+.experience-page .am-leadership-details-photo .am-leadership-photo { aspect-ratio: auto; min-height: 180px; }
+.experience-page .am-leadership-details-photo img { display: block; width: 100%; height: auto; max-height: 480px; object-fit: contain; }
+.experience-page .am-leadership-details-photo figcaption { padding-top: 13px; text-align: left; }
+.experience-page .am-leadership-details-photo h4 { margin: 0; color: var(--career-ink); font-size: 15px; font-weight: 530; line-height: 1.45; text-transform: none; }
+.experience-page .am-leadership-details-photo figcaption > p { margin: 6px 0 0; color: var(--career-muted); font-size: 12px; line-height: 1.7; }
+.experience-page .am-leadership-details-training { padding: 22px; border: 1px solid var(--career-line); border-radius: 9px; }
+.experience-page .am-leadership-details-training h4 { margin: 0 0 9px; color: var(--career-ink); font-size: 18px; font-weight: 530; text-transform: none; }
+.experience-page .am-leadership-details-training .am-credential-card-body { display: grid; gap: 14px; }
+.experience-page .am-leadership-details-training :is(time, .am-credential-meta) { color: var(--career-muted); font-size: 13px; }
+.experience-page .am-leadership-details-training .am-credential-link { justify-self: start; color: var(--career-accent); text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 620px) {
+  .experience-page .am-leadership-details { width: calc(100vw - 16px); max-height: calc(100dvh - 16px); border-radius: 10px; }
+  .experience-page .am-leadership-details-bar { padding: 12px 16px; }
+  .experience-page .am-leadership-details-gallery { grid-template-columns: minmax(0, 1fr); }
+  .experience-page .am-leadership-details-photo img { max-height: 60svh; }
+}
+@media print {
+  .experience-page .am-leadership-details, .experience-page .am-leadership-details-trigger { display: none !important; }
+}

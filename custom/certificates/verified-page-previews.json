@@ -1,0 +1,92 @@
+{
+  "sourceVerified": "2026-10-12",
+  "credentials": [
+    {
+      "title": "Microsoft AI & ML Engineering",
+      "recipient": "Andrea Isabel Montaña",
+      "date": "2026-09-04",
+      "verificationCode": "NLAJR0SQ0R7M",
+      "source": "https://www.coursera.org/api/certificate.v1/pdf/NLAJR0SQ0R7M",
+      "originalPagePoints": [
+        792,
+        612
+      ],
+      "pages": 1,
+      "previewPixels": [
+        640,
+        495
+      ],
+      "method": "Complete original PDF page rendered with pypdfium2 at 640/page.width scale. No crop, recolor, or image transformation.",
+      "assets": [
+        {
+          "file": "microsoft-ai-ml-original.pdf",
+          "bytes": 395312,
+          "sha256": "eaea0adea1d812ee6b21da0adbea7188698163f26c0e39fa7995dcd3411f979d"
+        },
+        {
+          "file": "microsoft-ai-ml-page-640.png",
+          "bytes": 238487,
+          "sha256": "d09c8958bf605aa885fa5865e6197a5e9a965fc7274a2be2fcfea609b0845048"
+        }
+      ]
+    },
+    {
+      "title": "Google AI",
+      "recipient": "Andrea Isabel Montaña",
+      "date": "2026-09-04",
+      "verificationCode": "S8YT35TOPQ8G",
+      "source": "https://www.coursera.org/api/certificate.v1/pdf/S8YT35TOPQ8G",
+      "originalPagePoints": [
+        792,
+        612
+      ],
+      "pages": 1,
+      "previewPixels": [
+        640,
+        495
+      ],
+      "method": "Complete original PDF page rendered with pypdfium2 at 640/page.width scale. No crop, recolor, or image transformation.",
+      "assets": [
+        {
+          "file": "google-ai-original.pdf",
+          "bytes": 419793,
+          "sha256": "00bb6cc82dde2207851f798ee88600ba52b516543c65800e50272d1dce19156e"
+        },
+        {
+          "file": "google-ai-page-640.png",
+          "bytes": 231377,
+          "sha256": "6b27d172757076bd149fbea610465519505d5ec3cd8caac83bc4de18d8db5d95"
+        }
+      ]
+    },
+    {
+      "title": "Neural Networks and Deep Learning",
+      "recipient": "Andrea Isabel Montaña",
+      "date": "2026-06-12",
+      "verificationCode": "EIQ9GAEZD6GC",
+      "source": "https://www.coursera.org/api/certificate.v1/pdf/EIQ9GAEZD6GC",
+      "originalPagePoints": [
+        792,
+        612
+      ],
+      "pages": 1,
+      "previewPixels": [
+        640,
+        495
+      ],
+      "method": "Complete original PDF page rendered with pypdfium2 at 640/page.width scale. No crop, recolor, or image transformation.",
+      "assets": [
+        {
+          "file": "neural-networks-deep-learning-original.pdf",
+          "bytes": 378324,
+          "sha256": "c38775e0067cf2ec9ee360b8047b6d2862e2c60a83f399ebbc771f9dcdcaba1d"
+        },
+        {
+          "file": "neural-networks-deep-learning-page-640.png",
+          "bytes": 208152,
+          "sha256": "46c866fe89194f9e267692200a05cc5e51b279efd7cbb68b88f62da178bfe3d5"
+        }
+      ]
+    }
+  ]
+}
