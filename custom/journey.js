@@ -8,27 +8,139 @@
   if (!canvas || !list) return;
 
   var entries = [
-    { city: ['Bogotá', 'Bogotá', 'Bogotá'], country: ['Colombia', 'Colombia', 'Kolumbien'],
-      detail: 'Colegio Nueva Granada, and the digital presence for Top Living Inmobiliaria',
-      when: '2010 to 2024', lat: 4.652, lon: -74.055 },
-    { city: ['Dublin', 'Dublín', 'Dublin'], country: ['Ireland', 'Irlanda', 'Irland'],
-      detail: 'Trinity College Dublin, first year of the degree',
-      when: '2022 to 2023', lat: 53.3438, lon: -6.2546 },
-    { city: ['Madrid', 'Madrid', 'Madrid'], country: ['Spain', 'España', 'Spanien'],
-      detail: 'IE University, IEX Labs research and AI Global Markets',
-      when: '2023 to present', lat: 40.4168, lon: -3.7038 }
+    { id: 'bogota', city: ['Bogotá', 'Bogotá', 'Bogotá'], country: ['Colombia', 'Colombia', 'Kolumbien'],
+      detail: ['Colegio Nueva Granada and Top Living Inmobiliaria', 'Colegio Nueva Granada y Top Living Inmobiliaria', 'Colegio Nueva Granada und Top Living Inmobiliaria'],
+      when: ['2010 to 2024', '2010 a 2024', '2010 bis 2024'], lat: 4.652, lon: -74.055 },
+    { id: 'dublin', city: ['Dublin', 'Dublín', 'Dublin'], country: ['Ireland', 'Irlanda', 'Irland'],
+      detail: ['Trinity College Dublin, first year of the degree', 'Trinity College Dublin, primer año del grado', 'Trinity College Dublin, erstes Studienjahr'],
+      when: ['2022 to 2023', '2022 a 2023', '2022 bis 2023'], lat: 53.3438, lon: -6.2546 },
+    // Approximate old-town coordinates: https://whc.unesco.org/en/list/311/.
+    // The first-year campus comes from Andrea; no transition date is inferred.
+    { id: 'segovia', city: ['Segovia', 'Segovia', 'Segovia'], country: ['Spain', 'España', 'Spanien'],
+      detail: ['IE University · first year', 'IE University · primer año', 'IE University · erstes Jahr'],
+      when: ['', '', ''], lat: 40.94847, lon: -4.11675 },
+    { id: 'madrid', city: ['Madrid', 'Madrid', 'Madrid'], country: ['Spain', 'España', 'Spanien'],
+      detail: ['IE University · subsequent years; IEX Labs and AI Global Markets', 'IE University · años posteriores; IEX Labs y AI Global Markets', 'IE University · Folgejahre; IEX Labs und AI Global Markets'],
+      when: ['', '', ''], lat: 40.4168, lon: -3.7038 }
   ];
   var root = window.__SITE_ROOT || '';
   var textureURL = root + '/custom/journey-assets/earth-blue-marble.webp';
   var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   var caption = document.querySelector('#journey .am-globe-instruction');
-  var active = 2, language = 0, visible = true, ready = false, frameID = 0;
+  var active = 3, language = 0, visible = true, ready = false, frameID = 0;
   var radians = Math.PI / 180;
   var rotation = { x: entries[active].lat * radians, y: -entries[active].lon * radians };
   var target = { x: rotation.x, y: rotation.y };
   var renderer, scene, camera, world, earth, pins = [], raycaster, pointer;
   var fallbackContext, fallbackPixels, fallbackWidth, fallbackHeight;
+  var usingFallback = false, graphicUnavailable = false;
   var buttons = [];
+  var companion = document.getElementById('journey');
+  var region = document.querySelector('.am-career-journey-layout');
+  var markers = Array.from(document.querySelectorAll('[data-journey-city], [data-journey-context]'));
+  var cityLabel = companion.querySelector('[data-journey-current-city]');
+  var detailLabel = companion.querySelector('[data-journey-current-detail]');
+  var modeLabel = companion.querySelector('[data-journey-mode]');
+  var currentMarker = null, manualScrollY = null, syncFrame = 0, contextOnly = false;
+  var journeyCopy = {
+    places: ['Places along the way', 'Lugares del recorrido', 'Orte meines Weges'],
+    'nav-certificates': ['Certificates', 'Certificados', 'Zertifikate'],
+    'ie-cities': ['Segovia → Madrid, Spain', 'Segovia → Madrid, España', 'Segovia → Madrid, Spanien'],
+    'first-year': ['IE University · first year', 'IE University · primer año', 'IE University · erstes Jahr'],
+    'subsequent-years': ['IE University · subsequent years', 'IE University · años posteriores', 'IE University · Folgejahre']
+  };
+
+  function textIfChanged(node, value) {
+    if (node && node.textContent !== value) node.textContent = value;
+  }
+  function describeSelection() {
+    if (!cityLabel) return;
+    textIfChanged(modeLabel, (manualScrollY === null ? ['In view', 'En pantalla', 'Im Blick'] : ['Exploring', 'Explorando', 'Erkunden'])[language]);
+    if (contextOnly) {
+      textIfChanged(cityLabel, ['IE University community', 'Comunidad de IE University', 'Gemeinschaft der IE University'][language]);
+      textIfChanged(detailLabel, ['Explore the cities in my journey.', 'Explora las ciudades de mi recorrido.', 'Entdecke die Städte meines Weges.'][language]);
+      return;
+    }
+    var entry = entries[active];
+    textIfChanged(cityLabel, entry.city[language] + ', ' + entry.country[language]);
+    var heading = currentMarker && currentMarker.querySelector('h3, strong, .am-career-lead');
+    var campus = currentMarker && currentMarker.querySelector('[data-journey-copy]');
+    textIfChanged(detailLabel, manualScrollY === null && heading ?
+      heading.textContent + (campus ? ' · ' + campus.textContent : '') :
+      entry.detail[language] + (entry.when[language] ? ' · ' + entry.when[language] : ''));
+  }
+  // Updating labels/pins must never recenter an independently rotated globe.
+  function reflectSelection() {
+    companion.dataset.activeCity = contextOnly ? '' : entries[active].id;
+    buttons.forEach(function (button, i) {
+      var selected = !contextOnly && i === active;
+      button.setAttribute('aria-pressed', String(selected));
+      button.parentNode.classList.toggle('is-active', selected);
+    });
+    pins.forEach(function (pin, i) {
+      var selected = !contextOnly && i === active;
+      pin.material.color.set(selected ? 0xf0ca94 : 0xf4f0e9);
+      pin.scale.setScalar(selected ? 1.35 : 1);
+    });
+    describeSelection();
+  }
+  function beginExploration() {
+    manualScrollY = window.scrollY;
+    contextOnly = false;
+    currentMarker = null;
+    reflectSelection();
+  }
+  function modalOpen() {
+    return document.documentElement.classList.contains('am-leadership-details-viewing') ||
+      document.documentElement.classList.contains('am-leadership-viewing') ||
+      document.querySelector('dialog[open]');
+  }
+  function syncToEntries() {
+    syncFrame = 0;
+    if (!region || modalOpen()) return;
+    if (manualScrollY !== null) {
+      if (Math.abs(window.scrollY - manualScrollY) < 48) return;
+      manualScrollY = null;
+    }
+    var boundary = region.getBoundingClientRect();
+    if (boundary.bottom <= 112 || boundary.top >= window.innerHeight) return;
+    var focusY = Math.max(140, window.innerHeight * 0.42);
+    var nearest = null, distance = Infinity;
+    markers.forEach(function (marker) {
+      var rect = marker.getBoundingClientRect();
+      if (rect.bottom <= 112 || rect.top >= window.innerHeight || !rect.height) return;
+      var delta = Math.max(rect.top - focusY, focusY - rect.bottom, 0);
+      if (delta < distance) { nearest = marker; distance = delta; }
+    });
+    if (!nearest || nearest === currentMarker) return;
+    currentMarker = nearest;
+    if (nearest.dataset.journeyContext) {
+      contextOnly = true;
+      reflectSelection();
+      invalidate();
+      return;
+    }
+    var index = entries.findIndex(function (entry) { return entry.id === nearest.dataset.journeyCity; });
+    if (index !== -1) select(index);
+  }
+  function scheduleSync() {
+    if (!syncFrame) syncFrame = requestAnimationFrame(syncToEntries);
+  }
+  window.addEventListener('scroll', scheduleSync, { passive: true });
+  window.addEventListener('resize', scheduleSync);
+  window.addEventListener('pageshow', scheduleSync);
+  if (region) new ResizeObserver(scheduleSync).observe(region);
+
+  // Let native wheel/touch scrolling reach controls in a short sticky panel.
+  // Normal-flow mobile and panels that fit keep the site's smooth scrolling.
+  var companionResize = new ResizeObserver(function () {
+    companion.toggleAttribute('data-lenis-prevent',
+      getComputedStyle(companion).position === 'sticky' &&
+      companion.scrollHeight > companion.clientHeight + 1);
+  });
+  companionResize.observe(companion);
+  Array.from(companion.children).forEach(function (child) { companionResize.observe(child); });
+
 
   // Classify the unlit satellite texture first. Lighting stays inside separate
   // ocean and land color bands, so bright water cannot wash into shadowed land.
@@ -71,7 +183,10 @@
       'float light = clamp((dot(litSurface, vec3(0.2126, 0.7152, 0.0722)) - ' + number(surfaceLighting.ambient) +
         ') / ' + number(surfaceLighting.directional) + ', 0.0, 1.0);\n' +
       'vec3 ocean = mix(' + color('ocean') + ', ' + color('oceanLight') + ', light);\n' +
-      'vec3 terrain = mix(' + color('land') + ', ' + color('landLight') + ', 0.72 * light + 0.28 * sqrt(luminance));\n' +
+      // Very fine fixed grain comes from the existing satellite luminance.
+      // It affects land only, adds no texture fetch and never changes the palette bounds.
+      'float grain = fract(luminance * 137.5);\n' +
+      'vec3 terrain = mix(' + color('land') + ', ' + color('landLight') + ', 0.60 * light + 0.36 * sqrt(luminance) + 0.04 * grain);\n' +
       'return mix(ocean, terrain, land);\n}\n';
   }
   function fallbackBlueSurface(source, index, light, output, pixel) {
@@ -83,7 +198,8 @@
     var ice = surfaceSmoothstep(0.08, 0.30, luminance) * surfaceSmoothstep(0.25, 0.60, neutral);
     var land = Math.max(surfaceSmoothstep(0.10, 0.35, warm), ice);
     light = Math.max(0, Math.min(1, (light - surfaceLighting.ambient) / surfaceLighting.directional));
-    var detail = 0.72 * light + 0.28 * Math.sqrt(luminance);
+    var grain = luminance * 137.5 - Math.floor(luminance * 137.5);
+    var detail = 0.60 * light + 0.36 * Math.sqrt(luminance) + 0.04 * grain;
     for (var channel = 0; channel < 3; channel++) {
       var ocean = surfacePalette.ocean[channel] + (surfacePalette.oceanLight[channel] - surfacePalette.ocean[channel]) * light;
       var terrain = surfacePalette.land[channel] + (surfacePalette.landLight[channel] - surfacePalette.land[channel]) * detail;
@@ -97,10 +213,8 @@
     button.type = 'button';
     button.className = 'am-journey-button';
     button.innerHTML = '<span class="am-exp-line1"><span class="am-journey-city"></span>' +
-      '<span class="am-journey-country"></span></span>' +
-      '<span class="am-exp-line2">' + entry.detail + '</span>' +
-      '<span class="am-exp-line3">' + entry.when + '</span>';
-    button.addEventListener('click', function () { select(index); });
+      '<span class="am-journey-country"></span></span>';
+    button.addEventListener('click', function () { beginExploration(); select(index); });
     item.appendChild(button);
     list.appendChild(item);
     buttons.push(button);
@@ -112,7 +226,15 @@
       buttons[index].querySelector('.am-journey-city').textContent = entry.city[language];
       buttons[index].querySelector('.am-journey-country').textContent = entry.country[language];
     });
-    caption.textContent = fallbackContext ?
+    document.querySelectorAll('[data-journey-copy]').forEach(function (node) {
+      var text = journeyCopy[node.dataset.journeyCopy];
+      if (text) node.textContent = text[language];
+    });
+    list.setAttribute('aria-label', ['Journey cities', 'Ciudades del recorrido', 'Städte meines Weges'][language]);
+    // Other page-local listeners translate the source heading in this event.
+    // Read its final text after all of them have run.
+    Promise.resolve().then(describeSelection);
+    caption.textContent = graphicUnavailable ?
       ['Select a city to explore.', 'Elige una ciudad para explorar.', 'Wähle eine Stadt zum Erkunden.'][language] :
       ['Drag the Earth or choose a city.', 'Gira la Tierra o elige una ciudad.', 'Drehe die Erde oder wähle eine Stadt.'][language];
     canvas.setAttribute('aria-label', [
@@ -126,17 +248,11 @@
 
   function select(index) {
     active = index;
-    buttons.forEach(function (button, i) {
-      button.setAttribute('aria-pressed', String(i === index));
-      button.parentNode.classList.toggle('is-active', i === index);
-    });
+    contextOnly = false;
+    reflectSelection();
     target.x = entries[index].lat * radians;
     var longitude = -entries[index].lon * radians;
     target.y = rotation.y + Math.atan2(Math.sin(longitude - rotation.y), Math.cos(longitude - rotation.y));
-    pins.forEach(function (pin, i) {
-      pin.material.color.set(i === active ? 0xf0ca94 : 0xf4f0e9);
-      pin.scale.setScalar(i === active ? 1.35 : 1);
-    });
     if (motion.matches || fallbackContext) {
       rotation.x = target.x;
       rotation.y = target.y;
@@ -153,7 +269,7 @@
     frameID = 0;
     if (!ready || !visible || document.hidden) return;
     var difference = Math.abs(target.x - rotation.x) + Math.abs(target.y - rotation.y);
-    var amount = motion.matches ? 1 : 0.085;
+    var amount = motion.matches || usingFallback ? 1 : 0.085;
     rotation.x += (target.x - rotation.x) * amount;
     rotation.y += (target.y - rotation.y) * amount;
     if (difference < 0.001) { rotation.x = target.x; rotation.y = target.y; }
@@ -162,7 +278,7 @@
       world.rotation.set(rotation.x, rotation.y, 0, 'XYZ');
       renderer.render(scene, camera);
     }
-    if (difference > 0.001) invalidate();
+    if (amount < 1 && difference > 0.001) invalidate();
   }
 
   function point(lat, lon, radius) {
@@ -243,7 +359,7 @@
       raycaster = new THREE.Raycaster();
       pointer = new THREE.Vector2();
       new THREE.TextureLoader().load(textureURL, function (texture) {
-        if (fallbackContext) { texture.dispose(); return; }
+        if (usingFallback) { texture.dispose(); return; }
         texture.encoding = THREE.sRGBEncoding;
         texture.anisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy());
         earth.material.map = texture;
@@ -251,7 +367,7 @@
         ready = true;
         canvas.dataset.renderer = 'webgl';
         resize();
-        select(active);
+        reflectSelection();
       }, undefined, fallback);
       canvas.addEventListener('webglcontextlost', function (event) {
         event.preventDefault();
@@ -273,7 +389,11 @@
     if (visible) invalidate();
   }, { rootMargin: '100px' }).observe(canvas.parentNode);
   document.addEventListener('visibilitychange', invalidate);
-  motion.addEventListener('change', function () { select(active); });
+  motion.addEventListener('change', function () {
+    // Settle the current interaction, retaining its city or neutral context.
+    if (motion.matches) { rotation.x = target.x; rotation.y = target.y; }
+    invalidate();
+  });
 
   function bindControls() {
     var drag = null;
@@ -282,6 +402,7 @@
       var keys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
       if (keys.indexOf(event.key) < 0) return;
       event.preventDefault();
+      beginExploration();
       target.y += (event.key === 'ArrowRight' ? 0.18 : event.key === 'ArrowLeft' ? -0.18 : 0);
       target.x += (event.key === 'ArrowDown' ? 0.12 : event.key === 'ArrowUp' ? -0.12 : 0);
       target.x = Math.max(-1.3, Math.min(1.3, target.x));
@@ -289,6 +410,7 @@
     });
     canvas.addEventListener('pointerdown', function (event) {
       if (event.button !== 0) return;
+      beginExploration();
       drag = { x: event.clientX, y: event.clientY, lastX: event.clientX, lastY: event.clientY, moved: false };
       canvas.setPointerCapture(event.pointerId);
     });
@@ -322,7 +444,8 @@
   // The same satellite map rendered as a still sphere if WebGL is unavailable.
   // The list, keyboard and city selection keep working without a GPU context.
   function fallback() {
-    if (fallbackContext) return;
+    if (usingFallback) return;
+    usingFallback = true;
     ready = false;
     if (frameID) cancelAnimationFrame(frameID);
     frameID = 0;
@@ -331,26 +454,36 @@
     canvas.replaceWith(replacement);
     canvas = replacement;
     canvas.width = canvas.height = 420;
-    fallbackContext = canvas.getContext('2d');
+    try { fallbackContext = canvas.getContext('2d'); }
+    catch (error) { showCityOnly(); return; }
+    if (!fallbackContext) { showCityOnly(); return; }
     canvas.dataset.renderer = 'canvas';
     bindControls();
     localize(['en', 'es', 'de'][language]);
     var image = new Image();
     image.onload = function () {
-      var buffer = document.createElement('canvas');
-      fallbackWidth = buffer.width = image.width;
-      fallbackHeight = buffer.height = image.height;
-      var context = buffer.getContext('2d', { willReadFrequently: true });
-      context.drawImage(image, 0, 0);
-      fallbackPixels = context.getImageData(0, 0, image.width, image.height).data;
-      ready = true;
-      select(active);
+      try {
+        var buffer = document.createElement('canvas');
+        fallbackWidth = buffer.width = image.width;
+        fallbackHeight = buffer.height = image.height;
+        var context = buffer.getContext('2d', { willReadFrequently: true });
+        if (!context) { showCityOnly(); return; }
+        context.drawImage(image, 0, 0);
+        fallbackPixels = context.getImageData(0, 0, image.width, image.height).data;
+        ready = true;
+        reflectSelection();
+        invalidate();
+      } catch (error) { showCityOnly(); }
     };
-    image.onerror = function () {
-      canvas.hidden = true;
-      caption.textContent = ['Select a city to explore.', 'Elige una ciudad para explorar.', 'Wähle eine Stadt zum Erkunden.'][language];
-    };
+    image.onerror = showCityOnly;
     image.src = textureURL;
+  }
+  function showCityOnly() {
+    ready = false;
+    graphicUnavailable = true;
+    canvas.hidden = true;
+    canvas.dataset.renderer = 'unavailable';
+    localize(['en', 'es', 'de'][language]);
   }
   function drawFallback() {
     var size = canvas.width, radius = size * 0.43, half = size / 2;
@@ -379,8 +512,8 @@
       var projectedY = y * cx - z * sx, depth = y * sx + z * cx;
       if (depth < 0.03) return;
       fallbackContext.beginPath();
-      fallbackContext.arc(half + x * radius, half - projectedY * radius, index === active ? 4 : 2.5, 0, Math.PI * 2);
-      fallbackContext.fillStyle = index === active ? '#f0ca94' : '#f4f0e9';
+      fallbackContext.arc(half + x * radius, half - projectedY * radius, index === active && !contextOnly ? 4 : 2.5, 0, Math.PI * 2);
+      fallbackContext.fillStyle = index === active && !contextOnly ? '#f0ca94' : '#f4f0e9';
       fallbackContext.fill();
     });
   }
@@ -388,4 +521,5 @@
   select(active);
   bindControls();
   initialize();
+  scheduleSync();
 })();

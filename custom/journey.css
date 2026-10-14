@@ -256,3 +256,175 @@
 .experience-page #journey #am-globe[hidden] { display: none; }
 .experience-page #journey .am-globe-caption a { color: #8e919c; text-decoration: underline; text-underline-offset: 3px; font-size: 9px; }
 .experience-page #journey .am-globe-caption a:hover { color: #efebe5; }
+
+/* The globe shares the records' boundary, so its sticky position ends before
+   certificates. The opening and all content after that boundary stay full width. */
+.experience-page .am-career-journey-layout {
+  width: min(1120px, calc(100% - 96px));
+  margin-inline: auto;
+}
+.experience-page .am-career-journey-layout .am-career-container,
+.experience-page .am-career-records .am-section-nav { width: 100%; }
+.experience-page #journey.am-journey-companion {
+  min-width: 0;
+  margin: 0 0 44px;
+  padding: 24px 0;
+  border-block: 1px solid var(--career-line);
+  background: transparent;
+  scroll-margin-top: 104px;
+}
+.experience-page .am-journey-heading h2 {
+  margin: 0 0 5px;
+  color: var(--career-ink);
+  font-size: 20px;
+  font-weight: 550;
+  line-height: 1.25;
+  letter-spacing: -.025em;
+  text-transform: none;
+}
+.experience-page .am-journey-heading > span,
+.experience-page .am-journey-current > span {
+  display: block;
+  color: var(--career-dim);
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: .035em;
+}
+.experience-page #journey.am-journey-companion .am-exp-globe-w {
+  width: min(100%, 280px);
+  margin: 4px auto;
+}
+.experience-page .am-journey-current { min-height: 90px; margin-bottom: 12px; }
+.experience-page .am-journey-current strong {
+  display: block;
+  margin-top: 5px;
+  color: var(--career-ink);
+  font-size: 17px;
+  font-weight: 550;
+  line-height: 1.35;
+}
+.experience-page .am-journey-current p {
+  margin: 5px 0 0;
+  color: var(--career-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.experience-page #journey.am-journey-companion .am-exp-timeline {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 18px;
+  border-top: 0;
+}
+.experience-page #journey.am-journey-companion .am-journey-button {
+  min-height: 48px;
+  padding: 10px 18px 10px 0;
+}
+.experience-page #journey.am-journey-companion .am-exp-line1,
+.experience-page #journey.am-journey-companion .am-exp-timeline li.is-active .am-exp-line1 {
+  gap: 0 7px;
+  font-family: "Mona Sans Variable", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 550;
+  line-height: 1.4;
+  letter-spacing: -.015em;
+}
+.experience-page #journey.am-journey-companion .am-journey-country {
+  display: none;
+}
+.experience-page #journey.am-journey-companion .am-journey-button::after {
+  top: 17px;
+  right: 0;
+  font-size: 13px;
+}
+.experience-page #journey.am-journey-companion .am-globe-caption { margin-top: 14px; }
+.experience-page .am-career-campuses {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+.experience-page .am-career-campuses p {
+  margin: 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--career-line);
+  color: var(--career-muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+.experience-page .am-career-campuses strong {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--career-ink);
+  font-size: 14px;
+  font-weight: 550;
+}
+.experience-page #credentials > h2 {
+  margin: 0 0 24px;
+  color: var(--career-ink);
+  font-size: clamp(27px, 3vw, 36px);
+  font-weight: 520;
+  line-height: 1.25;
+  letter-spacing: -.035em;
+  text-transform: none;
+}
+.experience-page #credentials.am-credentials { margin-top: 76px; }
+@media (min-width: 1100px) {
+  .experience-page .am-career-journey-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    column-gap: 56px;
+    align-items: start;
+  }
+  .experience-page .am-career-opening { grid-column: 1 / -1; grid-row: 1; }
+  .experience-page .am-career-records { grid-column: 1; grid-row: 2; min-width: 0; }
+  .experience-page #journey.am-journey-companion {
+    position: sticky;
+    top: 96px;
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+    max-height: calc(100svh - 116px);
+    margin: 0;
+    padding: 16px 2px 12px;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    scrollbar-width: thin;
+  }
+  .experience-page #journey.am-journey-companion .am-exp-globe-w {
+    width: min(100%, max(150px, calc(100svh - 440px)));
+    max-width: 300px;
+  }
+  .experience-page .am-career-records :is(.am-career-role, .am-career-study, .am-career-prior) {
+    grid-template-columns: 140px minmax(0, 1fr);
+    column-gap: 30px;
+  }
+  .experience-page .am-career-records .am-career-section-head { display: block; }
+  .experience-page .am-career-records .am-career-section-sub { width: auto; max-width: 48ch; margin-top: 14px; }
+}
+@media (max-width: 1099px) {
+  .experience-page #journey.am-journey-companion {
+    display: grid;
+    grid-template-columns: minmax(160px, .85fr) minmax(0, 1fr);
+    column-gap: 28px;
+    align-items: center;
+  }
+  .experience-page .am-journey-heading { grid-column: 1 / -1; }
+  .experience-page #journey.am-journey-companion .am-exp-globe-w { grid-column: 1; grid-row: 2 / span 3; }
+  .experience-page .am-journey-current { grid-column: 2; min-height: 0; margin: 16px 0 10px; }
+  .experience-page #journey.am-journey-companion .am-exp-timeline,
+  .experience-page #journey.am-journey-companion .am-globe-caption { grid-column: 2; width: 100%; }
+}
+@media (max-width: 900px) {
+  .experience-page .am-career-journey-layout { width: calc(100% - 56px); }
+}
+@media (max-width: 620px) {
+  .experience-page .am-career-journey-layout { width: calc(100% - 40px); }
+  .experience-page #journey.am-journey-companion { display: block; margin-bottom: 28px; padding: 20px 0; }
+  .experience-page #journey.am-journey-companion .am-exp-globe-w { width: min(100%, 240px); margin: 0 auto; }
+  .experience-page .am-journey-current { min-height: 76px; margin: 2px 0 8px; }
+  .experience-page #journey.am-journey-companion .am-globe-caption { margin-top: 12px; }
+  .experience-page #credentials.am-credentials { margin-top: 50px; }
+}
+@media print {
+  .experience-page .am-career-journey-layout { display: block; width: 100%; }
+}
