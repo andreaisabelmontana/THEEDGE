@@ -32,7 +32,7 @@
   var rotation = { x: entries[active].lat * radians, y: -entries[active].lon * radians };
   var target = { x: rotation.x, y: rotation.y };
   var renderer, scene, camera, world, earth, pins = [], raycaster, pointer;
-  var fallbackContext, fallbackPixels, fallbackWidth, fallbackHeight;
+  var fallbackContext, fallbackPixels, fallbackWidth, fallbackHeight, fallbackHeights;
   var usingFallback = false, graphicUnavailable = false;
   var buttons = [];
   var companion = document.getElementById('journey');
@@ -142,8 +142,8 @@
   Array.from(companion.children).forEach(function (child) { companionResize.observe(child); });
 
 
-  // Classify the unlit satellite texture first. Lighting stays inside separate
-  // ocean and land color bands, so bright water cannot wash into shadowed land.
+  // Keep the satellite geography, with neighboring blue bands for a soft surface.
+  // Relief below is derived from image luminance, not an elevation measurement.
   var surfaceLuma = [0.2126, 0.7152, 0.0722];
   var surfaceLighting = { ambient: 0.7, directional: 0.65 };
   function srgbToLinear(value) {
@@ -154,8 +154,8 @@
     return value <= 0.0031308 ? value * 12.92 : 1.055 * Math.pow(value, 1 / 2.4) - 0.055;
   }
   var surfacePalette = {
-    ocean: 0x4285f4, oceanLight: 0x4e8df5,
-    land: 0xd6e7ff, landLight: 0xedf5ff
+    ocean: 0x7ea5d1, oceanLight: 0x9fbee0,
+    land: 0x91aec8, landLight: 0xd4e2ed
   };
   Object.keys(surfacePalette).forEach(function (key) {
     var hex = surfacePalette[key];
@@ -173,7 +173,9 @@
   function blueSurfaceShader() {
     function number(value) { return value.toFixed(9); }
     function color(key) { return 'vec3(' + surfacePalette[key].map(number).join(',') + ')'; }
-    return 'vec3 journeyBlueSurface(vec3 texel, vec3 litSurface) {\n' +
+    return 'uniform vec2 journeyTexelStep;\n' +
+      'float journeyHeight(vec3 texel) { return sqrt(clamp(dot(texel, vec3(0.2126, 0.7152, 0.0722)), 0.0, 1.0)); }\n' +
+      'vec3 journeyBlueSurface(vec3 texel, vec3 litSurface, vec4 neighbors) {\n' +
       'float luminance = clamp(dot(texel, vec3(0.2126, 0.7152, 0.0722)), 0.0, 1.0);\n' +
       'float warm = (max(texel.r, texel.g) - texel.b) / max(max(max(texel.r, texel.g), texel.b), 0.0001);\n' +
       // Neutral snow/ice is land; saturated cyan shallows must stay ocean.
@@ -183,10 +185,13 @@
       'float light = clamp((dot(litSurface, vec3(0.2126, 0.7152, 0.0722)) - ' + number(surfaceLighting.ambient) +
         ') / ' + number(surfaceLighting.directional) + ', 0.0, 1.0);\n' +
       'vec3 ocean = mix(' + color('ocean') + ', ' + color('oceanLight') + ', light);\n' +
-      // Very fine fixed grain comes from the existing satellite luminance.
-      // It affects land only, adds no texture fetch and never changes the palette bounds.
-      'float grain = fract(luminance * 137.5);\n' +
-      'vec3 terrain = mix(' + color('land') + ', ' + color('landLight') + ', 0.60 * light + 0.36 * sqrt(luminance) + 0.04 * grain);\n' +
+      // Preserve regional tones and fine detail from the actual NASA image.
+      // Four neighboring texels give restrained northwest-lit surface relief;
+      // oceans remain smooth, and no procedural noise is added.
+      'float height = sqrt(luminance);\n' +
+      'float relief = clamp(1.2 * (neighbors.x - neighbors.y + neighbors.z - neighbors.w) + 1.6 * (height - dot(neighbors, vec4(0.25))), -0.16, 0.16);\n' +
+      'float detail = clamp(0.16 + 0.22 * light + 0.62 * height + relief, 0.0, 1.0);\n' +
+      'vec3 terrain = mix(' + color('land') + ', ' + color('landLight') + ', detail);\n' +
       'return mix(ocean, terrain, land);\n}\n';
   }
   function fallbackBlueSurface(source, index, light, output, pixel) {
@@ -198,8 +203,15 @@
     var ice = surfaceSmoothstep(0.08, 0.30, luminance) * surfaceSmoothstep(0.25, 0.60, neutral);
     var land = Math.max(surfaceSmoothstep(0.10, 0.35, warm), ice);
     light = Math.max(0, Math.min(1, (light - surfaceLighting.ambient) / surfaceLighting.directional));
-    var grain = luminance * 137.5 - Math.floor(luminance * 137.5);
-    var detail = 0.60 * light + 0.36 * Math.sqrt(luminance) + 0.04 * grain;
+    var sample = index / 4, row = Math.floor(sample / fallbackWidth), column = sample % fallbackWidth;
+    var west = fallbackHeights[row * fallbackWidth + (column - 2 + fallbackWidth) % fallbackWidth];
+    var east = fallbackHeights[row * fallbackWidth + (column + 2) % fallbackWidth];
+    var north = fallbackHeights[Math.max(0, row - 2) * fallbackWidth + column];
+    var south = fallbackHeights[Math.min(fallbackHeight - 1, row + 2) * fallbackWidth + column];
+    var height = Math.sqrt(luminance);
+    var relief = Math.max(-0.16, Math.min(0.16,
+      1.2 * (west - east + north - south) + 1.6 * (height - (west + east + north + south) * 0.25)));
+    var detail = Math.max(0, Math.min(1, 0.16 + 0.22 * light + 0.62 * height + relief));
     for (var channel = 0; channel < 3; channel++) {
       var ocean = surfacePalette.ocean[channel] + (surfacePalette.oceanLight[channel] - surfacePalette.ocean[channel]) * light;
       var terrain = surfacePalette.land[channel] + (surfacePalette.landLight[channel] - surfacePalette.land[channel]) * detail;
@@ -308,15 +320,23 @@
       earth.material.onBeforeCompile = function (shader) {
         // Three r149 decodes the sRGB map before map_fragment. Save the unlit
         // texel for geography, and shade white to measure illumination separately.
+        var image = earth.material.map && earth.material.map.image;
+        shader.uniforms.journeyTexelStep = { value: new THREE.Vector2(
+          2 / (image && image.width || 2048), 2 / (image && image.height || 1024)) };
         shader.fragmentShader = blueSurfaceShader() + shader.fragmentShader.replace(
           '#include <map_fragment>',
           '#include <map_fragment>\nvec3 journeyTexel = diffuseColor.rgb;\ndiffuseColor.rgb = vec3(1.0);'
         ).replace(
           '#include <output_fragment>',
-          'outgoingLight = journeyBlueSurface(journeyTexel, outgoingLight);\n#include <output_fragment>'
+          'vec4 journeyNeighbors = vec4(\n' +
+          'journeyHeight(texture2D(map, vec2(fract(vUv.x - journeyTexelStep.x), vUv.y)).rgb),\n' +
+          'journeyHeight(texture2D(map, vec2(fract(vUv.x + journeyTexelStep.x), vUv.y)).rgb),\n' +
+          'journeyHeight(texture2D(map, vec2(vUv.x, clamp(vUv.y + journeyTexelStep.y, 0.0, 1.0))).rgb),\n' +
+          'journeyHeight(texture2D(map, vec2(vUv.x, clamp(vUv.y - journeyTexelStep.y, 0.0, 1.0))).rgb));\n' +
+          'outgoingLight = journeyBlueSurface(journeyTexel, outgoingLight, journeyNeighbors);\n#include <output_fragment>'
         );
       };
-      earth.material.customProgramCacheKey = function () { return 'journey-ocean-land-surface-v3'; };
+      earth.material.customProgramCacheKey = function () { return 'journey-ocean-land-surface-v4'; };
       world.add(earth);
       scene.add(new THREE.AmbientLight(0xffffff, surfaceLighting.ambient));
       var sun = new THREE.DirectionalLight(0xffffff, surfaceLighting.directional);
@@ -470,6 +490,14 @@
         if (!context) { showCityOnly(); return; }
         context.drawImage(image, 0, 0);
         fallbackPixels = context.getImageData(0, 0, image.width, image.height).data;
+        // Cache the source field once; interaction frames only read four values.
+        fallbackHeights = new Float32Array(image.width * image.height);
+        for (var i = 0; i < fallbackHeights.length; i++) {
+          var pixel = i * 4;
+          fallbackHeights[i] = Math.sqrt(surfaceLinearLookup[fallbackPixels[pixel]] * surfaceLuma[0] +
+            surfaceLinearLookup[fallbackPixels[pixel + 1]] * surfaceLuma[1] +
+            surfaceLinearLookup[fallbackPixels[pixel + 2]] * surfaceLuma[2]);
+        }
         ready = true;
         reflectSelection();
         invalidate();

@@ -326,6 +326,32 @@ html[data-theme] body .footer-marquee-svg img[src*="custom/logos/kw-"] {
   }
 }
 
+/* A readable desktop icon exists from the first paint. Hand it to the
+   animated canvas only after that canvas has drawn its first visible frame. */
+@media (min-width: 1024px) {
+  html[data-theme] body.clean-portfolio .nav .nav-ham:not([data-nav-icon-ready]) {
+    position: relative;
+    border: 2px solid #14213d !important;
+  }
+  html[data-theme] body.clean-portfolio .nav .nav-ham:not([data-nav-icon-ready]) canvas { opacity: 0 !important; }
+  html[data-theme] body.clean-portfolio .nav .nav-ham:not([data-nav-icon-ready])::before,
+  html[data-theme] body.clean-portfolio .nav .nav-ham:not([data-nav-icon-ready])::after {
+    content: "";
+    position: absolute;
+    left: 11px;
+    top: 16px;
+    width: 18px;
+    height: 2px;
+    border-radius: 2px;
+    background: #14213d;
+    pointer-events: none;
+    transition: transform .18s ease;
+  }
+  html[data-theme] body.clean-portfolio .nav .nav-ham:not([data-nav-icon-ready])::after { top: 22px; }
+  html[data-theme] body.clean-portfolio .nav .nav-ham:not([data-nav-icon-ready])[aria-expanded="true"]::before { transform: translateY(3px) rotate(45deg); }
+  html[data-theme] body.clean-portfolio .nav .nav-ham:not([data-nav-icon-ready])[aria-expanded="true"]::after { transform: translateY(-3px) rotate(-45deg); }
+}
+
 /* Icy mobile control. Keep Rive mounted for its existing menu handlers while
    drawing crisp, softer blue strokes independently of its black raster art. */
 @media (max-width: 1023px) {
@@ -366,5 +392,5 @@ html[data-theme] body .footer-marquee-svg img[src*="custom/logos/kw-"] {
 }
 @media (prefers-reduced-motion: reduce) {
   html[data-theme] body.clean-portfolio .nav .nav-ham::before,
-  html[data-theme] body.clean-portfolio .nav .nav-ham::after { transition: none; }
+  html[data-theme] body.clean-portfolio .nav .nav-ham::after { transition: none !important; }
 }

@@ -257,14 +257,17 @@
 .experience-page #journey .am-globe-caption a { color: #8e919c; text-decoration: underline; text-underline-offset: 3px; font-size: 9px; }
 .experience-page #journey .am-globe-caption a:hover { color: #efebe5; }
 
-/* The globe shares the records' boundary, so its sticky position ends before
-   certificates. The opening and all content after that boundary stay full width. */
+/* The title stays full width. The globe starts beside the introduction and
+   shares the records' boundary, ending before certificates and skills. */
 .experience-page .am-career-journey-layout {
   width: min(1120px, calc(100% - 96px));
   margin-inline: auto;
 }
 .experience-page .am-career-journey-layout .am-career-container,
 .experience-page .am-career-records .am-section-nav { width: 100%; }
+.experience-page .am-career-opening { display: flow-root; }
+.experience-page .am-career-opening .am-career-hero { padding-bottom: 0; }
+.experience-page .am-career-opening-intro { padding-bottom: 54px; }
 .experience-page #journey.am-journey-companion {
   min-width: 0;
   margin: 0 0 44px;
@@ -376,12 +379,19 @@
     align-items: start;
   }
   .experience-page .am-career-opening { grid-column: 1 / -1; grid-row: 1; }
-  .experience-page .am-career-records { grid-column: 1; grid-row: 2; min-width: 0; }
+  .experience-page .am-career-opening-intro {
+    grid-column: 1;
+    grid-row: 2;
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+  .experience-page .am-career-records { grid-column: 1; grid-row: 3; min-width: 0; }
   .experience-page #journey.am-journey-companion {
     position: sticky;
     top: 96px;
     grid-column: 2;
-    grid-row: 2;
+    grid-row: 2 / 4;
     align-self: start;
     max-height: calc(100svh - 116px);
     margin: 0;
@@ -419,6 +429,7 @@
 }
 @media (max-width: 620px) {
   .experience-page .am-career-journey-layout { width: calc(100% - 40px); }
+  .experience-page .am-career-opening-intro { padding-bottom: 35px; }
   .experience-page #journey.am-journey-companion { display: block; margin-bottom: 28px; padding: 20px 0; }
   .experience-page #journey.am-journey-companion .am-exp-globe-w { width: min(100%, 240px); margin: 0 auto; }
   .experience-page .am-journey-current { min-height: 76px; margin: 2px 0 8px; }

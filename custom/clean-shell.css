@@ -34,7 +34,7 @@ body.clean-portfolio .nav {
 body.clean-portfolio .nav .nav-inner {
   display: flex;
   align-items: center !important;
-  justify-content: flex-start;
+  justify-content: space-between;
   height: 76px !important;
   min-height: 0 !important;
   gap: 24px;
