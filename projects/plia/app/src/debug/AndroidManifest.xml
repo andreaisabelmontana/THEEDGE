@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!-- Trusted-LAN development only. Release builds require HTTPS. -->
+    <application android:usesCleartextTraffic="true"
+        tools:replace="android:usesCleartextTraffic">
+        <activity android:name=".MathPreviewActivity" android:exported="true"
+            android:launchMode="singleTop" android:label="Plia offline math QA" />
+        <activity android:name=".InputPreviewActivity" android:exported="true"
+            android:launchMode="singleTop" android:label="Plia offline input QA" />
+        <activity android:name=".MovePreviewActivity" android:exported="true"
+            android:launchMode="singleTop" android:label="Plia offline Move QA" />
+    </application>
+</manifest>

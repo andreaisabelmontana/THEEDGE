@@ -1,0 +1,116 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Status &amp; roadmap · Plia documentation</title><meta name="description" content="Plia prototype documentation: Status &amp; roadmap. Source, design decisions and research with implementation limits."><link rel="canonical" href="https://andreamontana.com/online/plia/docs/status/"><link rel="stylesheet" href="/custom/plia/docs.css"><link rel="icon" href="/custom/astronaut-blue.png"></head><body><a class="skip" href="#content">Skip to documentation</a><header><a href="/online/plia/" class="brand">plia<span> / documentation</span></a><a href="/online/">All projects ↗</a></header><div class="layout"><nav aria-label="Documentation"><a href="/online/plia/docs/">Start here</a><a href="/online/plia/docs/brainstorming/">Origin &amp; brainstorming</a><a href="/online/plia/docs/architecture/">Architecture</a><a href="/online/plia/docs/build-and-release/">Build &amp; release</a><a href="/online/plia/docs/status/" aria-current="page">Status &amp; roadmap</a><a href="/online/plia/docs/research/">Research &amp; evidence</a><a class="source" href="https://github.com/andreaisabelmontana/THEEDGE/blob/main/projects/plia/docs/STATUS.md">View this file on GitHub ↗</a><a href="/projects/plia/plia-source.zip">Download source ZIP ↓</a></nav><main id="content"><p class="eyebrow">PROTOTYPE v0.1.23 · OCTOBER 2026</p><h1 id="status-and-evidence">Status and evidence</h1>
+<p>Snapshot: <strong>0.1.23 / version code 24</strong>, documented <strong>17 October 2026</strong>.</p>
+<h2 id="implemented">Implemented</h2>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Present behavior</th>
+<th>Boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Think notebook</td>
+<td>Native ink, pages, selection, editing, reply placement and persistence</td>
+<td>No Onyx raw-drawing integration or proven pen-latency claim</td>
+</tr>
+<tr>
+<td>Goal library</td>
+<td>Bundled calculus goal plus separate personal goals</td>
+<td>Personal goals begin without generated course content</td>
+</tr>
+<tr>
+<td>Lessons</td>
+<td>Ten original calculus topic lessons</td>
+<td>Syllabus and exam date unconfirmed</td>
+</tr>
+<tr>
+<td>Practice</td>
+<td>Fourteen bounded, reproducible families</td>
+<td>Five final numeric checks; nine require self-review</td>
+</tr>
+<tr>
+<td>Evidence</td>
+<td>Saved attempts and assistance history</td>
+<td>Activity records, not mastery certification</td>
+</tr>
+<tr>
+<td>Typography</td>
+<td>Local math rendering and custom handwriting-style prose</td>
+<td>No animated handwritten responses</td>
+</tr>
+<tr>
+<td>Offline use</td>
+<td>Lessons, practice, scratch paper and local storage</td>
+<td>Optional AI requests still require their own connection</td>
+</tr>
+<tr>
+<td>Recovery</td>
+<td>Goal isolation, exports and corrupt-data write protection</td>
+<td>User backups remain necessary; notebook and Tutor exports differ</td>
+</tr>
+</tbody>
+</table>
+<h2 id="planned-or-being-explored">Planned or being explored</h2>
+<ul>
+<li>Editable Cornell units with cues, notes, summary and conceal/retrieve/reveal interaction.</li>
+<li>Flashcards, a local review queue and a versioned spaced-repetition scheduler.</li>
+<li>Adaptive next-step suggestions grounded in observed work and review history.</li>
+<li>Supported reuse of NotebookLM exports and other authorized materials.</li>
+<li>More robust annotation identity across edited/reflowed lesson content.</li>
+<li>Wider accessibility and hardware testing, including actual pen behavior.</li>
+</ul>
+<p>These are not shipped features of this snapshot. A separate 0.1.24 development candidate was under integration when this documentation was prepared.</p>
+<h2 id="what-the-development-evidence-establishes">What the development evidence establishes</h2>
+<p>The original stable snapshot completed an offline Android build. A recorded 17 October 2026 in-place update verified the installed 0.1.23 APK, the goal library, and an offline lesson showing the custom prose font alongside correctly rendered mathematical notation. Local notebook bytes were preserved during that update. Private device records and notebook data are intentionally excluded from this repository.</p>
+<p>Development handoffs recorded focused host checks for storage/recovery, goal isolation, navigation, request state, deterministic practice, numerical results and math rendering. For scale, the content work exercised 1,806 generated practice cases and rendered 984 mathematical expressions. These were engineering checks, not a trial with learners. Counts from different handoffs overlap and should not be added into a unique-test total.</p>
+<p>The curated repository includes synthetic debug preview activities. The external host harnesses used during development are not all present in this source snapshot; there is no claim that running a single test command here reproduces every historical result. Build verification for the curated package is recorded in <a href="/online/plia/docs/build-and-release/">build and release</a>.</p>
+<h2 id="what-remains-unverified">What remains unverified</h2>
+<ul>
+<li>A complete successful live dot/agent roundtrip with inherited memories.</li>
+<li>Broad physical pen latency, e-ink refresh and Android lifecycle coverage across devices.</li>
+<li>Automatic grading of handwriting, reasoning or symbolic equivalence.</li>
+<li>Full exercise-by-exercise assignment ingestion or complete exam coverage.</li>
+<li>Learning gains, long-term retention, general adaptability or resilience attributable to Plia.</li>
+<li>A hardened release, public beta distribution, ongoing maintenance policy or production support.</li>
+</ul>
+<p>Source metadata contains 60 locator groups from six assignment PDFs, 53 after deduplication. These are provenance groups, not exercise-completion counts. Full PDFs, questions and answer keys are absent; formula and graph uncertainties remain flagged. Original practice does not complete a source assignment.</p>
+<h2 id="development-sequence">Development sequence</h2>
+<table>
+<thead>
+<tr>
+<th>Version milestone</th>
+<th>Focus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Early v0.1</td>
+<td>Native paper, local pages and manual assistance bridge concept</td>
+</tr>
+<tr>
+<td>0.1.12–0.1.14</td>
+<td>Paper layout, selection/eraser handling, response completion and retry rules</td>
+</tr>
+<tr>
+<td>0.1.17</td>
+<td>Persistent reply refresh with undo/redo</td>
+</tr>
+<tr>
+<td>0.1.18</td>
+<td>Local mathematical typesetting, device verification</td>
+</tr>
+<tr>
+<td>0.1.19–0.1.22</td>
+<td>Lasso closure, readability, move/remove, Tutor foundation, handwriting and compact pen settings</td>
+</tr>
+<tr>
+<td>0.1.23</td>
+<td>Goal notebooks and structured Tutor, offline build and device verification</td>
+</tr>
+</tbody>
+</table>
+<p>This sequence summarizes development records; it is not a Git commit history. No earlier GitHub publication is asserted. Publication of this source is a separate milestone.</p>
+<h2 id="useful-next-evaluation">Useful next evaluation</h2>
+<p>Test a complete topic unit with matched study content and time. Record prior knowledge, hint use and confidence separately. Measure delayed unassisted retrieval and new application questions, alongside accessibility and device comfort. Report uncertainty and null results. Completion, streaks and satisfaction alone are insufficient evidence of learning.</p><footer><a href="/online/plia/">← Back to the project story</a><p>Research-informed design. Learning outcomes have not been evaluated for Plia.</p></footer></main></div></body></html>

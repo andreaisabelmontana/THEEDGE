@@ -1,0 +1,93 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Architecture · Plia documentation</title><meta name="description" content="Plia prototype documentation: Architecture. Source, design decisions and research with implementation limits."><link rel="canonical" href="https://andreamontana.com/online/plia/docs/architecture/"><link rel="stylesheet" href="/custom/plia/docs.css"><link rel="icon" href="/custom/astronaut-blue.png"></head><body><a class="skip" href="#content">Skip to documentation</a><header><a href="/online/plia/" class="brand">plia<span> / documentation</span></a><a href="/online/">All projects ↗</a></header><div class="layout"><nav aria-label="Documentation"><a href="/online/plia/docs/">Start here</a><a href="/online/plia/docs/brainstorming/">Origin &amp; brainstorming</a><a href="/online/plia/docs/architecture/" aria-current="page">Architecture</a><a href="/online/plia/docs/build-and-release/">Build &amp; release</a><a href="/online/plia/docs/status/">Status &amp; roadmap</a><a href="/online/plia/docs/research/">Research &amp; evidence</a><a class="source" href="https://github.com/andreaisabelmontana/THEEDGE/blob/main/projects/plia/docs/ARCHITECTURE.md">View this file on GitHub ↗</a><a href="/projects/plia/plia-source.zip">Download source ZIP ↓</a></nav><main id="content"><p class="eyebrow">PROTOTYPE v0.1.23 · OCTOBER 2026</p><h1 id="architecture">Architecture</h1>
+<p>This describes the curated 0.1.23 source snapshot. It is a native Java/Android Views application with a local WebView used for mathematical rendering. It is not a website wrapped in a WebView.</p>
+<h2 id="components">Components</h2>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Main files</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Notebook shell</td>
+<td><code>MainActivity.java</code>, <code>PageEditor.java</code></td>
+<td>Modes, page navigation, actions and save boundaries</td>
+</tr>
+<tr>
+<td>Ink</td>
+<td><code>InkView.java</code>, <code>PenSettings.java</code>, <code>SelectionGesture.java</code>, <code>SelectionOutline.java</code></td>
+<td>Stylus input, pressure, strokes, tool settings and selection</td>
+</tr>
+<tr>
+<td>Paper and replies</td>
+<td><code>PaperSurface.java</code>, <code>PaperAnchor.java</code>, <code>ReplyPlacement.java</code>, <code>ReplyRefresh.java</code></td>
+<td>Place reply objects around ink; preserve refresh history</td>
+</tr>
+<tr>
+<td>Notebook persistence</td>
+<td><code>NotebookStore.java</code>, <code>PaperDraft.java</code></td>
+<td>Local saved pages, drafts and notebook import/export</td>
+</tr>
+<tr>
+<td>Tutor navigation</td>
+<td><code>TutorLibraryActivity.java</code>, <code>TutorActivity.java</code></td>
+<td>Goal library, lessons, practice and materials</td>
+</tr>
+<tr>
+<td>Tutor content</td>
+<td><code>TutorCatalog.java</code>, <code>TutorMaterials.java</code>, <code>TutorPracticeEngine.java</code></td>
+<td>Original lessons, source locators, reproducible practice and bounded checking</td>
+</tr>
+<tr>
+<td>Tutor evidence</td>
+<td><code>TutorStore.java</code>, <code>TutorLibraryStore.java</code>, <code>TutorUiLogic.java</code></td>
+<td>Goal isolation, attempts, assistance, progress labels and safe persistence</td>
+</tr>
+<tr>
+<td>Math and typography</td>
+<td><code>SolutionDocument.java</code>, <code>SolutionView.java</code>, <code>LocalMathView.java</code>, <code>ExplanationFont.java</code></td>
+<td>Paired math/prose, local KaTeX and optional handwriting-style prose</td>
+</tr>
+<tr>
+<td>Optional assistance</td>
+<td><code>BridgeClient.java</code>, <code>ChatGptClient.java</code>, <code>SiwcInference.java</code>, <code>SiwcProtocol.java</code>, <code>SiwcStore.java</code></td>
+<td>Separate companion and signed-in request flows</td>
+</tr>
+<tr>
+<td>Request lifecycle</td>
+<td><code>PaperSession.java</code>, <code>SelectionRetryPolicy.java</code>, <code>ResponseMetadata.java</code></td>
+<td>Request admission, retry, completion and stale-result handling</td>
+</tr>
+</tbody>
+</table>
+<p>Java files are under <code>app/src/main/java/com/plia/notebook/</code>. The debug source set contains isolated math, input and move preview activities plus synthetic fixtures; they are not a complete portable regression suite.</p>
+<h2 id="native-writing-and-rendering">Native writing and rendering</h2>
+<p>Input is Android <code>MotionEvent</code> data drawn into a canvas/bitmap and invalidated as a view. The logical sheet preserves existing ink coordinates across display sizes. Stored ink and eraser operations retain their order; selection works on visible ink. Generated replies are separate from the learner's strokes and do not become new handwritten input.</p>
+<p>“Native” describes the Android implementation. This snapshot does not use the Onyx raw-drawing SDK or establish a physical stylus-latency improvement. Desktop event simulation is not evidence about pen sampling, display scanout or e-ink refresh time.</p>
+<p>KaTeX JavaScript, styles and font files are local assets. Explanatory prose may use the custom handwriting font while mathematical glyphs keep the renderer's own fonts and layout. A handwriting font is not a symbolic math renderer and does not animate strokes. Local math display and PNG export have different paths; do not assume an exported PNG reproduces all rich mathematical rendering exactly.</p>
+<h2 id="the-local-learning-loop">The local learning loop</h2>
+<ol>
+<li>A goal selects a bundled topic or stores personal notes in its own scope.</li>
+<li>An original lesson presents a concept, method, common trap and worked example.</li>
+<li>The practice engine generates a bounded variant from a template, seed and version.</li>
+<li>A learner enters a typed answer and may use optional scratch paper or hints.</li>
+<li>A numeric family checks only the final scalar value. Other families support explicit solution comparison and self-checking.</li>
+<li>The attempt retains the question snapshot, answer, outcome and assistance history.</li>
+</ol>
+<p>No automatic external model is required for this loop. New personal goals start empty; creating a title does not create an AI course or invented progress.</p>
+<h2 id="evidence-semantics">Evidence semantics</h2>
+<p><code>TutorStore</code> separates <code>UNCHECKED</code>, <code>CORRECT</code>, <code>INCORRECT</code>, <code>INVALID</code> and <code>SELF_CHECKED</code>. Editing an answer clears its current assessment. Submitted attempts are counted once per attempt ID, while successful questions are deduplicated by canonical item identity. Hint or solution exposure for that item remains assistance history across attempts.</p>
+<p>Only current, submitted, independently correct numeric items count toward the local “Ready for review” threshold of two distinct items. Symbolic self-checks do not become automatic numeric evidence. “Learning,” “Practising,” “Needs practice” and “Ready for review” are transparent activity rules. They are neither psychometric measurements nor mastery or exam predictions.</p>
+<p>These records are local and editable through import. They are not cryptographically attested learning evidence. The UI validates imported snapshots and numeric outcomes against the local engine; this does not authenticate a person's identity or prove they worked independently.</p>
+<h2 id="persistence-and-recovery">Persistence and recovery</h2>
+<p>Notebook and Tutor data are distinct. Tutor's goal index and goal-specific state use Android <code>AtomicFile</code> and a shared serial I/O queue. The legacy bundled goal retains its established state location; new goals have validated independent IDs and files. Corrupt/unreadable data locks writes and supports recovery rather than silently replacing it with an empty state.</p>
+<p>Snapshots retain drafts, ink, assistance and question identity. Save errors must remain visible: a write that cannot be confirmed must not be represented as successfully saved. Notebook ZIP exports and Tutor exports are separate flows; users must not assume one includes all data from the other.</p>
+<p>App-private storage remains local unless the learner explicitly exports or requests assistance. Uninstalling or clearing app data removes local work. Android automatic backup is disabled in the manifest.</p>
+<h2 id="assistance-boundaries">Assistance boundaries</h2>
+<p>The earlier companion bridge queues an explicit request for a separately operated local service. That service is not included in this source snapshot. The Android client does not imply that an AI agent is watching, connected, awake or carrying memories. Synthetic bridge tests from development did not establish a live dot roundtrip.</p>
+<p>The separate signed-in model path uses explicit account/model/session setup and sends request content through its own client. It does not inherit a dot's identity or memories. Account usage or credits may apply. Credential storage code is included, but no account state, keys or tokens are included. AI text remains fallible; a transport-complete response is not evidence of correct mathematics.</p>
+<p>The release manifest disallows cleartext traffic. The debug manifest permits it for local development and exposes debug preview activities. A debug build is therefore not a hardened public release.</p>
+<h2 id="content-provenance">Content provenance</h2>
+<p>The calculus pack contains original lessons and generated examples. Source metadata maps six supplied assignment PDFs by page/question group; the PDFs, full questions and answer keys are absent. Overlapping locators are deduplicated, and ambiguous graphs/formulas retain warnings. Completing original practice does not complete a source assignment. The syllabus and exam date are unconfirmed.</p><footer><a href="/online/plia/">← Back to the project story</a><p>Research-informed design. Learning outcomes have not been evaluated for Plia.</p></footer></main></div></body></html>

@@ -1,5 +1,49 @@
 /* Project catalog. Details and primary sources live in each case study. */
 window.EDGE_PROJECTS = [
+{
+  "slug": "plia",
+  "title": "plia",
+  "helm": "18",
+  "year": 2026,
+  "date": "2026 · In development",
+  "tagline": "A pen-first learning workspace for notes, lessons and deliberate practice. Built around evidence over affirmation, starting on e-ink.",
+  "label": "LEARNING & AI",
+  "track": "Personal",
+  "categories": [
+    "AI & ML",
+    "UI & UX",
+    "Software"
+  ],
+  "techstack": [
+    "Android",
+    "Java",
+    "Canvas",
+    "KaTeX",
+    "Local storage"
+  ],
+  "links": {
+    "github": "https://github.com/andreaisabelmontana/THEEDGE/tree/main/projects/plia"
+  },
+  "featured": true,
+  "subjects": [
+    "ai",
+    "software",
+    "ux"
+  ],
+  "typeLabel": "Learning & AI",
+  "summary": {
+    "en": "A pen-first learning workspace for notes, lessons and deliberate practice. Built around evidence over affirmation, starting on e-ink.",
+    "es": "Un espacio de aprendizaje con escritura a mano, apuntes, lecciones y práctica deliberada. Evidencia antes que afirmaciones, empezando por la tinta electrónica.",
+    "de": "Ein Lernraum für handschriftliche Notizen, Lektionen und gezieltes Üben. Nachweise statt bloßer Bestätigung — zunächst auf E-Ink."
+  },
+  "typeLabels": {
+    "en": "Learning & AI",
+    "es": "Aprendizaje e IA",
+    "de": "Lernen & KI"
+  },
+  "caseStudy": "./plia/",
+  "cover": "../custom/plia/plia-thumbnail.webp"
+},
   {
     "slug": "top-living",
     "title": "Top Living",

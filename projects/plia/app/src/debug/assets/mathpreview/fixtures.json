@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "scope": "Debug-only fixed display samples. No notebook, auth, model calls or reconstruction of the unavailable FTC question.",
+  "fixtures": [
+    {
+      "index": 0,
+      "id": "supplied-ftc-fragments",
+      "title": "Supplied FTC display fragments",
+      "text": "These are two supplied display fragments. The original full problem is unavailable; no derivation between them is asserted.\n\n| steps in math | steps in words |\n| --- | --- |\n| \\(2^{3(x^4+x)-2}\\) | Preserve the complete exponent, including the nested fourth power. |\n| \\(F'(1)=72\\) | Preserve the supplied derivative notation and final value. |\n| \\(\\int_{0}^{1} x^{2}\\,dx=\\frac{1}{3}\\) | Independent notation sample: integral limits and a fractional result. |"
+    },
+    {
+      "index": 1,
+      "id": "fractions",
+      "title": "Simple and nested fractions",
+      "text": "| steps in math | steps in words |\n| --- | --- |\n| \\(\\frac{1}{2}+\\frac{1}{3}=\\frac{5}{6}\\) | Read each numerator and denominator clearly. |\n| \\(\\frac{1+\\frac{x}{2}}{3-\\frac{1}{x}}\\) | Display nested fractions without overlapping rules. |"
+    },
+    {
+      "index": 2,
+      "id": "roots",
+      "title": "Roots and nested radicands",
+      "text": "| steps in math | steps in words |\n| --- | --- |\n| \\(\\sqrt{x^2+1}\\) | The radical bar covers the whole radicand. |\n| \\(\\sqrt[3]{8}=2\\) | The cube-root index remains readable. |\n| \\(\\sqrt{\\frac{a^2+b^2}{c^2}}\\) | A fraction fits inside the radical. |"
+    },
+    {
+      "index": 3,
+      "id": "series",
+      "title": "Series and limits",
+      "text": "| steps in math | steps in words |\n| --- | --- |\n| \\(\\sum_{n=0}^{\\infty}x^n=\\frac{1}{1-x},\\quad\\lvert x\\rvert<1\\) | Show summation limits and the convergence condition. |\n| \\(\\lim_{n\\to\\infty}\\frac{1}{n}=0\\) | Preserve the limit subscript. |"
+    },
+    {
+      "index": 4,
+      "id": "aligned",
+      "title": "Aligned multiline cell",
+      "text": "| steps in math | steps in words |\n| --- | --- |\n| \\(\\begin{aligned}a+b&=c\\\\a&=c-b\\\\2a&=2(c-b)\\end{aligned}\\) | Three aligned lines remain inside a single math cell. |\n| \\(a=c-b\\) | The following table row remains separate. |"
+    },
+    {
+      "index": 5,
+      "id": "physical-multiline",
+      "title": "Math cell spanning source lines",
+      "text": "| steps in math | steps in words |\n| --- | --- |\n| \\(\\begin{aligned}\na+b&=c\\\\\na&=c-b\n\\end{aligned}\\) | Physical source newlines remain one balanced math cell. |\n| \\(2a=2(c-b)\\) | This is the next table row. |"
+    },
+    {
+      "index": 6,
+      "id": "malformed",
+      "title": "Malformed math with readable fallback",
+      "text": "| steps in math | steps in words |\n| --- | --- |\n| \\(\\frac{1}{\\) | Deliberately malformed input must remain visible without crashing. |\n| \\(1+1=2\\) | A valid following expression must still render. |\n\nEnd of fixture: no text may disappear."
+    },
+    {
+      "index": 7,
+      "id": "wide",
+      "title": "Wide expression at 320dp",
+      "text": "| steps in math | steps in words |\n| --- | --- |\n| \\(a_1+a_2+a_3+a_4+a_5+a_6+a_7+a_8+a_9+a_{10}+a_{11}+a_{12}+a_{13}+a_{14}+a_{15}+a_{16}+a_{17}+a_{18}+a_{19}+a_{20}=S\\) | Every term remains accessible at narrow width; no silent clipping. |"
+    },
+    {
+      "index": 8,
+      "id": "improper-integral-readable",
+      "title": "Improper integral: width and limit steps",
+      "text": "The integral is improper because the denominator is zero at \\(x=3\\).\n\n| steps in math | steps in words |\n| --- | --- |\n| \\int_3^4\\frac{x}{x^2-9}\\,dx=\\lim_{a\\to3^+}\\int_a^4\\frac{x}{x^2-9}\\,dx | Approach the lower endpoint from the right. |\n| u=x^2-9 | Use this substitution. |\n| du=2x\\,dx\\quad\\Longrightarrow\\quad x\\,dx=\\frac{du}{2} | Differentiate, then isolate x dx. |\n| \\int_3^4\\frac{x}{x^2-9}\\,dx=\\lim_{\\varepsilon\\to0^+}\\frac{1}{2}\\int_{\\varepsilon}^7\\frac{du}{u} | The bounds become 0 and 7. Keep the lower endpoint as a limit. |\n| \\lim_{\\varepsilon\\to0^+}\\frac{1}{2}\\left[\\log u\\right]_{\\varepsilon}^7=\\lim_{\\varepsilon\\to0^+}\\frac{1}{2}\\left(\\log7-\\log\\varepsilon\\right)=+\\infty | As epsilon tends to zero from above, log epsilon tends to negative infinity; subtracting it makes the result tend to positive infinity. |\n| \\boxed{\\text{Final: the integral diverges to positive infinity.}} | The improper integral has no finite value. |"
+    }
+  ]
+}

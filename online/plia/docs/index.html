@@ -1,0 +1,62 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Start here · Plia documentation</title><meta name="description" content="Plia prototype documentation: Start here. Source, design decisions and research with implementation limits."><link rel="canonical" href="https://andreamontana.com/online/plia/docs/"><link rel="stylesheet" href="/custom/plia/docs.css"><link rel="icon" href="/custom/astronaut-blue.png"></head><body><a class="skip" href="#content">Skip to documentation</a><header><a href="/online/plia/" class="brand">plia<span> / documentation</span></a><a href="/online/">All projects ↗</a></header><div class="layout"><nav aria-label="Documentation"><a href="/online/plia/docs/" aria-current="page">Start here</a><a href="/online/plia/docs/brainstorming/">Origin &amp; brainstorming</a><a href="/online/plia/docs/architecture/">Architecture</a><a href="/online/plia/docs/build-and-release/">Build &amp; release</a><a href="/online/plia/docs/status/">Status &amp; roadmap</a><a href="/online/plia/docs/research/">Research &amp; evidence</a><a class="source" href="https://github.com/andreaisabelmontana/THEEDGE/blob/main/projects/plia/README.md">View this file on GitHub ↗</a><a href="/projects/plia/plia-source.zip">Download source ZIP ↓</a></nav><main id="content"><p class="eyebrow">PROTOTYPE v0.1.23 · OCTOBER 2026</p><h1 id="plia">Plia</h1>
+<p><strong>A learning notebook built around evidence over affirmation.</strong></p>
+<p>Plia is an early native Android prototype for learning, handwritten thinking and practice, designed first around an e-ink tablet. Its longer-term aim is to connect reading, notes, recall, explanation, practice and review in one learning loop. The guiding question is what a learner can demonstrate independently: a reassuring answer, a familiar page or a completed session is not enough evidence of understanding.</p>
+<p>This repository contains a curated source snapshot of <strong>0.1.23 (Android version code 24)</strong>, documented on <strong>17 October 2026</strong>. It is a working prototype, not a validated learning intervention or a production release. The snapshot preserves the stable implementation; later experimental features are described separately in the roadmap.</p>
+<h2 id="what-works-in-this-snapshot">What works in this snapshot</h2>
+<ul>
+<li><strong>Think:</strong> a native pen canvas with local pages, pressure-aware strokes, erasing, undo/redo, selection, move/remove operations and separate reply objects.</li>
+<li><strong>Tutor:</strong> a goal notebook library, a bundled calculus study pack and creation of separate empty personal goals. Each goal has Overview, Lessons, Practice and Materials sections.</li>
+<li><strong>Original learning content:</strong> ten short calculus lessons and fourteen deterministic practice families, with mathematical steps and verbal explanations.</li>
+<li><strong>Honest checking:</strong> five families check a typed final numeric result; nine require explicit self-comparison with a worked solution. Handwriting, reasoning and symbolic equivalence are not automatically graded.</li>
+<li><strong>Visible evidence:</strong> saved attempts distinguish independent work, hints and solution exposure. Repeated checks do not manufacture additional independent questions.</li>
+<li><strong>Local use:</strong> lessons, generated practice, scratch paper, notes and persistence work without an AI request. Mathematical typesetting and fonts are bundled.</li>
+<li><strong>Optional assistance paths:</strong> experimental signed-in model support and a client for the earlier manual companion bridge. Successful end-to-end live dot integration is not established by this snapshot. The companion server is not included here.</li>
+</ul>
+<h2 id="the-learning-idea">The learning idea</h2>
+<p>The intended loop is <strong>read → explain in your own words → retrieve → apply → check → revisit</strong>. Only parts of this full loop are implemented today. Cornell notes, flashcards, spaced repetition and adaptive recommendations remain roadmap work for this snapshot.</p>
+<p>“Evidence over affirmation” is a practical design rule. Tutor stores the difference between an independent answer and an answer produced after a hint. It does not label a lesson mastered simply because it was opened, or treat a self-check as an automatic grade. Its activity label “Ready for review” means two distinct independently correct numeric questions under a transparent local rule; it is not an estimate of mastery or exam readiness.</p>
+<p>Hebbian learning—often summarized as “neurons that fire together wire together”—is an inspiration for connecting and repeatedly using ideas. It is not a claim that Plia measures synapses, implements a biological model or has demonstrated improved memory. Human learning studies on retrieval, spacing, feedback and transfer provide more direct design guidance. <a href="/online/plia/docs/research/">Read the research and its limits</a>.</p>
+<h2 id="why-e-ink-first">Why e-ink first</h2>
+<p>E-ink offers a useful initial constraint: stable pages, legible text, space to write and little motion. Plia explores a deliberate reading-and-practice experience on that surface. This is a design choice, not evidence that e-ink itself improves learning. Refresh behavior, ghosting, input latency, accessibility and comfort must be assessed on actual hardware. The learning model should remain useful on other displays, and typing remains important alongside handwriting.</p>
+<p>AI makes answers easier to obtain. Plia's response is to preserve the learner's effort and distinguish assisted performance from later independent performance. Adaptability means applying an idea to a changed problem; resilience is an ambition to make correction, retrying and returning to work easier. Neither has been measured as a Plia outcome.</p>
+<h2 id="documentation">Documentation</h2>
+<table>
+<thead>
+<tr>
+<th>Document</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/online/plia/docs/brainstorming/">Brainstorming and design evolution</a></td>
+<td>Reconstructed decisions, motivations, tradeoffs and open questions</td>
+</tr>
+<tr>
+<td><a href="/online/plia/docs/research/">Research</a></td>
+<td>Primary evidence, design implications and limits</td>
+</tr>
+<tr>
+<td><a href="/online/plia/docs/architecture/">Architecture</a></td>
+<td>Native UI, ink, learning evidence, persistence and assistance boundaries</td>
+</tr>
+<tr>
+<td><a href="/online/plia/docs/status/">Status</a></td>
+<td>Implemented features, roadmap, validation and known limitations</td>
+</tr>
+<tr>
+<td><a href="/online/plia/docs/build-and-release/">Build and release</a></td>
+<td>Pinned tools, build steps, snapshot provenance and publication workflow</td>
+</tr>
+<tr>
+<td><a href="https://github.com/andreaisabelmontana/THEEDGE/blob/main/projects/plia/THIRD_PARTY_NOTICES.md">Third-party notices</a></td>
+<td>KaTeX, Caveat, Gradle and Gson notices</td>
+</tr>
+</tbody>
+</table>
+<h2 id="build">Build</h2>
+<p>Open the repository root in Android Studio. Use <strong>JDK 17</strong>, <strong>Android SDK Platform 35</strong> and <strong>Build Tools 35.0.0</strong>. The included wrapper pins <strong>Gradle 8.11.1</strong>; the build pins <strong>Android Gradle Plugin 8.9.2</strong>.</p>
+<pre><code class="language-powershell">.\gradlew.bat :app:assembleDebug
+</code></pre>
+<p>On macOS/Linux, run <code>sh ./gradlew :app:assembleDebug</code>. The first build requires network access for tools and dependencies unless already cached. The APK is written to <code>app/build/outputs/apk/debug/app-debug.apk</code>. See <a href="/online/plia/docs/build-and-release/">build and release</a> before installation or publication.</p>
+<p>No credentials, local SDK paths, user notebooks, device backups, assignment PDFs or prebuilt APKs are included. This snapshot does not declare a project-wide open-source license; third-party components retain their own licenses. Public source availability should not be confused with an unrestricted license for the first-party code, artwork or custom handwriting font.</p><footer><a href="/online/plia/">← Back to the project story</a><p>Research-informed design. Learning outcomes have not been evaluated for Plia.</p></footer></main></div></body></html>

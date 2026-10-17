@@ -1,0 +1,24 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'com.plia.notebook'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'com.plia.notebook'
+        minSdk 26
+        targetSdk 35
+        versionCode 24
+        versionName '0.1.23'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+// Already available in the installed Gradle cache; builds remain offline.
+dependencies { implementation 'com.google.code.gson:gson:2.10.1' }
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}

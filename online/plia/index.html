@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>plia — A notebook for learning · Andrea Montaña</title>
+  <meta name="description" content="plia is an evolving Android learning notebook for e-ink: handwritten thinking, explanations, practice and honest evidence of progress. Explore the prototype, research, brainstorming and source code.">
+  <link rel="canonical" href="https://andreamontana.com/online/plia/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="plia — Evidence over affirmation">
+  <meta property="og:description" content="A reimagined learning notebook. The product, the process, the research and the code — with a clear line between what exists and what comes next.">
+  <meta property="og:url" content="https://andreamontana.com/online/plia/">
+  <meta property="og:image" content="https://andreamontana.com/custom/plia/plia-thumbnail.webp">
+  <meta property="og:image:alt" content="plia's giraffe app icon on the left and an e-ink learning tablet on the right">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../../custom/astronaut-blue.png?v=20261012-blue" type="image/png">
+  <link rel="stylesheet" href="../../custom/theme.css?v=20261014-menu-startup">
+  <link rel="stylesheet" href="../../custom/plia.css?v=20261017">
+  <script src="../../custom/plia.js?v=20261017" defer></script>
+</head>
+<body class="plia-page">
+  <a class="plia-skip" href="#main">Skip to case study</a>
+  <header class="plia-header">
+    <div class="plia-header-inner">
+      <a class="plia-brand" href="../../" aria-label="Andrea Montaña — Home"><img src="../../custom/astronaut-blue.png" alt="" width="40" height="48"><span>Andrea Montaña</span></a>
+      <nav class="plia-main-nav" aria-label="Main navigation"><a href="../">Projects</a><a href="../../experience/">Experience</a><a href="../../contact/">Contact</a></nav>
+      <span class="plia-language" lang="en">EN <span>case study</span></span>
+    </div>
+  </header>
+
+  <main id="main" class="plia-main" tabindex="-1">
+    <a class="plia-back" href="../"><span aria-hidden="true">←</span> All projects</a>
+    <header class="plia-hero">
+      <div class="plia-hero-top"><p class="plia-eyebrow">Learning tools · Native Android · October 2026</p><span class="plia-status"><span aria-hidden="true"></span> Working prototype · v0.1.23</span></div>
+      <div class="plia-hero-title"><h1>plia<span aria-hidden="true">.</span></h1><p>A notebook for what<br>you can actually <em>do.</em></p></div>
+      <p class="plia-intro">A reimagined way to connect thinking, note taking, memorization and practice. Built around one belief: <strong>evidence over affirmation.</strong></p>
+      <div class="plia-actions"><a class="plia-button plia-button-primary" href="#experience">Explore the notebook <span aria-hidden="true">↓</span></a><a class="plia-button" href="https://github.com/andreaisabelmontana/THEEDGE/tree/main/projects/plia">Explore the code <span aria-hidden="true">↗</span></a><a class="plia-text-link" href="#documentation">Read the documentation <span aria-hidden="true">↘</span></a></div>
+    </header>
+
+    <figure class="plia-cover">
+      <img src="../../custom/plia/plia-thumbnail.webp" alt="plia's golden giraffe app icon at the far left, beside an e-ink tablet showing a calculus learning page on the right" width="1585" height="992" fetchpriority="high">
+      <figcaption><span>One learning surface. Space to think.</span><span>AI-generated product illustration</span></figcaption>
+    </figure>
+
+    <dl class="plia-facts">
+      <div><dt>The starting point</dt><dd>Real calculus study</dd></div>
+      <div><dt>The present surface</dt><dd>BOOX / Android e-ink</dd></div>
+      <div><dt>The practice</dt><dd>Think · Learn · Try · Revisit</dd></div>
+      <div><dt>The measure</dt><dd>Visible, independent work</dd></div>
+    </dl>
+
+    <div class="plia-reading-layout">
+      <aside class="plia-contents">
+        <nav aria-label="Case study sections">
+          <p class="plia-eyebrow">Inside the project</p>
+          <ol>
+            <li><a href="#why"><span>01</span> Why plia</a></li>
+            <li><a href="#experience"><span>02</span> The experience</a></li>
+            <li><a href="#principle"><span>03</span> The core belief</a></li>
+            <li><a href="#eink"><span>04</span> Why e-ink</a></li>
+            <li><a href="#process"><span>05</span> The process</a></li>
+            <li><a href="#evidence"><span>06</span> The evidence</a></li>
+            <li><a href="#build"><span>07</span> The build</a></li>
+            <li><a href="#next"><span>08</span> What comes next</a></li>
+            <li><a href="#documentation"><span>09</span> Documentation</a></li>
+          </ol>
+        </nav>
+        <p class="plia-contents-note">A project in progress.<br>Documented as of<br><time datetime="2026-10-17">17 October 2026.</time></p>
+      </aside>
+
+      <div class="plia-story">
+        <section id="why" class="plia-section" aria-labelledby="why-title">
+          <p class="plia-section-number">01 / The starting point</p>
+          <h2 id="why-title">Having an answer.<br>Being able to use it.</h2>
+          <p class="plia-lead">plia began with a practical question: how can handwritten thinking, a useful explanation and the next practice problem belong to the same learning experience?</p>
+          <p>The prototype grew out of a calculus-study workflow. Writing made reasoning visible; explanations helped unblock it; practice revealed whether the idea could be used independently. Moving between those activities exposed a need for continuity: keep the working, keep the context and keep an honest record of the help involved.</p>
+          <p>Today, AI can supply a fluent explanation almost instantly. That makes the distinction between assisted performance and independent understanding especially important. Research has found both learning benefits from carefully designed AI tutors and weaker unassisted performance after unrestricted answer assistance. The design of the interaction matters. <a class="plia-citation" href="#research-ai">[8–9]</a></p>
+          <div class="plia-question"><span class="plia-eyebrow">The question behind the product</span><p>What if every note could become a starting point for something you can explain, remember or do?</p></div>
+          <p>The current app brings together a freeform <strong>Think</strong> canvas and a structured <strong>Tutor</strong>. The longer-term direction connects notes to retrieval, review and adaptive practice. This case study keeps that direction separate from the features already present.</p>
+        </section>
+
+        <section id="experience" class="plia-section" aria-labelledby="experience-title">
+          <p class="plia-section-number">02 / The notebook</p>
+          <h2 id="experience-title">Think freely.<br>Learn with structure.</h2>
+          <p class="plia-lead">A quiet surface for doing the work, with support close enough to use and clear enough to question.</p>
+          <p class="plia-gallery-note">The four images below are representative mockups of the experience. They are illustrations, not device screenshots or evidence of additional shipped features. Open an image to inspect it.</p>
+          <div class="plia-gallery">
+            <figure class="plia-feature">
+              <a href="../../custom/plia/feature-think.png" aria-label="Open full-size representative Think mockup"><img src="../../custom/plia/feature-think.png" alt="Representative plia Think mockup with handwritten working and a separate explanation beside it" width="1200" height="1000" loading="lazy" decoding="async"></a>
+              <figcaption><span class="plia-feature-meta">01 · Think / available in the prototype</span><h3>Keep the thinking on the page.</h3><p>Pressure-aware ink, erasing, undo and redo. Select visible ink with a closed loop; keep an optional AI reply separate from the original working.</p></figcaption>
+            </figure>
+            <figure class="plia-feature">
+              <a href="../../custom/plia/feature-lessons.png" aria-label="Open full-size representative Lessons mockup"><img src="../../custom/plia/feature-lessons.png" alt="Representative plia lesson mockup pairing an explanation with mathematical steps" width="1200" height="1000" loading="lazy" decoding="async"></a>
+              <figcaption><span class="plia-feature-meta">02 · Lessons / available in the prototype</span><h3>Follow the idea and the working.</h3><p>Ten original calculus lessons pair verbal explanations with typeset mathematics. Local lesson content remains usable without an AI request.</p></figcaption>
+            </figure>
+            <figure class="plia-feature">
+              <a href="../../custom/plia/feature-practice.png" aria-label="Open full-size representative Practice mockup"><img src="../../custom/plia/feature-practice.png" alt="Representative plia practice mockup with a problem, working area and answer controls" width="1200" height="1000" loading="lazy" decoding="async"></a>
+              <figcaption><span class="plia-feature-meta">03 · Practice / available in the prototype</span><h3>Try a similar problem yourself.</h3><p>Fourteen bounded practice families, optional scratch paper and saved attempts. Five families check a typed final number; nine require explicit self-comparison.</p></figcaption>
+            </figure>
+            <figure class="plia-feature">
+              <a href="../../custom/plia/feature-progress.png" aria-label="Open full-size representative activity-evidence mockup"><img src="../../custom/plia/feature-progress.png" alt="Representative plia progress mockup showing learning activity and assistance history" width="1200" height="1000" loading="lazy" decoding="async"></a>
+              <figcaption><span class="plia-feature-meta">04 · Evidence / available in the prototype</span><h3>Know what the record means.</h3><p>Goal-specific history preserves attempts and assistance. Activity labels describe the recorded work; they do not certify mastery or predict an exam result.</p></figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section id="principle" class="plia-section" aria-labelledby="principle-title">
+          <p class="plia-section-number">03 / The core belief</p>
+          <h2 id="principle-title">Evidence over<br><em>affirmation.</em></h2>
+          <p class="plia-lead">Progress should mean something observable: an explanation produced, a mistake corrected or a problem solved with the help made visible.</p>
+          <p>Familiarity can feel like understanding. In a classic retrieval study, repeated reading increased confidence, while testing produced better retention after a delay. plia takes that gap seriously. Encouragement has a place; it should accompany a clear account of the work. <a class="plia-citation" href="#research-retrieval">[1]</a></p>
+          <div class="plia-principles">
+            <article><span aria-hidden="true">01</span><h3>A correct answer has context.</h3><p>Hints and solution exposure remain in the question's assistance history. A later correct repetition does not erase that history.</p></article>
+            <article><span aria-hidden="true">02</span><h3>Repeated clicks are not new evidence.</h3><p>Checks are deduplicated by attempt. Correct items are counted by their canonical identity, and editing an answer invalidates its earlier assessment.</p></article>
+            <article><span aria-hidden="true">03</span><h3>The label must match the measurement.</h3><p>Automatic checking covers final numeric values. It does not assess handwritten reasoning, mathematical method or general mastery.</p></article>
+          </div>
+          <details class="plia-detail"><summary><span>What “Ready for review” actually means</span><span class="plia-detail-sign" aria-hidden="true">+</span></summary><div class="plia-detail-body"><p>In v0.1.23, two distinct correct numeric items completed independently trigger “Ready for review.” Other transparent activity rules produce “Needs practice,” “Practising,” “Learning” or “Not started.” Self-checked symbolic work does not become an automatically verified numeric success.</p><p>These are deliberately limited activity labels. The code documents that the counts concern final typed numeric answers, never handwriting or mastery. <a href="https://github.com/andreaisabelmontana/THEEDGE/blob/main/projects/plia/app/src/main/java/com/plia/notebook/TutorStore.java">Inspect TutorStore.java <span aria-hidden="true">↗</span></a></p></div></details>
+          <div class="plia-hebb"><p class="plia-eyebrow">A source of inspiration</p><blockquote>“Neurons that fire together<br>wire together.”</blockquote><p>The familiar shorthand for Hebbian learning offers an intuition: learning involves relationships strengthened through activity. For plia, it inspires repeated, meaningful connections between an idea, an explanation and its use.</p><p>The neuroscience is more nuanced. Experiments show that the timing of activity can strengthen or weaken synapses. This is inspiration, not evidence that an app “rewires the brain” or that a study schedule directly follows from a neural rule. The product's learning decisions need human behavioral evidence and their own evaluation. <a class="plia-citation" href="#research-hebb">[6]</a></p></div>
+        </section>
+
+        <section id="eink" class="plia-section" aria-labelledby="eink-title">
+          <p class="plia-section-number">04 / A deliberate starting surface</p>
+          <h2 id="eink-title">Why e-ink.<br>Why <em>for now.</em></h2>
+          <p class="plia-lead">A stable page. Space to write. A pace that leaves room to think.</p>
+          <p>E-ink provides a useful constraint for the first version: legible typography, high contrast, little motion and interactions organized around a page. Its reflective, bistable display can hold a static image without continuous display power. The rest of the device still uses energy. <a href="https://www.eink.com/tech/detail/Benefits" class="plia-citation">[E Ink technology]</a></p>
+          <div class="plia-two-column"><div><h3>What it encourages</h3><ul><li>Persistent working instead of disappearing context.</li><li>A pen-friendly place to reason, sketch and reflect.</li><li>Clear controls and restrained visual movement.</li><li>A reading-and-practice ritual with fewer interface interruptions.</li></ul></div><div><h3>What needs testing</h3><ul><li>Refresh delays, ghosting and handwriting latency.</li><li>Contrast, text size and accessibility on real hardware.</li><li>Comfort over longer sessions.</li><li>Whether the experience helps learners keep returning.</li></ul></div></div>
+          <p>These are design intentions, not automatic properties of an e-ink screen. A small 2013 study found lower fatigue on one e-ink device than on one LCD device; another found no comprehension advantage between print, an e-reader and a tablet. Hardware and reading conditions matter. <a class="plia-citation" href="#research-eink">[7]</a></p>
+          <p><strong>“For now” keeps the decision open.</strong> The learning model should survive a change of display. Typing must remain useful without a pen, and a future device choice should follow evidence about the learner's needs.</p>
+        </section>
+
+        <section id="process" class="plia-section" aria-labelledby="process-title">
+          <p class="plia-section-number">05 / From question to prototype</p>
+          <h2 id="process-title">The thinking<br>behind the notebook.</h2>
+          <p class="plia-lead">The product evolved through a sequence of practical questions, interaction decisions and reliability work.</p>
+          <p class="plia-editorial-note">This is a retrospective reconstruction from saved plans, source and handoffs. It is not a verbatim brainstorming transcript. The sequence below describes the documented evolution during October 2026.</p>
+          <ol class="plia-timeline">
+            <li><span class="plia-timeline-marker" aria-hidden="true">1</span><div><p class="plia-eyebrow">The initial question</p><h3>Could help stay beside the thinking?</h3><p>The first concept separated two modes: Think for open-ended writing and questions; Tutor for a goal, a problem, working and feedback. The ambition was a small notebook for practice.</p><p class="plia-decision"><strong>Decision:</strong> build the real prototype as a native Android app for the BOOX surface.</p></div></li>
+            <li><span class="plia-timeline-marker" aria-hidden="true">2</span><div><p class="plia-eyebrow">The interaction</p><h3>Keep the original ink intact.</h3><p>Blank paper, a slim toolbar and explicit selection established the working surface. Explanations and mathematical steps could sit alongside one another, with a stacked layout when space was limited.</p><p class="plia-decision"><strong>Decision:</strong> keep AI replies as separate objects instead of replacing the learner's marks.</p></div></li>
+            <li><span class="plia-timeline-marker" aria-hidden="true">3</span><div><p class="plia-eyebrow">The reliability work</p><h3>Make one request behave like one request.</h3><p>Selection and erasure handling, completed-response parsing, retries, stale callbacks and reply history needed attention before the experience could be trusted. Mathematical rendering and save boundaries were part of the same work.</p><p class="plia-decision"><strong>Decision:</strong> treat device checks, local fixtures and successful live AI responses as different kinds of evidence.</p></div></li>
+            <li><span class="plia-timeline-marker" aria-hidden="true">4</span><div><p class="plia-eyebrow">The Tutor foundation · v0.1.23</p><h3>Turn isolated help into a learning path.</h3><p>Goal notebooks brought together original lessons, related practice, materials and saved activity. Empty personal goals stay empty; opening a lesson does not count as an independent success.</p><p class="plia-decision"><strong>Decision:</strong> preserve the prompt, the attempt and the help used, so the next session can resume with context.</p></div></li>
+            <li><span class="plia-timeline-marker" aria-hidden="true">5</span><div><p class="plia-eyebrow">The next questions · planned</p><h3>Could notes become a dynamic learning system?</h3><p>Ordered topic units, editable Cornell notes, conceal–retrieve–reveal reflection, flashcards, spaced review and adaptive next steps are the next direction. NotebookLM exchange is also being explored.</p><p class="plia-decision"><strong>Open question:</strong> how can support adapt while the evidence remains understandable to the learner?</p></div></li>
+          </ol>
+          <a class="plia-text-link" href="./docs/brainstorming/">Read the organized brainstorming record <span aria-hidden="true">→</span></a>
+        </section>
+
+        <section id="evidence" class="plia-section" aria-labelledby="evidence-title">
+          <p class="plia-section-number">06 / Research that informs the decisions</p>
+          <h2 id="evidence-title">The evidence.<br>And its boundaries.</h2>
+          <p class="plia-lead">A learning tool should be able to explain why it asks you to do something.</p>
+          <p>The studies below support design hypotheses. <strong>They are not studies of plia.</strong> Their results cannot be presented as the app's learning gains. Open each entry for the finding, the implication and the limitation.</p>
+          <div class="plia-research-list">
+            <details id="research-retrieval" class="plia-detail"><summary><span><small>01 · Retrieval practice</small>Recall can reveal what familiarity hides.</span><span class="plia-detail-sign" aria-hidden="true">+</span></summary><div class="plia-detail-body"><p>Roediger and Karpicke (2006) compared restudy and free recall after prose reading. Restudy helped more after five minutes; testing supported better retention after two days or a week, even though restudying increased confidence.</p><p><strong>Design implication:</strong> ask for an answer before revealing the note. <strong>Boundary:</strong> a particular study task does not validate every quiz or establish plia's effectiveness.</p><a href="https://doi.org/10.1111/j.1467-9280.2006.01693.x">Read the primary paper <span aria-hidden="true">↗</span></a></div></details>
+            <details id="research-spacing" class="plia-detail"><summary><span><small>02 · Spacing</small>When you return matters.</span><span class="plia-detail-sign" aria-hidden="true">+</span></summary><div class="plia-detail-body"><p>Cepeda and colleagues (2008) studied more than 1,350 people, with review gaps up to 3.5 months and final tests up to a year later. The most effective review gap depended on how long the information needed to be retained.</p><p><strong>Design implication:</strong> plan revisits around the learning goal. <strong>Boundary:</strong> there is no single universal interval, and scheduling is part of plia's roadmap.</p><a href="https://escholarship.org/uc/item/0kp5q19x">Read the primary paper <span aria-hidden="true">↗</span></a></div></details>
+            <details id="research-adaptive" class="plia-detail"><summary><span><small>03 · Personalized review</small>Different histories can need different practice.</span><span class="plia-detail-sign" aria-hidden="true">+</span></summary><div class="plia-detail-body"><p>In a semester-long middle-school language course, Lindsey and colleagues (2014) found that personalized review improved later retention by 16.5% relative to massed review and 10.0% relative to generic spaced review, with review time matched.</p><p><strong>Design implication:</strong> let observed performance inform an item's next review. <strong>Boundary:</strong> these are relative gains from one course and scheduler, not percentage-point gains or plia results.</p><a href="https://doi.org/10.1177/0956797613504302">Read the primary paper <span aria-hidden="true">↗</span></a></div></details>
+            <details id="research-interleaving" class="plia-detail"><summary><span><small>04 · Interleaving and transfer</small>Practice choosing the approach.</span><span class="plia-detail-sign" aria-hidden="true">+</span></summary><div class="plia-detail-body"><p>Rohrer and colleagues (2020) randomized 54 seventh-grade mathematics classes to mixed or blocked practice. An unannounced test one month after review favored mixed practice: 61% versus 38%. <a href="https://doi.org/10.1037/edu0000367">Primary paper ↗</a></p><p>Separately, Butler and colleagues (2018) found that practicing varied examples improved transfer to new application questions two days later. <a href="https://doi.org/10.1037/xap0000142">Primary paper ↗</a></p><p><strong>Design implication:</strong> vary relevant examples and require strategy selection. <strong>Boundary:</strong> these findings do not establish general-purpose adaptability or mean all practice should always be mixed.</p></div></details>
+            <details id="research-feedback" class="plia-detail"><summary><span><small>05 · Feedback and confidence</small>Even a correct answer can need reinforcement.</span><span class="plia-detail-sign" aria-hidden="true">+</span></summary><div class="plia-detail-body"><p>Butler, Karpicke and Roediger (2008) found that feedback improved retention of errors and correct answers given with low confidence. In their experiments, retention of low-confidence correct answers doubled with feedback.</p><p><strong>Design implication:</strong> distinguish confidence from correctness and make feedback specific. <strong>Boundary:</strong> this does not validate AI grading; an answer key or explanation must still be accurate.</p><a href="https://doi.org/10.1037/0278-7393.34.4.918">Read the primary paper <span aria-hidden="true">↗</span></a></div></details>
+            <details id="research-hebb" class="plia-detail"><summary><span><small>06 · Hebbian inspiration</small>Connection is an intuition, not a product claim.</span><span class="plia-detail-sign" aria-hidden="true">+</span></summary><div class="plia-detail-body"><p>Bi and Poo (1998) studied cultured rat hippocampal neurons. Correlated activity could strengthen or weaken a synapse depending on relative spike timing, initial strength and cell type.</p><p><strong>Design implication:</strong> Hebbian learning inspires the emphasis on active connections. <strong>Boundary:</strong> cellular experiments do not prescribe a human study schedule or prove that plia changes a learner's brain in a specific way.</p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6793365/">Read the primary paper <span aria-hidden="true">↗</span></a></div></details>
+            <details id="research-eink" class="plia-detail"><summary><span><small>07 · Display and handwriting</small>The medium needs testing too.</span><span class="plia-detail-sign" aria-hidden="true">+</span></summary><div class="plia-detail-body"><p>Benedetto and colleagues (2013) studied 12 adults reading for about 73 minutes per session. Fatigue measures favored a Kindle Paperwhite and print over a Kindle Fire HD. The sample was small and the devices specific. <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0083676">Primary paper ↗</a></p><p>Kretzschmar and colleagues (2013) found no comprehension difference across print, e-reader and tablet in younger and older adults; older readers showed lower measured reading effort on the tablet. <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0056178">Primary paper ↗</a></p><p>Urry and colleagues (2021) also did not find a reliable immediate-learning advantage for longhand note taking in a direct replication. <a href="https://doi.org/10.1177/0956797620965541">Primary paper ↗</a></p><p><strong>Design implication:</strong> choose the surface for the task and test accessibility and comfort. <strong>Boundary:</strong> neither e-ink nor handwriting guarantees better learning.</p></div></details>
+            <details id="research-ai" class="plia-detail"><summary><span><small>08 · AI and independent performance</small>Doing better with help is not the whole result.</span><span class="plia-detail-sign" aria-hidden="true">+</span></summary><div class="plia-detail-body"><p>Bastani and colleagues (2025) studied nearly 1,000 high-school mathematics students in Turkey. A standard GPT-4 interface improved assisted practice but reduced unassisted exam performance by 17% relative to control, or 5.4 percentage points. A tutor with learning-oriented guardrails largely removed that harm, without a significant unassisted-exam gain.</p><p><strong>Design implication:</strong> preserve learner attempts, use graduated help and test independently afterward. <strong>Boundary:</strong> four sessions in one school with specific tools cannot establish that all AI harms learning.</p><a href="https://www.pnas.org/doi/10.1073/pnas.2422633122">Read the primary paper <span aria-hidden="true">↗</span></a></div></details>
+            <details id="research-tutor" class="plia-detail"><summary><span><small>09 · Structured AI tutoring</small>Good instructional design can make a difference.</span><span class="plia-detail-sign" aria-hidden="true">+</span></summary><div class="plia-detail-body"><p>Kestin and colleagues (2025) studied 194 eligible undergraduate physics students. A custom tutor designed around pedagogical principles produced higher immediate post-test scores than the compared active-learning classes. Median tutor time was 49 minutes, versus an assumed 60 minutes of in-class learning.</p><p><strong>Design implication:</strong> use AI to support purposeful practice and feedback. <strong>Boundary:</strong> a short intervention and immediate assessment do not establish long-term retention or universal tutor superiority.</p><a href="https://www.nature.com/articles/s41598-025-97652-6">Read the primary paper <span aria-hidden="true">↗</span></a></div></details>
+          </div>
+          <p class="plia-small-note">Evidence reviewed 17 October 2026. The <a href="./docs/research/">research documentation</a> keeps the references and claim boundaries together.</p>
+        </section>
+
+        <section id="build" class="plia-section" aria-labelledby="build-title">
+          <p class="plia-section-number">07 / The implementation</p>
+          <h2 id="build-title">A real prototype.<br>A readable record.</h2>
+          <p class="plia-lead">The public source captures v0.1.23, the stable prototype verified on the device on 17 October 2026.</p>
+          <ul class="plia-stack" aria-label="Technologies"><li>Java 17</li><li>Native Android</li><li>View / Canvas</li><li>Local JSON</li><li>KaTeX</li><li>Gradle</li></ul>
+          <p>The ink surface uses Android View/Canvas, rather than a vendor raw-drawing SDK. The app targets Android SDK 35 with a minimum of 26. Goal-specific local storage keeps question snapshots, drafts, attempts and assistance history; import/export and corrupt-file protection support recovery.</p>
+          <div class="plia-build-grid"><div><h3>Local learning first</h3><p>The lesson pack and deterministic practice work without an AI request. New goals do not invent lessons or progress. Original practice content is kept separate from source-material references.</p></div><div><h3>AI is an explicit connection</h3><p>The original companion uses a manual local-file inbox and receipt bridge. Think also has an explicitly activated signed-in model path. Seamless live dot or memory integration is not established.</p></div></div>
+          <details class="plia-detail"><summary><span>Source structure and responsibilities</span><span class="plia-detail-sign" aria-hidden="true">+</span></summary><div class="plia-detail-body"><pre class="plia-tree" aria-label="Public project source structure"><code>projects/plia/
+├── app/
+│   └── src/main/
+│       ├── java/com/plia/notebook/
+│       │   ├── TutorCatalog.java       Content and boundaries
+│       │   ├── TutorPracticeEngine.java  Bounded practice checks
+│       │   └── TutorStore.java         Activity and assistance
+│       └── assets/                    Local lesson assets
+├── docs/                              Organized project record
+├── README.md                          Start here
+└── …                                  Android build configuration</code></pre><p>This is an abbreviated map. <a href="./docs/architecture/">Read the architecture documentation</a> for the complete responsibilities and data flow.</p></div></details>
+          <details class="plia-detail"><summary><span>What was checked — and what remains unknown</span><span class="plia-detail-sign" aria-hidden="true">+</span></summary><div class="plia-detail-body"><p>Development records include host checks for storage, library and UI workflows; generated-practice content checks; mathematical rendering checks; and installation and offline-lesson verification on BOOX. These validate aspects of behavior and presentation.</p><p>They do not establish learning outcomes. Physical pen performance, complete lifecycle coverage and live AI round trips remain areas requiring further verification. A separate v0.1.24 integration candidate is not represented here as the installed stable version.</p><p><a href="./docs/status/">Read the status and limitations</a> · <a href="./docs/build-and-release/">Build and release notes</a></p></div></details>
+          <p class="plia-small-note">The public package is curated source and documentation. Private notebooks, account state, device backups and supplied assignment PDFs are excluded.</p>
+        </section>
+
+        <section id="next" class="plia-section" aria-labelledby="next-title">
+          <p class="plia-section-number">08 / A direction, with open questions</p>
+          <h2 id="next-title">Learning that can<br>change with you.</h2>
+          <p class="plia-lead">The next step is a dynamic loop: a note becomes a question, a question exposes a gap, and that evidence changes what happens next.</p>
+          <ol class="plia-learning-loop" aria-label="Proposed learning loop"><li><span>01</span> Capture an idea</li><li><span>02</span> Retrieve it</li><li><span>03</span> Apply &amp; check</li><li><span>04</span> Adapt &amp; revisit</li></ol>
+          <p class="plia-small-note">Proposed direction. This full loop is not yet implemented in v0.1.23.</p>
+          <div class="plia-roadmap"><article><span class="plia-label">Planned</span><h3>Notes that invite retrieval</h3><p>Ordered topic units and editable Cornell cues, notes and summaries. Conceal, retrieve, reveal and reflect; typing remains a first-class option.</p></article><article><span class="plia-label">Planned</span><h3>Review that responds to evidence</h3><p>Flashcards, review history, spaced repetition and explainable next-step suggestions. Scheduling should be versioned independently of the content.</p></article><article><span class="plia-label">Exploratory</span><h3>Portable learning context</h3><p>Supported export/import with tools such as NotebookLM, stable content identities and annotation continuity. Integration needs verification before it becomes a promise.</p></article></div>
+          <h3 class="plia-subheading">Adaptability. And the ability to return.</h3>
+          <p>Adaptability means using an idea when the example or context changes. That calls for varied problems, explanations and choices. Resilience is an ambition for the experience: make errors recoverable, feedback specific and restarting easy. Neither is a measured outcome of plia today.</p>
+          <div class="plia-validation"><p class="plia-eyebrow">What would count as progress?</p><h3>Test the learning, not only the interface.</h3><p>Compare equal study time and equivalent content. Check delayed, unassisted recall and new application problems. Record confidence and assistance separately. Test comfort and accessibility on the actual hardware, and publish uncertainty and null results alongside successes.</p></div>
+        </section>
+
+        <section id="documentation" class="plia-section plia-documentation" aria-labelledby="documentation-title">
+          <p class="plia-section-number">09 / Open the notebook</p>
+          <h2 id="documentation-title">The project,<br>organized.</h2>
+          <p class="plia-lead">Start with the idea, follow the decisions or go directly to the implementation.</p>
+          <div class="plia-docs-grid">
+            <a class="plia-doc-link" href="./docs/"><span>Start here <span aria-hidden="true">→</span></span><p>Overview, version, setup and entry points.</p></a>
+            <a class="plia-doc-link" href="./docs/brainstorming/"><span>Brainstorming &amp; decisions <span aria-hidden="true">→</span></span><p>The reconstructed process and product questions.</p></a>
+            <a class="plia-doc-link" href="./docs/research/"><span>Research &amp; rationale <span aria-hidden="true">→</span></span><p>Primary evidence, implications and boundaries.</p></a>
+            <a class="plia-doc-link" href="./docs/architecture/"><span>Architecture <span aria-hidden="true">→</span></span><p>Code responsibilities, local data and AI boundaries.</p></a>
+            <a class="plia-doc-link" href="./docs/build-and-release/"><span>Build &amp; release <span aria-hidden="true">→</span></span><p>How the Android source becomes a runnable build.</p></a>
+            <a class="plia-doc-link" href="./docs/status/"><span>Status &amp; roadmap <span aria-hidden="true">→</span></span><p>What exists, what was checked and what comes next.</p></a>
+          </div>
+          <div class="plia-source-banner"><div><p class="plia-eyebrow">Source snapshot · v0.1.23</p><h3>Inspect it. Build it.<br>Question it.</h3></div><div class="plia-source-actions"><a class="plia-button plia-button-primary" href="https://github.com/andreaisabelmontana/THEEDGE/tree/main/projects/plia">Browse on GitHub <span aria-hidden="true">↗</span></a><a class="plia-button" href="../../projects/plia/plia-source.zip" download>Download source ZIP <span aria-hidden="true">↓</span></a></div></div>
+        </section>
+      </div>
+    </div>
+    <nav class="plia-end-nav" aria-label="Continue exploring"><a href="../"><span aria-hidden="true">←</span> All projects</a><a href="#main">Back to the beginning <span aria-hidden="true">↑</span></a></nav>
+  </main>
+  <footer class="plia-footer"><p>Andrea Montaña <span>© 2026</span></p><div><a href="../../contact/">Contact</a><a href="https://github.com/andreaisabelmontana">GitHub <span aria-hidden="true">↗</span></a></div><p class="plia-footer-note">Case study in English · Evidence before claims.</p></footer>
+</body>
+</html>

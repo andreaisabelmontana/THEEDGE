@@ -1,0 +1,94 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Origin &amp; brainstorming · Plia documentation</title><meta name="description" content="Plia prototype documentation: Origin &amp; brainstorming. Source, design decisions and research with implementation limits."><link rel="canonical" href="https://andreamontana.com/online/plia/docs/brainstorming/"><link rel="stylesheet" href="/custom/plia/docs.css"><link rel="icon" href="/custom/astronaut-blue.png"></head><body><a class="skip" href="#content">Skip to documentation</a><header><a href="/online/plia/" class="brand">plia<span> / documentation</span></a><a href="/online/">All projects ↗</a></header><div class="layout"><nav aria-label="Documentation"><a href="/online/plia/docs/">Start here</a><a href="/online/plia/docs/brainstorming/" aria-current="page">Origin &amp; brainstorming</a><a href="/online/plia/docs/architecture/">Architecture</a><a href="/online/plia/docs/build-and-release/">Build &amp; release</a><a href="/online/plia/docs/status/">Status &amp; roadmap</a><a href="/online/plia/docs/research/">Research &amp; evidence</a><a class="source" href="https://github.com/andreaisabelmontana/THEEDGE/blob/main/projects/plia/docs/BRAINSTORMING.md">View this file on GitHub ↗</a><a href="/projects/plia/plia-source.zip">Download source ZIP ↓</a></nav><main id="content"><p class="eyebrow">PROTOTYPE v0.1.23 · OCTOBER 2026</p><h1 id="brainstorming-and-design-evolution">Brainstorming and design evolution</h1>
+<p>This is a <strong>retrospective reconstruction</strong> from saved prototype plans, source code and development handoffs, organized on 17 October 2026. It is not a verbatim brainstorming transcript. It does not invent interviews, user studies, historical quotations or a chronology of thoughts that was never recorded.</p>
+<h2 id="the-starting-problem">The starting problem</h2>
+<p>The early project records describe a small, pen-first notebook with two modes: <strong>Think</strong>, for writing and asking about an idea, and <strong>Tutor</strong>, for a learning goal, a problem, an attempted solution and feedback. Calculus study supplied a concrete first use case.</p>
+<p>The practical problem was fragmentation: handwritten reasoning, explanatory text, practice problems and saved feedback needed to live together. A useful answer should remain attached to the work that prompted it. The learner's original ink should survive assistance, revisions and app restarts.</p>
+<p>The current product thesis extends this foundation: reimagine learning, notes, memorization and practice as one loop, organized around evidence over affirmation. This thesis is a design commitment; it is not evidence that the entire system has already been implemented or evaluated.</p>
+<h2 id="decisions-that-shaped-the-prototype">Decisions that shaped the prototype</h2>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Decision reflected in the implementation</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What is the primary surface?</td>
+<td>Native Android paper and views, designed first for a BOOX e-ink tablet</td>
+<td>Keeps writing and reading central; actual pen behavior still needs device testing</td>
+</tr>
+<tr>
+<td>When should help appear?</td>
+<td>Explicit selection/request controls with lifecycle and duplicate protection</td>
+<td>Makes the target work and request state visible</td>
+</tr>
+<tr>
+<td>Where should an answer live?</td>
+<td>A separate reply object near the selected ink, with fallback below</td>
+<td>Preserves the learner's reasoning and allows refresh/undo</td>
+</tr>
+<tr>
+<td>How should mathematics read?</td>
+<td>Local typeset math paired with a verbal explanation</td>
+<td>Gives symbols and reasoning distinct, readable roles</td>
+</tr>
+<tr>
+<td>What does progress mean?</td>
+<td>Saved attempts, independent versus assisted work, and transparent activity labels</td>
+<td>Avoids rewarding repeated checking or solution exposure as independent understanding</td>
+</tr>
+<tr>
+<td>How should practice vary?</td>
+<td>Bounded, versioned original templates with reproducible parameters</td>
+<td>Makes generated items inspectable and supports meaningful checks</td>
+</tr>
+<tr>
+<td>What about a new personal goal?</td>
+<td>Create a separate empty notebook</td>
+<td>Avoids fabricating lessons or progress from a title</td>
+</tr>
+<tr>
+<td>What must remain usable offline?</td>
+<td>Writing, local lessons, deterministic practice and saved work</td>
+<td>Prevents core study from depending on a successful model request</td>
+</tr>
+</tbody>
+</table>
+<h2 id="from-a-blank-page-to-a-structured-study-loop">From a blank page to a structured study loop</h2>
+<p>The first layer was reliable writing and local storage. Selection and reply work then addressed rough loops, erased-and-rewritten regions, duplicate requests, retry behavior, stale results and preserving ink during refreshes. Rich mathematical rendering followed the early plain-text approach.</p>
+<p>Tutor added structure: a goal, an original lesson, similar practice, saved attempts and resume. The design records explicitly separate reading from attempting. Opening a lesson can update a resume location; it cannot produce evidence of an independent correct answer. Hints and revealed solutions stay in the history even when a learner retries.</p>
+<p>These details embody the central belief more concretely than a motivational slogan. The prototype can report what was attempted and what help was used. It cannot yet infer broad understanding from those records.</p>
+<h2 id="the-next-direction">The next direction</h2>
+<p>The saved next-iteration plan proposes ordered topic units that read like a textbook. Each unit would connect:</p>
+<ol>
+<li>Editable Cornell-style cues/questions, main notes and a learner summary.</li>
+<li>A retrieval step: conceal the notes, produce an answer, then reveal and reflect.</li>
+<li>Worked examples and topic practice.</li>
+<li>Cards for suitable memorization material and a review history.</li>
+<li>Suggested next steps based on actual attempts, assistance and later retrieval.</li>
+</ol>
+<p>This is roadmap work for 0.1.23. A later isolated candidate explores some of it, but its presence in another development folder is not evidence that it shipped here. Supported NotebookLM export/import and an FSRS-style scheduler are research/integration directions, not current integrations.</p>
+<h2 id="evidence-over-affirmation">Evidence over affirmation</h2>
+<p>The aim is to replace vague reassurance with specific information: what was recalled, which step failed, what evidence supports the correction and whether the next attempt succeeds without help. Confidence and correctness are separate signals. Self-reported understanding and an automated numeric check are also separate signals.</p>
+<p>AI can explain, suggest and help a learner recover from an error. The intended role is to support thinking while preserving the opportunity to think independently. A polished model answer should not become a shortcut around every retrieval attempt. <a href="/online/plia/docs/research/">The research ledger</a> contains both positive and negative findings about AI-supported learning.</p>
+<h2 id="hebbian-inspiration-and-its-limits">Hebbian inspiration and its limits</h2>
+<p>The idea of repeatedly activating connected concepts resonates with the familiar Hebbian phrase “neurons that fire together wire together.” It is a useful inspiration for making connections through practice. Actual synaptic plasticity is more complicated, including timing-dependent strengthening and weakening. Plia does not measure neural activity, implement a validated biological scheduler or claim to “rewire the brain.” Retrieval, spacing and transfer studies provide more direct evidence for interface decisions.</p>
+<h2 id="why-e-ink-for-now">Why e-ink for now</h2>
+<p>A stable page, low-motion interface, readable mathematics and room to write fit the intended study ritual. E-ink's constraints also force the design to treat reading and action deliberately. That is a product rationale, not a universal educational advantage. Hardware refresh, ghosting and pen latency can obstruct the experience; contrast, font size and typing alternatives remain necessary.</p>
+<p>The direction is therefore <strong>e-ink first</strong>, with a learning model that should remain portable. It should survive a change of screen technology rather than depend on a claim that one display teaches better.</p>
+<h2 id="adaptability-and-resilience">Adaptability and resilience</h2>
+<p>Adaptability means using an idea when the context or problem changes. Practice should eventually include varied examples and choices of method, not only repetition of one answer. Resilience means making revision and return to work possible: preserve drafts, retain evidence, offer a manageable next step and make errors specific enough to act on.</p>
+<p>These are intended qualities of the experience and hypotheses about learner benefit. No Plia study has measured either trait.</p>
+<h2 id="open-questions">Open questions</h2>
+<ul>
+<li>Does the complete loop improve delayed, unassisted recall and transfer compared with realistic alternatives?</li>
+<li>When should help be withheld, offered as a hint or expanded into a worked example?</li>
+<li>How should confidence, time, errors and assistance affect recommendations without inventing a mastery score?</li>
+<li>How can rich editable notes and ink remain stable across layout changes?</li>
+<li>Which e-ink and alternative-device users can comfortably read, type and write?</li>
+<li>Which content and import formats can be reused with clear provenance and rights?</li>
+<li>How should a transparent review scheduler recover from changed cards, imports and interrupted sessions?</li>
+</ul>
+<p>The next useful milestone is a complete, testable topic unit—not a claim that all these questions are settled.</p><footer><a href="/online/plia/">← Back to the project story</a><p>Research-informed design. Learning outcomes have not been evaluated for Plia.</p></footer></main></div></body></html>
