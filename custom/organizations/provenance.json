@@ -1,6 +1,17 @@
 {
   "assets": [
     {
+      "organization": "Alcaldía Mayor de Bogotá D.C.",
+      "file": "alcaldia-bogota.jpg",
+      "source": "https://www.uiaf.gov.co/sites/default/files/inline-images/logoalcanddiamayordebogota.jpg",
+      "discoveredOn": "https://www.uiaf.gov.co/",
+      "retrievedDate": "2026-11-04",
+      "width": 615,
+      "height": 455,
+      "sha256": "4D6BB460FD92A0623555ED42D48C1867F6068B1BBDE5A15359DECDC7023CDAA3",
+      "notes": "Clean official version of the user-selected standalone coat of arms and two-line Alcaldía Mayor de Bogotá D.C. wordmark. Original JPEG retained unchanged, including proportions, colors and white background."
+    },
+    {
       "organization": "Top Living Inmobiliaria",
       "file": "top-living-dark.png",
       "height": 188,

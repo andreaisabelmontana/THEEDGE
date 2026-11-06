@@ -1,0 +1,302 @@
+{
+  "catalogSource": "https://github.com/andreaisabelmontana/Arte-De-La-Montana/blob/main/js/catalog.js",
+  "catalogSha256": "25961c479722c27f44a086b54753bfaba9f0fff6aaeb3f4448745705418acd30",
+  "retrievedDate": "2026-11-05",
+  "workCount": 32,
+  "assetCount": 34,
+  "editorialCollections": true,
+  "featuredWorks": [
+    "caracas-skyline",
+    "shanghai",
+    "venezia",
+    "grocery",
+    "colorin",
+    "porto"
+  ],
+  "metadataRules": [
+    "Titles, years and unambiguous media follow public catalogue.",
+    "Exact original asset filenames and bytes are retained.",
+    "Descriptions and alternative text checked against actual pixels.",
+    "Simona medium omitted because source metadata conflicts.",
+    "No prices, automatic availability claims or generic size classes included."
+  ],
+  "visualReviewCorrections": [
+    "Peach shows a white dog, not the cat named in catalogue copy.",
+    "Zahra shows a sleeping white cat, not the baby named in catalogue copy.",
+    "Venezia shows a vertical canal scene, not the wide lagoon named in catalogue copy."
+  ],
+  "assets": [
+    {
+      "file": "2000-2026-acrylic-large.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/2000-2026-acrylic-large.jpg",
+      "bytes": 204891,
+      "sha256": "79ce11c0d9600af797b68e4f73aa56fdd7c4e11e9dc8a3db621cbf006cfb9cb8",
+      "width": 768,
+      "height": 1080
+    },
+    {
+      "file": "angel-2021-pencil-medium.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/angel-2021-pencil-medium.jpg",
+      "bytes": 123816,
+      "sha256": "7912bf848448b34f4328aad6f8464324c837c7ddcc0eaab14875e0bb13fe3a40",
+      "width": 788,
+      "height": 1080
+    },
+    {
+      "file": "barcelona-2024-acrylic-large.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/barcelona-2024-acrylic-large.jpg",
+      "bytes": 179012,
+      "sha256": "58b785615c464adf503b660d4ff30b5b135837d379dd1026f6d1fab362041793",
+      "width": 755,
+      "height": 1080
+    },
+    {
+      "file": "bogota-2026-acrylic-large.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/bogota-2026-acrylic-large.jpg",
+      "bytes": 206938,
+      "sha256": "36fb7e1340c30bb8d1985bab262412eecb084910f14c1604098601f0e46ed798",
+      "width": 1412,
+      "height": 1080
+    },
+    {
+      "file": "caracas-skyline-2026-watercolor-large.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/caracas-skyline-2026-watercolor-large.jpg",
+      "bytes": 513341,
+      "sha256": "afabeab8fadb37e20ed724df29c53243115a9401f27f006accf698b7039c8ad6",
+      "width": 1500,
+      "height": 1039
+    },
+    {
+      "file": "chamo-2026-acrylic-large.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/chamo-2026-acrylic-large.jpg",
+      "bytes": 100134,
+      "sha256": "78883ebf2989e5a2a64cfee3997b990cfac7ea257cabbc70864ebabfb81b4ad5",
+      "width": 736,
+      "height": 1080
+    },
+    {
+      "file": "colorin-2021-oil-large.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/colorin-2021-oil-large.jpg",
+      "bytes": 316448,
+      "sha256": "8767a819b13307ed6eff527e09b8022f560d9409c8c9cfe653adbca471fee6c5",
+      "width": 712,
+      "height": 1080
+    },
+    {
+      "file": "feriado-2025-pen-medium.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/feriado-2025-pen-medium.jpg",
+      "bytes": 265666,
+      "sha256": "971bd994a20fedca8c626a2e67286b89f759ff5caf281ecf20a826153f38d4cd",
+      "width": 791,
+      "height": 1080
+    },
+    {
+      "file": "fleurs-2026-acrylic-large.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/fleurs-2026-acrylic-large.jpg",
+      "bytes": 250684,
+      "sha256": "ad556797cbd1c70946c12a7109c9f64a1d5513e6211dfc75403b7c859b12a2cc",
+      "width": 746,
+      "height": 1027
+    },
+    {
+      "file": "ganado-2026-pen-medium.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/ganado-2026-pen-medium.jpg",
+      "bytes": 311097,
+      "sha256": "35f9e752d09ed4de17b4f85e8796dca255ca4627ea5e84b2b4f4b15b1c3c1f71",
+      "width": 1500,
+      "height": 1066
+    },
+    {
+      "file": "grocery-2023-oilpastel-medium.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/grocery-2023-oilpastel-medium.jpg",
+      "bytes": 269004,
+      "sha256": "21e5d770c7002d9d326d93e3a5b10fd72fba1c53a95d874cf8688a0acd56396c",
+      "width": 1500,
+      "height": 1035
+    },
+    {
+      "file": "jazz-2026-acylic-medium.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/jazz-2026-acylic-medium.jpg",
+      "bytes": 198537,
+      "sha256": "2f8a54f702dc5483732e063608facd0812daba3ecbcc2a0e80208f86eed43af7",
+      "width": 841,
+      "height": 1078
+    },
+    {
+      "file": "ladybug-2020-colorpencil-small.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/ladybug-2020-colorpencil-small.jpg",
+      "bytes": 291824,
+      "sha256": "ba519c6032f62c593b1e78f1256cff82f3bb7a39ef47d15a803783f2f723c919",
+      "width": 1273,
+      "height": 1080
+    },
+    {
+      "file": "laia-2020-pencil-medium.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/laia-2020-pencil-medium.jpg",
+      "bytes": 145625,
+      "sha256": "085a0c46b69dd45916274a0ad6d427589e9aeb5030c477f6e57b04c1546a5af4",
+      "width": 763,
+      "height": 1080
+    },
+    {
+      "file": "luck-2021-oilpastel-medium.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/luck-2021-oilpastel-medium.jpg",
+      "bytes": 230318,
+      "sha256": "cc0a39d065c4affa3ba66803fb0dcbbea8d80f919f9d3c4c3a277011e541f1d7",
+      "width": 829,
+      "height": 1080
+    },
+    {
+      "file": "madrid-2023-penhighlighter-medium.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/madrid-2023-penhighlighter-medium.jpg",
+      "bytes": 443055,
+      "sha256": "b8f8936398aa62a804c7f8eb67982ba2a29131d2c4b70b205e0ef64c6e3ff1f3",
+      "width": 1082,
+      "height": 1500
+    },
+    {
+      "file": "men-2021-drypastel-medium.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/men-2021-drypastel-medium.jpg",
+      "bytes": 208057,
+      "sha256": "48ab52433d3f60340356e1b1c0935d04b901f71b30e84c0d5bed67d9703419d2",
+      "width": 956,
+      "height": 1080
+    },
+    {
+      "file": "mimir-2021-drypastel-medium.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/mimir-2021-drypastel-medium.jpg",
+      "bytes": 349296,
+      "sha256": "df517311f3a2b74fa73fe6f4ab817e0a0bc339d31d1746c75c16b5e73e45647d",
+      "width": 767,
+      "height": 1076
+    },
+    {
+      "file": "newspaper-2021-oilpastel-medium.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/newspaper-2021-oilpastel-medium.jpg",
+      "bytes": 258175,
+      "sha256": "468a779630dec3faaeae18391d041e3372d11c3ce84b4c5c9f4e56a8a7d46791",
+      "width": 810,
+      "height": 1080
+    },
+    {
+      "file": "peach-2026-alcohol-medium.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/peach-2026-alcohol-medium.jpg",
+      "bytes": 189703,
+      "sha256": "92a4dc48506dea8f583d48d7276434986d13e3231f8e9adf5cfe645cab6dfab1",
+      "width": 1500,
+      "height": 1033
+    },
+    {
+      "file": "pescadito-2026-acrylic-medium.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/pescadito-2026-acrylic-medium.jpg",
+      "bytes": 102634,
+      "sha256": "95e316080f059be0ece9cb37524ad6b57d1a912872a8abe168cf03fe21d9946d",
+      "width": 696,
+      "height": 1080
+    },
+    {
+      "file": "porto-2025-ceramic-medium.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/porto-2025-ceramic-medium.jpg",
+      "bytes": 66847,
+      "sha256": "b3b5279bf8dd7ea9bb6c11a4b423cece7e630d545cd1eb46b6f5962707ca43f6",
+      "width": 504,
+      "height": 970
+    },
+    {
+      "file": "portugal-2022-acylic-small.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/portugal-2022-acylic-small.jpg",
+      "bytes": 267016,
+      "sha256": "d8a9121f771ebd403dedd552b5261c85b5a7cae175d6d73894c5d9a97bce29fd",
+      "width": 756,
+      "height": 1080
+    },
+    {
+      "file": "run-2026-alcohol-medium.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/run-2026-alcohol-medium.jpg",
+      "bytes": 311726,
+      "sha256": "9ea424aaa3cb31f04aa07b85b03bf009e6a6b6a20858eeed6b18f76e449edeaa",
+      "width": 1500,
+      "height": 1052
+    },
+    {
+      "file": "san-fransisco-2022-acrylic-small.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/san-fransisco-2022-acrylic-small.jpg",
+      "bytes": 229861,
+      "sha256": "b323135a6386eabb876d7453425e26b14d64d2fe59f5c284d5d43f93299606b3",
+      "width": 766,
+      "height": 1080
+    },
+    {
+      "file": "shanghai-2026-acrylic-medium.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/shanghai-2026-acrylic-medium.jpg",
+      "bytes": 247033,
+      "sha256": "3935e43ab2608d2f3ab3c237eef480d57e41446b24d70100b0671ff9fe2533d6",
+      "width": 1500,
+      "height": 992
+    },
+    {
+      "file": "simona-2026-acrylic-large.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/simona-2026-acrylic-large.jpg",
+      "bytes": 176395,
+      "sha256": "af37e4d8dacdfc4af5c604d2f6090fb67bd9fb07303a532ffc4a5b21130e912e",
+      "width": 751,
+      "height": 1080
+    },
+    {
+      "file": "sloth-2023-acrylic-small.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/sloth-2023-acrylic-small.jpg",
+      "bytes": 123717,
+      "sha256": "7afbff2129a26ed8802dbd329a18f9fa2e5b87b963f9bad97f64a1cc675ce616",
+      "width": 1500,
+      "height": 848
+    },
+    {
+      "file": "tokyo-2023-pen-medium.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/tokyo-2023-pen-medium.jpg",
+      "bytes": 372879,
+      "sha256": "39dee18f18edb4983497dea54d1fcb6859d7200fbb2fb1cf9a2f0be455857442",
+      "width": 1500,
+      "height": 1076
+    },
+    {
+      "file": "venezia-2020-oil-extralarge.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/venezia-2020-oil-extralarge.jpg",
+      "bytes": 275701,
+      "sha256": "7c10a659dcb836eca686c5a4dd7722400071ce56b52dc0a4e42fa5c9a8ab0292",
+      "width": 868,
+      "height": 1080
+    },
+    {
+      "file": "vtech-2026-alcohol-medium.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/vtech-2026-alcohol-medium.jpg",
+      "bytes": 202053,
+      "sha256": "7da8a312a69c1046eee62c7c0d8bd269c1cb2e0808c1249723460806cb4dd081",
+      "width": 1440,
+      "height": 1080
+    },
+    {
+      "file": "zahra-2023-oil-medium.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/zahra-2023-oil-medium.jpg",
+      "bytes": 207556,
+      "sha256": "3be29f6c8700a3d5b94e54a0ee68df5d3af0a6e2ed713d1fd77052cfc4cb9ce2",
+      "width": 868,
+      "height": 1080
+    },
+    {
+      "file": "caracas-skyline-comic.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/caracas-skyline-comic.jpg",
+      "bytes": 533051,
+      "sha256": "adef8c96c8064976a7151e9eb0978faa189e39feba555fcbed682a19f37d49e9",
+      "width": 1500,
+      "height": 866
+    },
+    {
+      "file": "caracas-skyline-stencil.jpg",
+      "source": "https://raw.githubusercontent.com/andreaisabelmontana/Arte-De-La-Montana/main/assets/caracas-skyline-stencil.jpg",
+      "bytes": 484652,
+      "sha256": "6f846b3d9fcb90be8cc760d0958893baedfaf0b38968cdfb2fe7c47d14366dbf",
+      "width": 1500,
+      "height": 1080
+    }
+  ]
+}

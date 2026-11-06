@@ -1,0 +1,60 @@
+/* Scoped presentation for the merged NoteCrafted story and its catalog artwork note. */
+.project-card .nc-card-art-note{display:block;color:#706a76;font-size:10px;line-height:1.5;margin:10px 0 0}
+.notecrafted-page .plia-hero-title{display:block;margin-top:28px}
+.notecrafted-page .plia-hero-title h1{font-size:clamp(55px,9.8vw,132px);overflow-wrap:anywhere}
+.notecrafted-page .plia-hero-title>p{font-size:clamp(24px,3.1vw,39px);max-width:26ch;white-space:pre-line;margin-top:20px}
+.notecrafted-page .plia-status>span{width:auto;height:auto;background:none}
+.nc-language{display:flex;align-items:center;gap:9px;white-space:nowrap;font-size:12px}
+.nc-language button{border:0;background:transparent;padding:9px 3px;color:var(--plia-muted);cursor:pointer}
+.nc-language button[aria-pressed=true]{color:var(--plia-blue);font-weight:700}
+.nc-language>span{color:#a8a1ac}
+.nc-evolution,.nc-web-demo{padding-bottom:62px;margin-bottom:66px;border-bottom:1px solid var(--plia-line);scroll-margin-top:110px}
+.nc-evolution h2{max-width:20ch}
+.nc-phases{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin:36px 0}
+.nc-phases article{border-top:1px solid var(--plia-line);padding-top:22px}
+.nc-phases p,.nc-context,.nc-web-demo>p{color:var(--plia-muted);max-width:78ch}
+.nc-record-note{font-size:12px;padding:20px 23px;background:var(--plia-soft);border-left:2px solid var(--plia-blue);color:var(--plia-muted)}
+.nc-demo-media{position:relative;aspect-ratio:16/9;overflow:hidden;background:#10121a;border-radius:8px;margin:27px 0 12px;max-width:100%}
+.nc-demo-media img,.nc-demo-media iframe{display:block;width:100%;height:100%;object-fit:contain;border:0}
+.nc-demo-media button{position:absolute;inset:auto auto 28px 28px;padding:13px 20px;color:#fff;background:#164cc9;border:1px solid #bed0fc;border-radius:5px;box-shadow:0 4px 18px #0005;cursor:pointer;max-width:calc(100% - 56px)}
+.nc-demo-caption{font-size:12px;margin-bottom:20px!important}
+.notecrafted-page .restored-footer h2{color:inherit;font-size:inherit;line-height:inherit;margin:0}
+.notecrafted-page .restored-footer a{color:inherit}
+@media(max-width:820px){.notecrafted-page .plia-header-inner{gap:12px}.notecrafted-page .plia-brand{font-size:11px}.nc-language{gap:5px}.nc-phases{gap:26px}}
+@media(max-width:600px){.nc-phases{grid-template-columns:1fr;gap:28px}.nc-evolution,.nc-web-demo{padding-bottom:40px;margin-bottom:44px}.nc-demo-media button{inset:auto auto 15px 15px;padding:10px 13px;font-size:12px}.nc-record-note{padding:16px}.notecrafted-page .plia-end-nav{flex-wrap:wrap}}
+/* Employer overview: short reading sections, with the full record one link away. */
+.nc-compact .plia-main{max-width:1160px}
+.nc-compact .plia-back{margin-bottom:24px}
+.nc-compact-hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:center;gap:40px}
+.nc-compact-hero h1{font-family:Brier,"Mona Sans Variable",sans-serif;font-size:clamp(48px,6.8vw,88px);line-height:1.08;letter-spacing:-.055em;margin:0 0 22px}
+.nc-compact-hero h1>span{color:#3369e8}
+.nc-compact-hero .plia-intro{font-size:clamp(17px,1.65vw,20px);margin-bottom:22px}
+.nc-compact-hero .plia-actions{gap:8px 15px;margin:0}
+.nc-compact-hero .plia-actions .plia-text-link{margin:0;font-size:11px}
+.nc-compact-hero .plia-cover figcaption{font-size:10px;line-height:1.6}
+.nc-compact .plia-facts{grid-template-columns:1.15fr 1.15fr 1fr;margin:28px 0 38px;padding:20px 0 24px}
+.nc-status-copy{font-size:11px;display:block;color:var(--plia-muted);margin-top:3px}
+.nc-compact h2{font-size:clamp(24px,2.5vw,31px);line-height:1.2;letter-spacing:-.035em;margin-bottom:17px}
+.nc-compact h3{font-size:17px;line-height:1.35;margin:9px 0}
+.nc-summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:42px;border-bottom:1px solid var(--plia-line);padding-bottom:30px;margin-bottom:34px}
+.nc-summary-grid p,.nc-decisions p,.nc-compact-demo p,.nc-record-links>p{font-size:14px;line-height:1.8;color:var(--plia-muted);margin-bottom:14px}
+.nc-summary-grid p:last-child,.nc-decisions p:last-child{margin-bottom:0}
+.nc-compact-section{padding-bottom:31px;margin-bottom:34px;border-bottom:1px solid var(--plia-line)}
+.nc-decisions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px}
+.nc-decisions .plia-label{color:var(--plia-blue);font:10px ui-monospace,Consolas,monospace}
+.nc-compact section{scroll-margin-top:110px}
+.nc-compact-demo{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:42px;align-items:center;padding-bottom:34px;margin-bottom:32px;border-bottom:1px solid var(--plia-line)}
+.nc-compact-demo .nc-demo-media{margin:0}
+.nc-compact-demo .nc-demo-media button{inset:auto auto 16px 16px;padding:10px 13px;font-size:11px;max-width:calc(100% - 32px)}
+.nc-demo-link{display:block;width:100%;height:100%}
+.nc-demo-link>span{position:absolute;left:16px;bottom:16px;max-width:calc(100% - 32px);padding:10px 13px;border:1px solid #bed0fc;border-radius:5px;background:#164cc9;color:#fff;font-size:11px;line-height:1.5;box-shadow:0 4px 18px #0005}
+.nc-demo-link:hover>span{background:#0d3aa3;text-decoration:underline}
+.nc-demo-link:focus-visible{outline-offset:-4px!important}
+.nc-record-links{padding:24px;background:var(--plia-soft);border-left:2px solid var(--plia-blue);margin-bottom:40px}
+.nc-record-links h2{font-size:22px;margin-bottom:8px}
+.nc-record-links>div{display:flex;flex-wrap:wrap;gap:10px 26px;font-size:12px}
+.nc-compact .plia-end-nav{margin-top:0}
+@media(max-width:1050px){.nc-compact-hero{gap:28px}.nc-compact-hero h1{font-size:clamp(44px,6.8vw,72px)}}
+@media(max-width:700px){.nc-compact-hero,.nc-summary-grid,.nc-compact-demo{grid-template-columns:1fr;gap:24px}.nc-compact-hero h1{font-size:clamp(42px,10.6vw,68px)}.nc-compact-hero .plia-cover{max-width:540px}.nc-compact .plia-facts{grid-template-columns:1fr 1fr;gap:22px}.nc-compact .plia-facts>div:first-child{grid-column:1/-1}.nc-decisions{grid-template-columns:1fr;gap:22px}.nc-decisions article{padding-left:25px;position:relative}.nc-decisions .plia-label{position:absolute;top:5px;left:0}.nc-decisions h3{margin-top:0}.nc-compact h2{font-size:27px}.nc-record-links h2{font-size:22px}.nc-record-links{padding:20px}.nc-compact-demo .nc-demo-media button{font-size:11px}}
+@media(max-width:420px){.nc-compact .plia-header-inner{gap:7px}.nc-compact .plia-brand{gap:6px}.nc-compact .plia-main-nav{gap:12px}.nc-compact .plia-facts{column-gap:18px}.nc-compact .plia-facts dd{font-size:12px}}
+@media(max-width:560px){.notecrafted-page .plia-header-inner{height:auto;min-height:68px;flex-wrap:wrap;padding:10px 20px;row-gap:8px}.notecrafted-page .plia-brand>span{display:inline}.notecrafted-page .plia-main-nav{order:3;flex:1 0 100%;justify-content:space-between;gap:12px}.notecrafted-page .nc-language{margin-left:auto}.notecrafted-page .plia-contents{top:86px}.nc-compact section{scroll-margin-top:125px}}

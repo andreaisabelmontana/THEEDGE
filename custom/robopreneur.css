@@ -5,3 +5,4 @@
 .robo-page .robo-preview .project-preview-toggle:hover { background: #30243b; }
 .robo-page .case-meta > div { max-width: 700px; }
 .robo-page .case-source-line { display: flex; flex-wrap: wrap; gap: 8px; }
+.robo-page .case-section[aria-labelledby="related-publication-heading"] a { color: var(--theme-accent-ink, #164CC9); text-decoration: underline; text-underline-offset: 3px; }

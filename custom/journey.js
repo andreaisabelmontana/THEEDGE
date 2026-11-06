@@ -4,8 +4,7 @@
   'use strict';
   if (!document.body.classList.contains('experience-page')) return;
   var canvas = document.getElementById('am-globe');
-  var list = document.getElementById('am-exp-timeline');
-  if (!canvas || !list) return;
+  if (!canvas) return;
 
   var entries = [
     { id: 'bogota', city: ['Bogotá', 'Bogotá', 'Bogotá'], country: ['Colombia', 'Colombia', 'Kolumbien'],
@@ -34,7 +33,6 @@
   var renderer, scene, camera, world, earth, pins = [], raycaster, pointer;
   var fallbackContext, fallbackPixels, fallbackWidth, fallbackHeight, fallbackHeights;
   var usingFallback = false, graphicUnavailable = false;
-  var buttons = [];
   var companion = document.getElementById('journey');
   var region = document.querySelector('.am-career-journey-layout');
   var markers = Array.from(document.querySelectorAll('[data-journey-city], [data-journey-context]'));
@@ -72,11 +70,6 @@
   // Updating labels/pins must never recenter an independently rotated globe.
   function reflectSelection() {
     companion.dataset.activeCity = contextOnly ? '' : entries[active].id;
-    buttons.forEach(function (button, i) {
-      var selected = !contextOnly && i === active;
-      button.setAttribute('aria-pressed', String(selected));
-      button.parentNode.classList.toggle('is-active', selected);
-    });
     pins.forEach(function (pin, i) {
       var selected = !contextOnly && i === active;
       pin.material.color.set(selected ? 0xf0ca94 : 0xf4f0e9);
@@ -219,40 +212,22 @@
     }
   }
 
-  entries.forEach(function (entry, index) {
-    var item = document.createElement('li');
-    var button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'am-journey-button';
-    button.innerHTML = '<span class="am-exp-line1"><span class="am-journey-city"></span>' +
-      '<span class="am-journey-country"></span></span>';
-    button.addEventListener('click', function () { beginExploration(); select(index); });
-    item.appendChild(button);
-    list.appendChild(item);
-    buttons.push(button);
-  });
-
   function localize(lang) {
     language = Math.max(0, ['en', 'es', 'de'].indexOf(lang));
-    entries.forEach(function (entry, index) {
-      buttons[index].querySelector('.am-journey-city').textContent = entry.city[language];
-      buttons[index].querySelector('.am-journey-country').textContent = entry.country[language];
-    });
     document.querySelectorAll('[data-journey-copy]').forEach(function (node) {
       var text = journeyCopy[node.dataset.journeyCopy];
       if (text) node.textContent = text[language];
     });
-    list.setAttribute('aria-label', ['Journey cities', 'Ciudades del recorrido', 'Städte meines Weges'][language]);
     // Other page-local listeners translate the source heading in this event.
     // Read its final text after all of them have run.
     Promise.resolve().then(describeSelection);
     caption.textContent = graphicUnavailable ?
-      ['Select a city to explore.', 'Elige una ciudad para explorar.', 'Wähle eine Stadt zum Erkunden.'][language] :
-      ['Drag the Earth or choose a city.', 'Gira la Tierra o elige una ciudad.', 'Drehe die Erde oder wähle eine Stadt.'][language];
+      ['Locations follow the experience in view.', 'Las ubicaciones siguen la experiencia en pantalla.', 'Die Orte folgen der sichtbaren Erfahrung.'][language] :
+      ['Drag or use arrow keys to rotate. Locations follow your scroll.', 'Gira con el cursor o las flechas. Las ubicaciones cambian al desplazarte.', 'Mit Ziehen oder Pfeiltasten drehen. Die Orte wechseln beim Scrollen.'][language];
     canvas.setAttribute('aria-label', [
-      'Earth showing journey locations. Use arrow keys to rotate, or select a city below.',
-      'La Tierra con las ciudades del recorrido. Usa las flechas para girar o elige una ciudad.',
-      'Erde mit den Stationen meiner Reise. Mit Pfeiltasten drehen oder eine Stadt auswählen.'
+      'Earth showing the location of the experience in view. Use arrow keys to rotate.',
+      'La Tierra muestra la ubicación de la experiencia en pantalla. Usa las flechas para girar.',
+      'Erde mit dem Ort der sichtbaren Erfahrung. Mit Pfeiltasten drehen.'
     ][language]);
   }
   document.addEventListener('edge:lang', function (event) { localize(event.detail); });
@@ -462,7 +437,7 @@
   }
 
   // The same satellite map rendered as a still sphere if WebGL is unavailable.
-  // The list, keyboard and city selection keep working without a GPU context.
+  // Keyboard rotation and scroll-linked locations work without a GPU context.
   function fallback() {
     if (usingFallback) return;
     usingFallback = true;

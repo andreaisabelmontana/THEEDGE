@@ -26,8 +26,13 @@
       var type=card.querySelector('.project-card-meta span');
       var typeLabel=project && (project.course ? (t.course+' · '+project.course) : ((project.typeLabels && project.typeLabels[lang])||project.typeLabel));
       if(type && typeLabel && type.textContent!==typeLabel) type.textContent=typeLabel;
+      var visualNote=card.querySelector('[data-project-visual-note]');
+      if(visualNote) visualNote.textContent=({en:'AI-generated concept illustration',es:'Ilustración conceptual generada con IA',de:'KI-generierte Konzeptillustration'})[lang] || 'AI-generated concept illustration';
+      var sitePreviewNote=card.querySelector('[data-project-site-preview="globo"]');
+      if(sitePreviewNote) sitePreviewNote.textContent=({en:'Public site preview · 6 Nov 2026',es:'Vista del sitio público · 6 nov 2026',de:'Öffentliche Website · 6. Nov. 2026'})[lang] || 'Public site preview · 6 Nov 2026';
       var cta=card.querySelector('.project-card-cta-label');
-      if(cta.textContent!==t.cta) cta.textContent=t.cta;
+      var ctaLabel=project && project.ctaLabels && project.ctaLabels[lang] || t.cta;
+      if(cta.textContent!==ctaLabel) cta.textContent=ctaLabel;
     });
     document.querySelectorAll('[data-project-copy]').forEach(function(el){var value=t[el.dataset.projectCopy];if(typeof value==='string' && el.textContent!==value) el.textContent=value;});
     if(count.textContent!==t.count(shown))count.textContent=t.count(shown);

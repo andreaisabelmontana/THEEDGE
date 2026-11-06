@@ -1,0 +1,51 @@
+/* One scroll-linked globe alongside the Experience title and records. */
+.experience-page #journey.am-journey-companion { border: 0; }
+.experience-page .am-journey-current { min-height: 0; }
+
+@media (min-width: 1100px) {
+  .experience-page .am-career-opening { grid-column: 1; }
+  .experience-page #journey.am-journey-companion {
+    grid-row: 1 / 4;
+    margin-top: 132px;
+    padding: 0 2px 12px;
+  }
+  .experience-page #journey.am-journey-companion .am-exp-globe-w {
+    width: min(100%, max(150px, calc(100svh - 340px)));
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 1099px) {
+  .experience-page .am-career-journey-layout { display: grid; }
+  .experience-page .am-career-opening { grid-row: 1; }
+  .experience-page #journey.am-journey-companion {
+    grid-row: 2;
+    grid-template-rows: auto min-content 1fr;
+    align-items: start;
+    margin: 0 0 32px;
+    padding: 0;
+  }
+  .experience-page .am-career-opening-intro { grid-row: 3; }
+  .experience-page .am-career-records { grid-row: 4; min-width: 0; }
+  .experience-page #journey.am-journey-companion .am-exp-globe-w { grid-row: 2 / 4; }
+}
+
+@media (max-width: 620px) {
+  .experience-page #journey.am-journey-companion {
+    display: grid;
+    grid-template-columns: minmax(100px, .8fr) minmax(0, 1fr);
+    column-gap: 16px;
+    row-gap: 8px;
+    align-items: center;
+    margin-bottom: 28px;
+  }
+  .experience-page .am-journey-heading { grid-column: 1 / -1; }
+  .experience-page #journey.am-journey-companion .am-exp-globe-w { grid-column: 1; grid-row: 2 / 4; margin: 0; }
+  .experience-page .am-journey-current { grid-column: 2; margin: 0; }
+  .experience-page .am-journey-current strong { font-size: 15px; }
+  .experience-page #journey.am-journey-companion .am-globe-caption { grid-column: 2; margin: 0; text-align: left; }
+}
+
+@media print {
+  .experience-page .am-career-journey-layout { display: block; }
+}

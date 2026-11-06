@@ -1,0 +1,51 @@
+/* Page-local additions to the shared portfolio case-study layout. */
+.dj-preview { position: relative; }
+.dj-preview .project-preview-media.case-media { aspect-ratio: 16 / 9; }
+.dj-page .dj-preview .project-preview-toggle { border: 1px solid #ffffff50; background: #101016ed; font-size: 12px; }
+.dj-page .case-meta > div { max-width: 630px; }
+.dj-page .case-source-line { display: flex; flex-wrap: wrap; gap: 7px; }
+.dj-related { padding: 42px 0; border-bottom: 1px solid var(--theme-line); }
+.dj-related h3 { margin: 0 0 8px; font-size: 21px; font-weight: 500; line-height: 1.4; }
+.dj-related h3 a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.dj-related p { max-width: 780px; color: var(--theme-muted); font-size: 14px; line-height: 1.7; margin: 0 0 16px; }
+.dj-related .dj-publication-venue { color: var(--theme-dim); font-size: 12px; }
+.dj-diagrams { padding: 66px 0 8px; }
+.dj-diagram-intro { max-width: 720px; color: var(--theme-muted); font-size: 16px; line-height: 1.7; }
+.dj-diagram-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 28px; }
+.dj-diagram { margin: 0; }
+.dj-diagram-open { display: grid; position: relative; width: 100%; border: 1px solid var(--theme-line); border-radius: 12px; background: #fff; overflow: hidden; }
+.dj-diagram-open img { display: block; width: 100%; max-height: 580px; height: auto; object-fit: contain; }
+.dj-diagram-open:hover { border-color: var(--theme-accent); }
+.dj-diagram-open-label { position: absolute; bottom: 14px; right: 14px; border: 1px solid var(--theme-line-strong); background: var(--theme-surface); color: var(--theme-accent-ink); border-radius: 5px; padding: 8px 12px; font-size: 12px; box-shadow: var(--theme-shadow); }
+.dj-diagram figcaption { padding-top: 14px; }
+.dj-diagram h3 { margin: 0 0 7px; font-size: 19px; font-weight: 500; color: var(--theme-ink); }
+.dj-diagram figcaption p { margin: 0; max-width: 860px; color: var(--theme-muted); font-size: 14px; line-height: 1.7; }
+.dj-diagram-number { display: inline-block; min-width: 32px; color: var(--theme-dim); font: 11px/1.6 ui-monospace, Consolas, monospace; vertical-align: 2px; }
+.dj-page .case-stack { margin-bottom: 40px; }
+.dj-viewer-open { overflow: hidden; }
+.dj-diagram-dialog { width: min(1200px, calc(100vw - 40px)); max-width: none; max-height: calc(100dvh - 40px); margin: auto; padding: 0; border: 1px solid var(--theme-line-strong); border-radius: 12px; background: var(--theme-surface); color: var(--theme-ink); box-shadow: 0 20px 80px #10101640; }
+.dj-diagram-dialog::backdrop { background: #101016bb; }
+.dj-dialog-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 22px; border-bottom: 1px solid var(--theme-line); }
+.dj-dialog-heading h2 { margin: 0; font-size: clamp(17px, 2vw, 23px); font-weight: 500; line-height: 1.4; }
+.dj-dialog-close { flex: 0 0 44px; width: 44px; min-height: 44px; border: 1px solid var(--theme-line-strong); border-radius: 6px; background: var(--theme-soft); color: var(--theme-ink); font: 24px/1 system-ui, sans-serif; cursor: pointer; }
+.dj-dialog-stage { display: grid; place-items: center; max-height: min(65dvh, 760px); overflow: auto; overscroll-behavior: contain; background: #fff; padding: 16px; }
+.dj-dialog-stage img { display: block; max-width: 100%; max-height: min(60dvh, 720px); width: auto; height: auto; object-fit: contain; }
+.dj-dialog-stage.is-zoomed { display: block; place-items: start; }
+.dj-dialog-stage.is-zoomed img { max-width: none; max-height: none; }
+.dj-dialog-footer { padding: 16px 22px 20px; border-top: 1px solid var(--theme-line); }
+.dj-dialog-footer p { margin: 0 0 12px; color: var(--theme-muted); font-size: 13px; line-height: 1.6; }
+.dj-dialog-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.dj-dialog-actions .case-button { cursor: pointer; }
+@media (max-width:700px) {
+  .dj-diagrams { padding-top: 42px; }
+  .dj-diagram-grid { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+  .dj-diagram-open { border-radius: 7px; }
+  .dj-diagram-open-label { bottom: 8px; right: 8px; padding: 6px 9px; font-size: 11px; }
+  .dj-diagram h3 { font-size: 17px; }
+  .dj-diagram figcaption p { font-size: 13px; }
+  .dj-diagram-dialog { width: calc(100vw - 20px); max-height: calc(100dvh - 20px); border-radius: 8px; }
+  .dj-dialog-heading { padding: 12px; gap: 10px; }
+  .dj-dialog-stage { padding: 8px; max-height: 55dvh; }
+  .dj-dialog-stage img { max-height: 50dvh; }
+  .dj-dialog-footer { padding: 12px; }
+}

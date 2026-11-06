@@ -1,12 +1,47 @@
 /* Project catalog. Details and primary sources live in each case study. */
 window.EDGE_PROJECTS = [
 {
-  "slug": "plia",
-  "title": "plia",
+  "slug": "globo",
+  "title": "GLOBO",
+  "helm": "20",
+  "year": 2026,
+  "date": "2026 · Ongoing",
+  "tagline": "Ongoing support for data analysis, information management and reporting at Bogotá City Government.",
+  "label": "PROFESSIONAL CONTRIBUTION",
+  "track": "Professional",
+  "categories": [
+    "Data & information"
+  ],
+  "techstack": [],
+  "links": {
+    "live": "https://www.alcaldiabogota.gov.co/globo/",
+    "overview": "https://secretariageneral.gov.co/sites/default/files/2025-12/BP_Sistema%20de%20informaci%C3%B3n%20GLOBO.pdf"
+  },
+  "featured": true,
+  "subjects": [
+    "software"
+  ],
+  "typeLabel": "Professional contribution",
+  "summary": {
+    "en": "Ongoing support for data analysis, information management and reporting at Bogotá City Government.",
+    "es": "Apoyo al análisis de datos, la gestión de información y la elaboración de informes en la Alcaldía Mayor de Bogotá.",
+    "de": "Laufende Unterstützung bei Datenanalyse, Informationsmanagement und Berichten für die Stadtverwaltung Bogotá."
+  },
+  "typeLabels": {
+    "en": "Professional contribution",
+    "es": "Contribución profesional",
+    "de": "Beruflicher Beitrag"
+  },
+  "caseStudy": "./globo/",
+  "cover": "../custom/organizations/alcaldia-bogota.jpg"
+},
+{
+  "slug": "notecrafted",
+  "title": "NoteCrafted",
   "helm": "18",
   "year": 2026,
-  "date": "2026 · In development",
-  "tagline": "A pen-first learning workspace for notes, lessons and deliberate practice. Built around evidence over affirmation, starting on e-ink.",
+  "date": "2025–2026 · In development",
+  "tagline": "A native Android tablet notebook for handwritten thinking and thoughtful AI assistance, evolved from an earlier web AI-tutor demo.",
   "label": "LEARNING & AI",
   "track": "Personal",
   "categories": [
@@ -22,7 +57,8 @@ window.EDGE_PROJECTS = [
     "Local storage"
   ],
   "links": {
-    "github": "https://github.com/andreaisabelmontana/THEEDGE/tree/main/projects/plia"
+    "github": "https://github.com/andreaisabelmontana/THEEDGE/tree/main/projects/plia",
+    "video": "https://www.youtube.com/watch?v=1FyiBZxcYio"
   },
   "featured": true,
   "subjects": [
@@ -30,18 +66,18 @@ window.EDGE_PROJECTS = [
     "software",
     "ux"
   ],
-  "typeLabel": "Learning & AI",
+  "typeLabel": "Android tablet · Learning & AI",
   "summary": {
-    "en": "A pen-first learning workspace for notes, lessons and deliberate practice. Built around evidence over affirmation, starting on e-ink.",
-    "es": "Un espacio de aprendizaje con escritura a mano, apuntes, lecciones y práctica deliberada. Evidencia antes que afirmaciones, empezando por la tinta electrónica.",
-    "de": "Ein Lernraum für handschriftliche Notizen, Lektionen und gezieltes Üben. Nachweise statt bloßer Bestätigung — zunächst auf E-Ink."
+    "en": "A native Android tablet notebook for handwritten thinking and thoughtful AI assistance, evolved from an earlier web AI-tutor demo.",
+    "es": "Un cuaderno nativo de Android para tabletas, centrado en escribir a mano y recibir ayuda de IA con intención. Evoluciona de una primera demo web de tutor de IA.",
+    "de": "Ein natives Android-Notizbuch für Tablets: handschriftlich denken und KI gezielt nutzen. Entstanden aus einer früheren Web-Demo eines KI-Tutors."
   },
   "typeLabels": {
-    "en": "Learning & AI",
-    "es": "Aprendizaje e IA",
-    "de": "Lernen & KI"
+    "en": "Android tablet · Learning & AI",
+    "es": "Tableta Android · Aprendizaje e IA",
+    "de": "Android-Tablet · Lernen & KI"
   },
-  "caseStudy": "./plia/",
+  "caseStudy": "./notecrafted/",
   "cover": "../custom/plia/plia-thumbnail.webp"
 },
   {
@@ -191,6 +227,46 @@ window.EDGE_PROJECTS = [
     }
   },
   {
+  "slug": "djesthesia",
+  "title": "DJESTHESIA",
+  "helm": "20",
+  "year": 2025,
+  "date": "2025",
+  "tagline": "Helped test the TouchDesigner–OptiTrack interface for DJESTHESIA, a team project exploring tangible multimedia for DJs.",
+  "label": "MOTION CAPTURE",
+  "track": "Research",
+  "categories": [
+    "Real-time 3D",
+    "UI & UX"
+  ],
+  "techstack": [
+    "TouchDesigner",
+    "OptiTrack"
+  ],
+  "links": {
+    "video": "https://www.youtube.com/watch?v=Y5tWjAqEkEU",
+    "github": "https://github.com/IERoboticsAILab/djesthesia"
+  },
+  "featured": true,
+  "subjects": [
+    "spatial",
+    "ux"
+  ],
+  "typeLabel": "Motion capture & interaction",
+  "summary": {
+    "en": "Helped test the TouchDesigner–OptiTrack interface for DJESTHESIA, a team project exploring tangible multimedia for DJs.",
+    "es": "Colaboré en las pruebas de la interfaz TouchDesigner–OptiTrack de DJESTHESIA, un proyecto en equipo que explora multimedia tangible para DJ.",
+    "de": "Bei DJESTHESIA, einem Teamprojekt zu greifbaren Multimedia-Schnittstellen für DJs, half ich beim Testen der TouchDesigner–OptiTrack-Schnittstelle."
+  },
+  "typeLabels": {
+    "en": "Motion capture & interaction",
+    "es": "Captura de movimiento e interacción",
+    "de": "Motion Capture & Interaktion"
+  },
+  "cover": "../custom/project-previews/djesthesia-preview.webp",
+  "caseStudy": "./djesthesia/"
+},
+  {
     "slug": "sona",
     "title": "Sona",
     "helm": "02",
@@ -231,46 +307,11 @@ window.EDGE_PROJECTS = [
     "course": "Machine Learning"
   },
   {
-    "slug": "notecrafted",
-    "title": "NoteCrafted",
-    "helm": "21",
-    "year": 2025,
-    "date": "2025",
-    "tagline": "An AI tutor that turns notes into practice questions and explanations.",
-    "label": "AI TUTOR",
-    "track": "Coursework",
-    "categories": [
-      "AI & ML"
-    ],
-    "techstack": [],
-    "links": {
-      "video": "https://www.youtube.com/watch?v=1FyiBZxcYio"
-    },
-    "featured": true,
-    "subjects": [
-      "ai",
-      "ux"
-    ],
-    "typeLabel": "AI & learning",
-    "summary": {
-      "en": "From study notes to practice questions, with an AI tutor along the way.",
-      "es": "De apuntes a preguntas de práctica, con un tutor de IA.",
-      "de": "Von Lernnotizen zu Übungsfragen, begleitet von einem KI-Tutor."
-    },
-    "caseStudy": "./notecrafted/",
-    "cover": "../custom/project-previews/notecrafted-animated.webp",
-    "typeLabels": {
-      "en": "AI & learning",
-      "es": "IA y aprendizaje",
-      "de": "KI & Lernen"
-    }
-  },
-  {
     "slug": "ladybug-girl",
     "title": "Ladybug Girl",
     "helm": "12",
-    "year": 2026,
-    "date": "2026",
+    "year": 2025,
+    "date": "2025",
     "tagline": "A Three.js storybook meadow with a real skeletal walk cycle.",
     "label": "THREE.JS",
     "track": "Personal",
@@ -386,49 +427,6 @@ window.EDGE_PROJECTS = [
       "en": "Motion capture",
       "es": "Captura de movimiento",
       "de": "Motion Capture"
-    }
-  },
-  {
-    "slug": "polar-club",
-    "title": "Polar Club",
-    "helm": "15",
-    "year": 2025,
-    "date": "2025",
-    "tagline": "A playful login flow that ends on a 3D iceberg with a polar bear.",
-    "label": "THREE.JS",
-    "track": "Personal",
-    "categories": [
-      "Real-time 3D",
-      "Web"
-    ],
-    "techstack": [
-      "JavaScript",
-      "HTML",
-      "CSS",
-      "Three.js",
-      "Trystero"
-    ],
-    "links": {
-      "live": "https://andreaisabelmontana.github.io/polar-club/",
-      "github": "https://github.com/andreaisabelmontana/polar-club"
-    },
-    "featured": false,
-    "subjects": [
-      "spatial",
-      "ux"
-    ],
-    "typeLabel": "3D & interaction",
-    "summary": {
-      "en": "A playful interface that opens into a shared 3D arctic world.",
-      "es": "Una interfaz juguetona que se abre a un mundo ártico compartido en 3D.",
-      "de": "Eine verspielte Oberfläche als Eingang in eine gemeinsame arktische 3D-Welt."
-    },
-    "caseStudy": "./polar-club/",
-    "cover": "../custom/project-previews/polar-club.webp",
-    "typeLabels": {
-      "en": "3D & interaction",
-      "es": "Mundos interactivos",
-      "de": "Interaktive Welten"
     }
   },
   {

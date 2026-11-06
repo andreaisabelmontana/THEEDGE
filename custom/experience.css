@@ -144,3 +144,4 @@ body.experience-page {
   .experience-page .am-credential-tail { width: 100%; font-size: 11px; }
   .experience-page .am-credential-tail time { margin-right: auto; }
 }
+.experience-page .am-career-related-publications a { color: var(--theme-accent-ink, #164CC9); text-decoration: underline; text-underline-offset: 3px; }

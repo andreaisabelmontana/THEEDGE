@@ -3,6 +3,26 @@
   'use strict';
   if (!document.body.classList.contains('experience-page')) return;
   var copy = {
+  "alcaldia-date": {
+    "en": "Nov 2026 — Present",
+    "es": "Nov 2026 — Actualidad",
+    "de": "Nov. 2026 — heute"
+  },
+  "alcaldia-role": {
+    "en": "Data Analysis & Information Management",
+    "es": "Análisis de datos y gestión de la información",
+    "de": "Datenanalyse und Informationsmanagement"
+  },
+  "alcaldia-government": {
+    "en": "Bogotá City Government",
+    "es": "Gobierno de Bogotá",
+    "de": "Stadtverwaltung Bogotá"
+  },
+  "alcaldia-copy": {
+    "en": "Analyze data, manage information and prepare reports for the Oficina Consejería Distrital de Relaciones Internacionales, supporting the monitoring of its activities and Bogotá’s international engagement.",
+    "es": "Analizo datos, gestiono información y elaboro reportes para la Oficina Consejería Distrital de Relaciones Internacionales, apoyando el seguimiento de sus actividades y de la gestión internacional de Bogotá.",
+    "de": "Ich analysiere Daten, verwalte Informationen und erstelle Berichte für die Oficina Consejería Distrital de Relaciones Internacionales, um ihre Aktivitäten und das internationale Engagement Bogotás nachzuverfolgen."
+  },
   "microsoft-leadership-date": {
     "en": "Sep 2026 — Present",
     "es": "Sept 2026 — Actualidad",
@@ -67,6 +87,11 @@
     "en": "View credential",
     "es": "Ver credencial",
     "de": "Nachweis ansehen"
+  },
+  "date-2026-10": {
+      "en": "October 2026",
+      "es": "Octubre de 2026",
+      "de": "Oktober 2026"
   },
   "date-2026-09": {
     "en": "September 2026",
@@ -184,14 +209,34 @@
     "de": "Mitarbeit an der ROBOPRENEUR-Forschung im Zusammenhang mit RODEO, angenommen für IEEE ICRA 2026: Simulation der Mensch-Roboter-Interaktion mit kryptowährungsbasierten Aufgabenbelohnungen."
   },
   "iex-dj": {
-    "en": "Tested the TouchDesigner–OptiTrack interface for DJESTHESIA, selected for SIGGRAPH Real-Time Live! 2025, helping deliver a failure-free live demo.",
-    "es": "Probé la interfaz TouchDesigner–OptiTrack de DJESTHESIA, seleccionado para SIGGRAPH Real-Time Live! 2025, y contribuí a una demostración en vivo sin fallos.",
-    "de": "Die TouchDesigner–OptiTrack-Schnittstelle von DJESTHESIA getestet, ausgewählt für SIGGRAPH Real-Time Live! 2025, und zu einer fehlerfreien Live-Demo beigetragen."
+    "en": "Helped test the TouchDesigner–OptiTrack interface for DJESTHESIA, selected for SIGGRAPH Real-Time Live! 2025.",
+    "es": "Colaboré en las pruebas de la interfaz TouchDesigner–OptiTrack de DJESTHESIA, seleccionado para SIGGRAPH Real-Time Live! 2025.",
+    "de": "Beim Testen der TouchDesigner–OptiTrack-Schnittstelle von DJESTHESIA mitgeholfen, ausgewählt für SIGGRAPH Real-Time Live! 2025."
   },
   "iex-tiago": {
     "en": "Enabling VR telepresence and imitation learning through a TIAGo digital twin with real-time Unity–ROS TCP integration.",
     "es": "Desarrollo telepresencia en VR y aprendizaje por imitación mediante un gemelo digital de TIAGo con integración Unity–ROS TCP en tiempo real.",
     "de": "VR-Telepräsenz und Imitationslernen durch einen digitalen TIAGo-Zwilling mit Unity–ROS-TCP-Integration in Echtzeit ermöglichen."
+  },
+  "iex-publications-heading": {
+    "en": "Related team publications",
+    "es": "Publicaciones relacionadas del equipo",
+    "de": "Verwandte Veröffentlichungen des Teams"
+  },
+  "iex-publications-note": {
+    "en": "My project contributions are described above. I am not a listed author of these papers; their authors are credited below.",
+    "es": "Mis aportaciones a los proyectos se describen arriba. No figuro como autora de estos artículos; sus autores se indican a continuación.",
+    "de": "Meine Projektbeiträge sind oben beschrieben. Ich bin nicht als Autorin dieser Veröffentlichungen aufgeführt; ihre Autoren sind unten genannt."
+  },
+  "iex-rodeo-publication": {
+    "en": "Accepted at IEEE ICRA 2026",
+    "es": "Aceptado en IEEE ICRA 2026",
+    "de": "Für IEEE ICRA 2026 angenommen"
+  },
+  "publication-record": {
+    "en": "Publisher record",
+    "es": "Registro editorial",
+    "de": "Verlagsseite"
   },
   "robo-link": {
     "en": "ROBOPRENEUR case study",

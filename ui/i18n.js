@@ -154,6 +154,8 @@
     "Details coming soon": { es: "Más detalles próximamente", de: "Details folgen bald" },
     "Events, projects and takeaways will be added here.": { es: "Aquí se añadirán eventos, proyectos y aprendizajes.", de: "Hier folgen Veranstaltungen, Projekte und Erkenntnisse." },
     'Projects': { es: 'Proyectos', de: 'Projekte' },
+    'Design & Art': { es: 'Diseño y arte', de: 'Design & Kunst' },
+    'DESIGN & ART': { es: 'DISEÑO Y ARTE', de: 'DESIGN & KUNST' },
     'PROJECTS': { es: 'PROYECTOS', de: 'PROJEKTE' },
     'ABOUT': { es: 'SOBRE MÍ', de: 'ÜBER MICH' },
     'EXPERIENCE': { es: 'EXPERIENCIA', de: 'ERFAHRUNG' },

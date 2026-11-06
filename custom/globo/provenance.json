@@ -1,0 +1,16 @@
+{
+  "source": "https://www.alcaldiabogota.gov.co/globo/",
+  "observedRoute": "https://www.alcaldiabogota.gov.co/globo/#/inicio",
+  "capturedAtUtc": "2026-11-06T06:37:41.909131+00:00",
+  "title": "GLOBO v1.9.0",
+  "file": "globo-public-site.png",
+  "dimensions": [
+    1497,
+    728
+  ],
+  "sha256": "5531cbdd3f567d7f13e315f3a056fd3213c20befbf93d527dd0ad15bece1e4b9",
+  "method": "Fresh browser screenshot of the official public landing page. Iniciar sesión was visible; no account-specific records or names were shown. No login or form submission performed.",
+  "display": "Static, dated site preview. Displayed figures are captured, not live. Frame motion is a small hover/focus transition, disabled for reduced motion.",
+  "embeddingCheck": "Credential-free HTTP GET returned 200 with no CSP or X-Frame-Options header. Browser iframe fixture remained blank at inspection and credentialless support was not confirmed. No iframe is shipped.",
+  "privateReferenceIncluded": false
+}

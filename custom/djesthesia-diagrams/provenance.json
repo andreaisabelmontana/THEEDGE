@@ -1,0 +1,40 @@
+{
+  "diagrams": [
+    {
+      "file": "interaction-modes.jpeg",
+      "title": "Four interaction modes",
+      "source": "User-supplied project diagram photograph, 2026-11-04",
+      "dimensions": [
+        1170,
+        1560
+      ],
+      "bytes": 458684,
+      "sha256": "a5b6d8326f8198b24ed9bbbb627f56e7524256bbe27df8f0ae81b797f905f614",
+      "notes": "Exact supplied JPEG bytes. No crop, redraw, relabeling or image transformation."
+    },
+    {
+      "file": "audio-workflow.jpeg",
+      "title": "Audio workflow",
+      "source": "User-supplied project diagram photograph, 2026-11-04",
+      "dimensions": [
+        1170,
+        1560
+      ],
+      "bytes": 619170,
+      "sha256": "0843c7af94ffb23c8842705d226c5b8bcf0c7f8ddfc4b213bb0a1b1859445f49",
+      "notes": "Exact supplied JPEG bytes. No crop, redraw, relabeling or image transformation."
+    },
+    {
+      "file": "visual-workflow.jpeg",
+      "title": "Visual information workflow",
+      "source": "User-supplied project diagram photograph, 2026-11-04",
+      "dimensions": [
+        1170,
+        1560
+      ],
+      "bytes": 756796,
+      "sha256": "691b66a913c9b8cf0fbe5d7a667db76640559f0c741fbd0577ff82eec5b7b568",
+      "notes": "Exact supplied JPEG bytes. No crop, redraw, relabeling or image transformation."
+    }
+  ]
+}
