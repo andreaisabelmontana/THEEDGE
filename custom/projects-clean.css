@@ -92,3 +92,17 @@
   .project-card:hover .project-card-visual img { transform: none; }
   .project-card.motion-ready { opacity: 1; transform: none; transition: none; }
 }
+
+/* Art stays within the Work destination as a clear visual-work stream. */
+.project-art-portal{display:grid;grid-template-columns:minmax(150px,220px) minmax(0,1fr) auto;align-items:center;gap:24px;margin:28px 0 34px;padding:18px;border:1px solid #241a3025;border-radius:12px;background:#fff;color:#241a30}
+.project-art-portal-image{display:block;height:132px;padding:8px;border-radius:8px;background:#f1edf7}
+.project-art-portal-image img{width:100%;height:100%;object-fit:contain}
+.project-art-portal-copy{min-width:0}
+.project-art-portal-kicker{margin:0 0 8px;color:#70418b;font:10px/1.5 ui-monospace,Consolas,monospace;letter-spacing:.14em}
+.project-art-portal-copy h2{margin:0 0 7px;font-size:20px;line-height:1.25;font-weight:550;letter-spacing:-.03em;text-transform:none}
+.project-art-portal-copy>p:last-child{margin:0;color:#6b6073;font-size:13px;line-height:1.55}
+.project-art-portal-link{display:inline-flex;align-items:center;gap:8px;padding:11px 14px;border:1px solid #241a3033;border-radius:6px;color:#4f1b77;font-size:12px;white-space:nowrap}
+.project-art-portal-link:hover{background:#f6f2f9}
+.project-art-portal:focus-within{outline:2px solid #7c3ca8;outline-offset:3px}
+@media(max-width:900px){.project-art-portal{grid-template-columns:160px minmax(0,1fr);gap:18px}.project-art-portal-link{grid-column:2;justify-self:start}}
+@media(max-width:600px){.project-art-portal{grid-template-columns:1fr;gap:14px;padding:14px}.project-art-portal-image{height:150px}.project-art-portal-link{grid-column:auto}.project-art-portal-copy h2{font-size:18px}}
