@@ -37,7 +37,7 @@ html[data-theme] body .footer-marquee.am-org-marquee {
 .am-org-marquee[data-motion-ready]:focus-within .am-org-group[aria-hidden="true"] { display: none; }
 .am-org-marquee[data-motion-ready]:focus-within .am-org-viewport { height: auto; overflow-x: auto; }
 .am-org-marquee :focus-visible { outline: 2px solid #3369e8; outline-offset: 3px; }
-@keyframes am-org-scroll { to { transform: translateX(-50%); } }
+@keyframes am-org-scroll { to { transform: translateX(var(--am-org-shift, -50%)); } }
 @media (max-width: 479px) {
   html[data-theme] body .footer-marquee.am-org-marquee { top: 18px; bottom: auto; height: 64px; }
   .am-org-group { gap: 18px; padding-right: 18px; }
@@ -58,3 +58,6 @@ html[data-theme] body .footer-marquee.am-org-marquee {
   .am-org-viewport a.am-org-lockup, .experience-page .am-career-logo-column a.am-org-logo { transition: none; }
   .am-org-viewport a.am-org-lockup:is(:hover, :focus-visible), .experience-page .am-career-logo-column a.am-org-logo:is(:hover, :focus-visible) { transform: none; }
 }
+
+/* The home footer portrait is already visually masked. Its unpainted overflow must not add scroll space. */
+body.edge-ready[data-home-shell] #contact.is-footer { overflow: clip; }
