@@ -4,3 +4,42 @@
 .project-card-visual.project-card-globo{display:grid!important;grid-template-columns:23% minmax(0,1fr);align-items:center;gap:20px;padding:25px 23px 32px;background:#eef3ff!important;overflow:hidden}.project-card-globo .globo-preview-logo{width:100%;height:auto;object-fit:contain;background:#fff;padding:7px;border-radius:5px}.project-card-globo .globo-card-screen{min-width:0;padding-top:8px}.project-card-globo .globo-monitor{border-width:5px;border-bottom-width:8px;border-radius:8px}.project-card-globo .globo-site-preview{position:static;width:100%;height:auto;object-fit:contain}.project-card-globo .globo-monitor-stand{height:16px;border-bottom-width:4px}.project-card-globo .globo-card-preview-label{position:absolute;bottom:10px;left:10px;right:10px;text-align:center;font:9px/1.4 Arial,sans-serif;color:#526079}.project-card-globo .globo-screen-bar{padding:4px 5px;min-height:14px}.project-card-globo .globo-screen-bar small{font-size:6px}.project-card:hover .project-card-globo .globo-monitor{transform:translateY(-3px)}
 @media(max-width:700px){.globo-heading{gap:18px;align-items:flex-start}.globo-full-name{font-size:13px}.globo-access-note{margin-bottom:40px}.globo-main .case-actions{align-items:stretch}.globo-main .case-button{flex:1 1 100%;text-align:center}.globo-preview{grid-template-columns:1fr;gap:22px;margin-top:28px;padding:24px 16px 18px}.globo-preview .globo-employer{max-width:96px;padding:8px}.globo-screen-bar small{font-size:7px}.globo-monitor{border-width:6px;border-bottom-width:9px;border-radius:9px}.globo-preview figcaption{font-size:10px}.project-card-visual.project-card-globo{gap:14px;padding:20px 18px 28px}}
 @media(prefers-reduced-motion:reduce){.globo-monitor,.globo-monitor-stand{transition:none!important;animation:none!important;transform:none!important}.globo-screen-link:hover .globo-monitor,.globo-screen-link:focus-visible .globo-monitor,.project-card:hover .project-card-globo .globo-monitor{transform:none!important}}
+
+/* GLOBO's monitor remains stationary while the website scrolls inside it. */
+.globo-preview .globo-monitor,.project-card-globo .globo-monitor {
+  padding:5px 5px 0;border:1px solid #68717d;border-radius:10px;
+  background:linear-gradient(155deg,#414953,#1d232d 42%,#11161d);
+  box-shadow:inset 0 1px 1px #f4f8ff70,0 3px 0 #11151a,0 12px 22px #172a4630;
+  transition:none;transform:none;
+}
+.globo-preview .globo-monitor::after,.project-card-globo .globo-monitor::after {
+  content:"";display:block;height:10px;
+  background:radial-gradient(circle at 50% 57%,#a7bfdb 0 1px,transparent 1.5px),
+    linear-gradient(#292f38,#151a22);
+}
+.globo-preview .globo-monitor-stand,.project-card-globo .globo-monitor-stand {
+  position:relative;width:35%;height:clamp(13px,2.1vw,31px);border:0;border-radius:0;
+  background:none;transition:none;
+}
+.globo-monitor-stand::before {
+  content:"";position:absolute;inset:0 35% 4px;
+  background:linear-gradient(90deg,#677383,#b7bfca 23%,#a0aab7 70%,#637080);
+  clip-path:polygon(15% 0,85% 0,100% 100%,0 100%);
+}
+.globo-monitor-stand::after {
+  content:"";position:absolute;left:0;right:0;bottom:0;height:6px;
+  border-radius:75% 75% 35% 35%;background:linear-gradient(#d3dae3,#798697);
+  box-shadow:0 5px 12px #1d314533;
+}
+.globo-preview .globo-screen-link:hover .globo-monitor,.globo-preview .globo-screen-link:focus-visible .globo-monitor,
+.project-card:hover .project-card-globo .globo-monitor { transform:none; }
+.globo-display { position:relative;overflow:hidden;aspect-ratio: 16 / 9;background:#fff; }
+.globo-preview .globo-display .globo-site-preview,
+.project-card-globo .globo-display .globo-site-preview { display:block;width:100%;height:100%;object-fit:cover;object-position:top; }
+.project-card-globo .globo-display .project-preview-video { object-position:top; }
+.project-card[data-slug="globo"] .project-preview-toggle { top:16px;left:16px; }
+@media(max-width:700px){
+  .globo-preview .globo-monitor,.project-card-globo .globo-monitor { padding:4px 4px 0; }
+  .globo-preview .globo-monitor::after,.project-card-globo .globo-monitor::after {height:8px;}
+  .project-card[data-slug="globo"] .project-preview-toggle {top:10px;left:10px;}
+}
