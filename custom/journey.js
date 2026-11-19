@@ -147,8 +147,8 @@
     return value <= 0.0031308 ? value * 12.92 : 1.055 * Math.pow(value, 1 / 2.4) - 0.055;
   }
   var surfacePalette = {
-    ocean: 0x7ea5d1, oceanLight: 0x9fbee0,
-    land: 0x91aec8, landLight: 0xd4e2ed
+    ocean: 0x2456cb, oceanLight: 0x4285f4,
+    land: 0x9bc8fa, landLight: 0xe2f3ff
   };
   Object.keys(surfacePalette).forEach(function (key) {
     var hex = surfacePalette[key];
@@ -311,7 +311,7 @@
           'outgoingLight = journeyBlueSurface(journeyTexel, outgoingLight, journeyNeighbors);\n#include <output_fragment>'
         );
       };
-      earth.material.customProgramCacheKey = function () { return 'journey-ocean-land-surface-v4'; };
+      earth.material.customProgramCacheKey = function () { return 'journey-ocean-land-surface-v5'; };
       world.add(earth);
       scene.add(new THREE.AmbientLight(0xffffff, surfaceLighting.ambient));
       var sun = new THREE.DirectionalLight(0xffffff, surfaceLighting.directional);

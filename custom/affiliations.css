@@ -47,3 +47,14 @@ html[data-theme] body .footer-marquee.am-org-marquee {
   .am-org-marquee[data-motion-ready] .am-org-group[aria-hidden="true"] { display: none; }
   .am-org-marquee[data-motion-ready] .am-org-viewport { height: auto; overflow-x: auto; scrollbar-width: thin; scrollbar-color: #678aba transparent; }
 }
+
+/* A real link with the same lockup size. Keep the scale inside the marquee. */
+.am-org-viewport a.am-org-lockup { text-decoration: none; transition: transform .18s ease, box-shadow .18s ease; }
+.am-org-viewport a.am-org-lockup:is(:hover, :focus-visible) { position: relative; z-index: 2; transform: scale(1.035); box-shadow: 0 4px 8px #4285f46b; }
+.experience-page .am-career-logo-column a.am-org-logo { position: relative; transition: transform .2s ease, box-shadow .2s ease; }
+.experience-page .am-career-logo-column a.am-org-logo:is(:hover, :focus-visible) { z-index: 2; transform: scale(1.065); box-shadow: 0 7px 22px #4285f46b; outline-offset: 4px; }
+.experience-page .am-career-logo-column a.am-org-logo:focus-visible { outline: 2px solid #4285f4; }
+@media (prefers-reduced-motion: reduce) {
+  .am-org-viewport a.am-org-lockup, .experience-page .am-career-logo-column a.am-org-logo { transition: none; }
+  .am-org-viewport a.am-org-lockup:is(:hover, :focus-visible), .experience-page .am-career-logo-column a.am-org-logo:is(:hover, :focus-visible) { transform: none; }
+}
