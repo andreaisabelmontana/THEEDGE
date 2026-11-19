@@ -142,11 +142,10 @@ html[data-theme] body.clean-portfolio.edge-ready .panels-wrap .otot-card { borde
 html[data-theme] body.clean-portfolio.edge-ready .panels-wrap .otot-card:hover { border-color: var(--theme-accent); }
 html[data-theme] body.clean-portfolio.edge-ready .panels-wrap .otot-card .text-impact-reg-brier { color: var(--theme-ink); }
 html[data-theme] body.clean-portfolio.edge-ready .panels-wrap .otot-card .text-body-reg-mona { color: var(--theme-muted); }
-/* Finish the existing cutout photographs with a short fade into their card.
-   Source artwork, proportions and hover movement remain unchanged. */
+/* Keep the cutout photographs opaque through their bottom edge. */
 html[data-theme] body.clean-portfolio.edge-ready .home .otot-card-img {
-  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 36px), transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 calc(100% - 36px), transparent 100%);
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 html[data-theme] body.clean-portfolio .otot-card .text-impact-reg-brier::after { background: var(--theme-accent); }
 html[data-theme] body .otot-btn { background: var(--theme-accent); color: var(--theme-on-accent); }
@@ -302,8 +301,8 @@ html[data-theme] body .footer-marquee-svg img[src*="custom/logos/kw-"] {
 }
 @media (max-width: 700px) {
   html[data-theme] body.clean-portfolio.edge-ready .home .otot-card-img {
-    -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 24px), transparent 100%);
-    mask-image: linear-gradient(to bottom, #000 calc(100% - 24px), transparent 100%);
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 }
 @media (max-width: 600px) {
