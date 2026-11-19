@@ -173,7 +173,7 @@ html[data-theme] .experience-page .am-career-bullets li::before { color: var(--t
 html[data-theme] .experience-page .am-career-orbit,
 html[data-theme] .experience-page .am-career-orbit::before { border-color: var(--theme-line-strong); }
 html[data-theme] .experience-page .am-career-orbit::after { box-shadow: 0 0 16px #3369e880; }
-html[data-theme] .experience-page #journey { background: var(--theme-bg); }
+html[data-theme] .experience-page #journey { background: transparent; }
 html[data-theme] .experience-page #journey :is(.am-exp-title, .am-exp-line1),
 html[data-theme] .experience-page #journey .am-exp-timeline li.is-active .am-exp-line1 { color: var(--theme-ink); }
 html[data-theme] .experience-page #journey :is(.am-exp-sub, .am-exp-line2),
