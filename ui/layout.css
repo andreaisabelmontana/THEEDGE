@@ -607,3 +607,53 @@ body[data-home-shell] #contact.is-footer {
 /* Keep the shaped blue card above the globe, not the footer's rectangular backdrop. */
 body.edge-ready[data-home-shell] .page-w { overflow-clip-margin: 150px; }
 body.edge-ready[data-home-shell] #contact.is-footer { z-index: 12 !important; background: transparent !important; }
+
+/* Projects and Experience float in front of the Earth as a single composition. */
+body.edge-ready[data-home-shell] .home-showcase {
+  isolation: isolate;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  background: var(--theme-surface, #fff);
+  overflow: hidden;
+}
+body.edge-ready[data-home-shell] .home-showcase > * { grid-area: 1 / 1; }
+body.clean-portfolio.edge-ready[data-home-shell] .home-showcase > .panels-wrap {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 1320px);
+  max-width: 1320px;
+  margin-inline: auto;
+  padding: clamp(36px, 8vw, 116px) clamp(24px, 7.5vw, 112px) 76px;
+  background: transparent !important;
+}
+body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .panels {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(26px, 11vw, 166px);
+}
+body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card {
+  padding: 30px clamp(18px, 2.2vw, 38px);
+  background: var(--theme-ice, #d5e0fa) !important;
+  border: 1px solid #a8bceb !important;
+  border-radius: clamp(20px, 3.2vw, 44px);
+  min-height: clamp(220px, 25vw, 325px);
+  box-shadow: 0 12px 26px #12336a26;
+}
+body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card:hover,
+body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card:focus-visible { box-shadow: 0 14px 31px #2456cb3b; }
+body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card-img {
+  max-width: 44%;
+  right: 0;
+  height: 108%;
+}
+body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card-text { max-width: 59%; padding-right: 0; }
+body.edge-ready[data-home-shell] .home-showcase .home-earth { align-self: stretch; background: transparent; }
+body.edge-ready[data-home-shell] .home-showcase .home-earth #am-earth { margin-top: -5.5vw; }
+@media (max-width: 750px) {
+  body.clean-portfolio.edge-ready[data-home-shell] .home-showcase > .panels-wrap { padding: 28px 20px 64px; }
+  body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .panels { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card { min-height: 185px; }
+  body.edge-ready[data-home-shell] .home-showcase .home-earth { align-self: end; }
+  body.edge-ready[data-home-shell] .home-showcase .home-earth #am-earth { margin-top: 0; }
+}
