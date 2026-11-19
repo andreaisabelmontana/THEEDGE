@@ -1,0 +1,45 @@
+/* Satellite is confined to unused Contact intro space, never contact links. */
+body.contact-page .c.is-on-track-home { position: relative; }
+body.contact-page .contact-satellite {
+  position: absolute; top: 132px; right: 0; width: 44%; height: 224px;
+  --satellite-travel: 0px; pointer-events: none; z-index: 1;
+}
+body.contact-page .contact-satellite-flight {
+  position: absolute; inset: 0 auto auto 0; width: min(76%, 320px); height: 194px;
+  animation: contact-satellite-drift 26s ease-in-out infinite; animation-play-state: paused;
+}
+body.contact-page .contact-satellite.is-moving .contact-satellite-flight { animation-play-state: running; }
+body.contact-page .contact-satellite :is(model-viewer,.contact-satellite-poster) {
+  position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+  background: transparent; object-fit: contain; pointer-events: none;
+}
+body.contact-page .contact-satellite model-viewer { opacity: 0; --progress-bar-color: transparent; }
+body.contact-page .contact-satellite.is-rendered model-viewer { opacity: 1; }
+body.contact-page .contact-satellite.is-rendered .contact-satellite-poster { visibility: hidden; }
+body.contact-page .contact-satellite-credit {
+  position: absolute; bottom: 0; right: 0; display: flex; align-items: center; gap: 9px;
+  font: 10px/1.4 "Mona Sans Variable", Arial, sans-serif; color: var(--theme-muted, #626978);
+  pointer-events: auto;
+}
+body.contact-page .contact-satellite-credit a { text-decoration: none; }
+body.contact-page .contact-satellite-credit a:hover { text-decoration: underline; }
+body.contact-page .contact-satellite-credit button { width: 28px; height: 28px; font-size: 15px; color: inherit; cursor: pointer; }
+body.contact-page .contact-satellite-credit button[hidden] { display: none; }
+@keyframes contact-satellite-drift {
+  0%,100% { transform: translate(0, 8px); }
+  25% { transform: translate(calc(var(--satellite-travel) * .5), -6px); }
+  50% { transform: translate(var(--satellite-travel), 8px); }
+  75% { transform: translate(calc(var(--satellite-travel) * .5), 16px); }
+}
+@media (min-width: 1001px) {
+  body.contact-page .off-t-hero-title-layout { padding-right: 46%; }
+  body.contact-page .taxi-w.is-contact .c.is-on-track-home { min-height: 400px; }
+}
+@media (max-width: 1000px) {
+  body.contact-page .contact-satellite { position: relative; top: auto; right: auto; width: min(100%, 480px); height: 200px; margin: 14px 0 0 auto; }
+  body.contact-page .contact-satellite-flight { height: 174px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.contact-page .contact-satellite-flight { animation: none; transform: translate(calc(var(--satellite-travel) * .5), 0); }
+}
+@media print { body.contact-page .contact-satellite { display: none; } }
