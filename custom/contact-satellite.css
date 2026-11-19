@@ -1,7 +1,7 @@
 /* Satellite is confined to unused Contact intro space, never contact links. */
 body.contact-page .c.is-on-track-home { position: relative; }
 body.contact-page .contact-satellite {
-  position: absolute; top: 132px; right: 0; width: 44%; height: 282px;
+  position: absolute; top: 154px; right: 0; width: 44%; height: 282px;
   --satellite-travel: 0px; pointer-events: none; z-index: 1;
 }
 body.contact-page .contact-satellite-flight {
@@ -35,7 +35,7 @@ body.contact-page .contact-satellite-credit button[hidden] { display: none; }
 }
 @media (min-width: 1001px) {
   body.contact-page .off-t-hero-title-layout { padding-right: 46%; }
-  body.contact-page .taxi-w.is-contact .c.is-on-track-home { min-height: 430px; }
+  body.contact-page .taxi-w.is-contact .c.is-on-track-home { min-height: 454px; }
 }
 @media (max-width: 1000px) {
   body.contact-page .contact-satellite { position: relative; top: auto; right: auto; width: min(100%, 480px); height: 244px; margin: 14px 0 0 auto; }
