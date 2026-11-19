@@ -150,3 +150,41 @@ body.experience-page {
 .experience-page #top h1.am-career-title { font-size: clamp(58px, 8vw, 108px); }
 .experience-page .am-career-opening-intro .am-career-lead { max-width: 25ch; font-size: clamp(22px, 3vw, 32px); line-height: 1.3; }
 @media (max-width: 620px) { .experience-page #top h1.am-career-title { font-size: clamp(43px, 11vw, 66px); } }
+
+/* Make the tint a page-wide wash instead of the background of one grid column. */
+html[data-theme] body.experience-page .taxi-w.off-track {
+  background-image: radial-gradient(ellipse at 74% 0%, var(--theme-soft, #e3ebff), transparent 76%);
+  background-repeat: no-repeat;
+  background-size: 100% clamp(170px, 21vw, 300px);
+}
+html[data-theme] body.experience-page .am-career-journey-layout .am-career-hero { background: none; }
+/* Visible brand art, not the invisible click target, gets the hover animation. */
+html[data-theme] body.experience-page .am-career-logo-column a.am-org-logo {
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  place-items: center;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0;
+  box-shadow: none !important;
+  transform: none !important;
+  overflow: visible;
+}
+html[data-theme] body.experience-page .am-career-logo-column a.am-org-logo img {
+  width: 100%; height: 100%; min-height: 0; min-width: 0;
+  max-width: 100%; max-height: 100%;
+  object-fit: contain;
+  transition: transform .19s ease-out, filter .19s ease-out;
+}
+html[data-theme] body.experience-page .am-career-logo-column a.am-org-logo:is(:hover,:focus-visible) img {
+  transform: scale(1.09);
+  filter: drop-shadow(0 6px 11px rgb(66 133 244 / 54%)) !important;
+}
+html[data-theme] body.experience-page .am-career-logo-column a.am-org-logo:is(.am-org-logo--trinity,.am-org-logo--cng) { padding: 10px; }
+@media (max-width: 700px) {
+  html[data-theme] body.experience-page .am-career-logo-column a.am-org-logo:is(.am-org-logo--trinity,.am-org-logo--cng) { padding: 7px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme] body.experience-page .am-career-logo-column a.am-org-logo img { transition: none; }
+  html[data-theme] body.experience-page .am-career-logo-column a.am-org-logo:is(:hover,:focus-visible) img { transform: none; }
+}
