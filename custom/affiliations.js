@@ -27,7 +27,6 @@
   function boot() {
     document.querySelectorAll('.is-footer a[data-site-art-link]').forEach(function (link) { link.remove(); });
     document.querySelectorAll('.am-org-marquee').forEach(function (marquee) {
-      marquee.setAttribute('data-motion-ready', 'true');
       Object.keys(organizationSites).forEach(function (key) {
         marquee.querySelectorAll('div.am-org-lockup--' + key).forEach(function (item) {
           var link = document.createElement('a');
@@ -58,6 +57,29 @@
         img.loading = 'eager';
         if (img.complete && !img.naturalWidth) fallback();
       });
+      var viewport = marquee.querySelector('.am-org-viewport');
+      var track = marquee.querySelector('.am-org-track');
+      if (!viewport || !track || track.children.length !== 2) return;
+      var group = track.firstElementChild;
+      var repeat = track.lastElementChild;
+      function fillTrack() {
+        var width = group.getBoundingClientRect().width;
+        if (!width) return;
+        // The last frame must still cover the whole viewport after moving one group.
+        var copies = Math.max(2, Math.ceil(viewport.clientWidth / width) + 1);
+        while (track.children.length < copies) track.appendChild(repeat.cloneNode(true));
+        while (track.children.length > copies) track.lastElementChild.remove();
+        track.style.setProperty('--am-org-shift', -width + 'px');
+        marquee.setAttribute('data-motion-ready', 'true');
+      }
+      fillTrack();
+      if (typeof ResizeObserver === 'function') {
+        var observer = new ResizeObserver(fillTrack);
+        observer.observe(viewport);
+        observer.observe(group);
+      } else {
+        window.addEventListener('resize', fillTrack);
+      }
     });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
