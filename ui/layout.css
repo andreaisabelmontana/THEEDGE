@@ -603,3 +603,7 @@ body[data-home-shell] #contact.is-footer {
   z-index: 2;
   margin-top: clamp(-140px, -8vw, -30px);
 }
+
+/* Keep the shaped blue card above the globe, not the footer's rectangular backdrop. */
+body.edge-ready[data-home-shell] .page-w { overflow-clip-margin: 150px; }
+body.edge-ready[data-home-shell] #contact.is-footer { z-index: 12 !important; background: transparent !important; }
