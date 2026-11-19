@@ -586,3 +586,20 @@ body.edge-ready .otot-btn,
 /* Use the existing contact-page Earth renderer directly under the two home cards. */
 .home-earth { position: relative; display: block; width: 100%; margin: 0; overflow: hidden; line-height: 0; }
 .home-earth #am-earth { display: block; width: 100%; height: auto; }
+
+/* Give the Earth its own solid surface, and tuck its lower edge behind the footer. */
+body[data-home-shell] .home-earth {
+  background: var(--theme-surface, #fff);
+  isolation: isolate;
+  z-index: 1;
+}
+body[data-home-shell] .home-earth #am-earth {
+  margin-top: max(-240px, -13.5vw);
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+body[data-home-shell] #contact.is-footer {
+  position: relative;
+  z-index: 2;
+  margin-top: clamp(-140px, -8vw, -30px);
+}

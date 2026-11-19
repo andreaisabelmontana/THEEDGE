@@ -211,7 +211,7 @@ var AM_LAND_RINGS = (window.__SITE_ROOT || '') + '/custom/land-rings.json';
       rot += 0.03;
       var w = c.width, h = c.height, cx = w / 2, cy = h * 1.22, R = w * 0.37;
       x.clearRect(0, 0, w, h);
-      x.fillStyle = '#051332';
+      x.fillStyle = '#2858c8';
       x.beginPath(); x.arc(cx, cy, R, 0, Math.PI * 2); x.fill();
       if (R2) {
         x.beginPath();
@@ -223,7 +223,7 @@ var AM_LAND_RINGS = (window.__SITE_ROOT || '') + '/custom/land-rings.json';
             else st = false;
           }
         }
-        x.strokeStyle = 'rgba(213,224,250,0.85)'; x.lineWidth = 0.9; x.stroke();
+        x.strokeStyle = 'rgba(179,218,255,0.94)'; x.lineWidth = 0.9; x.stroke();
       }
       requestAnimationFrame(frame);
     })();
@@ -236,18 +236,35 @@ var AM_LAND_RINGS = (window.__SITE_ROOT || '') + '/custom/land-rings.json';
     var scene = new THREE.Scene();
     var cam = new THREE.PerspectiveCamera(38, 2.5, 0.1, 100);
     var failed = false;
-    var tex = new THREE.TextureLoader().load((window.__SITE_ROOT || '') + '/custom/vendor/earth-atmos.jpg',
-      undefined, undefined, function () { failed = true; vector(); });
+    var tex = new THREE.TextureLoader().load((window.__SITE_ROOT || '') + '/custom/journey-assets/earth-blue-marble.webp',
+      undefined, undefined, function () { failed = true; });
     if (tex.colorSpace !== undefined && THREE.SRGBColorSpace) tex.colorSpace = THREE.SRGBColorSpace;
-    var globe = new THREE.Mesh(new THREE.SphereGeometry(1.55, 96, 96),
-      new THREE.MeshStandardMaterial({ map: tex, roughness: 1, metalness: 0 }));
+    else if (THREE.sRGBEncoding) tex.encoding = THREE.sRGBEncoding;
+    // Recolor the natural Earth texture before it reaches the display. Using an
+    // unlit material prevents the old high-intensity lighting clipping land to white.
+    var ocean = [0x2456cb, 0x4285f4].map(function (v) { return new THREE.Color(v); });
+    var terrain = [0x80b1e7, 0xc9e5ff].map(function (v) { return new THREE.Color(v); });
+    function glColor(c) { return 'vec3(' + [c.r,c.g,c.b].map(function(v){return v.toFixed(8);}).join(',') + ')'; }
+    var surface = new THREE.MeshBasicMaterial({ map: tex });
+    surface.onBeforeCompile = function (shader) {
+      shader.fragmentShader = shader.fragmentShader.replace('#include <map_fragment>',
+        '#include <map_fragment>\n' +
+        'vec3 sourceEarth = diffuseColor.rgb;\n' +
+        'float lum = clamp(dot(sourceEarth, vec3(0.2126, 0.7152, 0.0722)), 0.0, 1.0);\n' +
+        'float peak = max(max(sourceEarth.r, sourceEarth.g), max(sourceEarth.b, 0.0001));\n' +
+        'float warmth = (max(sourceEarth.r, sourceEarth.g) - sourceEarth.b) / peak;\n' +
+        'float neutral = min(min(sourceEarth.r, sourceEarth.g), sourceEarth.b) / peak;\n' +
+        'float ice = smoothstep(0.08, 0.30, lum) * smoothstep(0.25, 0.60, neutral);\n' +
+        'float land = max(smoothstep(0.10, 0.35, warmth), ice);\n' +
+        'vec3 sea = mix(' + glColor(ocean[0]) + ', ' + glColor(ocean[1]) + ', 0.24 + 0.70 * sqrt(lum));\n' +
+        'vec3 ground = mix(' + glColor(terrain[0]) + ', ' + glColor(terrain[1]) + ', 0.16 + 0.82 * sqrt(lum));\n' +
+        'diffuseColor = vec4(mix(sea, ground, land), 1.0);\n');
+    };
+    surface.customProgramCacheKey = function () { return 'landing-opaque-icy-earth-v1'; };
+    var globe = new THREE.Mesh(new THREE.SphereGeometry(1.55, 96, 96), surface);
     globe.position.y = -0.85;
     globe.rotation.z = 0.1;
     scene.add(globe);
-    scene.add(new THREE.AmbientLight(0x9a9ac0, 1.05));
-    var sun = new THREE.DirectionalLight(0xffffff, 3.2);
-    sun.position.set(-2.5, 2, 2.5);
-    scene.add(sun);
     var glow = new THREE.Mesh(new THREE.SphereGeometry(1.63, 64, 64),
       new THREE.MeshBasicMaterial({ color: 0x3369e8, transparent: true, opacity: 0.16,
         side: THREE.BackSide, blending: THREE.AdditiveBlending }));
