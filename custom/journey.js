@@ -349,7 +349,7 @@
           path.push(position.multiplyScalar(1.004 + 0.065 * Math.sin(t * Math.PI)));
         }
         world.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(path),
-          new THREE.LineBasicMaterial({ color: 0xdac5a3, transparent: true, opacity: 0.64 })));
+          new THREE.LineBasicMaterial({ color: 0xfbbc05, transparent: true, opacity: 0.95 })));
       }
       raycaster = new THREE.Raycaster();
       pointer = new THREE.Vector2();

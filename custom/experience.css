@@ -153,9 +153,9 @@ body.experience-page {
 
 /* Make the tint a page-wide wash instead of the background of one grid column. */
 html[data-theme] body.experience-page .taxi-w.off-track {
-  background-image: radial-gradient(ellipse at 74% 0%, var(--theme-soft, #e3ebff), transparent 76%);
-  background-repeat: no-repeat;
-  background-size: 100% clamp(170px, 21vw, 300px);
+  background-image: radial-gradient(ellipse at 74% 0%, var(--theme-soft, #e3ebff), transparent 76%) !important;
+  background-repeat: no-repeat !important;
+  background-size: 100% clamp(170px, 21vw, 300px) !important;
 }
 html[data-theme] body.experience-page .am-career-journey-layout .am-career-hero { background: none; }
 /* Visible brand art, not the invisible click target, gets the hover animation. */
