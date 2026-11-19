@@ -45,7 +45,7 @@
         video.load();
       }
       render();
-      if (!video.paused || pending) return;
+      if (!video.paused || pending || (video.ended && video.hasAttribute('data-preview-once'))) return;
       var currentRequest = ++requestId;
       pending = true;
       var playback = video.play();
