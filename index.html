@@ -71,6 +71,25 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
 <style id="home-showcase-navy">
   /* Google Chromium baseline primary 10; the hero and cards keep their own surfaces. */
   body.edge-ready[data-home-shell] .home-showcase { background-color: #041e49; }
+  /* Blend the outer footer rim over the globe without changing the icy card. */
+  html[data-theme] body.edge-ready[data-home-shell] #contact.is-footer .footer-bg-gradient {
+    background: linear-gradient(180deg, transparent 0%, #041e49 clamp(30px, 8vw, 140px), #173b7e 37%, var(--theme-accent, #3369e8) 75%);
+  }
+  /* The availability badge is the only Google-red accent in this layout. */
+  html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .hero-copy .status {
+    color: #a12821;
+    background: #fff1ef;
+    border-color: #ea4335;
+  }
+  html[data-theme] body[data-home-shell] .hero-copy .status-dot {
+    background: #ea4335;
+    animation-name: am-availability-pulse;
+  }
+  @keyframes am-availability-pulse {
+    0% { box-shadow: 0 0 0 0 #ea43358c; }
+    70% { box-shadow: 0 0 0 .55rem #ea433500; }
+    100% { box-shadow: 0 0 0 0 #ea433500; }
+  }
   @media (min-width: 1024px) {
     /* The renderer feathers the last 10 CSS pixels. Bring the solid section
        up to the opaque part of the canvas instead of painting a second fade. */
