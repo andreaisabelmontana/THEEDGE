@@ -6,9 +6,9 @@
   var buttons = Array.from(subjects.querySelectorAll('button[data-subject]'));
   var count = document.querySelector('.project-count');
   var copy = {
-    en: {all:'All work',ai:'AI & ML',robotics:'Robotics',software:'Software & Web',spatial:'3D & Games',ux:'UX & Interaction',kicker:'PROJECTS / THE LAB',title:'Hall of ideas.',intro:'Code, design and a few curious experiments. Pick a subject, or take a look around.',hint:'Start with the demo. Stay for the story.',cta:'Explore the project',course:'Course',count:function(n){return n + (n===1?' project':' projects');}},
-    es: {all:'Todo',ai:'IA y ML',robotics:'Robótica',software:'Software y web',spatial:'3D y juegos',ux:'UX e interacción',kicker:'PROYECTOS / EL LAB',title:'Ideas en órbita.',intro:'Código, diseño y unos cuantos experimentos curiosos. Elige un tema o explora a tu ritmo.',hint:'Empieza por la demo. Descubre la historia.',cta:'Explorar el proyecto',course:'Asignatura',count:function(n){return n + (n===1?' proyecto':' proyectos');}},
-    de: {all:'Alle Arbeiten',ai:'KI & ML',robotics:'Robotik',software:'Software & Web',spatial:'3D & Spiele',ux:'UX & Interaktion',kicker:'PROJEKTE / DAS LAB',title:'Raum für Ideen.',intro:'Code, Design und ein paar neugierige Experimente. Wähle ein Thema oder schau dich um.',hint:'Erst die Demo. Dann die Geschichte.',cta:'Projekt entdecken',course:'Kurs',count:function(n){return n + (n===1?' Projekt':' Projekte');}}
+    en: {all:'All work',ai:'AI & ML',robotics:'Robotics',software:'Software & Web',spatial:'3D & Games',ux:'UX & Interaction',art:'Design & Art',artType:'Design & Art',artIntro:'My full collection of paintings, drawings and ceramics.',artCTA:'View all artwork',kicker:'PROJECTS / THE LAB',title:'Hall of ideas.',intro:'Code, design and a few curious experiments. Pick a subject, or take a look around.',hint:'Start with the demo. Stay for the story.',cta:'Explore the project',course:'Course',count:function(n){return n + (n===1?' project':' projects');}},
+    es: {all:'Todo',ai:'IA y ML',robotics:'Robótica',software:'Software y web',spatial:'3D y juegos',ux:'UX e interacción',art:'Diseño y arte',artType:'Diseño y arte',artIntro:'Mi colección completa de pinturas, dibujos y cerámica.',artCTA:'Ver todas las obras',kicker:'PROYECTOS / EL LAB',title:'Ideas en órbita.',intro:'Código, diseño y unos cuantos experimentos curiosos. Elige un tema o explora a tu ritmo.',hint:'Empieza por la demo. Descubre la historia.',cta:'Explorar el proyecto',course:'Asignatura',count:function(n){return n + (n===1?' proyecto':' proyectos');}},
+    de: {all:'Alle Arbeiten',ai:'KI & ML',robotics:'Robotik',software:'Software & Web',spatial:'3D & Spiele',ux:'UX & Interaktion',art:'Design & Kunst',artType:'Design & Kunst',artIntro:'Meine vollständige Sammlung von Gemälden, Zeichnungen und Keramik.',artCTA:'Alle Kunstwerke ansehen',kicker:'PROJEKTE / DAS LAB',title:'Raum für Ideen.',intro:'Code, Design und ein paar neugierige Experimente. Wähle ein Thema oder schau dich um.',hint:'Erst die Demo. Dann die Geschichte.',cta:'Projekt entdecken',course:'Kurs',count:function(n){return n + (n===1?' Projekt':' Projekte');}}
   };
   var active = new URL(location.href).searchParams.get('subject') || 'all';
   if (!buttons.some(function(b){return b.dataset.subject===active;})) active='all';
@@ -31,7 +31,7 @@
       var sitePreviewNote=card.querySelector('[data-project-site-preview="globo"]');
       if(sitePreviewNote) sitePreviewNote.textContent=({en:'Public site preview · 6 Nov 2026',es:'Vista del sitio público · 6 nov 2026',de:'Öffentliche Website · 6. Nov. 2026'})[lang] || 'Public site preview · 6 Nov 2026';
       var cta=card.querySelector('.project-card-cta-label');
-      var ctaLabel=project && project.ctaLabels && project.ctaLabels[lang] || t.cta;
+      var ctaLabel=card.dataset.slug==='arte-de-la-montana' ? t.artCTA : (project && project.ctaLabels && project.ctaLabels[lang] || t.cta);
       if(cta.textContent!==ctaLabel) cta.textContent=ctaLabel;
     });
     document.querySelectorAll('[data-project-copy]').forEach(function(el){var value=t[el.dataset.projectCopy];if(typeof value==='string' && el.textContent!==value) el.textContent=value;});

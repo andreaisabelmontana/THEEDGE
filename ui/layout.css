@@ -582,3 +582,7 @@ body.edge-ready .otot-btn,
   .otot-card:hover .text-impact-reg-brier::after,
   .otot-card:hover .text-body-reg-mona::after { animation: none; }
 }
+
+/* Use the existing contact-page Earth renderer directly under the two home cards. */
+.home-earth { position: relative; display: block; width: 100%; margin: 0; overflow: hidden; line-height: 0; }
+.home-earth #am-earth { display: block; width: 100%; height: auto; }
