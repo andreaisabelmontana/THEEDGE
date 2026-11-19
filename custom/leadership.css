@@ -8,7 +8,7 @@
 .experience-page .am-leadership-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px 22px; }
 .experience-page .am-leadership-card { min-width: 0; margin: 0; }
 .experience-page .am-leadership-photo { position: relative; display: grid; place-items: center; aspect-ratio: 16 / 11; overflow: hidden; border: 1px solid var(--career-line, #3a2e44); border-radius: 5px; background: var(--theme-surface, #19151f); color: var(--career-ink, #f3eef7); text-decoration: none; }
-.experience-page .am-leadership-photo img { display: block; width: 100%; height: 100%; min-height: 0; object-fit: contain; transition: filter .2s ease; }
+.experience-page .am-leadership-photo img { display: block; width: 100%; height: 100%; min-height: 0; object-fit: cover; transition: filter .2s ease; }
 .experience-page .am-leadership-photo:hover img { filter: brightness(1.07); }
 .experience-page .am-leadership-photo:focus-visible { outline: 2px solid var(--career-accent, #d2acf2); outline-offset: 5px; }
 .experience-page .am-leadership-expand { position: absolute; display: grid; place-items: center; right: 10px; bottom: 10px; width: 30px; height: 30px; border: 1px solid #ffffff50; border-radius: 50%; background: #17111ed9; color: #fff; font-size: 19px; line-height: 1; }
@@ -75,3 +75,18 @@
   .experience-page .am-credential-list li:has(.am-credential-preview) { grid-template-columns: 1fr; gap: 10px; }
   .experience-page .am-credential-list .am-credential-preview { width: min(240px, 100%); }
 }
+
+/* Gallery thumbnails fill the frame; extreme aspect ratios keep every subject. */
+.experience-page .am-leadership-photo[data-leadership-photo="basketball"] img { object-position: center 52%; }
+.experience-page .am-leadership-photo[data-leadership-photo="stage"] img { object-position: center 64%; }
+.experience-page .am-leadership-photo[data-leadership-photo="lab"] img { object-position: center 52%; }
+.experience-page .am-leadership-photo[data-leadership-photo="datathon"] img { object-position: center 58%; }
+.experience-page .am-leadership-photo[data-leadership-photo="classroom"] { --gallery-photo: url("./leadership/tech-venture-classroom-640.webp"); }
+.experience-page .am-leadership-photo[data-leadership-photo="vr"] { --gallery-photo: url("./leadership/meta-vr-day-640.webp"); }
+.experience-page .am-leadership-photo:is([data-leadership-photo="classroom"], [data-leadership-photo="vr"]) { background: #141821; isolation: isolate; }
+.experience-page .am-leadership-photo:is([data-leadership-photo="classroom"], [data-leadership-photo="vr"])::before {
+  content: ""; position: absolute; inset: -12px; z-index: -1;
+  background: center / cover no-repeat var(--gallery-photo);
+  filter: blur(14px) brightness(.55); pointer-events: none;
+}
+.experience-page .am-leadership-photo:is([data-leadership-photo="classroom"], [data-leadership-photo="vr"]) img { object-fit: contain; }
