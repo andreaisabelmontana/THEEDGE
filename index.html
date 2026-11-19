@@ -71,6 +71,17 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
 <style id="home-showcase-navy">
   /* Google Chromium baseline primary 10; the hero and cards keep their own surfaces. */
   body.edge-ready[data-home-shell] .home-showcase { background-color: #041e49; }
+  @media (min-width: 1024px) {
+    /* The renderer feathers the last 10 CSS pixels. Bring the solid section
+       up to the opaque part of the canvas instead of painting a second fade. */
+    html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home .hero {
+      height: calc(var(--head-bottom, 86vh) - 76px - 11px);
+    }
+    body.edge-ready[data-home-shell] .home .hero + .rule {
+      border: 0;
+      height: 0;
+    }
+  }
 </style>
 </head><body data-edit="" class="clean-portfolio" data-home-shell><div class="edge-ui">
 
