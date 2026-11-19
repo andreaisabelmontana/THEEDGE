@@ -6,9 +6,9 @@
   var buttons = Array.from(subjects.querySelectorAll('button[data-subject]'));
   var count = document.querySelector('.project-count');
   var copy = {
-    en: {all:'All work',ai:'AI & ML',robotics:'Robotics',software:'Software & Web',spatial:'3D & Games',ux:'UX & Interaction',art:'Design & Art',artType:'Design & Art',artIntro:'My full collection of paintings, drawings and ceramics.',artCTA:'View all artwork',kicker:'PROJECTS / THE LAB',title:'Hall of ideas.',intro:'Code, design and a few curious experiments. Pick a subject, or take a look around.',hint:'Start with the demo. Stay for the story.',cta:'Explore the project',course:'Course',count:function(n){return n + (n===1?' project':' projects');}},
-    es: {all:'Todo',ai:'IA y ML',robotics:'Robótica',software:'Software y web',spatial:'3D y juegos',ux:'UX e interacción',art:'Diseño y arte',artType:'Diseño y arte',artIntro:'Mi colección completa de pinturas, dibujos y cerámica.',artCTA:'Ver todas las obras',kicker:'PROYECTOS / EL LAB',title:'Ideas en órbita.',intro:'Código, diseño y unos cuantos experimentos curiosos. Elige un tema o explora a tu ritmo.',hint:'Empieza por la demo. Descubre la historia.',cta:'Explorar el proyecto',course:'Asignatura',count:function(n){return n + (n===1?' proyecto':' proyectos');}},
-    de: {all:'Alle Arbeiten',ai:'KI & ML',robotics:'Robotik',software:'Software & Web',spatial:'3D & Spiele',ux:'UX & Interaktion',art:'Design & Kunst',artType:'Design & Kunst',artIntro:'Meine vollständige Sammlung von Gemälden, Zeichnungen und Keramik.',artCTA:'Alle Kunstwerke ansehen',kicker:'PROJEKTE / DAS LAB',title:'Raum für Ideen.',intro:'Code, Design und ein paar neugierige Experimente. Wähle ein Thema oder schau dich um.',hint:'Erst die Demo. Dann die Geschichte.',cta:'Projekt entdecken',course:'Kurs',count:function(n){return n + (n===1?' Projekt':' Projekte');}}
+    en: {all:'All work',ai:'AI & ML',robotics:'Robotics',software:'Software & Web',spatial:'3D & Games',ux:'UX & Interaction',art:'Design & Art',artType:'Website',artIntro:'My online gallery for paintings, drawings and ceramics.',artCTA:'Visit website',artCount:function(n){return n+(n===1?' artwork':' artworks');},kicker:'PROJECTS / THE LAB',title:'Hall of ideas.',intro:'Code, design and a few curious experiments. Pick a subject, or take a look around.',hint:'Start with the demo. Stay for the story.',cta:'Explore the project',course:'Course',count:function(n){return n + (n===1?' project':' projects');}},
+    es: {all:'Todo',ai:'IA y ML',robotics:'Robótica',software:'Software y web',spatial:'3D y juegos',ux:'UX e interacción',art:'Diseño y arte',artType:'Sitio web',artIntro:'Mi galería en línea de pinturas, dibujos y cerámica.',artCTA:'Visitar sitio web',artCount:function(n){return n+(n===1?' obra':' obras');},kicker:'PROYECTOS / EL LAB',title:'Ideas en órbita.',intro:'Código, diseño y unos cuantos experimentos curiosos. Elige un tema o explora a tu ritmo.',hint:'Empieza por la demo. Descubre la historia.',cta:'Explorar el proyecto',course:'Asignatura',count:function(n){return n + (n===1?' proyecto':' proyectos');}},
+    de: {all:'Alle Arbeiten',ai:'KI & ML',robotics:'Robotik',software:'Software & Web',spatial:'3D & Spiele',ux:'UX & Interaktion',art:'Design & Kunst',artType:'Website',artIntro:'Meine Onlinegalerie für Gemälde, Zeichnungen und Keramik.',artCTA:'Website besuchen',artCount:function(n){return n+(n===1?' Kunstwerk':' Kunstwerke');},kicker:'PROJEKTE / DAS LAB',title:'Raum für Ideen.',intro:'Code, Design und ein paar neugierige Experimente. Wähle ein Thema oder schau dich um.',hint:'Erst die Demo. Dann die Geschichte.',cta:'Projekt entdecken',course:'Kurs',count:function(n){return n + (n===1?' Projekt':' Projekte');}}
   };
   var active = new URL(location.href).searchParams.get('subject') || 'all';
   if (!buttons.some(function(b){return b.dataset.subject===active;})) active='all';
@@ -16,7 +16,7 @@
     var lang=document.documentElement.lang || 'en', t=copy[lang] || copy.en, shown=0;
     buttons.forEach(function(b){if(b.textContent!==t[b.dataset.subject])b.textContent=t[b.dataset.subject];b.setAttribute('aria-pressed',String(b.dataset.subject===active));});
     cards.forEach(function(card){
-      var visible=active==='all'||card.dataset.subjects.split(' ').includes(active);
+      var visible=card.hasAttribute('data-artwork') ? active==='art' : active==='all'||card.dataset.subjects.split(' ').includes(active);
       card.hidden=!visible;
       if(visible) shown++;
       var project=(window.EDGE_PROJECTS||[]).find(function(p){return p.slug===card.dataset.slug;});
@@ -32,10 +32,11 @@
       if(sitePreviewNote) sitePreviewNote.textContent=({en:'Public site preview · 6 Nov 2026',es:'Vista del sitio público · 6 nov 2026',de:'Öffentliche Website · 6. Nov. 2026'})[lang] || 'Public site preview · 6 Nov 2026';
       var cta=card.querySelector('.project-card-cta-label');
       var ctaLabel=card.dataset.slug==='arte-de-la-montana' ? t.artCTA : (project && project.ctaLabels && project.ctaLabels[lang] || t.cta);
-      if(cta.textContent!==ctaLabel) cta.textContent=ctaLabel;
+      if(cta && cta.textContent!==ctaLabel) cta.textContent=ctaLabel;
     });
     document.querySelectorAll('[data-project-copy]').forEach(function(el){var value=t[el.dataset.projectCopy];if(typeof value==='string' && el.textContent!==value) el.textContent=value;});
-    if(count.textContent!==t.count(shown))count.textContent=t.count(shown);
+    var countLabel=active==='art' ? t.artCount(shown) : t.count(shown);
+    if(count.textContent!==countLabel)count.textContent=countLabel;
   }
   subjects.addEventListener('click',function(e){
     var button=e.target.closest('button[data-subject]'); if(!button)return;
