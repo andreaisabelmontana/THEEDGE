@@ -515,6 +515,24 @@
       var entry = copy[node.getAttribute('data-experience-copy')];
       if (entry && node.textContent !== entry[lang]) node.textContent = entry[lang];
     });
+    // Keep the Top Living evidence in the relevant sentence in every language.
+    [
+      ['top-users', 'topliving.com.co', 'https://topliving.com.co/', true],
+      ['top-search', { en: 'map-based property search', es: 'búsqueda de propiedades en mapa', de: 'Immobiliensuche mit Kartenfiltern' }[lang], '../online/top-living/', false]
+    ].forEach(function (item) {
+      var node = document.querySelector('[data-experience-copy="' + item[0] + '"]');
+      if (!node || node.querySelector('a')) return;
+      var value = node.textContent, at = value.indexOf(item[1]);
+      if (at < 0) return;
+      var link = document.createElement('a');
+      link.href = item[2]; link.textContent = item[1];
+      link.setAttribute('data-taxi-ignore', '');
+      link.style.textDecoration = 'underline';
+      link.style.textUnderlineOffset = '3px';
+      if (item[3]) { link.target = '_blank'; link.rel = 'noopener noreferrer'; }
+      node.textContent = '';
+      node.append(document.createTextNode(value.slice(0, at)), link, document.createTextNode(value.slice(at + item[1].length)));
+    });
     var nav = document.querySelector('.am-section-nav');
     if (nav) nav.setAttribute('aria-label', { en: 'Experience sections', es: 'Secciones de experiencia', de: 'Abschnitte zur Erfahrung' }[lang]);
   }
