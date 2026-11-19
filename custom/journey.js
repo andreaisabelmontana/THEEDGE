@@ -221,7 +221,7 @@
     // Other page-local listeners translate the source heading in this event.
     // Read its final text after all of them have run.
     Promise.resolve().then(describeSelection);
-    caption.textContent = graphicUnavailable ?
+    if (caption) caption.textContent = graphicUnavailable ?
       ['Locations follow the experience in view.', 'Las ubicaciones siguen la experiencia en pantalla.', 'Die Orte folgen der sichtbaren Erfahrung.'][language] :
       ['Drag or use arrow keys to rotate. Locations follow your scroll.', 'Gira con el cursor o las flechas. Las ubicaciones cambian al desplazarte.', 'Mit Ziehen oder Pfeiltasten drehen. Die Orte wechseln beim Scrollen.'][language];
     canvas.setAttribute('aria-label', [
