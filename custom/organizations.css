@@ -44,3 +44,16 @@
   .experience-page #leadership .am-org-logo--microsoft img { width: 40px; height: 40px; }
   .experience-page #leadership .am-org-logo--gdg img { width: 55px; }
 }
+
+/* Match the IE symbol's visual weight without changing the chosen artwork.
+   Wide wordmarks need more width; compact crests lose their unused padding. */
+html[data-theme] body.experience-page .am-career-logo-column a.am-org-logo:not(.am-org-logo--ie) {
+  width: 128px; height: 128px; padding: 0;
+}
+html[data-theme] body.experience-page .am-career-logo-column a.am-org-logo:is(.am-org-logo--cyphy,.am-org-logo--top) {
+  width: 152px; height: 120px;
+}
+@media (max-width: 620px) {
+  html[data-theme] body.experience-page .am-career-logo-column a.am-org-logo:not(.am-org-logo--ie) { width: 100px; height: 100px; }
+  html[data-theme] body.experience-page .am-career-logo-column a.am-org-logo:is(.am-org-logo--cyphy,.am-org-logo--top) { width: 128px; height: 100px; }
+}
