@@ -9,9 +9,9 @@
     "de": "Nov. 2026 — heute"
   },
   "alcaldia-role": {
-    "en": "Data Analysis & Information Management",
-    "es": "Análisis de datos y gestión de la información",
-    "de": "Datenanalyse und Informationsmanagement"
+    "en": "Data Analyst & Software Engineering Intern",
+    "es": "Pasante de análisis de datos e ingeniería de software",
+    "de": "Praktikantin für Datenanalyse und Softwareentwicklung"
   },
   "alcaldia-government": {
     "en": "Bogotá City Government",
@@ -19,9 +19,29 @@
     "de": "Stadtverwaltung Bogotá"
   },
   "alcaldia-copy": {
-    "en": "Analyze data, manage information and prepare reports for the Oficina Consejería Distrital de Relaciones Internacionales, supporting the monitoring of its activities and Bogotá’s international engagement.",
-    "es": "Analizo datos, gestiono información y elaboro reportes para la Oficina Consejería Distrital de Relaciones Internacionales, apoyando el seguimiento de sus actividades y de la gestión internacional de Bogotá.",
-    "de": "Ich analysiere Daten, verwalte Informationen und erstelle Berichte für die Oficina Consejería Distrital de Relaciones Internacionales, um ihre Aktivitäten und das internationale Engagement Bogotás nachzuverfolgen."
+    "en": "Designed dashboard prototypes for GLOBO 2.0 with interactive maps, filters and 17 proposed indicators for Bogotá’s international cooperation reporting.",
+    "es": "Diseñé prototipos de tableros para GLOBO 2.0 con mapas interactivos, filtros y 17 indicadores propuestos para los reportes de cooperación internacional de Bogotá.",
+    "de": "Entwarf Dashboard-Prototypen für GLOBO 2.0 mit interaktiven Karten, Filtern und 17 vorgeschlagenen Kennzahlen für die Berichterstattung zur internationalen Zusammenarbeit Bogotás."
+  },
+  "alcaldia-analysis": {
+    "en": "Standardized 60+ cooperation records using Python and Excel and helped turn the analysis into two briefs for policy and partnership planning.",
+    "es": "Estandaricé más de 60 registros de cooperación con Python y Excel y contribuí a convertir el análisis en dos informes para orientar la planificación de políticas y alianzas.",
+    "de": "Standardisierte über 60 Kooperationsdatensätze mit Python und Excel und wirkte an zwei Kurzberichten für die Politik- und Partnerschaftsplanung mit."
+  },
+  "alcaldia-bulletin": {
+    "en": "Prototyped a back-office workflow for the Boletín de Oferta Internacional to collect, deduplicate and review opportunities before publication.",
+    "es": "Desarrollé un prototipo del flujo interno del Boletín de Oferta Internacional para recopilar, depurar y revisar convocatorias antes de publicarlas.",
+    "de": "Entwickelte einen internen Workflow-Prototyp für den Boletín de Oferta Internacional, um Ausschreibungen zu sammeln, Duplikate zu entfernen und sie vor der Veröffentlichung zu prüfen."
+  },
+  "ie-campus-first": {
+    "en": "Segovia · first year",
+    "es": "Segovia · primer año",
+    "de": "Segovia · erstes Jahr"
+  },
+  "ie-campus-later": {
+    "en": "Madrid · subsequent years",
+    "es": "Madrid · años posteriores",
+    "de": "Madrid · Folgejahre"
   },
   "microsoft-leadership-date": {
     "en": "Sep 2026 — Present",
@@ -324,9 +344,9 @@
     "de": "B.S. in Computer Science & Artificial Intelligence"
   },
   "scholarship": {
-    "en": "IE High Potential Scholarship",
+    "en": "IE High Potential Award",
     "es": "Beca IE High Potential",
-    "de": "IE High Potential Scholarship"
+    "de": "IE High Potential Award"
   },
   "coursework": {
     "en": "Coursework: Algorithms & Data Structures, Machine Learning, Computer Vision, Natural Language Processing, Reinforcement Learning, Robotics and Cloud Computing.",
