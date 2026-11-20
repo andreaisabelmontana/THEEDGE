@@ -1,0 +1,47 @@
+/* Typography for the homepage signature and two section openings. */
+.edge-orbital-name {
+  font-family: 'General Sans', system-ui, sans-serif !important;
+  font-size: clamp(2.2rem, 5.4vw, 5.8rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: -.05em !important;
+  line-height: .99 !important;
+  text-transform: uppercase;
+}
+.edge-orbital-name [data-orbit-word] { display: block; position: relative; width: max-content; max-width: 100%; }
+.edge-core-title {
+  position: relative;
+  font-family: 'General Sans', system-ui, sans-serif !important;
+  font-size: clamp(2rem, 6.3vw, 6rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.12 !important;
+  letter-spacing: 0 !important;
+  text-transform: uppercase;
+}
+.edge-core-copy {
+  position: relative;
+  font-family: 'JetBrains Mono', ui-monospace, monospace !important;
+  font-size: clamp(.78rem, 1.55vw, 1.06rem) !important;
+  font-weight: 400 !important;
+  letter-spacing: .02em !important;
+  line-height: 1.6 !important;
+  text-transform: uppercase;
+}
+.edge-core-title::before { content: '// ' / ''; }
+.edge-core-copy::before { content: '>> ' / ''; }
+[data-edolus-frame] { color: transparent !important; }
+[data-edolus-frame]::before { color: transparent !important; }
+[data-edolus-frame]::after {
+  position: absolute;
+  inset: 0;
+  display: block;
+  content: attr(data-edolus-frame) / '';
+  color: var(--edge-edolus-ink, #16171e);
+  opacity: var(--edge-edolus-opacity, 1);
+  pointer-events: none;
+  white-space: normal;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-edolus-frame] { color: var(--edge-edolus-ink, inherit) !important; }
+  [data-edolus-frame]::before { color: currentColor !important; }
+  [data-edolus-frame]::after { display: none; }
+}
