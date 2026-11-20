@@ -75,21 +75,31 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
   html[data-theme] body.edge-ready[data-home-shell] #contact.is-footer .footer-bg-gradient {
     background: linear-gradient(180deg, transparent 0%, #041e49 clamp(30px, 8vw, 140px), #173b7e 37%, var(--theme-accent, #3369e8) 75%);
   }
-  /* The availability badge is the only Google-red accent in this layout. */
+  /* Availability is a callout, not another outlined tag. */
   html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .hero-copy .status {
-    color: #a12821;
-    background: #fff1ef;
-    border-color: #ea4335;
+    gap: 12px;
+    padding: 11px 16px 11px 12px;
+    border: 1px solid #ea4335;
+    border-radius: 12px;
+    color: #fff;
+    background: #b3261e;
+    box-shadow: 0 6px 16px rgb(179 38 30 / 23%);
+    text-align: left;
   }
-  html[data-theme] body[data-home-shell] .hero-copy .status-dot {
-    background: #ea4335;
-    animation-name: am-availability-pulse;
+  .availability-signal {
+    display: grid;
+    flex: none;
+    place-items: center;
+    inline-size: 30px;
+    block-size: 30px;
+    border-radius: 8px;
+    color: #fff;
+    background: #8f1d18;
   }
-  @keyframes am-availability-pulse {
-    0% { box-shadow: 0 0 0 0 #ea43358c; }
-    70% { box-shadow: 0 0 0 .55rem #ea433500; }
-    100% { box-shadow: 0 0 0 0 #ea433500; }
-  }
+  .availability-signal svg { display: block; inline-size: 18px; block-size: 18px; }
+  .availability-copy { display: grid; gap: 3px; min-inline-size: 0; }
+  .availability-title { font-size: 14px; font-weight: 750; line-height: 1.25; }
+  .availability-season { color: #ffe9e7; font-size: 12px; font-weight: 550; line-height: 1.35; }
   @media (min-width: 1024px) {
     /* The renderer feathers the last 10 CSS pixels. Bring the solid section
        up to the opaque part of the canvas instead of painting a second fade. */
@@ -104,23 +114,37 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
 </style>
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@700&amp;display=swap">
 <link rel="stylesheet" href="custom/edolus-type.css?v=20261120-edolus">
-<style id="home-frost-production">
+<style id="home-type-system">
+@layer portfolio-home-type {
+  /* One UI face, one display face. The existing WebGL artwork is unchanged. */
+  body[data-home-shell],
+  body[data-home-shell] :where(*) {
+    font-family: "Mona Sans Variable", system-ui, sans-serif !important;
+  }
+  body[data-home-shell] :is(.edge-orbital-name, .home-showcase h2, .menu-inner a, .menu-link, .text-impact-lg-brier, .text-impact-reg-brier, .text-title-lg-brier),
+  body[data-home-shell] :is(.edge-orbital-name, .home-showcase h2, .menu-inner a, .menu-link, .text-impact-lg-brier, .text-impact-reg-brier, .text-title-lg-brier) :where(*) {
+    font-family: "General Sans", "Mona Sans Variable", system-ui, sans-serif !important;
+  }
+}
+</style>
+<style id="home-liquid-production">
 html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card {
   background: #dce4ee !important;
-  border-color: rgb(238 245 255 / .53) !important;
-  box-shadow: inset 0 1px 1px rgb(255 255 255 / .73),
-    inset -1px -1px 2px rgb(221 233 250 / .43), 0 7px 22px rgb(2 7 22 / .40);
+  border-color: rgb(238 245 255 / .62) !important;
+  box-shadow: inset 1px 1px 1px rgb(255 255 255 / .82),
+    inset -1px -1px 2px rgb(221 233 250 / .58),
+    inset 0 12px 18px -18px rgb(255 255 255 / .7), 0 7px 22px rgb(2 7 22 / .40);
 }
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card {
-    background: linear-gradient(104deg, rgb(243 246 248 / .89) 0%,
-      rgb(233 238 244 / .77) 39%, rgb(233 239 244 / .47) 67%,
-      rgb(226 234 243 / .29) 100%) !important;
-    -webkit-backdrop-filter: blur(10px) saturate(.81);
-    backdrop-filter: blur(10px) saturate(.81);
+    background: linear-gradient(104deg, rgb(242 247 252 / .84) 0%,
+      rgb(235 243 251 / .71) 42%, rgb(221 235 251 / .32) 67%,
+      rgb(204 226 252 / .17) 100%) !important;
+    -webkit-backdrop-filter: blur(3px) saturate(1.12);
+    backdrop-filter: blur(3px) saturate(1.12);
   }
-  html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card[data-frost-lens] {
-    backdrop-filter: blur(10px) saturate(.81) var(--home-frost-lens);
+  html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card[data-liquid-lens] {
+    backdrop-filter: blur(2px) saturate(1.12) var(--home-liquid-lens);
   }
 }
 html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card:is(:hover,:focus-visible) {
@@ -132,12 +156,34 @@ html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase
   outline: 2px solid #cfdaef;
   outline-offset: 4px;
 }
+html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card-text {
+  max-width: 62%;
+}
+html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card h2 {
+  font-size: clamp(2.4rem, 4.25vw, 3.75rem);
+  letter-spacing: -.045em;
+  line-height: .92;
+  margin: 0 0 .7rem;
+}
 html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card .text-body-reg-mona {
   color: #1c293a;
+  font-size: clamp(.875rem, 1.05vw, 1rem);
+  line-height: 1.4;
+  margin: 0 0 1rem;
+}
+@media (min-width: 751px) and (max-width: 1060px) {
+  html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card h2 {
+    font-size: clamp(2.2rem, 4.7vw, 3.2rem);
+  }
+}
+@media (max-width: 750px) {
+  html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card h2 {
+    font-size: clamp(2rem, 8.5vw, 3.25rem);
+  }
 }
 @media (prefers-reduced-transparency: reduce), (prefers-contrast: more), print {
   html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card,
-  html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card[data-frost-lens] {
+  html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card[data-liquid-lens] {
     background: #dce4ee !important;
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
@@ -148,7 +194,7 @@ html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase
 /* Optics sample the existing live backdrop; the card's portrait and text stay sharp. */
 document.addEventListener('DOMContentLoaded', function () {
   if (!window.chrome || !window.ResizeObserver ||
-      !CSS.supports('backdrop-filter', 'url("#am-frost-probe")')) return;
+      !CSS.supports('backdrop-filter', 'url("#am-liquid-probe")')) return;
   if (matchMedia('(prefers-reduced-transparency: reduce)').matches ||
       matchMedia('(prefers-contrast: more)').matches) return;
   const ns = 'http://www.w3.org/2000/svg';
@@ -165,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const filter = create('filter',{id,x:0,y:0,width:1,height:1,
       filterUnits:'objectBoundingBox',primitiveUnits:'userSpaceOnUse','color-interpolation-filters':'sRGB'});
     const map = create('feImage',{x:0,y:0,result:'lensMap',preserveAspectRatio:'none'});
-    filter.append(map,create('feDisplacementMap',{in:'SourceGraphic',in2:'lensMap',scale:24,xChannelSelector:'R',yChannelSelector:'G'}));
+    filter.append(map,create('feDisplacementMap',{in:'SourceGraphic',in2:'lensMap',scale:38,xChannelSelector:'R',yChannelSelector:'G'}));
     defs.append(filter);
     const mapCanvas=document.createElement('canvas'), ctx=mapCanvas.getContext('2d');
     if (!ctx) return;
@@ -183,17 +229,20 @@ document.addEventListener('DOMContentLoaded', function () {
         const qx=Math.abs(px)-(w/2-rad),qy=Math.abs(py)-(h/2-rad);
         const ux=Math.max(0,qx),uy=Math.max(0,qy),n=Math.hypot(ux,uy);
         const d=rad-n-Math.min(Math.max(qx,qy),0);
-        const t=Math.max(0,Math.min(1,1-d/23));
+        // Surface slope is greatest near the lip and tapers into a flat,
+        // undistorted center; sample inward so the curved rim stays filled.
+        const t=Math.max(0,Math.min(1,1-d/28));
+        const bevel=t*t*(3-2*t);
         const nx=n>0?Math.sign(px)*ux/n:qx>=qy?Math.sign(px):0;
         const ny=n>0?Math.sign(py)*uy/n:qy>qx?Math.sign(py):0;
         const at=(y*mw+x)*4;
-        data[at]=127.5-nx*91*t*t;data[at+1]=127.5-ny*91*t*t;data[at+2]=128;data[at+3]=255;
+        data[at]=127.5-nx*96*bevel;data[at+1]=127.5-ny*96*bevel;data[at+2]=128;data[at+3]=255;
       }
       ctx.putImageData(image,0,0);
       map.setAttribute('width',w);map.setAttribute('height',h);
       map.setAttribute('href',mapCanvas.toDataURL('image/png'));
-      card.style.setProperty('--home-frost-lens','url("#'+id+'")');
-      card.setAttribute('data-frost-lens','');
+      card.style.setProperty('--home-liquid-lens','url("#'+id+'")');
+      card.setAttribute('data-liquid-lens','');
     }).observe(card);
   });
 }, {once:true});
@@ -229,8 +278,16 @@ document.addEventListener('DOMContentLoaded', function () {
           <p class="hero-stack" data-i18n="hero.stack">Python · TypeScript · React · Three.js · Unity / ROS</p>
 
           <p class="status" data-reveal="180">
-            <span class="status-dot" aria-hidden="true"></span>
-            <span data-i18n="hero.status">Open to internships &middot; Summer 2027 / Fall 2027</span>
+            <span class="availability-signal" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/>
+                <path d="M8.5 8.5a5 5 0 0 0 0 7m7-7a5 5 0 0 1 0 7M5.5 5.5a9 9 0 0 0 0 13m13-13a9 9 0 0 1 0 13"/>
+              </svg>
+            </span>
+            <span class="availability-copy">
+              <strong class="availability-title" data-i18n="hero.statusTitle">Open to internships</strong>
+              <span class="availability-season" data-i18n="hero.statusSeason">Summer 2027 / Fall 2027</span>
+            </span>
           </p>
 
         </div>
@@ -251,6 +308,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <a class="otot-card" data-taxi-ignore href="./online" data-reveal="0">
           <div class="otot-card-text">
             <h2 class="text-impact-reg-brier" data-i18n="panel.projects.title">Projects</h2>
+            <p class="text-body-reg-mona" data-i18n="panel.projects.desc">Software, robotics, and interactive 3D.</p>
             <span class="otot-btn" aria-hidden="true">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </span>
@@ -262,6 +320,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <a class="otot-card" data-taxi-ignore href="./experience" data-reveal="90">
           <div class="otot-card-text">
             <h2 class="text-impact-reg-brier" data-i18n="panel.experience.title">Experience</h2>
+            <p class="text-body-reg-mona" data-i18n="panel.experience.desc">Research, internships, and education.</p>
             <span class="otot-btn" aria-hidden="true">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </span>
@@ -1485,5 +1544,5 @@ stroke="currentColor"/>
 
 
 </script>
-<div class="stars-overlay"></div><script id="helmet-keep-four">window.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".helmet-grid-item").forEach(function(it,i){if(i>=4){var w=it.closest(".helmet-grid-item-w")||it;w.style.display="none";}});});</script><script defer src="./custom/vendor/three.min.js?v=20260911k"></script><script defer src="./custom/experience.js?v=20261119-earth-surface"></script><script src="ui/reveal.js?v=20260911k" defer></script><script defer src="./custom/page-guard.js?v=20260911k"></script><script src="custom/clean-shell.js?v=20260918-polish2" defer></script><script src="ui/i18n.js?v=20261119-card-copy" defer></script><script src="ui/ui.js?v=20261011-mobile-ice" defer></script>
+<div class="stars-overlay"></div><script id="helmet-keep-four">window.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".helmet-grid-item").forEach(function(it,i){if(i>=4){var w=it.closest(".helmet-grid-item-w")||it;w.style.display="none";}});});</script><script defer src="./custom/vendor/three.min.js?v=20260911k"></script><script defer src="./custom/experience.js?v=20261119-earth-surface"></script><script src="ui/reveal.js?v=20260911k" defer></script><script defer src="./custom/page-guard.js?v=20260911k"></script><script src="custom/clean-shell.js?v=20260918-polish2" defer></script><script src="ui/i18n.js?v=20261120-availability" defer></script><script src="ui/ui.js?v=20261011-mobile-ice" defer></script>
 <script defer src="custom/affiliations.js?v=20261119-seamless"></script><script defer src="custom/edolus-type.js?v=20261120-orbital-visible"></script></body></html>
