@@ -92,3 +92,8 @@
   .project-card:hover .project-card-visual img { transform: none; }
   .project-card.motion-ready { opacity: 1; transform: none; transition: none; }
 }
+/* Bring the blue in below the gallery without a visible horizontal seam. */
+html[data-theme] body.projects-page .footer-bg-gradient {
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 clamp(90px, 12vw, 170px));
+  mask-image: linear-gradient(to bottom, transparent, #000 clamp(90px, 12vw, 170px));
+}

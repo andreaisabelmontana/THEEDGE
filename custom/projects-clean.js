@@ -51,6 +51,6 @@
   render();
   if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
     var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target);}});},{threshold:0.06});
-    cards.forEach(function(card){card.classList.add('motion-ready');observer.observe(card);});
+    cards.forEach(function(card){if(!card.hasAttribute('data-artwork')){card.classList.add('motion-ready');observer.observe(card);}});
   }
 })();
