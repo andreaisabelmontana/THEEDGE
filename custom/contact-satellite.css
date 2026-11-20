@@ -1,7 +1,7 @@
 /* Satellite is confined to unused Contact intro space, never contact links. */
 body.contact-page .c.is-on-track-home { position: relative; }
 body.contact-page .contact-satellite {
-  position: absolute; top: 154px; right: 0; width: 44%; height: 282px;
+  position: absolute; top: 122px; right: 0; width: 44%; height: 260px;
   --satellite-travel: 0px; pointer-events: none; z-index: 1;
 }
 body.contact-page .contact-satellite-flight {
@@ -13,7 +13,7 @@ body.contact-page .contact-satellite :is(model-viewer,.contact-satellite-poster)
   position: absolute; inset: 0; width: 100%; height: 100%; display: block;
   background: transparent; object-fit: contain; pointer-events: none;
   /* A shared screen-space roll keeps the poster and 3D pose in the same frame. */
-  transform: rotate(56deg) scale(1.34);
+  transform: rotate(56deg) scale(1.55);
 }
 body.contact-page .contact-satellite model-viewer { opacity: 0; --progress-bar-color: transparent; }
 body.contact-page .contact-satellite.is-rendered model-viewer { opacity: 1; }
@@ -25,7 +25,14 @@ body.contact-page .contact-satellite-credit {
 }
 body.contact-page .contact-satellite-credit a { text-decoration: none; }
 body.contact-page .contact-satellite-credit a:hover { text-decoration: underline; }
-body.contact-page .contact-satellite-credit button { width: 28px; height: 28px; font-size: 15px; color: inherit; cursor: pointer; }
+/* Keep playback control reachable, without a visible glyph below the artwork. */
+body.contact-page .contact-satellite-credit button:not(:focus-visible) {
+  position: absolute; width: 1px; height: 1px; padding: 0;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+body.contact-page .contact-satellite-credit button:focus-visible {
+  min-width: 28px; min-height: 28px; font-size: 15px; color: inherit; cursor: pointer;
+}
 body.contact-page .contact-satellite-credit button[hidden] { display: none; }
 @keyframes contact-satellite-drift {
   0%,100% { transform: translate(0, 8px); }
@@ -35,12 +42,12 @@ body.contact-page .contact-satellite-credit button[hidden] { display: none; }
 }
 @media (min-width: 1001px) {
   body.contact-page .off-t-hero-title-layout { padding-right: 46%; }
-  body.contact-page .taxi-w.is-contact .c.is-on-track-home { min-height: 454px; }
+  body.contact-page .taxi-w.is-contact .c.is-on-track-home { min-height: 385px; }
 }
 @media (max-width: 1000px) {
-  body.contact-page .contact-satellite { position: relative; top: auto; right: auto; width: min(100%, 480px); height: 244px; margin: 14px 0 0 auto; }
+  body.contact-page .contact-satellite { position: relative; top: auto; right: auto; width: min(100%, 480px); height: 228px; margin: 14px 0 0 auto; }
   body.contact-page .contact-satellite-flight { height: 200px; }
-  body.contact-page .contact-satellite :is(model-viewer,.contact-satellite-poster) { transform: rotate(56deg) scale(1.22); }
+  body.contact-page .contact-satellite :is(model-viewer,.contact-satellite-poster) { transform: rotate(56deg) scale(1.35); }
 }
 @media (prefers-reduced-motion: reduce) {
   body.contact-page .contact-satellite-flight { animation: none; transform: translate(calc(var(--satellite-travel) * .5), 0); }
