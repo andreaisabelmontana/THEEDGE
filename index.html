@@ -258,7 +258,23 @@ document.addEventListener('DOMContentLoaded', function () {
 }, {once:true});
 </script>
 
-<link rel="stylesheet" href="custom/home-availability.css?v=20261120-notice"/>
+<style id="home-availability-modal">
+.am-availability-modal{box-sizing:border-box;position:fixed;inset:0;margin:auto;inline-size:min(410px,calc(100% - 32px));max-block-size:calc(100% - 32px);overflow:auto;padding:24px;border:1px solid rgb(255 255 255/.9);border-radius:28px;background:#edf4fe;color:#152744;box-shadow:inset 0 1px 1px #fff,0 18px 64px #07183155;font:500 15px/1.45 "Mona Sans Variable",Arial,sans-serif;text-align:center}
+.am-availability-modal[open]{animation:am-availability-pop .24s ease-out both}
+.am-availability-modal::backdrop{background:rgb(9 22 44/.38);backdrop-filter:blur(2px)}
+@supports (backdrop-filter:blur(1px)){.am-availability-modal{background:linear-gradient(145deg,rgb(250 253 255/.96),rgb(221 237 255/.85));backdrop-filter:blur(22px) saturate(1.35)}}
+.am-availability-modal .am-availability-icon{display:grid;place-items:center;inline-size:44px;block-size:44px;margin:0 auto 13px;border-radius:13px;color:#fff;background:linear-gradient(145deg,#ea4335,#af291f);box-shadow:inset 0 1px 1px #fff8}
+.am-availability-icon svg{inline-size:24px;block-size:24px}
+.am-availability-modal h2{color:inherit;margin:0;font:700 clamp(20px,5.5vw,25px)/1.2 "Mona Sans Variable",Arial,sans-serif}
+.am-availability-modal p{color:#405779;margin:7px 0 17px}
+.am-availability-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0}
+.am-availability-actions>*{display:inline-grid;place-items:center;min-block-size:44px;min-inline-size:100px;box-sizing:border-box;padding:8px 14px;border-radius:12px;border:1px solid #8ca9cf55;color:#1b3660;background:#fff8;font:700 14px/1.25 Arial,sans-serif;text-decoration:none;cursor:pointer}
+.am-availability-actions a{color:#fff;background:#1c4cb2;border-color:#1c4cb2}
+.am-availability-actions>*:focus-visible{outline:2px solid #3369e8;outline-offset:2px}
+@keyframes am-availability-pop{from{opacity:0;transform:translateY(6px) scale(.98)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.am-availability-modal[open]{animation:none}}
+@media(prefers-reduced-transparency:reduce),(prefers-contrast:more){.am-availability-modal{background:#f3f7fe;backdrop-filter:none}.am-availability-modal::backdrop{backdrop-filter:none}}
+</style>
 </head><body data-edit="" class="clean-portfolio" data-home-shell><div class="edge-ui">
 
   <!-- The original nav supplies the astronaut and animated menu. ui.js adopts
@@ -1548,21 +1564,48 @@ stroke="currentColor"/>
 
 </script>
 <div class="stars-overlay"></div><script id="helmet-keep-four">window.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".helmet-grid-item").forEach(function(it,i){if(i>=4){var w=it.closest(".helmet-grid-item-w")||it;w.style.display="none";}});});</script><script defer src="./custom/vendor/three.min.js?v=20260911k"></script><script defer src="./custom/experience.js?v=20261119-earth-surface"></script><script src="ui/reveal.js?v=20260911k" defer></script><script defer src="./custom/page-guard.js?v=20260911k"></script><script src="custom/clean-shell.js?v=20260918-polish2" defer></script><script src="ui/i18n.js?v=20261120-locale-controls" defer></script><script src="ui/ui.js?v=20261011-mobile-ice" defer></script>
-<script defer src="custom/affiliations.js?v=20261120-badge-fit"></script><script defer src="custom/edolus-type.js?v=20261120-typed-headings"></script><aside class="am-availability-toast" id="am-availability-toast" aria-labelledby="am-availability-title" hidden>
-  <span class="am-availability-icon" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="7" width="18" height="13" rx="3"/>
-      <path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7m-13 5h18m-11 0v2h4v-2"/>
-    </svg>
-  </span>
-  <span class="am-availability-copy">
-    <strong class="am-availability-title" id="am-availability-title" data-i18n="hero.statusTitle">Open to internships</strong>
-    <span class="am-availability-season" data-i18n="hero.statusSeason">Summer 2027 / Fall 2027</span>
-  </span>
-  <button class="am-availability-close" type="button" aria-label="Dismiss availability notice">
-    <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="m4 4 8 8m0-8-8 8"/></svg>
-  </button>
-</aside>
-<div class="am-availability-live" id="am-availability-live" role="status" aria-atomic="true"></div>
-<script defer src="custom/home-availability.js?v=20261120-notice"></script>
+<script defer src="custom/affiliations.js?v=20261120-badge-fit"></script><script defer src="custom/edolus-type.js?v=20261120-typed-headings"></script><dialog class="am-availability-modal" id="am-availability-dialog" aria-labelledby="am-availability-title" aria-describedby="am-availability-season">
+ <span class="am-availability-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="3"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7m-13 5h18m-11 0v2h4v-2"/></svg></span>
+ <h2 id="am-availability-title" data-availability-copy>Andrea Montaña is looking for an internship</h2>
+ <p id="am-availability-season" data-availability-copy>May–December 2027</p>
+ <form class="am-availability-actions" method="dialog">
+  <button type="submit" autofocus data-availability-copy>Close</button>
+  <a href="./contact/" data-taxi-ignore data-availability-copy>Get in touch</a>
+ </form>
+</dialog>
+<script>(() => {
+  const modal = document.getElementById('am-availability-dialog');
+  if (!modal || typeof modal.showModal !== 'function') return;
+  const key = 'am-home-availability-modal-seen';
+  try { if (sessionStorage.getItem(key)) return; } catch (_) {}
+  const labels = {
+    en: ['Andrea Montaña is looking for an internship','May–December 2027','Close','Get in touch'],
+    es: ['Andrea Montaña busca una pasantía','Mayo–diciembre de 2027','Cerrar','Contáctame'],
+    de: ['Andrea Montaña sucht ein Praktikum','Mai–Dezember 2027','Schließen','Kontakt aufnehmen']
+  };
+  const fields = modal.querySelectorAll('[data-availability-copy]');
+  const localize = () => {
+    const texts = labels[document.documentElement.lang.split('-')[0]] || labels.en;
+    fields.forEach((field,i) => { field.textContent = texts[i]; });
+  };
+  let previousFocus;
+  modal.addEventListener('close', () => {
+    if (previousFocus?.isConnected && previousFocus !== document.body) previousFocus.focus({preventScroll:true});
+  });
+  document.addEventListener('edge:lang', localize);
+  function show() {
+    if (document.hidden) {
+      document.addEventListener('visibilitychange', show, { once: true });
+      return;
+    }
+    if (modal.open) return;
+    localize();
+    previousFocus = document.activeElement;
+    modal.showModal();
+    try { sessionStorage.setItem(key,'1'); } catch (_) {}
+  }
+  const schedule = () => setTimeout(show,3000);
+  if (document.readyState === 'complete') schedule();
+  else window.addEventListener('load',schedule,{once:true});
+})();</script>
 </body></html>

@@ -28,19 +28,35 @@
     const next = controls.querySelector('[data-photo-next]');
     const caption = controls.querySelector('[data-photo-caption]');
     const count = controls.querySelector('[data-photo-count]');
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const strip = gallery.querySelector('[data-photo-choices]');
+    const choices = slides.map((slide, i) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'contact-photos__choice';
+      button.setAttribute('aria-controls', track.id);
+      const image = document.createElement('img');
+      image.src = slide.querySelector('img').src;
+      image.alt = '';
+      image.loading = 'lazy';
+      image.decoding = 'async';
+      button.append(image);
+      button.addEventListener('click', () => render(i));
+      strip.append(button);
+      return button;
+    });
     let index = -1;
     let locale = '';
 
     function render(at) {
-      if (at === index) return;
+      if (at < 0 || at >= slides.length || at === index) return;
       index = at;
       const copy = words[locale];
       caption.textContent = copy.captions[index];
       count.textContent = (index + 1) + ' / ' + slides.length;
       prev.setAttribute('aria-disabled', String(index === 0));
       next.setAttribute('aria-disabled', String(index === slides.length - 1));
-      slides.forEach((slide, i) => slide.setAttribute('aria-hidden', String(i !== index)));
+      slides.forEach((slide, i) => { slide.hidden = i !== index; });
+      choices.forEach((button, i) => button.setAttribute('aria-pressed', String(i === index)));
     }
     function localize(lang) {
       lang = words[lang] ? lang : 'en';
@@ -53,36 +69,30 @@
       slides.forEach((slide, i) => {
         slide.querySelector('img').alt = copy.alts[i];
         slide.querySelector('figcaption').textContent = copy.captions[i];
+        choices[i].setAttribute('aria-label', copy.captions[i]);
       });
       const current = Math.max(0, index);
       index = -1;
       render(current);
     }
-    function go(at) {
-      if (at < 0 || at >= slides.length) return;
-      track.scrollTo({
-        left: slides[at].offsetLeft - slides[0].offsetLeft,
-        behavior: reduced.matches ? 'auto' : 'smooth',
-      });
-    }
-    let frame = 0;
-    track.addEventListener('scroll', () => {
-      if (frame) return;
-      frame = requestAnimationFrame(() => {
-        frame = 0;
-        const origin = slides[0].offsetLeft;
-        let nearest = 0;
-        let distance = Infinity;
-        slides.forEach((slide, i) => {
-          const d = Math.abs(slide.offsetLeft - origin - track.scrollLeft);
-          if (d < distance) { distance = d; nearest = i; }
-        });
-        render(nearest);
-      });
+    prev.addEventListener('click', () => render(index - 1));
+    next.addEventListener('click', () => render(index + 1));
+    let touchStart = null;
+    track.addEventListener('touchstart', event => {
+      touchStart = event.touches.length === 1 ? event.touches[0] : null;
     }, { passive: true });
-    prev.addEventListener('click', () => go(index - 1));
-    next.addEventListener('click', () => go(index + 1));
-    track.addEventListener('keydown', event => {
+    track.addEventListener('touchcancel', () => { touchStart = null; }, { passive: true });
+    track.addEventListener('touchend', event => {
+      const start = touchStart;
+      touchStart = null;
+      if (!start) return;
+      const end = Array.from(event.changedTouches).find(touch => touch.identifier === start.identifier);
+      if (!end) return;
+      const x = end.clientX - start.clientX;
+      const y = end.clientY - start.clientY;
+      if (Math.abs(x) > 45 && Math.abs(x) > Math.abs(y) * 1.5) render(index + (x < 0 ? 1 : -1));
+    }, { passive: true });
+    gallery.addEventListener('keydown', event => {
       let target;
       if (event.key === 'ArrowLeft') target = index - 1;
       else if (event.key === 'ArrowRight') target = index + 1;
@@ -90,12 +100,14 @@
       else if (event.key === 'End') target = slides.length - 1;
       else return;
       event.preventDefault();
-      go(target);
+      render(target);
+      if (choices.includes(event.target)) choices[index].focus();
     });
     document.addEventListener('edge:lang', event => localize(event.detail));
     localize(document.documentElement.lang);
     gallery.setAttribute('data-ready', '');
     controls.hidden = false;
+    strip.hidden = false;
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
