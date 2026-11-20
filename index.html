@@ -128,7 +128,7 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
 <link rel="stylesheet" href="custom/edolus-type.css?v=20261120-edolus">
 <style id="home-type-system">
 @layer portfolio-home-type {
-  /* One UI face, one display face. The existing WebGL artwork is unchanged. */
+  /* One UI face and one display face, with Brier reserved for the footer accent. */
   body[data-home-shell],
   body[data-home-shell] :where(*) {
     font-family: "Mona Sans Variable", system-ui, sans-serif !important;
@@ -136,6 +136,10 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
   body[data-home-shell] :is(.edge-orbital-name, .home-showcase h2, .menu-inner a, .menu-link, .text-impact-lg-brier, .text-impact-reg-brier, .text-title-lg-brier),
   body[data-home-shell] :is(.edge-orbital-name, .home-showcase h2, .menu-inner a, .menu-link, .text-impact-lg-brier, .text-impact-reg-brier, .text-title-lg-brier) :where(*) {
     font-family: "General Sans", "Mona Sans Variable", system-ui, sans-serif !important;
+  }
+  body[data-home-shell] .is-footer h2.footer .text-impact-sm-brier,
+  body[data-home-shell] .is-footer h2.footer .text-impact-sm-brier :where(*) {
+    font-family: Brier, "Mona Sans Variable", system-ui, sans-serif !important;
   }
 }
 </style>
