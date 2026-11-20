@@ -335,9 +335,8 @@
   // set up at the bottom, but apply() clears its queue, and apply() runs first
   let watcher = null;
 
-  const nodes = [...document.querySelectorAll('[data-i18n]')];
-  const EN = {};
-  nodes.forEach((n) => { EN[n.getAttribute('data-i18n')] = n.innerHTML; });
+  const EN = Object.create(null);
+  let activeLanguage = 'en';
 
   /* every known wording of a phrase, in any language, mapped back to its
      english key.
@@ -390,19 +389,28 @@
     });
   }
 
-  /* whole paragraphs, for the ones the splitter has already taken apart.
+  /* Keep the character nodes of the animated menu links. Their hover
+     animation holds references to those exact nodes. */
+  function translateMenu(lang) {
+    document.querySelectorAll('.nav-menu-w .text-nav-link[split-text="chars"]').forEach((el) => {
+      const chars = [...el.querySelectorAll('.char')];
+      if (!chars.length) return; // The ordinary text walker handles unsplit links.
+      const visible = chars.map((char) => char.textContent).join('');
+      const key = CANON.get(visible) || CANON_TIGHT.get(tight(visible));
+      if (!key) return;
+      const target = lang === 'en' ? key : (PHRASES[key][lang] || key);
+      if (target === visible) return;
+      const glyphs = Array.from(target);
+      chars.forEach((char, i) => {
+        const next = i === chars.length - 1 ? glyphs.slice(i).join('') : (glyphs[i] || '');
+        if (char.textContent !== next) char.textContent = next;
+      });
+      // Keep the link's accessible text aligned with its visible text.
+      if (el.hasAttribute('aria-label')) el.setAttribute('aria-label', target);
+    });
+  }
 
-     only split-text="lines" is touched. that is body copy, and rewriting it
-     costs nothing but the line spans, which are re-revealed as plain visible
-     text. split-text="chars" is deliberately left alone: those are the nav
-     labels and buttons whose hover animation is bound to the individual char
-     spans, and flattening them would kill it.
-
-     none of this runs on a first load in another language anyway. this script
-     goes before her splitter, so the paragraph is still one text node when it
-     is translated and the split then happens on the translated words with the
-     animation fully intact. this is the path for switching language later, on
-     a page that has already been split. */
+  // Whole paragraphs already split into lines need a whole-label match.
   function translateBlocks(lang) {
     document.querySelectorAll('[split-text="lines"]').forEach((el) => {
       if (el.closest('[data-i18n]')) return;
@@ -421,9 +429,11 @@
   function apply(lang) {
     const dict = lang === 'en' ? EN : DICT[lang];
     if (!dict) return;
+    activeLanguage = lang;
 
-    nodes.forEach((n) => {
+    document.querySelectorAll('[data-i18n]').forEach((n) => {
       const key = n.getAttribute('data-i18n');
+      if (!(key in EN)) EN[key] = n.innerHTML;
       const value = dict[key] !== undefined ? dict[key] : EN[key];
       if (value === undefined) return;
 
@@ -448,6 +458,7 @@
 
     translateNodes(lang);
     translateBlocks(lang);
+    translateMenu(lang);
 
     document.documentElement.lang = lang;
     document.querySelectorAll('[data-lang]').forEach((b) => {
@@ -455,7 +466,6 @@
       b.classList.toggle('is-on', on);
       b.setAttribute('aria-pressed', String(on));
     });
-    try { localStorage.setItem(STORE, lang); } catch (e) {}
 
     /* anything that renders its own words rather than carrying them in the
        markup, like the project count on the hall of ideas, cannot be reached by
@@ -468,7 +478,10 @@
   }
 
   function current() {
-    try { return localStorage.getItem(STORE) || 'en'; } catch (e) { return 'en'; }
+    try {
+      const saved = localStorage.getItem(STORE);
+      return saved === 'en' || saved === 'es' || saved === 'de' ? saved : activeLanguage;
+    } catch (e) { return activeLanguage; }
   }
 
   /* build the switcher if this page has not got one, so a page mirrors with
@@ -495,11 +508,17 @@
   }
 
   document.addEventListener('click', (e) => {
-    const btn = e.target.closest('[data-lang]');
-    if (btn) { apply(btn.getAttribute('data-lang')); return; }
+    const btn = e.target.closest?.('[data-lang-switch] button[data-lang]');
+    if (!btn || btn.disabled) return;
+    const lang = btn.getAttribute('data-lang');
+    if (lang !== 'en' && lang !== 'es' && lang !== 'de') return;
+    try { localStorage.setItem(STORE, lang); } catch (e) {}
+    apply(lang);
+  }, true);
 
+  document.addEventListener('click', (e) => {
     // her menu builds its contents as it opens, so run again once it is there
-    if (e.target.closest('.nav-ham, .btn-layout.is-nav, .nav-menu-w')) {
+    if (e.target.closest?.('.nav-ham, .btn-layout.is-nav, .nav-menu-w')) {
       setTimeout(() => apply(current()), 120);
       setTimeout(() => apply(current()), 600);
     }
@@ -512,6 +531,9 @@
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) boot();
+  });
 
   /* re-translate whatever her bundle rebuilds.
 
@@ -529,7 +551,7 @@
   let pass = 0;
   watcher = new MutationObserver(() => {
     clearTimeout(pass);
-    pass = setTimeout(() => apply(current()), 250);
+    pass = setTimeout(boot, 250);
   });
   watcher.observe(document.body, { childList: true, subtree: true, characterData: true });
 })();

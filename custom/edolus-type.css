@@ -28,6 +28,16 @@
 }
 .edge-core-title::before { content: '// ' / ''; }
 .edge-core-copy::before { content: '>> ' / ''; }
+/* Reuse each page's existing type family; only add the terminal cues. */
+[data-edolus-title], [data-edolus-copy] { position: relative; }
+.experience-page #top h1[data-edolus-title],
+.projects-page .project-intro h1[data-edolus-title] { text-transform: uppercase; }
+[data-edolus-title]::before { content: '// ' / ''; opacity: .66; }
+[data-edolus-copy]::before { content: '>> ' / ''; opacity: .72; }
+@media (max-width: 620px) {
+  .experience-page #top h1[data-edolus-title] { font-size: clamp(31px, 9.4vw, 55px); }
+  .projects-page .project-intro h1[data-edolus-title] { font-size: clamp(33px, 10.1vw, 55px); }
+}
 [data-edolus-frame] { color: transparent !important; }
 [data-edolus-frame]::before { color: transparent !important; }
 [data-edolus-frame]::after {

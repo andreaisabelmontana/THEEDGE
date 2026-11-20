@@ -2,13 +2,13 @@
 (() => {
   'use strict';
   const words = [...document.querySelectorAll('.edge-orbital-name [data-orbit-word]')];
-  const title = document.querySelector('.edge-core-title');
-  const copy = document.querySelector('.edge-core-copy');
+  const title = document.querySelector('[data-edolus-title], .edge-core-title');
+  const copy = document.querySelector('[data-edolus-copy], .edge-core-copy');
   if (!(words.length || (title && copy))) return;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const original = words.length ? words : [title, copy];
   const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&/()=+*<>?';
-  let raf = 0, finished = false, observer, homePoll = 0, visibleSince = -1;
+  let raf = 0, finished = false, homePoll = 0, visibleSince = -1;
   const signature = words[0]?.closest('.edge-orbital-name') || null;
   const upper = node => Array.from(node.textContent.trim().toLocaleUpperCase(document.documentElement.lang || 'en'));
   const clear = () => original.forEach(node => {
@@ -27,7 +27,6 @@
   function start() {
     if (finished || reduced.matches || document.hidden) return;
     finished = true;
-    observer?.disconnect();
     original.forEach(n => n.style.setProperty('--edge-edolus-ink', getComputedStyle(n).color));
     const t0 = performance.now();
     if (words.length) {
@@ -54,30 +53,31 @@
       return;
     }
     const headingText = ['/', '/', ' ', ...upper(title)];
-    const bodyText = ['>', '>', ' ', ...upper(copy)];
-    const headingDuration = headingText.length * 50;
-    const bodyStart = headingDuration + 250;
+    const bodyText = ['>', '>', ' ', ...Array.from(copy.textContent.trim())];
+    const headingDuration = headingText.length * 43;
+    const bodyStart = headingDuration + 160;
     frameFor(title, '_');
     frameFor(copy, '');
     function type(t) {
       const elapsed = Math.max(0, t - t0);
       const blink = Math.floor(elapsed / 250) % 2 === 0;
       if (elapsed < bodyStart) {
-        const n = Math.min(headingText.length, Math.floor(elapsed / 50));
+        const n = Math.min(headingText.length, Math.floor(elapsed / 43));
         frameFor(title, headingText.slice(0, n).join('') + (n < headingText.length || blink ? '_' : ''));
       } else {
         title.removeAttribute('data-edolus-frame');
-        const n = Math.min(bodyText.length, Math.floor((elapsed - bodyStart) / 50));
+        const n = Math.min(bodyText.length, Math.floor((elapsed - bodyStart) / 23));
         frameFor(copy, bodyText.slice(0, n).join('') + (n < bodyText.length || blink ? '_' : ''));
-        if (elapsed >= bodyStart + bodyText.length * 50 + 500) return stop();
+        if (elapsed >= bodyStart + bodyText.length * 23 + 270) return stop();
       }
       raf = requestAnimationFrame(type);
     }
     raf = requestAnimationFrame(type);
   }
-  function readyForOrbit() {
-    const r = words[0].getBoundingClientRect();
-    if (!document.body.classList.contains('edge-ready') || r.width <= 0 || r.height <= 0 || r.bottom < 0 || r.top > innerHeight) return false;
+  function readyForEntrance() {
+    const r = (words[0] || title).getBoundingClientRect();
+    if ((words.length && !document.body.classList.contains('edge-ready')) ||
+        r.width <= 0 || r.height <= 0 || r.bottom < 0 || r.top > innerHeight) return false;
     const loader = document.getElementById('am-loader');
     const curtain = document.querySelector('.transition-w');
     const isCovering = node => {
@@ -86,34 +86,30 @@
       return css.visibility !== 'hidden' && css.display !== 'none' && Number(css.opacity) > .05;
     };
     if (isCovering(loader) || isCovering(curtain)) return false;
-    for(let node=signature; node && node!==document.body; node=node.parentElement) {
+    for(let node=(signature || title); node && node!==document.body; node=node.parentElement) {
       const css = getComputedStyle(node);
       if (css.display === 'none' || css.visibility !== 'visible' || Number(css.opacity) < .94) return false;
     }
     return true;
   }
-  function waitForOrbit() {
+  function waitForEntrance() {
     homePoll = 0;
     if (finished || reduced.matches || document.hidden) return;
     const now = performance.now();
-    if (!readyForOrbit()) visibleSince = -1;
+    if (!readyForEntrance()) visibleSince = -1;
     else if (visibleSince < 0) visibleSince = now;
     else if (now - visibleSince >= 210) { start(); return; }
-    homePoll = setTimeout(waitForOrbit, 80);
+    homePoll = setTimeout(waitForEntrance, 80);
   }
   function watch() {
     if (finished || reduced.matches || document.hidden) return;
-    if (words.length) { if (!homePoll) waitForOrbit(); return; }
-    const visibleNode = title;
-    if ('IntersectionObserver' in window) {
-      observer?.disconnect();
-      observer = new IntersectionObserver(entries => {
-        if (entries.some(entry => entry.isIntersecting && entry.intersectionRatio > .1)) start();
-      }, {threshold: .1});
-      observer.observe(visibleNode);
-    } else start();
+    if (!homePoll) waitForEntrance();
   }
-  document.addEventListener('edge:lang', () => { if (!words.length) stop(); });
+  document.addEventListener('edge:lang', () => {
+    if (words.length) return;
+    stop();
+    if (!finished) watch();
+  });
   document.addEventListener('visibilitychange', () => {
     if (!document.hidden) { watch(); return; }
     if (signature?.dataset.orbitState === 'playing') {

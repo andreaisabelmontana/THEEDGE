@@ -279,3 +279,46 @@ if (document.body.classList.contains('experience-page')) {
     if (event.target.closest('.am-section-nav a')) event.stopImmediatePropagation();
   }, true);
 }
+
+/* Keep one set of links and move it back to its original mobile position. */
+(function () {
+  var page = document.querySelector('.am-career-page');
+  var rail = page && page.querySelector('.am-career-nav-rail');
+  var nav = page && page.querySelector('.am-section-nav');
+  if (!rail || !nav) return;
+  var origin = document.createComment('mobile Experience navigation');
+  nav.before(origin);
+  var wide = window.matchMedia('(min-width: 1100px)');
+  var entries = Array.from(nav.querySelectorAll('a[href^="#"]'), function (link) {
+    return { link: link, section: document.getElementById(link.hash.slice(1)) };
+  }).filter(function (entry) { return entry.section; });
+  var frame = 0;
+  function update() {
+    frame = 0;
+    var current = entries[0];
+    entries.forEach(function (entry) {
+      if (entry.section.getBoundingClientRect().top <= 135) current = entry;
+    });
+    entries.forEach(function (entry) {
+      if (entry === current) entry.link.setAttribute('aria-current', 'location');
+      else entry.link.removeAttribute('aria-current');
+    });
+  }
+  function schedule() { if (!frame) frame = requestAnimationFrame(update); }
+  function place() {
+    if (wide.matches) {
+      if (nav.parentNode !== rail) rail.append(nav);
+      page.setAttribute('data-sidebar', '');
+    } else {
+      if (nav.parentNode === rail) origin.after(nav);
+      page.removeAttribute('data-sidebar');
+    }
+    schedule();
+  }
+  if (wide.addEventListener) wide.addEventListener('change', place);
+  else wide.addListener(place);
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', schedule, { passive: true });
+  window.addEventListener('hashchange', schedule);
+  place();
+})();
