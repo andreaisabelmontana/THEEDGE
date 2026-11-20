@@ -2,6 +2,19 @@
    this removes the legacy control and provides failed-image text fallbacks. */
 (function () {
   'use strict';
+  var assets = new URL('./organizations/', document.currentScript.src);
+  // Add the three distinct Experience affiliations to the shared carousel,
+  // using the same artwork and destinations as the Experience records.
+  var additions = [
+    { key: 'alcaldia', label: 'Alcaldía Mayor de Bogotá', href: 'https://bogota.gov.co/',
+      image: 'alcaldia-bogota.jpg', height: 58, width: 118 },
+    { key: 'microsoft', label: 'Microsoft Student Ambassadors', title: 'Microsoft',
+      href: 'https://mvp.microsoft.com/studentambassadors', image: 'microsoft-symbol.svg',
+      height: 30, width: 152 },
+    { key: 'gdg', label: 'Google Developer Groups', title: 'Google Developer Groups',
+      href: 'https://developers.google.com/community/gdg', image: 'gdg-symbol.svg',
+      height: 22, width: 228 }
+  ];
   var organizationSites = {
     "ie": [
       "https://www.ie.edu/university/",
@@ -24,9 +37,37 @@
       "Colegio Nueva Granada"
     ]
   };
+  function appendAdditionalOrganizations(group) {
+    additions.forEach(function (organization) {
+      var className = 'am-org-lockup--' + organization.key;
+      if (group.querySelector('.' + className)) return;
+      var link = document.createElement('a');
+      link.className = 'am-org-lockup ' + className;
+      link.href = organization.href;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.setAttribute('aria-label', organization.label);
+      link.setAttribute('data-taxi-ignore', '');
+      link.style.width = organization.width + 'px';
+      if (group.closest('[aria-hidden="true"]')) link.tabIndex = -1;
+      var logo = document.createElement('img');
+      logo.src = new URL(organization.image, assets).href;
+      logo.alt = organization.label;
+      logo.style.height = organization.height + 'px';
+      link.appendChild(logo);
+      if (organization.title) {
+        var title = document.createElement('span');
+        title.textContent = organization.title;
+        title.style.cssText = 'font:600 15px/1.2 Arial,sans-serif;white-space:nowrap;color:#203047';
+        link.appendChild(title);
+      }
+      group.appendChild(link);
+    });
+  }
   function boot() {
     document.querySelectorAll('.is-footer a[data-site-art-link]').forEach(function (link) { link.remove(); });
     document.querySelectorAll('.am-org-marquee').forEach(function (marquee) {
+      marquee.querySelectorAll('.am-org-group').forEach(appendAdditionalOrganizations);
       Object.keys(organizationSites).forEach(function (key) {
         marquee.querySelectorAll('div.am-org-lockup--' + key).forEach(function (item) {
           var link = document.createElement('a');
