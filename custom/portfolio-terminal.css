@@ -1,0 +1,70 @@
+@font-face {
+  font-family: 'Portfolio Orbitron';
+  src: url('./Orbitron.ttf') format('truetype');
+  font-weight: 400 900;
+  font-display: swap;
+}
+.edge-orbital-name {
+  font-family: 'Portfolio Orbitron', system-ui, sans-serif !important;
+  font-size: clamp(2rem, 5vw, 5.75rem) !important;
+  font-weight: 750;
+  letter-spacing: -.035em;
+  line-height: 1.12;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.edge-orbital-heading {
+  font-family: 'Portfolio Orbitron', system-ui, sans-serif !important;
+  font-weight: 750;
+  letter-spacing: -.025em !important;
+  text-transform: uppercase;
+}
+.project-intro .edge-orbital-heading, .am-career-title.edge-orbital-heading {
+  font-size: clamp(1.65rem, 6.4vw, 6.3rem) !important;
+  line-height: 1.16 !important;
+}
+.edge-terminal-heading { position: relative; }
+.edge-terminal-heading::before {
+  color: currentColor;
+  opacity: .55;
+  content: '// ' / '';
+}
+.edge-terminal-heading[data-edge-frame] {
+  color: transparent !important;
+}
+.edge-terminal-heading[data-edge-frame]::after {
+  position: absolute;
+  inset: 0;
+  color: var(--edge-terminal-ink, currentColor);
+  content: attr(data-edge-frame) / '';
+  pointer-events: none;
+  animation: edge-terminal-focus .18s ease-out both;
+}
+.edge-terminal-detail::before {
+  content: '>> ' / '';
+  margin-inline-end: .32em;
+  opacity: .63;
+  font: 600 .89em/1 ui-monospace, monospace;
+}
+.edge-terminal-sound {
+  display: inline-flex;
+  gap: .4rem;
+  align-items: center;
+  margin-block-start: .75rem;
+  padding: .28rem .52rem;
+  color: inherit;
+  border: 1px solid currentColor;
+  border-radius: .25rem;
+  background: transparent;
+  font: 550 .68rem/1.4 ui-monospace, monospace;
+  cursor: pointer;
+}
+.edge-terminal-sound:focus-visible { outline: 2px solid #4285f4; outline-offset: 4px; }
+@keyframes edge-terminal-focus {
+  from { filter: blur(2px); opacity: .72; }
+  to { filter: blur(0); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .edge-terminal-sound { display: none; }
+  .edge-terminal-heading[data-edge-frame]::after { animation: none; }
+}
