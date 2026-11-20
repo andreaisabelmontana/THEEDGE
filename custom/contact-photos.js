@@ -1,0 +1,102 @@
+(function () {
+  'use strict';
+  const words = {
+    en: {
+      title: 'Photos', previous: 'Previous photo', next: 'Next photo',
+      captions: ['Robotics workbench', 'Virtual reality', 'IE campus', 'Street photography'],
+      alts: ['Andrea working on a small wheeled robot at a workbench', 'Andrea trying a VR headset with two controllers', 'Andrea beside the blue IE campus mascot', 'Andrea looking through a camera on a busy street'],
+    },
+    es: {
+      title: 'Fotos', previous: 'Foto anterior', next: 'Foto siguiente',
+      captions: ['Mesa de robótica', 'Realidad virtual', 'Campus de IE', 'Fotografía callejera'],
+      alts: ['Andrea trabaja en un pequeño robot con ruedas', 'Andrea prueba un visor de realidad virtual con dos mandos', 'Andrea junto a la mascota azul de IE', 'Andrea mira por el visor de una cámara en una calle concurrida'],
+    },
+    de: {
+      title: 'Fotos', previous: 'Vorheriges Foto', next: 'Nächstes Foto',
+      captions: ['Robotik-Werkbank', 'Virtuelle Realität', 'IE-Campus', 'Straßenfotografie'],
+      alts: ['Andrea arbeitet an einem kleinen Roboter auf Rädern', 'Andrea probiert ein VR-Headset mit zwei Controllern aus', 'Andrea neben dem blauen IE-Maskottchen', 'Andrea schaut auf einer belebten Straße durch eine Kamera'],
+    },
+  };
+  function boot() {
+    const gallery = document.querySelector('[data-contact-photos]');
+    if (!gallery || gallery.hasAttribute('data-ready')) return;
+    const title = gallery.querySelector('h2');
+    const track = gallery.querySelector('[data-photo-track]');
+    const slides = Array.from(track.querySelectorAll('figure'));
+    const controls = gallery.querySelector('[data-photo-controls]');
+    const prev = controls.querySelector('[data-photo-prev]');
+    const next = controls.querySelector('[data-photo-next]');
+    const caption = controls.querySelector('[data-photo-caption]');
+    const count = controls.querySelector('[data-photo-count]');
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let index = -1;
+    let locale = '';
+
+    function render(at) {
+      if (at === index) return;
+      index = at;
+      const copy = words[locale];
+      caption.textContent = copy.captions[index];
+      count.textContent = (index + 1) + ' / ' + slides.length;
+      prev.setAttribute('aria-disabled', String(index === 0));
+      next.setAttribute('aria-disabled', String(index === slides.length - 1));
+      slides.forEach((slide, i) => slide.setAttribute('aria-hidden', String(i !== index)));
+    }
+    function localize(lang) {
+      lang = words[lang] ? lang : 'en';
+      if (locale === lang) return;
+      locale = lang;
+      const copy = words[lang];
+      title.textContent = copy.title;
+      prev.setAttribute('aria-label', copy.previous);
+      next.setAttribute('aria-label', copy.next);
+      slides.forEach((slide, i) => {
+        slide.querySelector('img').alt = copy.alts[i];
+        slide.querySelector('figcaption').textContent = copy.captions[i];
+      });
+      const current = Math.max(0, index);
+      index = -1;
+      render(current);
+    }
+    function go(at) {
+      if (at < 0 || at >= slides.length) return;
+      track.scrollTo({
+        left: slides[at].offsetLeft - slides[0].offsetLeft,
+        behavior: reduced.matches ? 'auto' : 'smooth',
+      });
+    }
+    let frame = 0;
+    track.addEventListener('scroll', () => {
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        const origin = slides[0].offsetLeft;
+        let nearest = 0;
+        let distance = Infinity;
+        slides.forEach((slide, i) => {
+          const d = Math.abs(slide.offsetLeft - origin - track.scrollLeft);
+          if (d < distance) { distance = d; nearest = i; }
+        });
+        render(nearest);
+      });
+    }, { passive: true });
+    prev.addEventListener('click', () => go(index - 1));
+    next.addEventListener('click', () => go(index + 1));
+    track.addEventListener('keydown', event => {
+      let target;
+      if (event.key === 'ArrowLeft') target = index - 1;
+      else if (event.key === 'ArrowRight') target = index + 1;
+      else if (event.key === 'Home') target = 0;
+      else if (event.key === 'End') target = slides.length - 1;
+      else return;
+      event.preventDefault();
+      go(target);
+    });
+    document.addEventListener('edge:lang', event => localize(event.detail));
+    localize(document.documentElement.lang);
+    gallery.setAttribute('data-ready', '');
+    controls.hidden = false;
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();

@@ -621,18 +621,27 @@ body.edge-ready[data-home-shell] .home-showcase > * { grid-area: 1 / 1; }
 body.clean-portfolio.edge-ready[data-home-shell] .home-showcase > .panels-wrap {
   position: relative;
   z-index: 2;
-  width: min(100%, 1320px);
-  max-width: 1320px;
-  margin-inline: auto;
-  padding: clamp(36px, 8vw, 116px) clamp(24px, 7.5vw, 112px) 76px;
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-inline-size: 0;
+  max-inline-size: 1320px;
+  justify-self: center;
+  margin-inline: 0;
+  padding: clamp(36px, 8vw, 116px) clamp(24px, 5vw, 78px) 76px;
   background: transparent !important;
 }
 body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .panels {
+  inline-size: 100%;
+  min-inline-size: 0;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: start;
-  gap: clamp(26px, 11vw, 166px);
+  grid-auto-rows: 1fr;
+  align-items: stretch;
+  gap: clamp(24px, 5vw, 72px);
 }
 body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card {
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-inline-size: 0;
   padding: 30px clamp(18px, 2.2vw, 38px);
   background: var(--theme-ice, #d5e0fa) !important;
   border: 1px solid #a8bceb !important;
@@ -647,7 +656,39 @@ body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card-img {
   right: 0;
   height: 108%;
 }
-body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card-text { max-width: 59%; padding-right: 0; }
+body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card {
+  align-items: stretch;
+  padding-block: clamp(24px, 3vw, 44px);
+}
+body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card-text {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  width: 61%;
+  max-width: none;
+  padding-right: 0;
+}
+body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card .text-impact-reg-brier {
+  font-family: 'Mona Sans Variable', Arial, sans-serif;
+  font-weight: 760;
+  font-variation-settings: 'wdth' 91;
+  font-size: clamp(25px, 3.5vw, 55px);
+  line-height: 1.03;
+  letter-spacing: -.05em;
+  margin: 0 0 12px;
+  overflow-wrap: anywhere;
+}
+body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card .text-body-reg-mona {
+  max-inline-size: 23ch;
+  line-height: 1.45;
+  margin: 0 0 12px;
+}
+body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card .otot-btn { margin-top: auto; }
+@media (max-width: 480px) {
+  body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card .text-impact-reg-brier {
+    font-size: clamp(24px, 6.7vw, 32px);
+  }
+}
 body.edge-ready[data-home-shell] .home-showcase .home-earth { align-self: stretch; background: transparent; }
 body.edge-ready[data-home-shell] .home-showcase .home-earth #am-earth { margin-top: -5.5vw; }
 @media (max-width: 750px) {

@@ -1,0 +1,96 @@
+/* Match the Contact opening to the Projects and Experience display type. */
+body.contact-page .taxi-w.is-contact .text-on-t-hero-heading,
+body.contact-page .taxi-w.is-contact .text-on-t-hero-heading * {
+  font-family: 'Mona Sans Variable', Arial, sans-serif;
+  font-weight: 760;
+  font-variation-settings: 'wdth' 91;
+  letter-spacing: -.045em;
+}
+body.contact-page .contact-photos {
+  grid-column: 1 / -1;
+  min-width: 0;
+  color: var(--theme-ink, #182746);
+}
+.contact-photos__title {
+  margin: 0 0 16px;
+  font-size: clamp(24px, 3.2vw, 32px);
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: -.025em;
+}
+.contact-photos__track {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-inline: contain;
+  border: 1px solid var(--theme-line, #d5e0fa);
+  border-radius: 14px;
+  background: var(--theme-soft, #edf2fc);
+}
+.contact-photos__slide {
+  position: relative;
+  flex: 0 0 100%;
+  min-width: 0;
+  margin: 0;
+  scroll-snap-align: start;
+}
+.contact-photos__slide img {
+  display: block;
+  width: 100%;
+  height: clamp(290px, 50vw, 490px);
+  object-fit: var(--photo-fit, contain);
+  object-position: var(--photo-position, center);
+}
+.contact-photos__slide[data-photo-fit="wide"] {
+  --photo-fit: contain;
+  --photo-position: center;
+}
+.contact-photos__controls,
+.contact-photos__slide figcaption {
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--theme-muted, #4a5d7f);
+}
+.contact-photos__slide figcaption { padding: 0 14px 12px; }
+.contact-photos[data-ready] .contact-photos__track { scrollbar-width: none; }
+.contact-photos[data-ready] .contact-photos__track::-webkit-scrollbar { display: none; }
+.contact-photos[data-ready] .contact-photos__slide figcaption { display: none; }
+.contact-photos__controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+.contact-photos__controls[hidden] { display: none; }
+.contact-photos__caption { margin: 0; }
+.contact-photos__count { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.contact-photos__buttons { display: flex; gap: 5px; }
+.contact-photos__button {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--theme-line-strong, #a8b8d5);
+  border-radius: 50%;
+  color: var(--theme-ink, #182746);
+  background: var(--theme-surface, #fff);
+  cursor: pointer;
+}
+.contact-photos__button:not([aria-disabled="true"]):hover {
+  background: var(--theme-soft, #edf2fc);
+}
+.contact-photos__button[aria-disabled="true"] { opacity: .42; cursor: default; }
+.contact-photos__button svg { width: 17px; height: 17px; }
+.contact-photos__track:focus-visible,
+.contact-photos__button:focus-visible {
+  outline: 2px solid var(--theme-accent, #1a5ad1);
+  outline-offset: 3px;
+}
+
+/* Light editorial grading in the browser; keep the original photographs intact. */
+.contact-photos__slide[data-photo-kind="vr"] img { filter: saturate(.88); }
+.contact-photos__slide[data-photo-kind="campus"] img { filter: brightness(1.035) saturate(1.07); }
+.contact-photos__slide[data-photo-kind="street"] img { filter: contrast(1.025); }

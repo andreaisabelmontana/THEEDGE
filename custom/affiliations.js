@@ -48,7 +48,8 @@
       link.rel = 'noopener noreferrer';
       link.setAttribute('aria-label', organization.label);
       link.setAttribute('data-taxi-ignore', '');
-      link.style.width = organization.width + 'px';
+      link.style.width = organization.title ? 'max-content' : organization.width + 'px';
+      if (organization.title) link.style.minWidth = organization.width + 'px';
       if (group.closest('[aria-hidden="true"]')) link.tabIndex = -1;
       var logo = document.createElement('img');
       logo.src = new URL(organization.image, assets).href;

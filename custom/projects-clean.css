@@ -3,17 +3,16 @@
 .projects-page .taxi-w.on-track { background: #101016 !important; }
 .projects-page .s-group.bg-black { background: #f1edf7 !important; }
 .projects-page .taxi-w.on-track .s.is-on-track-home {
-  height: clamp(430px, 56vh, 640px) !important;
+  height: clamp(350px, 44vh, 520px) !important;
   min-height: 0 !important;
   position: relative;
 }
 .projects-page .project-intro {
-  position: absolute; z-index: 6; top: 50%; left: max(48px, calc((100vw - 1200px) / 2));
-  transform: translateY(-28%); width: min(48%, 600px); color: var(--project-ink);
+  position: absolute; z-index: 6; bottom: clamp(20px, 2vw, 32px); left: max(48px, calc((100vw - 1200px) / 2)); width: min(48%, 600px); color: var(--project-ink);
 }
 .project-kicker { font: 11px/1.5 ui-monospace, Consolas, monospace; letter-spacing: .14em; color: #c7a0ee; text-transform: uppercase; }
 .project-intro h1 { font-family: Brier, Georgia, serif; font-size: clamp(48px, 5.3vw, 78px); line-height: 1.06; font-weight: 400; letter-spacing: -.045em; margin: 20px 0; text-transform: none; }
-.project-intro p:last-child { font-size: 17px; line-height: 1.7; max-width: 390px; color: var(--project-muted); }
+.project-intro p:last-child { font-size: 17px; line-height: 1.7; max-width: 390px; margin-bottom: 0; color: var(--project-muted); }
 .projects-page .taxi-w.on-track .s.home-helmets { margin: 0 !important; padding: 0 0 80px !important; }
 .projects-page .taxi-w.on-track .s.home-helmets .c.home-helmets {
   width: min(1200px, calc(100% - 96px)); max-width: none; margin-inline: auto; padding: 0 !important;
@@ -62,8 +61,8 @@
 .project-card.motion-ready { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
 .project-card.motion-ready.is-visible { opacity: 1; transform: none; }
 @media (max-width: 900px) {
-  .projects-page .taxi-w.on-track .s.is-on-track-home { height: 430px !important; }
-  .projects-page .project-intro { left: 32px; width: 52%; transform: translateY(-18%); }
+  .projects-page .taxi-w.on-track .s.is-on-track-home { height: 360px !important; }
+  .projects-page .project-intro { left: 32px; width: 58%; }
   .project-intro h1 { font-size: clamp(42px, 7vw, 62px); }
   .projects-page .taxi-w.on-track .s.home-helmets .c.home-helmets { width: calc(100% - 64px); }
   .project-subjects { gap: 0 23px; }
@@ -71,8 +70,8 @@
   .project-grid { gap: 40px 24px; }
 }
 @media (max-width: 600px) {
-  .projects-page .taxi-w.on-track .s.is-on-track-home { height: 490px !important; }
-  .projects-page .project-intro { top: 310px; left: 24px; width: calc(100% - 48px); transform: none; }
+  .projects-page .taxi-w.on-track .s.is-on-track-home { height: 435px !important; }
+  .projects-page .project-intro { bottom: 22px; left: 24px; width: calc(100% - 48px); }
   .project-intro h1 { font-size: 43px; margin: 12px 0; }
   .project-intro p:last-child { font-size: 14px; line-height: 1.6; max-width: 330px; }
   .project-kicker { font-size: 10px; }

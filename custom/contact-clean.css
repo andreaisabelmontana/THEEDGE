@@ -83,32 +83,9 @@ body.contact-page .s.am-contact {
 }
 body.contact-page .am-contact > .c.am-exp {
   display: grid;
-  grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
-  align-items: start;
-  gap: 64px;
-}
-body.contact-page .am-contact .am-exp-head {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 16px;
-  margin: 0;
-}
-body.contact-page .am-contact .am-exp-title {
-  margin: 0;
-  font-size: 32px;
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: -.7px;
-  color: var(--clean-ink, #f4f0f6);
-}
-body.contact-page .am-contact .am-exp-sub {
-  max-width: 270px;
-  margin: 0;
-  font-size: 15px;
-  line-height: 1.7;
-  color: var(--clean-muted, #b5adbd);
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  align-items: stretch;
+  gap: 44px 60px;
 }
 body.contact-page .am-contact-list {
   display: block;
@@ -197,15 +174,6 @@ body.contact-page .taxi-w.is-contact .s.am-earth-s {
     grid-template-columns: 1fr;
     gap: 28px;
   }
-  body.contact-page .am-contact .am-exp-head {
-    gap: 12px;
-  }
-  body.contact-page .am-contact .am-exp-title {
-    font-size: 30px;
-  }
-  body.contact-page .am-contact .am-exp-sub {
-    max-width: 360px;
-  }
 }
 @media (max-width: 480px) {
   body.contact-page .am-contact-link {
@@ -220,7 +188,27 @@ body.contact-page .taxi-w.is-contact .s.am-earth-s {
   }
 }
 
-/* The chosen portrait sits in the Reach Me column, without enlarging the contact rows. */
-body.contact-page .reach-portrait { width: min(100%, 248px); margin: 7px 0 0; aspect-ratio: 4 / 5; overflow: hidden; border: 1px solid var(--theme-line, #d5e0fa); border-radius: 10px; background: var(--theme-surface, #fff); }
-body.contact-page .reach-portrait img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 36%; }
-@media (max-width: 620px) { body.contact-page .reach-portrait { width: min(61vw, 220px); } }
+/* The contact list determines the desktop row height; the portrait follows it. */
+body.contact-page .reach-portrait {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--theme-line, #d5e0fa);
+  border-radius: 10px;
+  background: var(--theme-surface, #fff);
+}
+body.contact-page .reach-portrait img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 36%;
+}
+@media (max-width: 800px) {
+  /* Put the links first on small screens instead of pushing them below the portrait. */
+  body.contact-page .am-contact-list { grid-row: 1; }
+  body.contact-page .reach-portrait { width: min(100%, 300px); aspect-ratio: 2 / 3; }
+}
