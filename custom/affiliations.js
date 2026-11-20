@@ -65,7 +65,17 @@
       group.appendChild(link);
     });
   }
+  function routeContactButtons() {
+    var contact = new URL('../../contact/', assets);
+    document.querySelectorAll(
+      '.footer-bg-bottom-btn-w a.btn-w[href^="mailto:"], a[data-nav-link-highlight][href^="mailto:"]'
+    ).forEach(function (link) {
+      link.href = contact.href;
+      link.setAttribute('data-taxi-ignore', '');
+    });
+  }
   function boot() {
+    routeContactButtons();
     document.querySelectorAll('.is-footer a[data-site-art-link]').forEach(function (link) { link.remove(); });
     document.querySelectorAll('.am-org-marquee').forEach(function (marquee) {
       marquee.querySelectorAll('.am-org-group').forEach(appendAdditionalOrganizations);
