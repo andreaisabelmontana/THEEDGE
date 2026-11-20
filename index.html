@@ -100,6 +100,18 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
   .availability-copy { display: grid; gap: 3px; min-inline-size: 0; }
   .availability-title { font-size: 14px; font-weight: 750; line-height: 1.25; }
   .availability-season { color: #ffe9e7; font-size: 12px; font-weight: 550; line-height: 1.35; }
+  .hero-focus-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .45em;
+    max-width: 100%;
+    border-radius: 3px;
+    color: inherit;
+    text-decoration: none;
+  }
+  .hero-focus-link:hover { text-decoration: underline; text-underline-offset: .2em; }
+  .hero-focus-link:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+  .hero-focus-link svg { flex: none; inline-size: 1em; block-size: 1em; }
   @media (min-width: 1024px) {
     /* The renderer feathers the last 10 CSS pixels. Bring the solid section
        up to the opaque part of the canvas instead of painting a second fade. */
@@ -274,7 +286,12 @@ document.addEventListener('DOMContentLoaded', function () {
             I build software that connects AI, interactive 3D and the physical world.
           </p>
 
-          <p class="hero-focus" data-i18n="hero.focus">Research Assistant at IEX Labs · Software Engineer</p>
+          <p class="hero-focus">
+            <a class="hero-focus-link" href="https://cyphy.life/" data-taxi-ignore target="_blank" rel="noopener noreferrer">
+              <span data-i18n="hero.focus">Research Assistant at IEX Labs · Software Engineer</span>
+              <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 12 4M5 4h7v7"/></svg>
+            </a>
+          </p>
           <p class="hero-stack" data-i18n="hero.stack">Python · TypeScript · React · Three.js · Unity / ROS</p>
 
           <p class="status" data-reveal="180">
