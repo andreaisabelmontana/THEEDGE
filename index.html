@@ -104,6 +104,101 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
 </style>
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@700&amp;display=swap">
 <link rel="stylesheet" href="custom/edolus-type.css?v=20261120-edolus">
+<style id="home-frost-production">
+html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card {
+  background: #dce4ee !important;
+  border-color: rgb(238 245 255 / .53) !important;
+  box-shadow: inset 0 1px 1px rgb(255 255 255 / .73),
+    inset -1px -1px 2px rgb(221 233 250 / .43), 0 7px 22px rgb(2 7 22 / .40);
+}
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card {
+    background: linear-gradient(104deg, rgb(243 246 248 / .89) 0%,
+      rgb(233 238 244 / .77) 39%, rgb(233 239 244 / .47) 67%,
+      rgb(226 234 243 / .29) 100%) !important;
+    -webkit-backdrop-filter: blur(10px) saturate(.81);
+    backdrop-filter: blur(10px) saturate(.81);
+  }
+  html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card[data-frost-lens] {
+    backdrop-filter: blur(10px) saturate(.81) var(--home-frost-lens);
+  }
+}
+html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card:is(:hover,:focus-visible) {
+  border-color: rgb(245 250 255 / .78) !important;
+  box-shadow: inset 0 1px 1px rgb(255 255 255 / .86),
+    inset -1px -1px 2px rgb(221 233 250 / .53), 0 9px 23px rgb(2 7 22 / .45);
+}
+html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card:focus-visible {
+  outline: 2px solid #cfdaef;
+  outline-offset: 4px;
+}
+html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card .text-body-reg-mona {
+  color: #1c293a;
+}
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more), print {
+  html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card,
+  html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card[data-frost-lens] {
+    background: #dce4ee !important;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+</style>
+<script>
+/* Optics sample the existing live backdrop; the card's portrait and text stay sharp. */
+document.addEventListener('DOMContentLoaded', function () {
+  if (!window.chrome || !window.ResizeObserver ||
+      !CSS.supports('backdrop-filter', 'url("#am-frost-probe")')) return;
+  if (matchMedia('(prefers-reduced-transparency: reduce)').matches ||
+      matchMedia('(prefers-contrast: more)').matches) return;
+  const ns = 'http://www.w3.org/2000/svg';
+  const create = (tag, attrs) => {
+    const el = document.createElementNS(ns,tag);
+    for (const [k,v] of Object.entries(attrs)) el.setAttribute(k,v);
+    return el;
+  };
+  const svg = create('svg', {width:0,height:0,'aria-hidden':'true',style:'position:absolute;pointer-events:none'});
+  const defs = create('defs',{});
+  svg.append(defs); document.body.append(svg);
+  document.querySelectorAll('[data-home-shell] .home-showcase .otot-card').forEach((card,i) => {
+    const id = 'am-home-glass-lens-' + i;
+    const filter = create('filter',{id,x:0,y:0,width:1,height:1,
+      filterUnits:'objectBoundingBox',primitiveUnits:'userSpaceOnUse','color-interpolation-filters':'sRGB'});
+    const map = create('feImage',{x:0,y:0,result:'lensMap',preserveAspectRatio:'none'});
+    filter.append(map,create('feDisplacementMap',{in:'SourceGraphic',in2:'lensMap',scale:24,xChannelSelector:'R',yChannelSelector:'G'}));
+    defs.append(filter);
+    const mapCanvas=document.createElement('canvas'), ctx=mapCanvas.getContext('2d');
+    if (!ctx) return;
+    let prev='';
+    new ResizeObserver(() => {
+      const w=Math.round(card.clientWidth),h=Math.round(card.clientHeight);
+      if(w<10 || h<10 || prev===w+'x'+h)return;
+      prev=w+'x'+h;
+      const rad=parseFloat(getComputedStyle(card).borderTopLeftRadius)||26;
+      const mw=Math.floor(w/2), mh=Math.floor(h/2);
+      mapCanvas.width=mw;mapCanvas.height=mh;
+      const image=ctx.createImageData(mw,mh), data=image.data;
+      for(let y=0;y<mh;y++)for(let x=0;x<mw;x++) {
+        const px=(x+.5)*w/mw-w/2,py=(y+.5)*h/mh-h/2;
+        const qx=Math.abs(px)-(w/2-rad),qy=Math.abs(py)-(h/2-rad);
+        const ux=Math.max(0,qx),uy=Math.max(0,qy),n=Math.hypot(ux,uy);
+        const d=rad-n-Math.min(Math.max(qx,qy),0);
+        const t=Math.max(0,Math.min(1,1-d/23));
+        const nx=n>0?Math.sign(px)*ux/n:qx>=qy?Math.sign(px):0;
+        const ny=n>0?Math.sign(py)*uy/n:qy>qx?Math.sign(py):0;
+        const at=(y*mw+x)*4;
+        data[at]=127.5-nx*91*t*t;data[at+1]=127.5-ny*91*t*t;data[at+2]=128;data[at+3]=255;
+      }
+      ctx.putImageData(image,0,0);
+      map.setAttribute('width',w);map.setAttribute('height',h);
+      map.setAttribute('href',mapCanvas.toDataURL('image/png'));
+      card.style.setProperty('--home-frost-lens','url("#'+id+'")');
+      card.setAttribute('data-frost-lens','');
+    }).observe(card);
+  });
+}, {once:true});
+</script>
+
 </head><body data-edit="" class="clean-portfolio" data-home-shell><div class="edge-ui">
 
   <!-- The original nav supplies the astronaut and animated menu. ui.js adopts
@@ -163,7 +258,6 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
         <a class="otot-card" data-taxi-ignore href="./online" data-reveal="0">
           <div class="otot-card-text">
             <h2 class="text-impact-reg-brier" data-i18n="panel.projects.title">Projects</h2>
-            <p class="text-body-reg-mona" data-i18n="panel.projects.desc">Software, robotics, and interactive 3D.</p>
             <span class="otot-btn" aria-hidden="true">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </span>
@@ -175,7 +269,6 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
         <a class="otot-card" data-taxi-ignore href="./experience" data-reveal="90">
           <div class="otot-card-text">
             <h2 class="text-impact-reg-brier" data-i18n="panel.experience.title">Experience</h2>
-            <p class="text-body-reg-mona" data-i18n="panel.about.desc">Research, engineering roles, and education.</p>
             <span class="otot-btn" aria-hidden="true">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </span>
