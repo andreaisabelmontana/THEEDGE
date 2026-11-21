@@ -301,3 +301,10 @@ body.experience-page #journey .am-journey-heading {
 @media (prefers-reduced-motion: reduce) {
   html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .nav-ham[data-nav-ham] { transition: none; }
 }
+
+@media screen and (min-width: 900px) {
+  body.projects-page .project-intro p[data-edolus-copy] {
+    width: max-content;
+    max-width: min(74vw, 760px);
+  }
+}
