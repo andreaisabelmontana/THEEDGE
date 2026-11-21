@@ -4311,7 +4311,10 @@ if (diffuseColor.a < 0.02) discard;
               /* 
                 Cursor Overlay
               */
-              vec3 cursorBackground = mix(COLOR_CURSOR_BACKGROUND, COLOR_CURSOR_FOREGROUND, noiseBase);
+              // Shift the color continuously over the moving cloud, not between the binary contour bands.
+              float cloudRipple = cos(textureBackgroundNoise.g * 6.2831853);
+              float cloudRamp = smoothstep(-0.10, 1.10, 0.70 * vUv.y + 0.30 * vUv.x + 0.045 * cloudRipple);
+              vec3 cursorBackground = mix(COLOR_CURSOR_BACKGROUND, COLOR_CURSOR_FOREGROUND, cloudRamp);
 
             
               if (OUTLINE) {
@@ -4339,7 +4342,7 @@ if (diffuseColor.a < 0.02) discard;
                 cursorBackground = mix(
                   cursorBackground,
                   COLOR_CURSOR_OUTLINE,
-                  edge
+                  edge * 0.38
                 );
 
                 // backgroundInverted = mix(
