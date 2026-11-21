@@ -410,7 +410,7 @@ html[data-theme] body .nav-menu-w .nav-menu-bg {
    languages visible in a wider rounded rectangle. */
 @media screen {
   html[data-theme] body.clean-portfolio .nav[data-nav-wrap] {
-    --top-control-size: 52px;
+    --top-control-size: 58px;
     --top-control-radius: 14px;
     --top-control-fill: #f6f9ffeb;
     --top-control-ink: #243b62;
@@ -452,7 +452,7 @@ html[data-theme] body .nav-menu-w .nav-menu-bg {
     place-items: center;
     width: clamp(38px, 3.25vw, 46px);
     min-width: 0;
-    height: 44px;
+    height: calc(var(--top-control-size) - 8px);
     min-height: 44px;
     margin: 0;
     padding: 0;
@@ -466,6 +466,7 @@ html[data-theme] body .nav-menu-w .nav-menu-bg {
   html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button:hover { background: #e5eeff; }
   html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button[aria-pressed="true"] { background: #dce9ff; color: #164cc9; }
   @media (max-width: 500px) {
+    html[data-theme] body.clean-portfolio .nav[data-nav-wrap] { --top-control-size: 54px; }
     html[data-theme] body.clean-portfolio .nav[data-nav-wrap] :is(.nav-brand-link, .nav-brand) {
       flex-basis: 60px;
       width: 60px !important;
@@ -482,4 +483,72 @@ html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase
   html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .panels {
     gap: clamp(20px, 3.5vw, 52px);
   }
+}
+
+/* Keep the legacy canvas mounted for the site's loader, but show our own
+   rotate-phone graphic instead of the stock racing wheel and monogram. */
+html[data-theme] body [data-mob-landscape] .mob-landscape-rive {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(62px, 22svh, 128px);
+  height: clamp(62px, 22svh, 128px);
+  margin: 0 auto 14px;
+}
+html[data-theme] body [data-mob-landscape] canvas[data-rive-mob-landscape] {
+  position: absolute;
+  inset: 0;
+  opacity: 0 !important;
+  pointer-events: none;
+}
+html[data-theme] body [data-mob-landscape] .mob-landscape-rive::after {
+  content: "";
+  display: block;
+  width: 66%;
+  aspect-ratio: 1;
+  background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='%23fff' stroke-width='2.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='21' y='9' width='22' height='45' rx='5'/%3E%3Cpath d='M29 48h6'/%3E%3C/svg%3E");
+  animation: edge-phone-turn 2.4s cubic-bezier(.25,.65,.25,1) infinite;
+}
+@keyframes edge-phone-turn {
+  0%, 15% { transform: rotate(-90deg); }
+  48%, 100% { transform: rotate(0); }
+}
+html[data-theme] body [data-mob-landscape] .text-title-reg-mona {
+  color: #fff;
+  text-align: center;
+  font: 720 clamp(20px, 7svh, 32px)/1.15 "Mona Sans Variable", Arial, sans-serif;
+}
+html[data-theme] body [data-mob-landscape] .edge-orientation-note {
+  display: block;
+  margin-top: 7px;
+  color: #f2f6ff;
+  font: 450 clamp(13px, 4.6svh, 18px)/1.35 "Mona Sans Variable", Arial, sans-serif;
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme] body [data-mob-landscape] .mob-landscape-rive::after { animation: none; }
+}
+
+/* The portfolio remains readable when hardware graphics are unavailable. */
+body.home-render-fallback #am-loader { display: none !important; }
+body.home-render-fallback .hero-portrait-fallback {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+}
+body.home-render-fallback .gl-clip { visibility: hidden; }
+
+/* Continue the fine contour field into the space formerly hidden by the
+   header slab. Fade into the live scene rather than adding a new band. */
+html[data-theme] body.edge-ready[data-home-shell] .edge-ui::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: clamp(140px, 21vh, 210px);
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(180deg, #bdd0f6 0%, #c7d9fc 42%, transparent 100%);
+  -webkit-mask: url("blobs-nav-purple.svg") center 39% / max(100%, 820px) auto no-repeat;
+  mask: url("blobs-nav-purple.svg") center 39% / max(100%, 820px) auto no-repeat;
 }

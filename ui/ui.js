@@ -280,7 +280,8 @@
     if (j && !j.id) j.id = 'journey';
   }
 
-  function restructure() {
+  function restructure(fallback = false) {
+    document.body.classList.toggle('home-render-fallback', fallback);
     document.body.classList.add('edge-ready');
     updatePortraitMode();
     adoptNav();
@@ -319,12 +320,30 @@
      120ms is well inside what anyone perceives here: this waits on a scene that
      takes seconds to arrive, so it never needed frame resolution. */
   var TICK = 120;
+  let checkedGraphics = false;
+
+  function hasWebGL2() {
+    try {
+      const probe = document.createElement('canvas').getContext('webgl2', {powerPreference:'low-power'});
+      if (!probe) return false;
+      const release = probe.getExtension('WEBGL_lose_context');
+      if (release) release.loseContext();
+      return true;
+    } catch (_) { return false; }
+  }
 
   function wait() {
     if (ready()) { restructure(); return; }
-    // the loader alone runs ~10s on a cold cache, so this has to be patient,
-    // but it must not hang the page forever if the scene never arrives
-    if (performance.now() - started > 25000) { restructure(); return; }
+    const elapsed = performance.now() - started;
+    // Do not leave a blank page for 25 seconds on a device with graphics disabled.
+    if (!checkedGraphics && elapsed > 1700 && !document.querySelector('.gl-wrap canvas.gl')) {
+      checkedGraphics = true;
+      if (!hasWebGL2()) { restructure(true); return; }
+    }
+    if (elapsed > 25000) {
+      restructure(document.body.dataset.portraitRendered !== 'true');
+      return;
+    }
     setTimeout(wait, TICK);
   }
 
