@@ -13,7 +13,7 @@ body.contact-page .contact-satellite :is(model-viewer,.contact-satellite-poster)
   position: absolute; inset: 0; width: 100%; height: 100%; display: block;
   background: transparent; object-fit: contain; pointer-events: none;
   /* A shared screen-space roll keeps the poster and 3D pose in the same frame. */
-  transform: rotate(56deg) scale(1.55);
+  transform: rotate(56deg) scale(1.86);
 }
 body.contact-page .contact-satellite model-viewer { opacity: 0; --progress-bar-color: transparent; }
 body.contact-page .contact-satellite.is-rendered model-viewer { opacity: 1; }
@@ -47,7 +47,7 @@ body.contact-page .contact-satellite-credit button[hidden] { display: none; }
 @media (max-width: 1000px) {
   body.contact-page .contact-satellite { position: relative; top: auto; right: auto; width: min(100%, 480px); height: 228px; margin: 14px 0 0 auto; }
   body.contact-page .contact-satellite-flight { height: 200px; }
-  body.contact-page .contact-satellite :is(model-viewer,.contact-satellite-poster) { transform: rotate(56deg) scale(1.35); }
+  body.contact-page .contact-satellite :is(model-viewer,.contact-satellite-poster) { transform: rotate(56deg) scale(1.55); }
 }
 @media (prefers-reduced-motion: reduce) {
   body.contact-page .contact-satellite-flight { animation: none; transform: translate(calc(var(--satellite-travel) * .5), 0); }

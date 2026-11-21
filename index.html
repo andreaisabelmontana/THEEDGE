@@ -424,54 +424,62 @@ document.addEventListener('DOMContentLoaded', function () {
   addEventListener('scroll',queue,{passive:true});
 })();
 </script>
-<style id="card-heading-reveal">
-  .otot-card { --title-enter: inset(-.12em 100% -.16em 0); --title-origin: right center; }
-  .otot-card + .otot-card { --title-enter: inset(-.12em 0 -.16em 100%); --title-origin: left center; }
-  .otot-card .otot-card-text h2 {
-    position: relative;
-    width: fit-content;
-    max-width: 100%;
-    isolation: isolate;
+<style id="card-heading-roll">
+  .otot-card .card-roll-label {
+    position: absolute; inline-size: 1px; block-size: 1px;
+    overflow: hidden; clip-path: inset(50%); white-space: nowrap;
   }
-  .otot-card .otot-card-text h2::after {
-    content: "";
-    position: absolute;
-    z-index: 1;
-    inset: -.12em -.03em -.16em;
-    background-color: #4285f4;
-    transform: scaleX(0);
-    transform-origin: var(--title-origin);
-    pointer-events: none;
+  .otot-card .card-roll-visual { display: inline-flex; vertical-align: top; margin-block: -.13em; max-width: 100%; }
+  .otot-card .card-roll-letter { display: block; height: 1.18em; overflow: hidden; padding-inline: .025em; margin-inline: -.025em; }
+  .otot-card .card-roll-track {
+    display: block; height: 2.36em;
+    transition: transform .6s cubic-bezier(.25,1,.5,1) calc(var(--letter-index) * 20ms);
   }
+  .otot-card .card-roll-track::before, .otot-card .card-roll-track::after {
+    display: block; content: attr(data-letter); height: 1.18em; line-height: 1.18;
+    white-space: pre; text-shadow: none;
+  }
+  html[data-theme] body.clean-portfolio .otot-card .card-roll-track::after { color: #3369e8 !important; }
   @media (hover: hover) and (pointer: fine) {
-    .otot-card:hover .otot-card-text h2 { color: #3369e8 !important; }
+    .otot-card:hover .card-roll-track { transform: translateY(-50%); }
   }
-  .otot-card:focus-visible .otot-card-text h2 { color: #3369e8 !important; }
-  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-    .otot-card:hover .otot-card-text h2 {
-      animation: card-title-clip .6s cubic-bezier(.3333,1,.6667,1);
-    }
-    .otot-card:hover .otot-card-text h2::after {
-      animation: card-title-cover .6s cubic-bezier(.645,.045,.355,1) .3s both;
-    }
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .otot-card:focus-visible .otot-card-text h2 {
-      animation: card-title-clip .6s cubic-bezier(.3333,1,.6667,1);
-    }
-    .otot-card:focus-visible .otot-card-text h2::after {
-      animation: card-title-cover .6s cubic-bezier(.645,.045,.355,1) .3s both;
-    }
-  }
-  @keyframes card-title-clip {
-    from { clip-path: var(--title-enter); }
-    to { clip-path: inset(-.12em -.03em -.16em); }
-  }
-  @keyframes card-title-cover {
-    from { transform: scaleX(1); }
-    to { transform: scaleX(0); }
+  .otot-card:focus-visible .card-roll-track { transform: translateY(-50%); }
+  @media (prefers-reduced-motion: reduce) {
+    .otot-card .card-roll-track { transition: none; }
   }
 </style>
+<script id="card-heading-roll-script">
+document.addEventListener('DOMContentLoaded', () => {
+  const segmenter = typeof Intl.Segmenter === 'function' ? new Intl.Segmenter(undefined, {granularity:'grapheme'}) : null;
+  document.querySelectorAll('.otot-card .otot-card-text h2').forEach(heading => {
+    const render = () => {
+      if (heading.firstElementChild?.classList.contains('card-roll-label')) return;
+      const title = heading.textContent.trim();
+      if (!title) return;
+      const label = document.createElement('span');
+      label.className = 'card-roll-label';
+      label.textContent = title;
+      const visual = document.createElement('span');
+      visual.className = 'card-roll-visual';
+      visual.setAttribute('aria-hidden','true');
+      const letters = segmenter ? Array.from(segmenter.segment(title), x => x.segment) : Array.from(title);
+      letters.forEach((letter, index) => {
+        const view = document.createElement('span');
+        view.className = 'card-roll-letter';
+        const track = document.createElement('span');
+        track.className = 'card-roll-track';
+        track.dataset.letter = letter;
+        track.style.setProperty('--letter-index',index);
+        view.append(track);
+        visual.append(view);
+      });
+      heading.replaceChildren(label, visual);
+    };
+    render();
+    new MutationObserver(render).observe(heading,{childList:true});
+  });
+}, {once:true});
+</script>
 </head><body data-edit="" class="clean-portfolio" data-home-shell><div class="edge-ui">
 
   <!-- The original nav supplies the astronaut and animated menu. ui.js adopts
