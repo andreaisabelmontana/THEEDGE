@@ -423,6 +423,54 @@ document.addEventListener('DOMContentLoaded', function () {
   addEventListener('scroll',queue,{passive:true});
 })();
 </script>
+<style id="card-heading-reveal">
+  .otot-card { --title-enter: inset(-.12em 100% -.16em 0); --title-origin: right center; }
+  .otot-card + .otot-card { --title-enter: inset(-.12em 0 -.16em 100%); --title-origin: left center; }
+  .otot-card .otot-card-text h2 {
+    position: relative;
+    width: fit-content;
+    max-width: 100%;
+    isolation: isolate;
+  }
+  .otot-card .otot-card-text h2::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    inset: -.12em -.03em -.16em;
+    background-color: #4285f4;
+    transform: scaleX(0);
+    transform-origin: var(--title-origin);
+    pointer-events: none;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .otot-card:hover .otot-card-text h2 { color: #3369e8; }
+  }
+  .otot-card:focus-visible .otot-card-text h2 { color: #3369e8; }
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .otot-card:hover .otot-card-text h2 {
+      animation: card-title-clip .6s cubic-bezier(.3333,1,.6667,1);
+    }
+    .otot-card:hover .otot-card-text h2::after {
+      animation: card-title-cover .6s cubic-bezier(.645,.045,.355,1) .3s both;
+    }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .otot-card:focus-visible .otot-card-text h2 {
+      animation: card-title-clip .6s cubic-bezier(.3333,1,.6667,1);
+    }
+    .otot-card:focus-visible .otot-card-text h2::after {
+      animation: card-title-cover .6s cubic-bezier(.645,.045,.355,1) .3s both;
+    }
+  }
+  @keyframes card-title-clip {
+    from { clip-path: var(--title-enter); }
+    to { clip-path: inset(-.12em -.03em -.16em); }
+  }
+  @keyframes card-title-cover {
+    from { transform: scaleX(1); }
+    to { transform: scaleX(0); }
+  }
+</style>
 </head><body data-edit="" class="clean-portfolio" data-home-shell><div class="edge-ui">
 
   <!-- The original nav supplies the astronaut and animated menu. ui.js adopts
