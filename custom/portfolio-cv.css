@@ -1,0 +1,9 @@
+/* CV is intentionally a text control, not another pill in the header. */
+a.portfolio-cv-link{display:inline-flex;box-sizing:border-box;flex:none;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:0 5px;border:0;background:none;color:#234ba8;font-family:inherit;font-size:.875rem;font-weight:690;line-height:1;text-decoration:none;white-space:nowrap;pointer-events:auto}
+html[data-theme="dark"] a.portfolio-cv-link,body:not(.clean-portfolio) .top a.portfolio-cv-link{color:#aecaff}
+a.portfolio-cv-link:is(:hover,:focus-visible){text-decoration:underline;text-underline-offset:.28em}
+a.portfolio-cv-link:focus-visible{outline:2px solid currentColor;outline-offset:-2px;border-radius:7px}
+.nav .btn-layout.is-nav>.portfolio-cv-link{margin-inline-end:clamp(3px,.45vw,8px)}
+.portfolio-cv-course-row{display:flex;justify-content:end;margin-bottom:.25rem}
+.portfolio-cv-arcade-tools{display:flex;flex-wrap:wrap;align-items:center;justify-content:end;gap:4px}
+@media(max-width:400px){.nav .btn-layout.is-nav>.portfolio-cv-link{min-width:36px;padding-inline:3px;margin-inline-end:3px}}
