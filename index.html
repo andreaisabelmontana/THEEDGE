@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <style id="home-availability-modal" data-design="compact-frost">
 .am-availability-modal{box-sizing:border-box;position:fixed;inset:0;margin:auto;inline-size:min(284px,calc(100% - 40px));max-block-size:calc(100% - 32px);overflow:auto;padding:0;border:1px solid rgb(255 255 255/.76);border-radius:16px;background:#f0f1f5;color:#101828;box-shadow:inset 0 1px 0 #fff9,0 16px 48px #0b122c40;font:400 15px/1.35 system-ui,sans-serif;text-align:center}
 .am-availability-modal[open]{animation:am-availability-pop .2s ease-out both}
-.am-availability-modal:focus{outline:none}
+.am-availability-modal h2:focus{outline:none}
 .am-availability-modal::backdrop{background:rgb(12 19 32/.28)}
 @supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.am-availability-modal{background:linear-gradient(165deg,rgb(255 255 255/.9),rgb(235 240 248/.8));-webkit-backdrop-filter:blur(20px) saturate(1.2);backdrop-filter:blur(20px) saturate(1.2)}}
 .am-availability-content{padding:19px 17px 17px}
@@ -1566,9 +1566,9 @@ stroke="currentColor"/>
 
 </script>
 <div class="stars-overlay"></div><script id="helmet-keep-four">window.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".helmet-grid-item").forEach(function(it,i){if(i>=4){var w=it.closest(".helmet-grid-item-w")||it;w.style.display="none";}});});</script><script defer src="./custom/vendor/three.min.js?v=20260911k"></script><script defer src="./custom/experience.js?v=20261119-earth-surface"></script><script src="ui/reveal.js?v=20260911k" defer></script><script defer src="./custom/page-guard.js?v=20260911k"></script><script src="custom/clean-shell.js?v=20260918-polish2" defer></script><script src="ui/i18n.js?v=20261120-locale-controls" defer></script><script src="ui/ui.js?v=20261011-mobile-ice" defer></script>
-<script defer src="custom/affiliations.js?v=20261120-badge-fit"></script><script defer src="custom/edolus-type.js?v=20261120-typed-headings"></script><dialog class="am-availability-modal" id="am-availability-dialog" aria-labelledby="am-availability-title" aria-describedby="am-availability-season" autofocus>
+<script defer src="custom/affiliations.js?v=20261120-badge-fit"></script><script defer src="custom/edolus-type.js?v=20261120-typed-headings"></script><dialog class="am-availability-modal" id="am-availability-dialog" aria-labelledby="am-availability-title" aria-describedby="am-availability-season">
  <div class="am-availability-content">
-  <h2 id="am-availability-title" data-availability-copy>Andrea Montaña is looking for an internship</h2>
+  <h2 id="am-availability-title" tabindex="-1" autofocus data-availability-copy>Andrea Montaña is looking for an internship</h2>
   <p id="am-availability-season" data-availability-copy>May–December 2027</p>
  </div>
  <form class="am-availability-actions" method="dialog">
