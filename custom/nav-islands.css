@@ -160,3 +160,144 @@ body.experience-page .am-career-opening-intro .am-career-lead { max-width: 32ch;
     max-height: calc(100svh - clamp(128px, 15vh, 152px));
   }
 }
+
+/* Position the visible astronaut without the menu's animation resetting it. */
+@media screen {
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .nav-brand-link {
+    position: relative;
+    inset-inline-start: 6px;
+    top: 7px;
+    translate: none !important;
+  }
+}
+body.experience-page #journey .am-journey-heading {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+@media screen and (min-width: 1100px) {
+  body.experience-page #journey.am-journey-companion .am-exp-globe-w {
+    width: min(100%, max(185px, calc(100svh - 275px)));
+    max-width: 320px;
+    margin-inline: auto;
+  }
+}
+@media screen and (max-width: 1099px) {
+  body.experience-page #journey.am-journey-companion { grid-template-rows: auto auto; }
+  body.experience-page #journey.am-journey-companion .am-exp-globe-w { grid-row: 1 / 3; }
+  body.experience-page #journey.am-journey-companion .am-journey-current { grid-row: 1; }
+  body.experience-page #journey.am-journey-companion .am-globe-caption { grid-row: 2; }
+}
+
+/* Reveal the actual text in place; never swap in a differently sized string. */
+@media screen and (prefers-reduced-motion: no-preference) {
+  body.experience-page #career-title {
+    animation: exp-terminal-reveal .58s steps(12, end) .08s both;
+  }
+  body.experience-page .am-career-opening-intro [data-edolus-copy] {
+    animation: exp-caption-in .36s cubic-bezier(.2,.7,.3,1) .48s both;
+  }
+}
+@keyframes exp-terminal-reveal {
+  from { clip-path: inset(-.18em 100% -.18em -.12em); }
+  to { clip-path: inset(-.18em -.12em -.18em -.12em); }
+}
+@keyframes exp-caption-in {
+  from { opacity: 0; translate: 0 5px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@media screen {
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch]:not([hidden]) {
+    background: #3369e8 !important;
+    border: 0 !important;
+  }
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button {
+    color: #fff;
+  }
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button:hover {
+    color: #fff;
+    background: #2455ce;
+  }
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button[aria-pressed="true"] {
+    color: #164cc9;
+    background: #fff;
+  }
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button:focus-visible {
+    outline: 2px solid #fff !important;
+    outline-offset: -3px;
+  }
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button[aria-pressed="true"]:focus-visible {
+    outline-color: #164cc9 !important;
+  }
+}
+
+@media screen {
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .nav-ham[data-nav-ham] {
+    border: 2.5px solid #24354a !important;
+  }
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .nav-ham[data-nav-ham][aria-expanded="true"] {
+    border-color: transparent !important;
+  }
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .nav-ham[data-nav-ham]::before,
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .nav-ham[data-nav-ham]::after {
+    background: #24354a;
+    border-radius: 1px;
+  }
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .nav-ham[data-nav-ham]:not([aria-expanded="true"])::before {
+    transform: translate(-12.5%, -4.5px);
+  }
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .nav-ham[data-nav-ham]:not([aria-expanded="true"])::after {
+    transform: translate(-87.5%, 4.5px);
+  }
+}
+
+/* Roll each locale label independently, with a static reduced-motion option. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button[data-lang] {
+    position: relative;
+    overflow: hidden;
+    --locale-ink: #fff;
+    color: transparent !important;
+  }
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button[data-lang][aria-pressed="true"] {
+    --locale-ink: #164cc9;
+  }
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button[data-lang]::before,
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button[data-lang]::after {
+    content: attr(data-lang) / '';
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: var(--locale-ink);
+    text-transform: uppercase;
+    pointer-events: none;
+    transition: transform .24s cubic-bezier(.24,.8,.25,1);
+  }
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button[data-lang]::after { transform: translateY(100%); }
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button[data-lang]:hover::before { transform: translateY(-100%); }
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button[data-lang]:hover::after { transform: translateY(0); }
+}
+
+@media screen {
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .nav-ham[data-nav-ham] {
+    transition: background-color .2s ease, border-color .2s ease;
+  }
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .nav-ham[data-nav-ham]:is(:hover, [aria-expanded="true"]) {
+    background: #3369e8 !important;
+    border-color: #24354a !important;
+  }
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .nav-ham[data-nav-ham]:is(:hover, [aria-expanded="true"])::before,
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .nav-ham[data-nav-ham]:is(:hover, [aria-expanded="true"])::after {
+    background: #fff;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .nav-ham[data-nav-ham] { transition: none; }
+}

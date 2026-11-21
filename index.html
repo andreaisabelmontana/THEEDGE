@@ -35,6 +35,16 @@ html.w-mod-js body[data-home-shell]:not(.edge-ready) .gl-wrap {
 --> 
 <!-- Gold --> 
 
+<script>
+  // The CSS hero draws the single contour field. Keep the WebGL portrait
+  // and cursor clouds, but neutralize its duplicate one-pixel outline pass.
+  function configureHeroContours() {
+    const head = window.edgeGL?.params?.headScene;
+    if (head) head.THICKNESS = 0;
+  }
+  document.addEventListener('DOMContentLoaded', configureHeroContours, {once:true});
+  window.addEventListener('load', configureHeroContours, {once:true});
+</script>
 <script defer src="assets/runtime/dev-js/site-gl.js?v=20261014-preserve-scroll"></script>
 <!---------------------------------------------------------------->
 
@@ -378,7 +388,7 @@ document.addEventListener('DOMContentLoaded', function () {
 @media(prefers-reduced-motion:reduce){.am-availability-modal[open]{animation:none}}
 @media(prefers-reduced-transparency:reduce),(prefers-contrast:more){.am-availability-modal,.am-availability-modal[data-liquid-lens]{background:#f3f5fa;-webkit-backdrop-filter:none;backdrop-filter:none}}
 </style>
-<link rel="stylesheet" href="custom/nav-islands.css?v=1">
+<link rel="stylesheet" href="custom/nav-islands.css?v=20261121-blue-language">
 <script>
 (() => {
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -1670,7 +1680,7 @@ stroke="currentColor"/>
         >
 </canvas></div></div></div></a></div></div></div><div class="footer-marquee am-org-marquee" role="region" aria-label="Organizations from my experience and education"><div class="am-org-viewport" tabindex="0" aria-label="Organization logos"><div class="am-org-track"><div class="am-org-group"><div class="am-org-lockup am-org-lockup--ie"><img src="custom/organizations/ie-university-horizontal.svg" alt="IE University" width="855" height="345" loading="lazy" decoding="async"/></div><div class="am-org-lockup am-org-lockup--cyphy"><img src="custom/organizations/cyphy-life.svg" alt="" width="622" height="291" loading="lazy" decoding="async"/><span>CyPhy Life<small>IEX Labs</small></span></div><div class="am-org-lockup am-org-lockup--top"><img src="custom/organizations/top-living-dark.png" alt="Top Living Inmobiliaria" width="384" height="188" loading="lazy" decoding="async"/></div><div class="am-org-lockup am-org-lockup--trinity"><img src="custom/organizations/trinity-college-dublin.png" alt="Trinity College Dublin" width="464" height="124" loading="lazy" decoding="async"/></div><div class="am-org-lockup am-org-lockup--cng"><img src="custom/organizations/colegio-nueva-granada-horizontal.svg" alt="Colegio Nueva Granada" width="397" height="50" loading="lazy" decoding="async"/></div></div><div class="am-org-group" aria-hidden="true"><div class="am-org-lockup am-org-lockup--ie"><img src="custom/organizations/ie-university-horizontal.svg" alt="IE University" width="855" height="345" loading="lazy" decoding="async"/></div><div class="am-org-lockup am-org-lockup--cyphy"><img src="custom/organizations/cyphy-life.svg" alt="" width="622" height="291" loading="lazy" decoding="async"/><span>CyPhy Life<small>IEX Labs</small></span></div><div class="am-org-lockup am-org-lockup--top"><img src="custom/organizations/top-living-dark.png" alt="Top Living Inmobiliaria" width="384" height="188" loading="lazy" decoding="async"/></div><div class="am-org-lockup am-org-lockup--trinity"><img src="custom/organizations/trinity-college-dublin.png" alt="Trinity College Dublin" width="464" height="124" loading="lazy" decoding="async"/></div><div class="am-org-lockup am-org-lockup--cng"><img src="custom/organizations/colegio-nueva-granada-horizontal.svg" alt="Colegio Nueva Granada" width="397" height="50" loading="lazy" decoding="async"/></div></div></div></div><button class="am-org-motion" type="button" aria-label="Pause organization logos" aria-pressed="false" hidden>Pause</button></div><div class="footer-bg-pattern-w"><img src="assets/cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67dbeba158707fa1cd5e5e45_blobs_footer_1.svg" loading="lazy" alt="" class="image"/></div></div></div><div class="footer-legal-links-w"><div class="footer-legal-links-col"><div class="text-title-small-label"><span class="text-title-small-label bold">© 2026 .</span> All rights reserved</div></div><div class="footer-legal-links-col"></div></div></div></div><div class="footer-bg-gradient"></div></section><div class="gl-wrap w-embed"><!--
 <canvas class="gl"></canvas>
---></div><div data-gl="background" class="gl-background"></div></div></main></div><script src="assets/d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js" type="text/javascript"></script><script src="assets/cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/js/site.schunk.79b71263bda4d666.js" type="text/javascript"></script><script src="assets/cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/js/site.751e0867.148dc658e77a3916.js" type="text/javascript"></script><script>
+--></div><div class="gl-background" aria-hidden="true"></div></div></main></div><script src="assets/d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js" type="text/javascript"></script><script src="assets/cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/js/site.schunk.79b71263bda4d666.js" type="text/javascript"></script><script src="assets/cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/js/site.751e0867.148dc658e77a3916.js" type="text/javascript"></script><script>
   function removeEditMode() {
     var body = document.body;
     if (body.hasAttribute('data-edit')) {
