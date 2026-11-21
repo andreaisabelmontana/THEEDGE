@@ -150,3 +150,13 @@ body.experience-page .am-career-opening-intro .am-career-lead { max-width: 32ch;
 @media (max-width: 620px) {
   body.experience-page #top h1[data-edolus-title] { font-size: clamp(32px, 9.4vw, 52px); }
 }
+
+/* Start the sidebar near the Experience heading, then keep it accessible
+   below the floating header as the reader moves through the sections. */
+@media screen and (min-width: 1100px) {
+  body.experience-page .am-career-page[data-sidebar] .am-career-nav-rail {
+    margin-top: 158px;
+    top: clamp(108px, 13vh, 132px);
+    max-height: calc(100svh - clamp(128px, 15vh, 152px));
+  }
+}
