@@ -326,3 +326,22 @@ body.experience-page #journey .am-journey-heading {
     content: none;
   }
 }
+
+/* The Rive artboard contains its own outline. Fit its glyph to the button's
+   box, then crop out that outline so the CSS frame is the only visible one. */
+html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .nav-ham[data-nav-ham] .nav-rive-w {
+  position: absolute;
+  inset: 0;
+  width: auto;
+  height: auto;
+  min-width: 0;
+  min-height: 0;
+  display: block;
+  pointer-events: none;
+}
+html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .nav-ham[data-nav-ham] canvas[data-rive-nav-hamburger] {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  clip-path: inset(24%);
+}
