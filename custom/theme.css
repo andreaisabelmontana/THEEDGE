@@ -560,16 +560,43 @@ body.home-render-fallback .hero-portrait-fallback {
 }
 body.home-render-fallback .gl-clip { visibility: hidden; }
 
-/* Continue the fine contour field into the space formerly hidden by the
-   header slab. Fade into the live scene rather than adding a new band. */
+/* One continuous field over the hero. The center is quieter behind the
+   wordmark instead of clipping the lines at the edge of a copy column. */
 html[data-theme] body.edge-ready[data-home-shell] .edge-ui::before {
   content: "";
   position: absolute;
   inset: 0 0 auto;
-  height: clamp(140px, 21vh, 210px);
+  height: calc(var(--head-bottom, 86vh) + 28px);
   z-index: -1;
   pointer-events: none;
-  background: linear-gradient(180deg, #bdd0f6 0%, #c7d9fc 42%, transparent 100%);
-  -webkit-mask: url("blobs-nav-purple.svg") center 39% / max(100%, 820px) auto no-repeat;
-  mask: url("blobs-nav-purple.svg") center 39% / max(100%, 820px) auto no-repeat;
+  background: radial-gradient(ellipse at 24% 48%,
+    rgb(199 217 252 / .16) 0%, rgb(199 217 252 / .29) 28%,
+    rgb(189 208 246 / .72) 59%, #bdd0f6 100%);
+  -webkit-mask-image: url("blobs-nav-purple.svg"), linear-gradient(#000 0%, #000 68%, transparent 100%);
+  mask-image: url("blobs-nav-purple.svg"), linear-gradient(#000 0%, #000 68%, transparent 100%);
+  -webkit-mask-size: max(108%, 820px) auto, 100% 100%;
+  mask-size: max(108%, 820px) auto, 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+  -webkit-mask-position: calc(50% + var(--contour-nudge-x, 0px)) calc(33% + var(--contour-nudge-y, 0px)), center;
+  mask-position: calc(50% + var(--contour-nudge-x, 0px)) calc(33% + var(--contour-nudge-y, 0px)), center;
+}
+html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home .hero::before { background: none; }
+@media (prefers-reduced-motion: no-preference) {
+  html[data-theme] body.edge-ready[data-home-shell] .edge-ui::before {
+    animation: edge-contour-drift 19s ease-in-out infinite alternate;
+  }
+}
+@keyframes edge-contour-drift {
+  to {
+    -webkit-mask-position: calc(50% + var(--contour-nudge-x, 0px) + 12px) calc(33% + var(--contour-nudge-y, 0px) - 8px), center;
+    mask-position: calc(50% + var(--contour-nudge-x, 0px) + 12px) calc(33% + var(--contour-nudge-y, 0px) - 8px), center;
+  }
+}
+@media screen {
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .nav-brand-link {
+    translate: 6px 7px;
+  }
 }

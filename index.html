@@ -66,10 +66,22 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
 <style>  
   .w-webflow-badge { display: none !important; }
   .transition-w {	display: flex; }
-</style><link href="./custom/custom.css?v=20260911k" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet"/><link rel="preload" href="gl/fonts/Brier-Bold-02.webp" as="image"/><link rel="preload" href="gl/fonts/MonaSans-Bold-02.webp" as="image"/><link rel="preload" href="gl/fonts/Brier-Bold-msdf.json" as="fetch" crossorigin="anonymous"/><link rel="preload" href="gl/fonts/MonaSans-Bold-msdf.json" as="fetch" crossorigin="anonymous"/><link rel="preload" href="gl/textures/head/webp/diffuse.webp" as="image"/><link rel="preload" href="gl/textures/head/webp/depth.webp" as="image"/><link rel="preload" href="gl/textures/helmet/webp/gold/Helmet_mat_BaseColor.webp" as="image"/><link rel="preload" href="gl/hdri/studio_small_08_1k--dark.hdr" as="fetch" crossorigin="anonymous"/><link rel="stylesheet" href="ui/tokens.css?v=20260911k"/><link rel="stylesheet" href="ui/base.css?v=20260911k"/><link rel="stylesheet" href="ui/layout.css?v=20261120-centered"/><link rel="stylesheet" href="ui/ui.css?v=20260911k"/><link rel="stylesheet" href="custom/clean-shell.css?v=20261014-menu-startup"/><link rel="canonical" href="https://andreamontana.com/"/><script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Andrea Montaña","url":"https://andreamontana.com/","sameAs":["https://github.com/andreaisabelmontana","https://www.linkedin.com/in/andreaimontana/"],"jobTitle":["Research Assistant"],"affiliation":[{"@type":"Organization","name":"IEX Labs, CyPhy Life at IE University"}],"knowsAbout":["Artificial intelligence","Machine learning","Computer vision","Human-computer interaction","Robotics","Python","JavaScript","TypeScript","Interactive 3D","Full-stack development"]}</script><link rel="stylesheet" href="custom/theme.css?v=20261121-header-match"/>
+</style><link href="./custom/custom.css?v=20260911k" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet"/><link rel="preload" href="gl/fonts/Brier-Bold-02.webp" as="image"/><link rel="preload" href="gl/fonts/MonaSans-Bold-02.webp" as="image"/><link rel="preload" href="gl/fonts/Brier-Bold-msdf.json" as="fetch" crossorigin="anonymous"/><link rel="preload" href="gl/fonts/MonaSans-Bold-msdf.json" as="fetch" crossorigin="anonymous"/><link rel="preload" href="gl/textures/head/webp/diffuse.webp" as="image"/><link rel="preload" href="gl/textures/head/webp/depth.webp" as="image"/><link rel="preload" href="gl/textures/helmet/webp/gold/Helmet_mat_BaseColor.webp" as="image"/><link rel="preload" href="gl/hdri/studio_small_08_1k--dark.hdr" as="fetch" crossorigin="anonymous"/><link rel="stylesheet" href="ui/tokens.css?v=20260911k"/><link rel="stylesheet" href="ui/base.css?v=20260911k"/><link rel="stylesheet" href="ui/layout.css?v=20261120-centered"/><link rel="stylesheet" href="ui/ui.css?v=20260911k"/><link rel="stylesheet" href="custom/clean-shell.css?v=20261014-menu-startup"/><link rel="canonical" href="https://andreamontana.com/"/><script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Andrea Montaña","url":"https://andreamontana.com/","sameAs":["https://github.com/andreaisabelmontana","https://www.linkedin.com/in/andreaimontana/"],"jobTitle":["Research Assistant"],"affiliation":[{"@type":"Organization","name":"IEX Labs, CyPhy Life at IE University"}],"knowsAbout":["Artificial intelligence","Machine learning","Computer vision","Human-computer interaction","Robotics","Python","JavaScript","TypeScript","Interactive 3D","Full-stack development"]}</script><link rel="stylesheet" href="custom/theme.css?v=20261121-contour-motion"/>
 <link rel="stylesheet" href="custom/affiliations.css?v=20261119-seamless"/>
 <style id="home-showcase-navy">
   /* Google Chromium baseline primary 10; the hero and cards keep their own surfaces. */
+  @media (min-width: 1024px) {
+    /* Feather the cloud renderer's top seam without moving the helmet or
+       masking the separate contour layer above the hero. */
+    body.edge-ready[data-home-shell] .gl-clip .gl-wrap {
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 76px),
+        linear-gradient(to right, transparent 0, #000 148px);
+      mask-image: linear-gradient(to bottom, transparent 0, #000 76px),
+        linear-gradient(to right, transparent 0, #000 148px);
+      -webkit-mask-composite: source-in;
+      mask-composite: intersect;
+    }
+  }
   body.edge-ready[data-home-shell] .home-showcase { background-color: #041e49; }
   /* Blend the outer footer rim over the globe without changing the icy card. */
   html[data-theme] body.edge-ready[data-home-shell] #contact.is-footer .footer-bg-gradient {
@@ -367,6 +379,29 @@ document.addEventListener('DOMContentLoaded', function () {
 @media(prefers-reduced-transparency:reduce),(prefers-contrast:more){.am-availability-modal,.am-availability-modal[data-liquid-lens]{background:#f3f5fa;-webkit-backdrop-filter:none;backdrop-filter:none}}
 </style>
 <link rel="stylesheet" href="custom/nav-islands.css?v=1">
+<script>
+(() => {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let pointerX=0,pointerY=0,x=0,y=0,pending=0;
+  function queue() { if(!pending) pending=requestAnimationFrame(paint); }
+  function paint() {
+    pending=0;
+    const tx=pointerX,ty=pointerY-Math.min(scrollY,700)*.035;
+    x+=(tx-x)*.12;y+=(ty-y)*.12;
+    const root=document.documentElement.style;
+    root.setProperty('--contour-nudge-x',x.toFixed(2)+'px');
+    root.setProperty('--contour-nudge-y',y.toFixed(2)+'px');
+    if(Math.abs(tx-x)+Math.abs(ty-y)>.2) queue();
+  }
+  addEventListener('pointermove',event=> {
+    if(event.pointerType==='touch')return;
+    pointerX=(event.clientX/innerWidth-.5)*26;
+    pointerY=(event.clientY/innerHeight-.5)*20;
+    queue();
+  },{passive:true,capture:true});
+  addEventListener('scroll',queue,{passive:true});
+})();
+</script>
 </head><body data-edit="" class="clean-portfolio" data-home-shell><div class="edge-ui">
 
   <!-- The original nav supplies the astronaut and animated menu. ui.js adopts
@@ -424,7 +459,7 @@ document.addEventListener('DOMContentLoaded', function () {
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </span>
           </div>
-          <img class="otot-card-img" src="custom/projects-portrait-warm.webp" alt="" loading="lazy">
+          <img class="otot-card-img" src="custom/projects-portrait-arm.webp" alt="" loading="lazy">
         </a>
 
         <!-- Experience keeps its own route and complete toolkit. -->
@@ -436,7 +471,7 @@ document.addEventListener('DOMContentLoaded', function () {
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </span>
           </div>
-          <img class="otot-card-img" src="custom/experience-portrait-warm.webp" alt="" loading="lazy">
+          <img class="otot-card-img" src="custom/experience-portrait-arm.webp" alt="" loading="lazy">
         </a>
 
       </div>
