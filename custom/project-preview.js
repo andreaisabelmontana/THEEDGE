@@ -32,6 +32,15 @@
       pending = false;
       video.pause();
     }
+    function prepareVideo() {
+      if (loaded || failed || reducedMotion.matches) return;
+      var src = video.getAttribute('data-preview-src');
+      if (!src) return;
+      if (video.hasAttribute('data-preview-early')) video.preload = 'auto';
+      video.src = src;
+      loaded = true;
+      video.load();
+    }
     function sync() {
       if (!shouldPlay()) {
         pause();
@@ -39,11 +48,7 @@
         render();
         return;
       }
-      if (!loaded) {
-        video.src = video.getAttribute('data-preview-src');
-        loaded = true;
-        video.load();
-      }
+      prepareVideo();
       render();
       if (!video.paused || pending || (video.ended && video.hasAttribute('data-preview-once'))) return;
       var currentRequest = ++requestId;
@@ -86,6 +91,14 @@
       new MutationObserver(sync).observe(host, { attributes: true, attributeFilter: ['hidden'] });
     }
     if ('IntersectionObserver' in window) {
+      if (video.hasAttribute('data-preview-early')) {
+        var warmup = new IntersectionObserver(function(entries) {
+          if (!entries[0].isIntersecting || host.closest('[hidden]')) return;
+          prepareVideo();
+          if (loaded) warmup.disconnect();
+        }, { rootMargin:'220px 0px' });
+        warmup.observe(media);
+      }
       new IntersectionObserver(function (entries) {
         visible = entries[0].isIntersecting && entries[0].intersectionRatio >= 0.15;
         sync();
