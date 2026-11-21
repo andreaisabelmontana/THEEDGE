@@ -118,25 +118,52 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
   }
 }
 </style>
-<style id="home-liquid-production">
+<style id="home-liquid-production" data-glass="clear-bevel">
 html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card {
   background: #dce4ee !important;
-  border-color: rgb(238 245 255 / .62) !important;
+  border-color: rgb(228 241 255 / .38) !important;
   box-shadow: inset 1px 1px 1px rgb(255 255 255 / .82),
     inset -1px -1px 2px rgb(221 233 250 / .58),
     inset 0 12px 18px -18px rgb(255 255 255 / .7), 0 7px 22px rgb(2 7 22 / .40);
 }
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card {
-    background: linear-gradient(104deg, rgb(242 247 252 / .84) 0%,
-      rgb(235 243 251 / .71) 42%, rgb(221 235 251 / .32) 67%,
-      rgb(204 226 252 / .17) 100%) !important;
-    -webkit-backdrop-filter: blur(3px) saturate(1.12);
-    backdrop-filter: blur(3px) saturate(1.12);
+    background: radial-gradient(ellipse at 8% -12%, rgb(255 255 255 / .30), transparent 68%),
+      linear-gradient(103deg, rgb(231 243 255 / .81) 0%, rgb(219 237 255 / .73) 48%,
+      rgb(159 199 250 / .32) 72%, rgb(114 166 244 / .15) 100%) !important;
+    -webkit-backdrop-filter: blur(1.6px) saturate(1.32);
+    backdrop-filter: blur(1.6px) saturate(1.32);
   }
   html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card[data-liquid-lens] {
-    backdrop-filter: blur(2px) saturate(1.12) var(--home-liquid-lens);
+    backdrop-filter: var(--home-liquid-lens) blur(1px) saturate(1.32);
   }
+}
+/* Clear center with a polished, directional edge. The rim never covers the copy. */
+html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card::before,
+.am-availability-modal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .82),
+    inset 1px 0 0 rgb(215 234 255 / .50),
+    inset -1px -1px 0 rgb(151 182 241 / .48);
+}
+@supports (mask-composite: exclude) {
+  html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card::before,
+  .am-availability-modal::before {
+    padding: 4px;
+    background: linear-gradient(132deg, #fff 0%, #e3f2ff94 14%, #f8fbff0f 39%,
+      #648bd21a 56%, #91b7ff9c 79%, #fff9 100%);
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+  }
+}
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more), (forced-colors: active), print {
+  html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card::before,
+  .am-availability-modal::before { display: none; }
 }
 html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card:is(:hover,:focus-visible) {
   border-color: rgb(245 250 255 / .78) !important;
@@ -216,12 +243,13 @@ document.addEventListener('DOMContentLoaded', function () {
   const svg = create('svg', {width:0,height:0,'aria-hidden':'true',style:'position:absolute;pointer-events:none'});
   const defs = create('defs',{});
   svg.append(defs); document.body.append(svg);
-  document.querySelectorAll('[data-home-shell] .home-showcase .otot-card').forEach((card,i) => {
+  document.querySelectorAll('[data-home-shell] .home-showcase .otot-card, #am-availability-dialog').forEach((card,i) => {
+    const isDialog = card.localName === 'dialog';
     const id = 'am-home-glass-lens-' + i;
     const filter = create('filter',{id,x:0,y:0,width:1,height:1,
       filterUnits:'objectBoundingBox',primitiveUnits:'userSpaceOnUse','color-interpolation-filters':'sRGB'});
     const map = create('feImage',{x:0,y:0,result:'lensMap',preserveAspectRatio:'none'});
-    filter.append(map,create('feDisplacementMap',{in:'SourceGraphic',in2:'lensMap',scale:38,xChannelSelector:'R',yChannelSelector:'G'}));
+    filter.append(map,create('feDisplacementMap',{in:'SourceGraphic',in2:'lensMap',scale:isDialog?24:48,xChannelSelector:'R',yChannelSelector:'G'}));
     defs.append(filter);
     const mapCanvas=document.createElement('canvas'), ctx=mapCanvas.getContext('2d');
     if (!ctx) return;
@@ -241,7 +269,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const d=rad-n-Math.min(Math.max(qx,qy),0);
         // Surface slope is greatest near the lip and tapers into a flat,
         // undistorted center; sample inward so the curved rim stays filled.
-        const t=Math.max(0,Math.min(1,1-d/28));
+        const t=Math.max(0,Math.min(1,1-d/(isDialog?13:24)));
         const bevel=t*t*(3-2*t);
         const nx=n>0?Math.sign(px)*ux/n:qx>=qy?Math.sign(px):0;
         const ny=n>0?Math.sign(py)*uy/n:qy>qx?Math.sign(py):0;
@@ -259,11 +287,13 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 <style id="home-availability-modal" data-design="compact-frost">
-.am-availability-modal{box-sizing:border-box;position:fixed;inset:0;margin:auto;inline-size:min(284px,calc(100% - 40px));max-block-size:calc(100% - 32px);overflow:auto;padding:0;border:1px solid rgb(255 255 255/.76);border-radius:16px;background:#f0f1f5;color:#101828;box-shadow:inset 0 1px 0 #fff9,0 16px 48px #0b122c40;font:400 15px/1.35 system-ui,sans-serif;text-align:center}
+.am-availability-modal{box-sizing:border-box;position:fixed;inset:0;margin:auto;inline-size:min(284px,calc(100% - 40px));max-block-size:calc(100% - 32px);overflow:auto;padding:0;border:1px solid rgb(255 255 255/.58);border-radius:17px;background:#f0f1f5;color:#101828;box-shadow:inset 0 1px 0 #fff9,0 16px 48px #0b122c40;font:400 15px/1.35 system-ui,sans-serif;text-align:center}
 .am-availability-modal[open]{animation:am-availability-pop .2s ease-out both}
 .am-availability-modal h2:focus{outline:none}
-.am-availability-modal::backdrop{background:rgb(12 19 32/.28)}
-@supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.am-availability-modal{background:linear-gradient(165deg,rgb(255 255 255/.9),rgb(235 240 248/.8));-webkit-backdrop-filter:blur(20px) saturate(1.2);backdrop-filter:blur(20px) saturate(1.2)}}
+.am-availability-modal::backdrop{background:rgb(12 19 32/.24)}
+@supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.am-availability-modal{background:linear-gradient(146deg,rgb(255 255 255/.82),rgb(249 252 255/.72) 53%,rgb(222 237 255/.66));-webkit-backdrop-filter:blur(5px) saturate(1.28);backdrop-filter:blur(5px) saturate(1.28)}.am-availability-modal[data-liquid-lens]{backdrop-filter:var(--home-liquid-lens) blur(3px) saturate(1.28)}}
+.am-availability-modal::before{padding:3px}
+.am-availability-content,.am-availability-actions{position:relative;z-index:2}
 .am-availability-content{padding:19px 17px 17px}
 .am-availability-modal h2{color:inherit;text-transform:none;letter-spacing:-.022em;margin:0;font:700 17px/1.24 system-ui,sans-serif;text-wrap:balance}
 .am-availability-modal p{color:#39445a;margin:7px 0 0;font:400 14px/1.35 system-ui,sans-serif}
@@ -275,7 +305,7 @@ document.addEventListener('DOMContentLoaded', function () {
 .am-availability-actions>*:focus-visible{outline:2px solid #225fc7;outline-offset:-4px;border-radius:7px}
 @keyframes am-availability-pop{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){.am-availability-modal[open]{animation:none}}
-@media(prefers-reduced-transparency:reduce),(prefers-contrast:more){.am-availability-modal{background:#f3f5fa;-webkit-backdrop-filter:none;backdrop-filter:none}}
+@media(prefers-reduced-transparency:reduce),(prefers-contrast:more){.am-availability-modal,.am-availability-modal[data-liquid-lens]{background:#f3f5fa;-webkit-backdrop-filter:none;backdrop-filter:none}}
 </style>
 </head><body data-edit="" class="clean-portfolio" data-home-shell><div class="edge-ui">
 
