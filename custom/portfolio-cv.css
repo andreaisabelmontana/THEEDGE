@@ -1,8 +1,8 @@
 /* CV shares the floating header controls' geometry without changing the link. */
-a.portfolio-cv-link{display:inline-flex;box-sizing:border-box;flex:none;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:2px solid #24354a;border-radius:8px;background:#f6f8fd;color:#24354a;font-family:inherit;font-size:.875rem;font-weight:700;line-height:1;text-decoration:none;white-space:nowrap;pointer-events:auto;transition:background-color .2s ease,color .2s ease}
-a.portfolio-cv-link:is(:hover,:focus-visible){background:#3369e8;color:#fff;text-decoration:none}
+a.portfolio-cv-link{display:inline-flex;box-sizing:border-box;flex:none;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:0;border-radius:8px;background:#dbe6ff;color:#193c80;font-family:inherit;font-size:.875rem;font-weight:700;line-height:1;text-decoration:none;white-space:nowrap;pointer-events:auto;transition:background-color .2s ease,color .2s ease}
+a.portfolio-cv-link:is(:hover,:focus-visible){background:#244db3;color:#fff;text-decoration:none}
 a.portfolio-cv-link:focus-visible{outline:2px solid #173d9d;outline-offset:3px}
-html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .btn-layout.is-nav>a.portfolio-cv-link{width:var(--top-control-size,46px);height:var(--top-control-size,46px);border-width:2.5px;border-radius:var(--top-control-radius,12px);margin-inline-end:var(--top-control-gap,9px);font-size:clamp(13px,1.05vw,18px);letter-spacing:.025em}
+html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .btn-layout.is-nav>a.portfolio-cv-link{width:var(--top-control-size,46px);height:var(--top-control-size,46px);border-radius:var(--top-control-radius,12px);margin-inline-end:var(--top-control-gap,9px);font-size:clamp(13px,1.05vw,18px);letter-spacing:.025em}
 .portfolio-cv-course-row{display:flex;justify-content:end;margin-bottom:.25rem}
 .portfolio-cv-arcade-tools{display:flex;flex-wrap:wrap;align-items:center;justify-content:end;gap:4px}
 @media screen and (max-width:370px){html[data-theme] body.clean-portfolio .nav[data-nav-wrap]{--top-control-size:48px;--top-control-gap:7px}}
