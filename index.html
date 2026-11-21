@@ -443,9 +443,9 @@ document.addEventListener('DOMContentLoaded', function () {
     pointer-events: none;
   }
   @media (hover: hover) and (pointer: fine) {
-    .otot-card:hover .otot-card-text h2 { color: #3369e8; }
+    .otot-card:hover .otot-card-text h2 { color: #3369e8 !important; }
   }
-  .otot-card:focus-visible .otot-card-text h2 { color: #3369e8; }
+  .otot-card:focus-visible .otot-card-text h2 { color: #3369e8 !important; }
   @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
     .otot-card:hover .otot-card-text h2 {
       animation: card-title-clip .6s cubic-bezier(.3333,1,.6667,1);
