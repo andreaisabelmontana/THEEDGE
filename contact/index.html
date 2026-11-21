@@ -63,6 +63,10 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
   .photo-fan__card--group { background: linear-gradient(160deg,#dff1f9,#a2bfce 48%,#26333b); }
   .photo-fan__card--group img { object-fit:cover; object-position:50% 26%; }
 </style><style id="contact-menu-summit">
+   /* Show the Summit portrait in its original colors, not the menu's olive overlay. */
+   .nav-menu-img-w[data-nav-img="5"] :is(.menu-img-blend-1,.menu-img-blend-2,.menu-img-blend-3) { display:none !important; }
+   .nav-menu-img-w[data-nav-img="5"] img { filter:none !important; mix-blend-mode:normal !important; }
+
    .nav-menu-img-w[data-nav-img="5"] img { object-fit:cover !important; object-position:center 28%; background:transparent; }
    .nav-menu-img-w[data-nav-img="1"] .menu-img-top {
      opacity:0 !important; filter:saturate(1.65) contrast(1.045); transition:opacity .22s ease;
