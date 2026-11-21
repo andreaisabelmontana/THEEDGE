@@ -435,13 +435,13 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   [data-home-shell] .home-showcase .otot-card:focus-visible h2 {
     --card-wipe-run: card-heading-scan 540ms cubic-bezier(.33,0,.24,1) both;
-    color: var(--card-wipe-blue);
+    color: var(--card-wipe-blue) !important;
     transition: color 0s steps(1, end) 240ms;
   }
   @media (hover: hover) and (pointer: fine) {
     [data-home-shell] .home-showcase .otot-card:hover h2 {
       --card-wipe-run: card-heading-scan 540ms cubic-bezier(.33,0,.24,1) both;
-      color: var(--card-wipe-blue);
+      color: var(--card-wipe-blue) !important;
       transition: color 0s steps(1, end) 240ms;
     }
   }
@@ -449,6 +449,7 @@ document.addEventListener('DOMContentLoaded', function () {
   [data-home-shell] .home-showcase .otot-card h2::after {
     content: "";
     position: absolute;
+    display: block !important;
     z-index: 1;
     inset: -.16em -.1em -.24em;
     pointer-events: none;
@@ -480,7 +481,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   @media (prefers-reduced-motion: reduce) {
     [data-home-shell] .home-showcase .otot-card h2::before,
-    [data-home-shell] .home-showcase .otot-card h2::after { display: none; }
+    [data-home-shell] .home-showcase .otot-card h2::after { display: none !important; }
     [data-home-shell] .home-showcase .otot-card:is(:hover,:focus-visible) h2 { transition: none; }
   }
 </style>
