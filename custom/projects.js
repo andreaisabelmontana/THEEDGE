@@ -6,7 +6,7 @@ window.EDGE_PROJECTS = [
   "helm": "20",
   "year": 2026,
   "date": "2026 · Ongoing",
-  "tagline": "Ongoing support for data analysis, information management and reporting at Bogotá City Government.",
+  "tagline": "Ongoing support for data analysis, information management and reporting for Bogotá City Government’s International Relations Department.",
   "label": "PROFESSIONAL CONTRIBUTION",
   "track": "Professional",
   "categories": [
@@ -23,9 +23,9 @@ window.EDGE_PROJECTS = [
   ],
   "typeLabel": "Professional contribution",
   "summary": {
-    "en": "Ongoing support for data analysis, information management and reporting at Bogotá City Government.",
-    "es": "Apoyo al análisis de datos, la gestión de información y la elaboración de informes en la Alcaldía Mayor de Bogotá.",
-    "de": "Laufende Unterstützung bei Datenanalyse, Informationsmanagement und Berichten für die Stadtverwaltung Bogotá."
+    "en": "Ongoing support for data analysis, information management and reporting for Bogotá City Government’s International Relations Department.",
+    "es": "Apoyo continuo al análisis de datos, la gestión de información y la elaboración de informes para la Consejería Distrital de Relaciones Internacionales de Bogotá.",
+    "de": "Laufende Unterstützung bei Datenanalyse, Informationsmanagement und Berichterstattung für die Abteilung für internationale Beziehungen der Stadt Bogotá."
   },
   "typeLabels": {
     "en": "Professional contribution",
