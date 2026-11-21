@@ -399,11 +399,11 @@ html[data-theme] body .nav-menu-w .nav-menu-bg {
   background: #c4d7fc !important;
   -webkit-mask: url("blobs-nav-purple.svg") center / cover no-repeat;
   mask: url("blobs-nav-purple.svg") center / cover no-repeat;
-  opacity: .82;
+  opacity: .94 !important;
   pointer-events: none;
 }
 @media (prefers-contrast: more) {
-  html[data-theme] body .nav-menu-w .nav-menu-bg { opacity: .42; }
+  html[data-theme] body .nav-menu-w .nav-menu-bg { opacity: .42 !important; }
 }
 
 /* Equal, separate language and menu controls with a shared glass surface. */
@@ -465,6 +465,7 @@ html[data-theme] body .nav-menu-w .nav-menu-bg {
   html[data-theme] body.clean-portfolio .nav[data-nav-wrap] :is(.nav-ham[data-nav-ham]:hover, [data-lang-trigger]:hover, [data-lang-trigger][aria-expanded="true"]) {
     background: #e5eeff !important;
   }
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap]:has([data-compact-lang]) .btn-layout.is-nav { transform: none !important; }
   html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .nav-rive-w {
     width: var(--top-control-size);
     height: var(--top-control-size);
