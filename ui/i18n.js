@@ -461,6 +461,7 @@
     translateMenu(lang);
 
     document.documentElement.lang = lang;
+    refreshLanguageTrigger(lang);
     document.querySelectorAll('[data-lang]').forEach((b) => {
       const on = b.getAttribute('data-lang') === lang;
       b.classList.toggle('is-on', on);
@@ -484,6 +485,64 @@
     } catch (e) { return activeLanguage; }
   }
 
+  const localeNames = { en: 'English', es: 'Español', de: 'Deutsch' };
+  const languageLabels = { en: 'Language', es: 'Idioma', de: 'Sprache' };
+
+  function refreshLanguageTrigger(lang) {
+    const trigger = document.querySelector('[data-lang-trigger]');
+    if (!trigger) return;
+    const code = lang.toUpperCase();
+    if (trigger.textContent !== code) trigger.textContent = code;
+    trigger.setAttribute('aria-label', languageLabels[lang] + ': ' + localeNames[lang]);
+  }
+
+  function compactSwitcher(sw) {
+    if (sw.hasAttribute('data-compact-lang') || !document.querySelector('link[href*="nav-islands.css"]')) return;
+    const options = [...sw.querySelectorAll('button[data-lang]')];
+    if (options.length !== 3) return;
+    const trigger = document.createElement('button');
+    trigger.type = 'button';
+    trigger.setAttribute('data-lang-trigger', '');
+    trigger.setAttribute('aria-expanded', 'false');
+    trigger.setAttribute('aria-controls', 'portfolio-language-options');
+    const panel = document.createElement('div');
+    panel.className = 'language-options';
+    panel.id = 'portfolio-language-options';
+    panel.hidden = true;
+    for (const option of options) {
+      const code = option.dataset.lang;
+      option.textContent = localeNames[code];
+      option.lang = code;
+      panel.append(option);
+    }
+    sw.replaceChildren(trigger, panel);
+    sw.setAttribute('data-compact-lang', '');
+    refreshLanguageTrigger(current());
+
+    function show(open, restoreFocus = false) {
+      panel.hidden = !open;
+      trigger.setAttribute('aria-expanded', String(open));
+      if (open) (panel.querySelector('[aria-pressed="true"]') || options[0]).focus();
+      else if (restoreFocus) trigger.focus({ preventScroll:true });
+    }
+    trigger.addEventListener('click', () => show(panel.hidden, !panel.hidden));
+    panel.addEventListener('click', event => {
+      if (event.target.closest('button[data-lang]')) show(false, true);
+    });
+    sw.addEventListener('focusout', event => {
+      if (!panel.hidden && event.relatedTarget && !sw.contains(event.relatedTarget)) show(false);
+    });
+    document.addEventListener('pointerdown', event => {
+      if (!panel.hidden && !sw.contains(event.target)) show(false);
+    });
+    sw.addEventListener('keydown', event => {
+      if (panel.hidden || event.key !== 'Escape') return;
+      event.preventDefault();
+      event.stopPropagation();
+      show(false, true);
+    });
+  }
+
   /* build the switcher if this page has not got one, so a page mirrors with
      nothing but this script added to it */
   function ensureSwitcher() {
@@ -499,6 +558,7 @@
         .join('<span aria-hidden="true">/</span>');
     }
     sw.hidden = false;
+    compactSwitcher(sw);
     const inner = document.querySelector('.nav .nav-inner');
     const ham = document.querySelector('.nav-ham, .btn-layout.is-nav');
     if (inner && !inner.contains(sw)) {
