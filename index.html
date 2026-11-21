@@ -170,7 +170,8 @@ html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase
 html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card:is(:hover,:focus-visible) {
   border-color: rgb(245 250 255 / .78) !important;
   box-shadow: inset 0 1px 1px rgb(255 255 255 / .86),
-    inset -1px -1px 2px rgb(221 233 250 / .53), 0 9px 23px rgb(2 7 22 / .45);
+    inset -1px -1px 2px rgb(221 233 250 / .53),
+    inset 0 12px 18px -18px rgb(255 255 255 / .76), 0 9px 23px rgb(2 7 22 / .45);
 }
 html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card:focus-visible {
   outline: 2px solid #cfdaef;
@@ -185,14 +186,15 @@ html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase
     translate: 0 0;
     transition: opacity .7s var(--ease-out), transform .7s var(--ease-out),
       scale .36s cubic-bezier(.2,.75,.25,1), translate .36s cubic-bezier(.2,.75,.25,1),
-      box-shadow .36s var(--ease-out), border-color .36s var(--ease-out);
+      box-shadow .36s cubic-bezier(.2,.75,.25,1), border-color .36s cubic-bezier(.2,.75,.25,1);
   }
   html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card:is(:hover,:focus-visible) {
     z-index: 3;
     scale: 1.055;
     translate: 0 -5px;
     box-shadow: inset 0 1px 1px rgb(255 255 255 / .88),
-      inset -1px -1px 2px rgb(221 233 250 / .53), 0 20px 40px rgb(2 7 22 / .50);
+      inset -1px -1px 2px rgb(221 233 250 / .53),
+      inset 0 12px 18px -18px rgb(255 255 255 / .82), 0 20px 40px rgb(2 7 22 / .50);
   }
 }
 /* Enlarge the portrait only; the card keeps its dimensions and hit area. */
@@ -265,7 +267,44 @@ document.addEventListener('DOMContentLoaded', function () {
     defs.append(filter);
     const mapCanvas=document.createElement('canvas'), ctx=mapCanvas.getContext('2d');
     if (!ctx) return;
-    let prev='';
+    let prev='', baseScale=24, gain=1, frame=0;
+    const finePointer=matchMedia('(hover: hover) and (pointer: fine)');
+    const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
+    function writeGain(value) {
+      gain=value;
+      displacement.setAttribute('scale',(baseScale*value).toFixed(3));
+    }
+    // Match the 360 ms lift curve; animate filter strength, not the glass map.
+    function liftEase(progress) {
+      let a=0,b=1,t;
+      for(let step=0;step<9;step++) {
+        t=(a+b)/2;
+        const u=1-t;
+        if(3*u*u*t*.2+3*u*t*t*.25+t*t*t < progress) a=t;
+        else b=t;
+      }
+      const u=1-t;
+      return 3*u*u*t*.75+3*u*t*t+t*t*t;
+    }
+    function updateRefraction() {
+      if(frame) cancelAnimationFrame(frame);
+      frame=0;
+      const lifted=finePointer.matches&&!reducedMotion.matches&&card.matches(':hover,:focus-visible');
+      const target=lifted?1.95:1;
+      if(Math.abs(gain-target)<.001||reducedMotion.matches) { writeGain(target); return; }
+      const from=gain,began=performance.now();
+      function tick(now) {
+        const progress=Math.min(1,(now-began)/360);
+        writeGain(progress===1?target:from+(target-from)*liftEase(progress));
+        frame=progress<1?requestAnimationFrame(tick):0;
+      }
+      frame=requestAnimationFrame(tick);
+    }
+    if(!isDialog) {
+      for(const event of ['pointerenter','pointerleave','focus','blur']) card.addEventListener(event,updateRefraction);
+      finePointer.addEventListener('change',updateRefraction);
+      reducedMotion.addEventListener('change',updateRefraction);
+    }
     new ResizeObserver(() => {
       const w=Math.round(card.clientWidth),h=Math.round(card.clientHeight);
       if(w<10 || h<10 || prev===w+'x'+h)return;
@@ -276,7 +315,8 @@ document.addEventListener('DOMContentLoaded', function () {
       const zoom=isDialog?1:1.105, inward=1-1/zoom;
       const rim=isDialog?24*96/255:6;
       const scale=isDialog?24:Math.ceil(Math.max(w,h)*inward+2*rim+8);
-      displacement.setAttribute('scale',scale);
+      baseScale=scale;
+      writeGain(gain);
       const mw=Math.floor(w/2), mh=Math.floor(h/2);
       mapCanvas.width=mw;mapCanvas.height=mh;
       const image=ctx.createImageData(mw,mh), data=image.data;
