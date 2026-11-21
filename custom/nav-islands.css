@@ -225,15 +225,12 @@ body.experience-page #journey .am-journey-heading {
     background: #2455ce;
   }
   html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button[aria-pressed="true"] {
-    color: #164cc9;
-    background: #fff;
+    color: #fff;
+    background: #214ebd;
   }
   html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button:focus-visible {
     outline: 2px solid #fff !important;
     outline-offset: -3px;
-  }
-  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button[aria-pressed="true"]:focus-visible {
-    outline-color: #164cc9 !important;
   }
 }
 
