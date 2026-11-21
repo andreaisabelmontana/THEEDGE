@@ -498,6 +498,25 @@
         .map((l) => `<button type="button" data-lang="${l}">${l}</button>`)
         .join('<span aria-hidden="true">/</span>');
     }
+    sw.querySelectorAll('button[data-lang]').forEach((button) => {
+      if (button.querySelector('.locale-roll')) return;
+      const code = button.dataset.lang.toUpperCase();
+      button.setAttribute('aria-label', code);
+      const label = document.createElement('span');
+      label.className = 'locale-roll';
+      label.setAttribute('aria-hidden','true');
+      Array.from(code).forEach((letter, index) => {
+        const clip = document.createElement('span');
+        clip.className = 'locale-roll__letter';
+        const track = document.createElement('span');
+        track.className = 'locale-roll__track';
+        track.dataset.glyph = letter;
+        track.style.setProperty('--glyph-delay', (index * 36) + 'ms');
+        clip.append(track);
+        label.append(clip);
+      });
+      button.replaceChildren(label);
+    });
     sw.hidden = false;
     const inner = document.querySelector('.nav .nav-inner');
     const ham = document.querySelector('.nav-ham, .btn-layout.is-nav');

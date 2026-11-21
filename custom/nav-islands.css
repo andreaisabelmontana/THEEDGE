@@ -257,32 +257,21 @@ body.experience-page #journey .am-journey-heading {
   }
 }
 
-/* Roll each locale label independently, with a static reduced-motion option. */
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button[data-lang] {
-    position: relative;
-    overflow: hidden;
-    --locale-ink: #fff;
-    color: transparent !important;
-  }
-  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button[data-lang][aria-pressed="true"] {
-    --locale-ink: #164cc9;
-  }
-  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button[data-lang]::before,
-  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button[data-lang]::after {
-    content: attr(data-lang) / '';
-    position: absolute;
-    inset: 0;
-    display: grid;
-    place-items: center;
-    color: var(--locale-ink);
-    text-transform: uppercase;
-    pointer-events: none;
-    transition: transform .24s cubic-bezier(.24,.8,.25,1);
-  }
-  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button[data-lang]::after { transform: translateY(100%); }
-  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button[data-lang]:hover::before { transform: translateY(-100%); }
-  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button[data-lang]:hover::after { transform: translateY(0); }
+/* Each letter turns in a one-line window centered inside its existing pill. */
+.locale-roll { display:inline-flex; align-items:center; pointer-events:none; }
+.locale-roll__letter { display:block; height:1.24em; overflow:hidden; padding-inline:.025em; }
+.locale-roll__track { display:block; height:2.48em; }
+.locale-roll__track::before,
+.locale-roll__track::after {
+  content:attr(data-glyph) / '';
+  display:block; height:1.24em; line-height:1.24; text-align:center;
+}
+@media (prefers-reduced-motion:no-preference) {
+  .locale-roll__track { transition:transform .38s cubic-bezier(.2,.78,.26,1) var(--glyph-delay,0ms); }
+  [data-lang-switch] button:focus-visible .locale-roll__track { transform:translateY(-50%); }
+}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  [data-lang-switch] button:hover .locale-roll__track { transform:translateY(-50%); }
 }
 
 @media screen {
