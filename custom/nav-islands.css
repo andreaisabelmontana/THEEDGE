@@ -129,8 +129,9 @@ body.contact-page .taxi-w.is-contact .s.am-contact { padding-top: 12px; }
    vertical padding around the introductory links and first section. */
 body.experience-page .am-career-opening #top.am-career-hero { padding-bottom: 18px; }
 body.experience-page .am-career-opening .am-career-title-row { margin-bottom: clamp(16px, 2vw, 25px); }
-body.experience-page .am-career-opening .am-career-actions { margin-top: 14px; }
-body.experience-page .am-career-journey-layout #experience.am-career-section { padding-top: clamp(26px, 3vw, 43px); }
+body.experience-page .am-career-journey-layout .am-career-opening-intro { padding-bottom: 12px; }
+body.experience-page .am-career-opening-intro .am-career-actions { margin-top: 14px; }
+body.experience-page .am-career-journey-layout #experience.am-career-section { padding-top: clamp(20px, 2.5vw, 34px); }
 body.experience-page #top h1[data-edolus-title] { font-size: clamp(45px, 6vw, 88px); }
 body.experience-page #top h1[data-edolus-title]::before { font-size: .68em; vertical-align: .055em; }
 body.experience-page .am-career-opening-intro .am-career-lead { max-width: 32ch; font-size: clamp(21px, 2vw, 28px); }
