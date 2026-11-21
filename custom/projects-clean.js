@@ -31,7 +31,7 @@
       var sitePreviewNote=card.querySelector('[data-project-site-preview="globo"]');
       if(sitePreviewNote) sitePreviewNote.textContent=({en:'Public site preview · 6 Nov 2026',es:'Vista del sitio público · 6 nov 2026',de:'Öffentliche Website · 6. Nov. 2026'})[lang] || 'Public site preview · 6 Nov 2026';
       var cta=card.querySelector('.project-card-cta-label');
-      var ctaLabel=card.dataset.slug==='arte-de-la-montana' ? t.artCTA : (project && project.ctaLabels && project.ctaLabels[lang] || t.cta);
+      var ctaLabel=card.dataset.projectVideo==='globo' ? ({en:'Watch the walkthrough',es:'Ver el recorrido',de:'Video ansehen'})[lang] || 'Watch the walkthrough' : card.dataset.slug==='arte-de-la-montana' ? t.artCTA : (project && project.ctaLabels && project.ctaLabels[lang] || t.cta);
       if(cta && cta.textContent!==ctaLabel) cta.textContent=ctaLabel;
     });
     document.querySelectorAll('[data-project-copy]').forEach(function(el){var value=t[el.dataset.projectCopy];if(typeof value==='string' && el.textContent!==value) el.textContent=value;});
