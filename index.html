@@ -490,6 +490,8 @@ document.addEventListener('DOMContentLoaded', function () {
    .nav-menu-img-w[data-nav-img="1"] .menu-img-top {
      opacity:0 !important; filter:saturate(1.65) contrast(1.045); transition:opacity .22s ease;
    }
+   /* Home is already selected here, even before pointer or keyboard input. */
+   .nav-menu-w:has(.nav-menu-link-w[aria-current="page"][href="./"]) .nav-menu-img-w[data-nav-img="1"] .menu-img-top { opacity:.78 !important; }
    .nav-menu-w:has(.nav-menu-link-w:is([href="./"],[href="../"],[href="/"]):focus-visible) .nav-menu-img-w[data-nav-img="1"] .menu-img-top { opacity:1 !important; }
    @media (hover:hover) and (pointer:fine) {
      .nav-menu-w:has(.nav-menu-link-w:is([href="./"],[href="../"],[href="/"]):hover) .nav-menu-img-w[data-nav-img="1"] .menu-img-top { opacity:1 !important; }
