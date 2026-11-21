@@ -1,0 +1,45 @@
+.contact-page .photo-fan {
+  grid-column: 1 / -1;
+  margin: clamp(8px, 2vw, 28px) 0 0;
+  container-type: inline-size;
+  width: 100%;
+}
+.photo-fan__deck {
+  --card-width: clamp(100px, 24cqw, 284px);
+  --unit: min(1.05cqw, 12px);
+  isolation: isolate;
+  position: relative;
+  height: calc(var(--card-width) * 1.76 + var(--unit) * 8);
+}
+.photo-fan__card {
+  position: absolute;
+  display: block;
+  z-index: calc(10 - var(--depth));
+  inset: 0 auto auto 50%;
+  width: var(--card-width);
+  aspect-ratio: 4 / 7;
+  overflow: hidden;
+  border-radius: 15% / 8.5%;
+  transform: translate(calc(-50% + var(--base-x) * var(--unit)), calc(var(--base-y) * var(--unit)))
+    rotate(calc(var(--i) * 7deg)) scale(var(--base-scale));
+  contain: paint;
+}
+.photo-fan__card img { display:block; width:100%; height:100%; object-fit:cover; object-position:var(--crop,50% 45%); }
+.photo-fan__card:focus-visible { outline:3px solid #2869e9; outline-offset:4px; }
+.photo-fan__card[data-fan-active] { z-index:20; }
+.photo-fan__deck[data-fan-waiting] .photo-fan__card { transform: translate(-50%,calc(10 * var(--unit))); }
+.photo-fan__viewer { margin:auto; max-inline-size:min(92vw,72rem); max-block-size:93dvh; overflow:auto; padding:0; border:0; border-radius:16px; background:#101626; color:white; }
+.photo-fan__viewer::backdrop { background:rgb(6 11 25/.82); }
+.photo-fan__viewer img { display:block; max-width:100%; max-height:78dvh; width:auto; height:auto; margin:auto; object-fit:contain; }
+.photo-fan__viewer form { position:absolute; top:8px; right:8px; }
+.photo-fan__viewer button { min-width:44px; min-height:44px; border:0; border-radius:50%; background:#151f30; color:white; cursor:pointer; font:24px/1 system-ui; }
+.photo-fan__viewer button:focus-visible { outline:2px solid #fff; outline-offset:2px; }
+@container (max-width: 550px) {
+  .photo-fan__deck { --card-width:clamp(93px, 31cqw, 172px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .photo-fan__deck[data-fan-waiting] .photo-fan__card {
+    transform: translate(calc(-50% + var(--base-x) * var(--unit)), calc(var(--base-y) * var(--unit)))
+      rotate(calc(var(--i) * 7deg)) scale(var(--base-scale));
+  }
+}
