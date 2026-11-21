@@ -410,9 +410,12 @@ html[data-theme] body .nav-menu-w .nav-menu-bg {
    languages visible in a wider rounded rectangle. */
 @media screen {
   html[data-theme] body.clean-portfolio .nav[data-nav-wrap] {
-    --top-control-size: 58px;
-    --top-control-radius: 14px;
-    --top-control-fill: #f6f9ffeb;
+    --top-control-size: clamp(64px, 4.167vw, 80px);
+    --top-control-gap: clamp(9px, .73vw, 14px);
+    --top-control-top: clamp(12px, 1.15vw, 22px);
+    --top-control-end: clamp(14px, 1.04vw, 20px);
+    --top-control-radius: calc(var(--top-control-size) * .15625);
+    --top-control-fill: #f6f8fd;
     --top-control-ink: #243b62;
     --top-control-line: #8da6ce;
   }
@@ -428,45 +431,63 @@ html[data-theme] body .nav-menu-w .nav-menu-bg {
     border: 1px solid var(--top-control-line) !important;
     border-radius: var(--top-control-radius);
     background: var(--top-control-fill) !important;
-    box-shadow: 0 3px 12px #173e7512, inset 0 1px 0 #fff;
-    -webkit-backdrop-filter: blur(14px);
-    backdrop-filter: blur(14px);
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
     pointer-events: auto;
   }
   html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .nav-ham[data-nav-ham] {
     width: var(--top-control-size) !important;
     min-width: var(--top-control-size);
   }
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .nav-inner {
+    gap: var(--top-control-gap) !important;
+    padding-inline-end: var(--top-control-end) !important;
+  }
   html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .btn-layout.is-nav { transform: none !important; }
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .nav-ham[data-nav-ham]::before,
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .nav-ham[data-nav-ham]::after {
+    width: calc(var(--top-control-size) * .25);
+    height: 2.5px;
+    top: calc(50% - 1.25px);
+  }
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] :is(.btn-layout.is-nav, [data-lang-switch]:not([hidden])) {
+    align-self: flex-start;
+    margin-block-start: var(--top-control-top) !important;
+  }
   html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .nav-rive-w { width: 100%; height: 100%; }
   html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch]:not([hidden]) {
     display: inline-flex;
-    align-items: center;
+    align-items: stretch;
+    justify-content: center;
     flex: none;
-    padding: 3px;
-    gap: 2px !important;
+    width: calc(var(--top-control-size) * 1.9625);
+    padding: 4px;
+    gap: 0 !important;
+    background: #dce8ff !important;
   }
   html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] > span { display: none; }
   html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button {
     display: grid;
     place-items: center;
-    width: clamp(38px, 3.25vw, 46px);
+    flex: 1 1 0;
+    width: 0;
     min-width: 0;
-    height: calc(var(--top-control-size) - 8px);
+    height: 100%;
     min-height: 44px;
     margin: 0;
     padding: 0;
-    border-radius: 10px;
+    border-radius: max(5px, calc(var(--top-control-radius) - 4px));
     color: var(--top-control-ink);
-    font-size: 12px !important;
+    font-size: clamp(12px, 1.05vw, 18px) !important;
     font-weight: 650;
     letter-spacing: .025em;
     text-transform: uppercase;
   }
   html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button:hover { background: #e5eeff; }
-  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button[aria-pressed="true"] { background: #dce9ff; color: #164cc9; }
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] [data-lang-switch] button[aria-pressed="true"] { background: #c4d8ff; color: #164cc9; }
   @media (max-width: 500px) {
-    html[data-theme] body.clean-portfolio .nav[data-nav-wrap] { --top-control-size: 54px; }
+    html[data-theme] body.clean-portfolio .nav[data-nav-wrap] { --top-control-size: 54px; --top-control-top: 11px; }
     html[data-theme] body.clean-portfolio .nav[data-nav-wrap] :is(.nav-brand-link, .nav-brand) {
       flex-basis: 60px;
       width: 60px !important;
