@@ -308,3 +308,21 @@ body.experience-page #journey .am-journey-heading {
     max-width: min(74vw, 760px);
   }
 }
+
+/* Keep a stable button box. The original state-machine draws the moving
+   symbol once its canvas is ready; CSS provides the no-motion/loading icon. */
+@media screen and (prefers-reduced-motion: no-preference) {
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .nav-ham[data-nav-icon-ready] canvas[data-rive-nav-hamburger] {
+    opacity: 1 !important;
+    filter: grayscale(1) contrast(3) !important;
+    mix-blend-mode: multiply;
+  }
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .nav-ham[data-nav-icon-ready]:is(:hover,[aria-expanded="true"]) canvas[data-rive-nav-hamburger] {
+    filter: grayscale(1) contrast(3) invert(1) !important;
+    mix-blend-mode: screen;
+  }
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .nav-ham[data-nav-icon-ready]::before,
+  html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .nav-ham[data-nav-icon-ready]::after {
+    content: none;
+  }
+}
