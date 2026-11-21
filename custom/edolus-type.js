@@ -25,7 +25,7 @@
   };
   function frameFor(node, text) { node.setAttribute('data-edolus-frame', text); }
   function start() {
-    if (finished || reduced.matches || document.hidden) return;
+    if (finished || reduced.matches || document.hidden || document.documentElement.dataset.edolusBootExpired) return;
     finished = true;
     original.forEach(n => n.style.setProperty('--edge-edolus-ink', getComputedStyle(n).color));
     const t0 = performance.now();
@@ -35,6 +35,7 @@
       const timing = letters.map(line => line.map(() => .25 + Math.random() * 1.24));
       let prev = -1;
       words.forEach(node => frameFor(node, ''));
+      document.documentElement.classList.remove('edolus-intro-boot');
       function scramble(t) {
         const elapsed = (t - t0) / 1000;
         if (elapsed >= 1.50) {
@@ -58,6 +59,7 @@
     const bodyStart = headingDuration + 160;
     frameFor(title, '_');
     frameFor(copy, '');
+    document.documentElement.classList.remove('edolus-intro-boot');
     function type(t) {
       const elapsed = Math.max(0, t - t0);
       const blink = Math.floor(elapsed / 250) % 2 === 0;
@@ -83,9 +85,10 @@
     const isCovering = node => {
       if (!node) return false;
       const css = getComputedStyle(node);
-      return css.visibility !== 'hidden' && css.display !== 'none' && Number(css.opacity) > .05;
+      const box = node.getBoundingClientRect();
+      return css.visibility !== 'hidden' && css.display !== 'none' && Number(css.opacity) > .05 && box.left < innerWidth && box.right > 0 && box.top < innerHeight && box.bottom > 0;
     };
-    if (isCovering(loader) || isCovering(curtain)) return false;
+    if (isCovering(loader) || (words.length && isCovering(curtain))) return false;
     for(let node=(signature || title); node && node!==document.body; node=node.parentElement) {
       const css = getComputedStyle(node);
       if (css.display === 'none' || css.visibility !== 'visible' || Number(css.opacity) < .94) return false;
@@ -98,7 +101,7 @@
     const now = performance.now();
     if (!readyForEntrance()) visibleSince = -1;
     else if (visibleSince < 0) visibleSince = now;
-    else if (now - visibleSince >= 210) { start(); return; }
+    else if (now - visibleSince >= 75) { start(); return; }
     homePoll = setTimeout(waitForEntrance, 80);
   }
   function watch() {
