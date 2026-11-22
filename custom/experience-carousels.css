@@ -1,0 +1,59 @@
+/* Two independent scroll-snap galleries. Photos are content, not links. */
+.experience-page .am-cng-gallery {
+  gap:clamp(16px,3vw,28px);
+  margin-block:1.5rem 2rem;
+}
+.experience-page .am-media-carousel { display:flex; flex-direction:column; gap:.65rem; min-width:0; }
+.experience-page .am-media-carousel__track {
+  display:flex;
+  width:100%;
+  min-width:0;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-snap-type:x mandatory;
+  overscroll-behavior-inline:contain;
+  scrollbar-width:thin;
+  border-radius:12px;
+}
+.experience-page .am-media-carousel__slide {
+  flex:0 0 100%;
+  min-width:0;
+  scroll-snap-align:start;
+}
+.experience-page .am-media-carousel .am-cng-photo__frame {
+  grid-template:minmax(0,1fr) / minmax(0,1fr);
+  aspect-ratio:16 / 10;
+}
+.experience-page .am-media-carousel .am-cng-photo__frame :is(img,video) {
+  width:100%;height:100%;min-width:0;min-height:0;display:block;object-fit:contain;
+}
+.experience-page .am-media-carousel .am-cng-photo figcaption {
+  font-size:.875rem;
+  line-height:1.25;
+  margin:.55rem 0 .25rem;
+}
+.experience-page .am-media-carousel__controls:not([hidden]) {
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:6px;
+  min-width:0;
+}
+.experience-page .am-media-carousel__controls button {
+  display:inline-grid;place-items:center;
+  min-width:44px;min-height:44px;
+  padding:0 9px;
+  border:1px solid #9bb4e2;
+  border-radius:8px;
+  background:#edf3ff;color:#153980;
+  font:650 .78rem/1 system-ui,sans-serif;
+  cursor:pointer;touch-action:manipulation;
+}
+.experience-page .am-media-carousel__controls :is([data-media-prev],[data-media-next]) { font-size:1.3rem; }
+.experience-page .am-media-carousel__count { padding-inline:4px;color:#153980;font:.75rem/1 ui-monospace,monospace; }
+.experience-page .am-media-carousel :is(button,.am-media-carousel__track):focus-visible {
+  outline:2px solid #214ebd!important;outline-offset:2px;
+}
+.experience-page .am-role-photos-reference { margin-top:.8rem; }
+.experience-page .am-role-photos-reference a { color:#1544a7;text-decoration:underline;text-underline-offset:.15em; }
+.experience-page #cng-gallery-1 { scroll-margin-top:96px; }
