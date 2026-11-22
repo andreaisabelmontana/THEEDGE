@@ -124,9 +124,15 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
 <style id="contact-menu-summit">
    /* Show the Summit portrait in its original colors, not the menu's olive overlay. */
    .nav-menu-img-w[data-nav-img="5"] :is(.menu-img-blend-1,.menu-img-blend-2,.menu-img-blend-3) { display:none !important; }
-   .nav-menu-img-w[data-nav-img="5"] img { filter:none !important; mix-blend-mode:normal !important; }
-
-   .nav-menu-img-w[data-nav-img="5"] img { object-fit:contain !important; object-position:center; background:#151110; }
+   .nav-menu-img-w[data-nav-img="5"] img {
+     width:100%; height:100%; object-fit:cover !important; object-position:54% center; background:#151110;
+     filter:grayscale(1) !important; mix-blend-mode:normal !important; transition:filter .24s ease;
+   }
+   .nav-menu-w:has(.nav-menu-link-w[href$="/contact/"]:is(:hover,:focus-visible,:active)) .nav-menu-img-w[data-nav-img="5"] img,
+   .nav-menu-w:has(.nav-menu-link-w[href$="/contact/"][aria-current="page"]):not(:has(.nav-menu-link-w:not([href$="/contact/"]):is(:hover,:focus-visible))) .nav-menu-img-w[data-nav-img="5"] img {
+     filter:grayscale(0) !important;
+   }
+   @media (prefers-reduced-motion:reduce) { .nav-menu-img-w[data-nav-img="5"] img { transition:none; } }
    .nav-menu-img-w[data-nav-img="1"] .menu-img-top {
      opacity:0 !important; filter:saturate(1.65) contrast(1.045); transition:opacity .22s ease;
    }
