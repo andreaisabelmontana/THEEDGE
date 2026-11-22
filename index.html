@@ -502,8 +502,11 @@ document.addEventListener('DOMContentLoaded', function () {
    /* Home is already selected here, even before pointer or keyboard input. */
    .nav-menu-w:has(.nav-menu-link-w[aria-current="page"][href="./"]) .nav-menu-img-w[data-nav-img="1"] .menu-img-top { opacity:.78 !important; }
    .nav-menu-w:has(.nav-menu-link-w:is([href="./"],[href="../"],[href="/"]):focus-visible) .nav-menu-img-w[data-nav-img="1"] .menu-img-top { opacity:1 !important; }
+   /* Let the same neutral underlay show while another destination is in focus. */
+   .nav-menu-w:has(.nav-menu-link-w:not([href="./"]):focus-visible) .nav-menu-img-w[data-nav-img="1"] .menu-img-top { opacity:0 !important; }
    @media (hover:hover) and (pointer:fine) {
      .nav-menu-w:has(.nav-menu-link-w:is([href="./"],[href="../"],[href="/"]):hover) .nav-menu-img-w[data-nav-img="1"] .menu-img-top { opacity:1 !important; }
+     .nav-menu-w:has(.nav-menu-link-w:not([href="./"]):hover) .nav-menu-img-w[data-nav-img="1"] .menu-img-top { opacity:0 !important; }
    }
    @media (prefers-reduced-motion:reduce) { .nav-menu-img-w[data-nav-img="1"] .menu-img-top { transition:none; } }
  </style><link rel="stylesheet" href="custom/portfolio-cv.css?v=20261121-soft-blue"><style>.nav-menu-img-w[data-nav-img="5"] .menu-composite-label{position:absolute;z-index:11;bottom:12px;left:12px;padding:.28em .55em;border-radius:.3em;background:#171311d9;color:#fff;font:600 11px/1.3 system-ui,sans-serif;pointer-events:none}</style><style id="am-menu-current-tiles">
