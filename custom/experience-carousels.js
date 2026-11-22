@@ -45,6 +45,12 @@
       idle = setTimeout(() => { manual = false;schedule(); }, 3800);
       schedule();
     }
+    [['prev', -1], ['next', 1]].forEach(([name, offset]) => {
+      const control = carousel.querySelector('[data-media-' + name + ']');
+      if (!control) return;
+      control.hidden = false;
+      control.addEventListener('click', () => { holdManual(); go(index + offset); });
+    });
     play.addEventListener('click', () => { rotation = !rotation && !reduce.matches;updateButton();schedule(); });
     track.addEventListener('keydown', event => {
       if (event.target !== track || !['ArrowLeft','ArrowRight'].includes(event.key)) return;

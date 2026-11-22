@@ -63,3 +63,19 @@
 .experience-page .am-role-photos-reference { margin-top:.8rem; }
 .experience-page .am-role-photos-reference a { color:#1544a7;text-decoration:underline;text-underline-offset:.15em; }
 .experience-page #cng-gallery-1 { scroll-margin-top:96px; }
+
+/* A tiny chevron has a full-size hit area; no control strip below the image. */
+.experience-page .am-media-carousel__stage { position:relative; min-width:0; }
+.experience-page .am-media-carousel__arrow:not([hidden]) {
+  position:absolute;z-index:2;top:30%;display:grid;place-items:center;
+  width:44px;height:44px;padding:0;border:0;background:none;
+  color:#193c80;cursor:pointer;touch-action:manipulation;
+}
+.experience-page .am-media-carousel__arrow[data-media-prev] { inset-inline-start:0; }
+.experience-page .am-media-carousel__arrow[data-media-next] { inset-inline-end:0; }
+.experience-page .am-media-carousel__arrow > span {
+  display:grid;place-items:center;width:22px;height:22px;border-radius:50%;
+  background:rgba(255,255,255,.9);box-shadow:0 1px 3px #17356826;
+}
+.experience-page .am-media-carousel__arrow svg { width:15px;height:15px; }
+.experience-page .am-media-carousel__arrow:focus-visible { outline-offset:-3px; }
