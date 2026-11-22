@@ -18,21 +18,15 @@
     "es": "Gobierno de Bogotá",
     "de": "Stadtverwaltung Bogotá"
   },
-  "alcaldia-copy": {
-    "en": "Designed dashboard prototypes for GLOBO 2.0 with interactive maps, filters and 17 proposed indicators for Bogotá’s international cooperation reporting.",
-    "es": "Diseñé prototipos de tableros para GLOBO 2.0 con mapas interactivos, filtros y 17 indicadores propuestos para los reportes de cooperación internacional de Bogotá.",
-    "de": "Entwarf Dashboard-Prototypen für GLOBO 2.0 mit interaktiven Karten, Filtern und 17 vorgeschlagenen Kennzahlen für die Berichterstattung zur internationalen Zusammenarbeit Bogotás."
-  },
+  "alcaldia-copy-start": {"en": "Designed dashboard prototypes for", "es": "Diseñé prototipos de tableros para", "de": "Entwarf Dashboard-Prototypen für"},
+  "alcaldia-copy-end": {"en": "with interactive maps, filters and 17 proposed indicators for Bogotá’s international cooperation reporting.", "es": "con mapas interactivos, filtros y 17 indicadores propuestos para los reportes de cooperación internacional de Bogotá.", "de": "mit interaktiven Karten, Filtern und 17 vorgeschlagenen Kennzahlen für die Berichterstattung zur internationalen Zusammenarbeit Bogotás."},
   "alcaldia-analysis": {
     "en": "Standardized 60+ cooperation records using Python and Excel and helped turn the analysis into two briefs for policy and partnership planning.",
     "es": "Estandaricé más de 60 registros de cooperación con Python y Excel y contribuí a convertir el análisis en dos informes para orientar la planificación de políticas y alianzas.",
     "de": "Standardisierte über 60 Kooperationsdatensätze mit Python und Excel und wirkte an zwei Kurzberichten für die Politik- und Partnerschaftsplanung mit."
   },
-  "alcaldia-bulletin": {
-    "en": "Prototyped a back-office workflow for the Boletín de Oferta Internacional to collect, deduplicate and review opportunities before publication.",
-    "es": "Desarrollé un prototipo del flujo interno del Boletín de Oferta Internacional para recopilar, depurar y revisar convocatorias antes de publicarlas.",
-    "de": "Entwickelte einen internen Workflow-Prototyp für den Boletín de Oferta Internacional, um Ausschreibungen zu sammeln, Duplikate zu entfernen und sie vor der Veröffentlichung zu prüfen."
-  },
+  "alcaldia-bulletin-start": {"en": "Prototyped a back-office workflow for the", "es": "Desarrollé un prototipo del flujo interno del", "de": "Entwickelte einen internen Workflow-Prototyp für den"},
+  "alcaldia-bulletin-end": {"en": "to collect, deduplicate and review opportunities before publication.", "es": "para recopilar, depurar y revisar convocatorias antes de publicarlas.", "de": ", um Ausschreibungen zu sammeln, Duplikate zu entfernen und sie vor der Veröffentlichung zu prüfen."},
   "ie-campus-first": {
     "en": "Segovia · first year",
     "es": "Segovia · primer año",
@@ -128,11 +122,6 @@
     "es": "Noviembre de 2024",
     "de": "November 2024"
   },
-  "robo-video": {
-    "en": "ROBOPRENEUR video",
-    "es": "Vídeo de ROBOPRENEUR",
-    "de": "ROBOPRENEUR-Video"
-  },
   "eyebrow": {
     "en": "MADRID, SPAIN / CLASS OF 2028",
     "es": "MADRID, ESPAÑA / PROMOCIÓN DE 2028",
@@ -222,51 +211,6 @@
     "en": "Current",
     "es": "Actual",
     "de": "Aktuell"
-  },
-  "iex-robo": {
-    "en": "Supported ROBOPRENEUR research associated with RODEO, accepted at IEEE ICRA 2026: human–robot interaction simulation with cryptocurrency-based task rewards.",
-    "es": "Colaboré en la investigación de ROBOPRENEUR vinculada a RODEO, aceptado en IEEE ICRA 2026: simulación de interacción humano-robot con recompensas por tareas basadas en criptomonedas.",
-    "de": "Mitarbeit an der ROBOPRENEUR-Forschung im Zusammenhang mit RODEO, angenommen für IEEE ICRA 2026: Simulation der Mensch-Roboter-Interaktion mit kryptowährungsbasierten Aufgabenbelohnungen."
-  },
-  "iex-dj": {
-    "en": "Helped test the TouchDesigner–OptiTrack interface for DJESTHESIA, selected for SIGGRAPH Real-Time Live! 2025.",
-    "es": "Colaboré en las pruebas de la interfaz TouchDesigner–OptiTrack de DJESTHESIA, seleccionado para SIGGRAPH Real-Time Live! 2025.",
-    "de": "Beim Testen der TouchDesigner–OptiTrack-Schnittstelle von DJESTHESIA mitgeholfen, ausgewählt für SIGGRAPH Real-Time Live! 2025."
-  },
-  "iex-tiago": {
-    "en": "Enabling VR telepresence and imitation learning through a TIAGo digital twin with real-time Unity–ROS TCP integration.",
-    "es": "Desarrollo telepresencia en VR y aprendizaje por imitación mediante un gemelo digital de TIAGo con integración Unity–ROS TCP en tiempo real.",
-    "de": "VR-Telepräsenz und Imitationslernen durch einen digitalen TIAGo-Zwilling mit Unity–ROS-TCP-Integration in Echtzeit ermöglichen."
-  },
-  "iex-publications-heading": {
-    "en": "Related team publications",
-    "es": "Publicaciones relacionadas del equipo",
-    "de": "Verwandte Veröffentlichungen des Teams"
-  },
-  "iex-publications-note": {
-    "en": "My project contributions are described above. I am not a listed author of these papers; their authors are credited below.",
-    "es": "Mis aportaciones a los proyectos se describen arriba. No figuro como autora de estos artículos; sus autores se indican a continuación.",
-    "de": "Meine Projektbeiträge sind oben beschrieben. Ich bin nicht als Autorin dieser Veröffentlichungen aufgeführt; ihre Autoren sind unten genannt."
-  },
-  "iex-rodeo-publication": {
-    "en": "Accepted at IEEE ICRA 2026",
-    "es": "Aceptado en IEEE ICRA 2026",
-    "de": "Für IEEE ICRA 2026 angenommen"
-  },
-  "publication-record": {
-    "en": "Publisher record",
-    "es": "Registro editorial",
-    "de": "Verlagsseite"
-  },
-  "robo-link": {
-    "en": "ROBOPRENEUR case study",
-    "es": "Caso de ROBOPRENEUR",
-    "de": "ROBOPRENEUR-Projekt"
-  },
-  "dj-link": {
-    "en": "DJESTHESIA demo",
-    "es": "Demo de DJESTHESIA",
-    "de": "DJESTHESIA-Demo"
   },
   "ie-date": {
     "en": "Jun — Jul 2025",
@@ -507,7 +451,14 @@
     "en": "View packet (PDF)",
     "es": "Ver certificados (PDF)",
     "de": "Sammlung öffnen (PDF)"
-  }
+  },
+  "iex-robo-start": {"en": "Supported", "es": "Apoyé la investigación de", "de": "Unterstützte die Forschung von"},
+  "iex-robo-middle": {"en": "research on how cryptocurrency rewards shape human–robot collaboration. Related team paper:", "es": "sobre cómo las recompensas en criptomonedas influyen en la colaboración entre personas y robots. Publicación del equipo:", "de": "zur Frage, wie Belohnungen in Kryptowährung die Zusammenarbeit zwischen Mensch und Roboter beeinflussen. Publikation des Teams:"},
+  "iex-robo-end": {"en": ", accepted at IEEE ICRA 2026.", "es": ", aceptada en IEEE ICRA 2026.", "de": ", angenommen für IEEE ICRA 2026."},
+  "iex-dj-start": {"en": "Tested the TouchDesigner–OptiTrack motion-capture interface for", "es": "Probé la interfaz de captura de movimiento TouchDesigner–OptiTrack de", "de": "Testete die TouchDesigner–OptiTrack-Schnittstelle zur Bewegungserfassung für"},
+  "iex-dj-end": {"en": ", selected for SIGGRAPH Real-Time Live! 2025.", "es": ", seleccionado para SIGGRAPH Real-Time Live! 2025.", "de": ", ausgewählt für SIGGRAPH Real-Time Live! 2025."},
+  "iex-dj-paper": {"en": "Team publication", "es": "Publicación del equipo", "de": "Publikation des Teams"},
+  "iex-tiago": {"en": "Helped integrate a TIAGo digital twin with Unity and ROS over TCP for real-time VR teleoperation and imitation learning.", "es": "Colaboré en la integración de un gemelo digital de TIAGo con Unity y ROS mediante TCP para la teleoperación en realidad virtual en tiempo real y el aprendizaje por imitación.", "de": "Half bei der Integration eines digitalen TIAGo-Zwillings mit Unity und ROS über TCP für VR-Teleoperation in Echtzeit und Imitationslernen."}
 };
   function localize(language) {
     var lang = ['en', 'es', 'de'].indexOf(language) >= 0 ? language : 'en';
