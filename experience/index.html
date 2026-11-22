@@ -189,34 +189,17 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
    @media (prefers-reduced-motion:reduce) { .nav-menu-img-w[data-nav-img="1"] .menu-img-top { transition:none; } }
  </style><style id="education-gallery-layout">
 .experience-page [data-journey-mode][hidden]{display:none!important}
-
-.experience-page .am-school-gallery-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,2.1vw,26px);max-width:740px;margin-block:1.5rem 2rem;align-items:start}
-.experience-page .am-school-gallery-pair>.am-school-carousel{min-width:0;margin:0}
-.experience-page .am-school-gallery-pair .am-school-carousel__header{flex-wrap:wrap;gap:4px 12px}
-.experience-page .am-school-gallery-pair .am-school-carousel__header h4{font-size:.92rem}
 .experience-page .am-photo-static{cursor:default}
-@media(max-width:650px){.experience-page .am-school-gallery-pair{grid-template-columns:1fr;gap:1.3rem;max-width:430px}}
-
-
 .experience-page .am-edu-org-row{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:20px;row-gap:4px}
 .experience-page .am-edu-org-row>.am-career-evidence{margin-top:0}
-.am-school-carousel{margin-block:1.65rem 2rem;min-width:0;max-width:640px}
-.am-school-carousel__header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
-.am-school-carousel__header h4{font:inherit;font-weight:650;margin:0}
-.am-school-carousel__controls{display:flex;align-items:center;gap:6px;flex-shrink:0}
-.am-school-carousel [hidden]{display:none!important}
-.am-school-carousel__controls button{display:grid;place-items:center;width:34px;height:34px;background:transparent;border:1px solid currentColor;border-radius:50%;font:inherit;line-height:1;cursor:pointer;color:inherit}
-.am-school-carousel__controls [data-slide-count]{font-size:.8rem;min-width:34px;text-align:center}
-.am-school-carousel__slides{display:flex;overflow:auto;scroll-snap-type:x mandatory;touch-action:pan-y pinch-zoom}
-.am-school-carousel:not([data-ready]) .am-school-carousel__slides{touch-action:auto}
-.am-school-carousel[data-ready] .am-school-carousel__slides{overflow:clip;perspective:1100px}
-.am-school-carousel__slides figure{flex:0 0 100%;min-width:0;margin:0;scroll-snap-align:start}
-.am-school-carousel__slides figure>a,.am-school-carousel__slides figure>img{display:block;width:100%;aspect-ratio:16/10;height:auto;border-radius:12px;overflow:hidden;background:rgba(89,119,187,.07)}
-.am-school-carousel__slides figure img{display:block;width:100%;height:100%;object-fit:contain;max-height:none}
-.am-school-carousel__slides figure>img{height:auto}
-.am-school-carousel__slides figcaption{margin-top:.65rem;line-height:1.4;min-height:1.4em;padding:0}
-.am-school-carousel__slides figcaption h4{margin:0;font:inherit}
-.am-school-carousel__status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.experience-page .am-cng-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2.4vw,30px);width:100%;max-width:740px;margin:1.65rem 0 2rem;align-items:start}
+.experience-page .am-cng-gallery__group{min-width:0;display:grid;gap:clamp(18px,2.5vw,32px)}
+.experience-page .am-cng-gallery__group>h4{margin:0;color:#1544a7;font:500 .72rem/1.3 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.07em;text-transform:uppercase}
+.experience-page .am-cng-photo{min-width:0;margin:0}
+.experience-page .am-cng-photo__frame{display:grid;place-items:center;aspect-ratio:16/10;overflow:hidden;background:#e0e8fc;border-radius:12px}
+.experience-page .am-cng-photo__frame img{display:block;width:100%;height:100%;min-height:0;object-fit:contain}
+.experience-page .am-cng-photo figcaption{margin:.7rem 0 0;padding:0;color:inherit;font-size:clamp(.91rem,1.25vw,1.08rem);font-weight:650;line-height:1.25;letter-spacing:-.015em;text-align:left}
+@media(max-width:650px){.experience-page .am-cng-gallery{grid-template-columns:minmax(0,1fr);max-width:470px;gap:2.1rem}}
 </style><link rel="stylesheet" href="../custom/portfolio-cv.css?v=20261121-soft-blue"><style>.nav-menu-img-w[data-nav-img="5"] .menu-composite-label{position:absolute;z-index:11;bottom:12px;left:12px;padding:.28em .55em;border-radius:.3em;background:#171311d9;color:#fff;font:600 11px/1.3 system-ui,sans-serif;pointer-events:none}</style><style id="am-menu-current-tiles">
 html[data-theme] body .nav-menu-w:has(.nav-menu-link-w[href$="/online/"][aria-current="page"]) .nav-menu-img-w[data-nav-img="2"] .menu-img-top,
 html[data-theme] body .nav-menu-w:has(.nav-menu-link-w[href$="/experience/"][aria-current="page"]) .nav-menu-img-w[data-nav-img="3"] .menu-img-top { opacity:1 !important; }
@@ -1336,13 +1319,18 @@ d="M125.417 62.186c-2.382 0-4.395-.357-6.039-1.072-1.619-.714-2.858-1.715-3.716-
           <span class="am-leadership-expand" aria-hidden="true">↗</span>
         </a>
         <figcaption><h4 data-leadership-copy="vrTitle">Meta VR Day at IE</h4><p data-leadership-copy="vrCaption">Exploring virtual reality with a headset and controllers.</p></figcaption>
-      </figure></div></div></div><div class="am-career-prior" data-journey-city="dublin"><div class="am-career-logo-column"><a class="am-org-logo am-org-logo--trinity" href="https://www.tcd.ie/" aria-label="Trinity College Dublin" data-taxi-ignore target="_blank" rel="noopener noreferrer"><img src="../custom/organizations/trinity-cutout.webp" alt="Trinity College Dublin" width="96" height="124" loading="lazy" decoding="async"/></a></div><div class="am-career-prior-body am-career-prior-body--trinity"><div class="am-career-period"><span data-experience-copy="prior-label">Prior study</span></div><strong>Trinity College Dublin</strong><p data-experience-copy="prior">Computer Science studies; later transferred to IE University.</p><p data-experience-copy="prior-coursework">Relevant coursework: programming, mathematics, digital logic, electronics and information technology, and computers and society.</p><div class="am-career-evidence"><a href="https://teaching.scss.tcd.ie/wp-content/uploads/sites/10/2022/09/Integrated-Computer-Science-Handbook-22-23-V2-1.pdf" target="_blank" rel="noopener noreferrer"><span data-experience-copy="prior-handbook">Programme handbook</span><span aria-hidden="true">↗</span></a></div></div></div><div class="am-career-prior" data-journey-city="bogota"><div class="am-career-logo-column"><a class="am-org-logo am-org-logo--cng" href="https://www.cng.edu/" aria-label="Colegio Nueva Granada" data-taxi-ignore target="_blank" rel="noopener noreferrer"><img src="../custom/organizations/cng-seal-hd.webp" alt="Colegio Nueva Granada" width="64" height="64" loading="lazy" decoding="async"/></a></div><div class="am-career-prior-body"><div class="am-career-period"><time datetime="2022-06" data-experience-copy="cng-date">Graduated June 2022</time></div><strong>Colegio Nueva Granada</strong><p>American High School Diploma</p><p data-experience-copy="cng-curriculum">U.S. High School Diploma and Colombian Bachillerato program, with Advanced Placement offerings and a Mind, Body &amp; Character focus on academics, athletics, leadership and service.</p><div class="am-school-gallery-pair"><section class="am-school-carousel" aria-label="School memories" data-school-carousel><div class="am-school-carousel__header"><h4>School memories</h4><div class="am-school-carousel__controls" hidden><button type="button" data-slide-toggle aria-label="Pause slideshow" title="Pause slideshow">Ⅱ</button><button type="button" data-slide-step="-1" aria-label="Previous photo">‹</button><span data-slide-count aria-hidden="true"></span><button type="button" data-slide-step="1" aria-label="Next photo">›</button></div></div><div class="am-school-carousel__slides"><figure><img src="../custom/experience-basketball/cng-graduation-2022.webp" width="1440" height="989" alt="Class of 2022 graduation photo" loading="lazy" decoding="async"><figcaption>Class of 2022 graduation</figcaption></figure><figure><img src="../custom/experience-basketball/cng-graduation-stage-2022.webp" width="1185" height="772" alt="Wide view of the Class of 2022 graduation stage" loading="lazy" decoding="async"><figcaption>Class of 2022 ceremony</figcaption></figure>
-    <figure><img src="../custom/contact-photo-assets/school-graduation.webp" width="1170" height="1082" alt="Andrea holding two school certificates at graduation" loading="lazy" decoding="async"><figcaption>Middle school graduation</figcaption></figure>
-    <figure><img src="../custom/contact-photo-assets/school-memories.webp" width="1170" height="1169" alt="Three photos of Andrea celebrating a school award and graduation" loading="lazy" decoding="async"><figcaption>School awards and graduation</figcaption></figure>
-  </div><span class="am-school-carousel__status" aria-live="polite"></span></section><section class="am-school-carousel" aria-label="CNG basketball" data-school-carousel><div class="am-school-carousel__header"><h4>CNG basketball</h4><div class="am-school-carousel__controls" hidden><button type="button" data-slide-toggle aria-label="Pause slideshow" title="Pause slideshow">Ⅱ</button><button type="button" data-slide-step="-1" aria-label="Previous photo">‹</button><span data-slide-count aria-hidden="true"></span><button type="button" data-slide-step="1" aria-label="Next photo">›</button></div></div><div class="am-school-carousel__slides"><figure class="am-leadership-card "><a class="am-leadership-photo" data-taxi-ignore href="../custom/experience-basketball/cng-team.webp" target="_blank" rel="noopener" aria-label="Open full photo: CNG basketball team"><img src="../custom/experience-basketball/cng-team.webp" width="960" height="720" alt="Colegio Nueva Granada basketball players and coaches after the tournament" loading="lazy" decoding="async"></a><figcaption><h4>CNG basketball team</h4></figcaption></figure>
-<figure class="am-leadership-card "><a class="am-leadership-photo" data-taxi-ignore href="../custom/experience-basketball/cng-play.webp" target="_blank" rel="noopener" aria-label="Open full photo: On the court"><img src="../custom/experience-basketball/cng-play.webp" width="960" height="640" alt="CNG basketball game on an indoor court" loading="lazy" decoding="async"></a><figcaption><h4>On the court</h4></figcaption></figure>
-<figure class="am-leadership-card am-role-photo-portrait"><a class="am-leadership-photo" data-taxi-ignore href="../custom/experience-basketball/cng-captain-restored.webp" target="_blank" rel="noopener" aria-label="Open full photo: Captain banner"><img src="../custom/experience-basketball/cng-captain-restored.webp" width="1076" height="1462" alt="Restored image of Andrea’s CNG captain of basketball banner" loading="lazy" decoding="async"></a><figcaption><h4>Captain banner</h4></figcaption></figure>
-<figure class="am-leadership-card am-role-photo-portrait"><a class="am-leadership-photo" data-taxi-ignore href="../custom/experience-basketball/cng-trophy.webp" target="_blank" rel="noopener" aria-label="Open full photo: UNCOLI third place · 2021–22"><img src="../custom/experience-basketball/cng-trophy.webp" width="675" height="900" alt="UNCOLI women’s basketball third-place trophy on a clean backdrop" loading="lazy" decoding="async"></a><figcaption><h4>UNCOLI third place · 2021–22</h4></figcaption></figure></div><span class="am-school-carousel__status" aria-live="polite"></span></section></div></div></div></div></section><section class="am-career-section" id="leadership" data-journey-context="community" aria-labelledby="community-heading"><span id="community" class="am-anchor-alias" aria-hidden="true"></span><div class="am-career-container"><div class="am-career-section-head"><div><p class="am-career-index">03</p><h2 id="community-heading" data-experience-copy="community-heading" class="am-career-section-title">Leadership</h2></div><p data-experience-copy="community-sub" class="am-career-section-sub">Building with people, on campus and beyond.</p></div><div class="am-career-additional"><article id="leadership-campus-life" data-leadership-detail="campus-life"><p class="am-career-date"><span data-experience-copy="campus-date">Aug 2023 — Aug 2026</span></p><h3 data-experience-copy="campus-title">Club Officer &amp; BB Co-Captain</h3><div class="am-org-row"><a class="am-org-logo am-org-logo--campus-life" href="https://campuslife.ie.edu/" aria-label="IE Campus Life" data-taxi-ignore target="_blank" rel="noopener noreferrer"><img src="../custom/organizations/ie-campus-life.png" alt="" width="432" height="478" loading="lazy" decoding="async"/></a><p class="am-career-org">IE Campus Life</p></div><p data-experience-copy="campus-copy">Led student engagement across Basketball, Venezuela Club, Colombia Club and Art Club through events and campus programming.</p><div class="am-role-photos " role="group" aria-label="IE basketball photos"><figure class="am-leadership-card">
+      </figure></div></div></div><div class="am-career-prior" data-journey-city="dublin"><div class="am-career-logo-column"><a class="am-org-logo am-org-logo--trinity" href="https://www.tcd.ie/" aria-label="Trinity College Dublin" data-taxi-ignore target="_blank" rel="noopener noreferrer"><img src="../custom/organizations/trinity-cutout.webp" alt="Trinity College Dublin" width="96" height="124" loading="lazy" decoding="async"/></a></div><div class="am-career-prior-body am-career-prior-body--trinity"><div class="am-career-period"><span data-experience-copy="prior-label">Prior study</span></div><strong>Trinity College Dublin</strong><p data-experience-copy="prior">Computer Science studies; later transferred to IE University.</p><p data-experience-copy="prior-coursework">Relevant coursework: programming, mathematics, digital logic, electronics and information technology, and computers and society.</p><div class="am-career-evidence"><a href="https://teaching.scss.tcd.ie/wp-content/uploads/sites/10/2022/09/Integrated-Computer-Science-Handbook-22-23-V2-1.pdf" target="_blank" rel="noopener noreferrer"><span data-experience-copy="prior-handbook">Programme handbook</span><span aria-hidden="true">↗</span></a></div></div></div><div class="am-career-prior" data-journey-city="bogota"><div class="am-career-logo-column"><a class="am-org-logo am-org-logo--cng" href="https://www.cng.edu/" aria-label="Colegio Nueva Granada" data-taxi-ignore target="_blank" rel="noopener noreferrer"><img src="../custom/organizations/cng-seal-hd.webp" alt="Colegio Nueva Granada" width="64" height="64" loading="lazy" decoding="async"/></a></div><div class="am-career-prior-body"><div class="am-career-period"><time datetime="2022-06" data-experience-copy="cng-date">Graduated June 2022</time></div><strong>Colegio Nueva Granada</strong><p>American High School Diploma</p><p data-experience-copy="cng-curriculum">U.S. High School Diploma and Colombian Bachillerato program, with Advanced Placement offerings and a Mind, Body &amp; Character focus on academics, athletics, leadership and service.</p><div class="am-cng-gallery">
+<section class="am-cng-gallery__group" aria-labelledby="cng-gallery-0"><h4 id="cng-gallery-0">School memories</h4>
+<figure class="am-cng-photo"><div class="am-cng-photo__frame"><img src="../custom/experience-basketball/cng-graduation-2022.webp" width="1440" height="989" alt="Class of 2022 graduation photo" loading="lazy" decoding="async"></div><figcaption>Class of 2022</figcaption></figure>
+<figure class="am-cng-photo"><div class="am-cng-photo__frame"><img src="../custom/experience-basketball/cng-graduation-stage-2022.webp" width="1185" height="772" alt="Wide view of the Class of 2022 graduation stage" loading="lazy" decoding="async"></div><figcaption>Graduation ceremony</figcaption></figure>
+<figure class="am-cng-photo"><div class="am-cng-photo__frame"><img src="../custom/contact-photo-assets/school-graduation.webp" width="1170" height="1082" alt="Andrea holding two school certificates at graduation" loading="lazy" decoding="async"></div><figcaption>Middle school graduation</figcaption></figure>
+<figure class="am-cng-photo"><div class="am-cng-photo__frame"><img src="../custom/contact-photo-assets/school-memories.webp" width="1170" height="1169" alt="Three photos of Andrea celebrating a school award and graduation" loading="lazy" decoding="async"></div><figcaption>School awards</figcaption></figure></section>
+<section class="am-cng-gallery__group" aria-labelledby="cng-gallery-1"><h4 id="cng-gallery-1">CNG basketball</h4>
+<figure class="am-cng-photo"><div class="am-cng-photo__frame"><img src="../custom/experience-basketball/cng-team.webp" width="960" height="720" alt="Colegio Nueva Granada basketball players and coaches after the tournament" loading="lazy" decoding="async"></div><figcaption>Team photo</figcaption></figure>
+<figure class="am-cng-photo"><div class="am-cng-photo__frame"><img src="../custom/experience-basketball/cng-play.webp" width="960" height="640" alt="CNG basketball game on an indoor court" loading="lazy" decoding="async"></div><figcaption>Game day</figcaption></figure>
+<figure class="am-cng-photo"><div class="am-cng-photo__frame"><img src="../custom/experience-basketball/cng-captain-restored.webp" width="1076" height="1462" alt="Restored image of Andrea’s CNG captain of basketball banner" loading="lazy" decoding="async"></div><figcaption>Captain’s banner</figcaption></figure>
+<figure class="am-cng-photo"><div class="am-cng-photo__frame"><img src="../custom/experience-basketball/cng-trophy.webp" width="675" height="900" alt="UNCOLI women’s basketball third-place trophy on a clean backdrop" loading="lazy" decoding="async"></div><figcaption>UNCOLI bronze, 2021–22</figcaption></figure></section>
+</div></div></div></div></section><section class="am-career-section" id="leadership" data-journey-context="community" aria-labelledby="community-heading"><span id="community" class="am-anchor-alias" aria-hidden="true"></span><div class="am-career-container"><div class="am-career-section-head"><div><p class="am-career-index">03</p><h2 id="community-heading" data-experience-copy="community-heading" class="am-career-section-title">Leadership</h2></div><p data-experience-copy="community-sub" class="am-career-section-sub">Building with people, on campus and beyond.</p></div><div class="am-career-additional"><article id="leadership-campus-life" data-leadership-detail="campus-life"><p class="am-career-date"><span data-experience-copy="campus-date">Aug 2023 — Aug 2026</span></p><h3 data-experience-copy="campus-title">Club Officer &amp; BB Co-Captain</h3><div class="am-org-row"><a class="am-org-logo am-org-logo--campus-life" href="https://campuslife.ie.edu/" aria-label="IE Campus Life" data-taxi-ignore target="_blank" rel="noopener noreferrer"><img src="../custom/organizations/ie-campus-life.png" alt="" width="432" height="478" loading="lazy" decoding="async"/></a><p class="am-career-org">IE Campus Life</p></div><p data-experience-copy="campus-copy">Led student engagement across Basketball, Venezuela Club, Colombia Club and Art Club through events and campus programming.</p><div class="am-role-photos " role="group" aria-label="IE basketball photos"><figure class="am-leadership-card">
         <div class="am-leadership-photo am-photo-static">
           <img src="../custom/leadership/basketball-640.webp" srcset="../custom/leadership/basketball-640.webp 640w, ../custom/leadership/basketball.webp 1024w" sizes="(max-width: 620px) calc(100vw - 40px), (max-width: 900px) calc((100vw - 78px) / 2), (max-width: 1216px) calc((100vw - 140px) / 3), 359px" width="1024" height="751" loading="lazy" decoding="async" data-leadership-alt="basketballAlt" alt="Basketball team and coach posing together on an indoor court.">
         </div>
@@ -1492,54 +1480,4 @@ d="M125.417 62.186c-2.382 0-4.395-.357-6.039-1.072-1.619-.714-2.858-1.715-3.716-
 <link rel="stylesheet" href="../ui/ui.css?v=20260911k"/><script defer src="../custom/page-guard.js?v=20260911k"></script><script src="../ui/i18n.js?v=20261121-letter-roll" defer></script>
 <script defer src="../custom/experience-content.js?v=20261119-detail-polish"></script><script defer src="../custom/clean-shell.js?v=20260918-polish2"></script><script defer src="../custom/leadership.js?v=20261012-certificates"></script>
 <script defer src="../custom/leadership-details.js?v=20261012-details"></script>
-<script defer src="../custom/affiliations.js?v=20261120-badge-fit"></script><script id="school-carousel-motion">
-(() => {
- const motion=matchMedia('(prefers-reduced-motion: reduce)');
- for (const deck of document.querySelectorAll('[data-school-carousel]')) {
-  const stage=deck.querySelector('.am-school-carousel__slides');
-  const slides=Array.from(stage.children);
-  const controls=deck.querySelector('.am-school-carousel__controls');
-  const toggle=controls.querySelector('[data-slide-toggle]');
-  const count=controls.querySelector('[data-slide-count]');
-  const status=deck.querySelector('[aria-live]');
-  let index=0, timer, visible=false, paused=false, hover=false, focus=false, start, animation;
-  const render=(direction, manual=false) => {
-   animation?.cancel();
-   slides.forEach((slide,i)=>{slide.hidden=i!==index});
-   count.textContent=(index+1)+' / '+slides.length;
-   if(manual) status.textContent=count.textContent+': '+slides[index].querySelector('figcaption').textContent;
-   if(direction&&!motion.matches&&slides[index].animate) animation=slides[index].animate([
-    {transform:'perspective(1100px) translateX('+(direction*5)+'%) rotateY('+(-direction*22)+'deg)',opacity:.32},
-    {transform:'perspective(1100px) translateX(0) rotateY(0)',opacity:1}
-   ],{duration:430,easing:'cubic-bezier(.2,.75,.25,1)'});
-  };
-  function step(direction,manual=false){index=(index+direction+slides.length)%slides.length;render(direction,manual);}
-  function sync(){
-   clearTimeout(timer);
-   toggle.hidden=motion.matches;
-   const label=paused?'Play slideshow':'Pause slideshow';
-   toggle.textContent=paused?'▶':'Ⅱ';
-   toggle.setAttribute('aria-label',label);
-   toggle.title=label;
-   if(visible&&!document.hidden&&!paused&&!hover&&!focus&&!motion.matches) timer=setTimeout(()=>{step(1);sync()},2000);
-  }
-  controls.hidden=false;
-  deck.dataset.ready='';
-  render(0);
-  controls.querySelectorAll('[data-slide-step]').forEach(button=>button.addEventListener('click',()=>{step(Number(button.dataset.slideStep),true);sync()}));
-  toggle.addEventListener('click',()=>{paused=!paused;sync()});
-  deck.addEventListener('keydown',e=>{if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;e.preventDefault();step(e.key==='ArrowRight'?1:-1,true);sync()});
-  deck.addEventListener('focusin',()=>{focus=true;sync()});
-  deck.addEventListener('focusout',e=>{if(!deck.contains(e.relatedTarget)){focus=false;sync()}});
-  deck.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){hover=true;sync()}});
-  deck.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse'){hover=false;sync()}});
-  stage.addEventListener('touchstart',e=>{start=e.touches.length===1?[e.touches[0].clientX,e.touches[0].clientY]:null},{passive:true});
-  stage.addEventListener('touchcancel',()=>{start=null},{passive:true});
-  stage.addEventListener('touchend',e=>{if(!start)return;const t=e.changedTouches[0],dx=t.clientX-start[0],dy=t.clientY-start[1];start=null;if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)*1.3){if(e.cancelable)e.preventDefault();step(dx<0?1:-1,true);sync()}});
-  document.addEventListener('visibilitychange',sync);
-  motion.addEventListener?.('change',sync);
-  if('IntersectionObserver' in window) new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;sync()},{threshold:.35}).observe(deck);
-  else {visible=true;sync()}
- }
-})();
-</script></body></html>
+<script defer src="../custom/affiliations.js?v=20261120-badge-fit"></script></body></html>
