@@ -169,17 +169,16 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
   }
   @media print { .experience-page .am-experience-side-rail { display:none; } }
 </style><style id="contact-menu-summit">
-   /* Show the Summit portrait in its original colors, not the menu's olive overlay. */
-   .nav-menu-img-w[data-nav-img="5"] :is(.menu-img-blend-1,.menu-img-blend-2,.menu-img-blend-3) { display:none !important; }
-   .nav-menu-img-w[data-nav-img="5"] img {
-     width:100%; height:100%; object-fit:cover !important; object-position:54% center; background:#151110;
-     filter:grayscale(1) !important; mix-blend-mode:normal !important; transition:filter .24s ease;
+   /* Match the original olive duotone used by the other menu tiles. */
+   .nav-menu-img-w[data-nav-img="5"] img { width:100%; height:100%; object-fit:cover !important; object-position:54% center; }
+   .nav-menu-img-w[data-nav-img="5"] .menu-img-top {
+     opacity:0 !important; filter:saturate(1.19) contrast(1.02); transition:opacity .24s ease;
    }
-   .nav-menu-w:has(.nav-menu-link-w[href$="/contact/"]:is(:hover,:focus-visible,:active)) .nav-menu-img-w[data-nav-img="5"] img,
-   .nav-menu-w:has(.nav-menu-link-w[href$="/contact/"][aria-current="page"]):not(:has(.nav-menu-link-w:not([href$="/contact/"]):is(:hover,:focus-visible))) .nav-menu-img-w[data-nav-img="5"] img {
-     filter:grayscale(0) !important;
+   .nav-menu-w:has(.nav-menu-link-w[href$="/contact/"]:is(:hover,:focus-visible,:active)) .nav-menu-img-w[data-nav-img="5"] .menu-img-top,
+   .nav-menu-w:has(.nav-menu-link-w[href$="/contact/"][aria-current="page"]):not(:has(.nav-menu-link-w:not([href$="/contact/"]):is(:hover,:focus-visible))) .nav-menu-img-w[data-nav-img="5"] .menu-img-top {
+     opacity:1 !important;
    }
-   @media (prefers-reduced-motion:reduce) { .nav-menu-img-w[data-nav-img="5"] img { transition:none; } }
+   @media (prefers-reduced-motion:reduce) { .nav-menu-img-w[data-nav-img="5"] .menu-img-top { transition:none; } }
    .nav-menu-img-w[data-nav-img="1"] .menu-img-top {
      opacity:0 !important; filter:saturate(1.65) contrast(1.045); transition:opacity .22s ease;
    }
@@ -218,7 +217,7 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
 .am-school-carousel__slides figcaption{margin-top:.65rem;line-height:1.4;min-height:1.4em;padding:0}
 .am-school-carousel__slides figcaption h4{margin:0;font:inherit}
 .am-school-carousel__status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
-</style><link rel="stylesheet" href="../custom/portfolio-cv.css?v=20261121-soft-blue"><style>.nav-menu-img-w[data-nav-img="5"] .menu-composite-label{position:absolute;z-index:2;bottom:12px;left:12px;padding:.28em .55em;border-radius:.3em;background:#171311d9;color:#fff;font:600 11px/1.3 system-ui,sans-serif;pointer-events:none}</style></head><body data-edit="true" class="clean-portfolio experience-page"><div class="css-main"><div class="css-root w-embed"><style>
+</style><link rel="stylesheet" href="../custom/portfolio-cv.css?v=20261121-soft-blue"><style>.nav-menu-img-w[data-nav-img="5"] .menu-composite-label{position:absolute;z-index:11;bottom:12px;left:12px;padding:.28em .55em;border-radius:.3em;background:#171311d9;color:#fff;font:600 11px/1.3 system-ui,sans-serif;pointer-events:none}</style></head><body data-edit="true" class="clean-portfolio experience-page"><div class="css-main"><div class="css-root w-embed"><style>
 
   :root {
     /* Other variables */
