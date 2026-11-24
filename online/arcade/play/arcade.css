@@ -209,3 +209,33 @@ body.thinking .sp-tile .d{display:block}
   .key{height:46px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+
+/* Arcade workbench: narrow index, stable play area, and native disclosure. */
+.workspace{display:grid;grid-template-columns:184px minmax(0,1fr);align-items:start;gap:26px;max-width:1240px;width:100%;flex:1;margin:0 auto;padding:10px 32px 32px}
+.workspace.index-collapsed{grid-template-columns:138px minmax(0,1fr)}
+.game-index{padding:0 0 8px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:clip}
+.game-index:not([open]){padding:0}
+.game-index summary{min-height:42px;display:flex;align-items:center;gap:7px;padding:9px 11px;cursor:pointer;user-select:none;list-style:none;font-size:13px;font-weight:700}
+.game-index summary::-webkit-details-marker{display:none}
+.game-index summary:focus-visible{outline-offset:-3px}
+.index-count{font:11px var(--mono);color:var(--accent);margin-left:auto}
+.index-chevron{width:6px;height:6px;border-right:1.5px solid var(--accent);border-bottom:1.5px solid var(--accent);transform:rotate(-45deg);margin-left:2px}
+.game-index[open] .index-chevron{transform:rotate(45deg) translateY(-2px)}
+#tabs{display:grid;gap:2px;padding:0 6px}
+#tabs .tab{min-height:36px;display:flex;align-items:center;gap:8px;padding:5px 6px;border:1px solid transparent;border-radius:6px;white-space:normal}
+.tab-order{font:10px var(--mono);color:var(--faint);flex:none}
+#tabs .tab:hover{color:var(--ink);background:var(--surface-2)}
+#tabs .tab[aria-current=page]{border-color:var(--line-2);background:var(--surface-2);color:var(--ink)}
+#tabs .tab[aria-current=page] .tab-order{color:var(--accent)}
+.about-link{display:block;margin:8px 6px 0;padding:6px 7px 1px;border-top:1px solid var(--line);color:var(--muted);font-size:11px;text-decoration:none}
+.about-link:hover{text-decoration:underline}
+.workspace main{padding:0 0 12px;min-width:0}
+.workspace .game-head{margin:0 0 20px}
+.workspace .game-grid{gap:16px;grid-template-columns:minmax(0,1fr) minmax(210px,262px)}
+.workspace .stage,.workspace .panel{min-width:0}
+.isolation-frame{display:block;width:100%;height:750px;background:#151f2d;border:1px solid var(--line);border-radius:12px}
+.isolation-fallback{font-size:12px;color:var(--muted);margin:8px 0 0}
+body:has(.shows-isolation) .think-toggle{visibility:hidden}
+@media(max-width:1040px){.workspace .game-grid{grid-template-columns:minmax(0,1fr)}.workspace .panel{position:static}}
+@media(max-width:640px){.workspace,.workspace.index-collapsed{grid-template-columns:minmax(0,1fr);gap:15px;padding:4px 16px 22px}.game-index summary,#tabs .tab{min-height:44px}.game-index{width:100%}.workspace .game-head{margin:0 0 14px}}
