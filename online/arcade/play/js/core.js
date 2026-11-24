@@ -76,12 +76,12 @@ const Arcade = (() => {
   function renderIsolation(app) {
     const frame = el('iframe', {
       class: 'isolation-frame',
-      src: '../../isolation/?embed=arcade',
+      src: '../../isolation/play.html?embed=arcade',
       title: 'Isolation game'
     });
     document.title = 'Isolation · Arcade · Andrea Montaña';
     app.append(frame, el('p', { class: 'isolation-fallback' }, el('a', {
-      href: '../../isolation/?view=full', text: 'Open the full-size Isolation board'
+      href: '../../isolation/', text: 'About the Isolation project'
     })));
     let observer;
     frame.addEventListener('load', () => {
