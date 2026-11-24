@@ -1,250 +1,62 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#151f2d">
+<html data-theme="light" lang="en"><head>
+<script src="../../custom/theme.js?v=20261009-google-blue"></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f7f5f9">
+<title>Isolation — Andrea Montaña</title>
+<meta name="description" content="A playable knight strategy game with three levels of computer opponent.">
 <link rel="canonical" href="https://andreamontana.com/online/isolation/">
-<meta name="description" content="A playable knight-move strategy game. Move, burn the square behind you, and trap your opponent.">
-<title>Isolation | Knight Strategy</title>
+<meta property="og:type" content="article"><meta property="og:title" content="Isolation — Andrea Montaña"><meta property="og:description" content="A playable knight strategy game with three levels of computer opponent."><meta property="og:url" content="https://andreamontana.com/online/isolation/">
+<link rel="icon" href="../../custom/astronaut-blue.png?v=20261012-blue" type="image/png">
+<link rel="stylesheet" href="../../custom/clean-shell.css?v=20261014-menu-startup"><link rel="stylesheet" href="../../custom/case-study.css?v=20261121-mona-titles">
+<script>window.__SITE_ROOT=location.pathname.split('/online/')[0];</script>
+<link rel="stylesheet" href="../../custom/original-footer.css">
+<link rel="stylesheet" href="../../custom/theme.css?v=20261014-menu-startup"/>
+<link rel="stylesheet" href="../../custom/affiliations.css?v=20261012-no-pause"/><link rel="stylesheet" href="../../custom/portfolio-cv.css?v=20261121-minimal"><link rel="stylesheet" href="../../custom/nav-islands.css?v=20261121-subtle-language">
 <style>
-@font-face{font-family:Mona;src:url("../../assets/cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67bc6274c5b4108b123aa4d5_MonaSans-VariableFont_wdth,wght.woff2") format("woff2");font-weight:200 900;font-stretch:75% 125%;font-display:swap}
-:root{color-scheme:dark;--bg:#151f2d;--panel:#212f49;--line:#3a4b65;--blue:#7fa7f0;--orange:#c8612a;--amber:#ffa767;--text:#f6f5f1;--muted:#c4cedc;--tile:#2b3c5b}
-*{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--bg);font:18px/1.45 Mona,system-ui,sans-serif;color:var(--text)}
-main{width:min(1120px,100%);padding:32px clamp(16px,6vw,64px);margin:auto}.back{color:var(--muted);text-decoration:none;font-size:14px;display:inline-block;margin-bottom:32px}.back:hover{text-decoration:underline}header{margin-bottom:20px}h1{font-size:clamp(58px,8vw,96px);line-height:1.02;margin:12px 0 14px;letter-spacing:-.035em}h2{font-size:16px;margin:0 0 9px}.eyebrow{font-size:14px;letter-spacing:.11em;margin:0;color:var(--amber);font-weight:750;text-transform:uppercase}.intro{max-width:420px;margin:0;color:var(--muted);font-size:clamp(17px,2.5vw,24px);line-height:1.4}
-.layout{display:grid;grid-template-columns:minmax(280px,1.15fr) minmax(270px,1fr);grid-template-areas:"hero game" "controls game" "controls logic";grid-template-rows:min-content min-content 1fr;gap:4px 40px;align-items:start}.hero{grid-area:hero}.game{grid-area:game;padding-top:12px}
-.board{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));grid-template-rows:repeat(7,minmax(0,1fr));gap:5px;padding:10px;border-radius:15px;background:var(--panel);width:100%;aspect-ratio:1}
-.cell{min-width:0;padding:0;border:2px solid transparent;border-radius:6px;display:grid;place-items:center;position:relative;background:var(--tile);touch-action:manipulation;color:var(--text)}
-.cell.burned{background:var(--orange)}.cell.human:before,.cell.computer:before{content:"";width:68%;aspect-ratio:1;border-radius:100%;background:var(--text)}.cell.computer:before{background:transparent;border:clamp(2px,.4vw,5px) solid var(--blue)}
-.cell.legal{cursor:pointer;border-color:#6b96cf;background:#4a6795}.cell.legal:before{content:"";width:15%;aspect-ratio:1;border-radius:100%;background:#b9d5ff}.cell.legal:hover{filter:brightness(1.22)}
-button:focus-visible,select:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid #fff;outline-offset:2px;z-index:1}
-aside{grid-area:controls;max-width:420px;padding:15px 0 0;border-top:1px solid var(--line)}.status{margin:0 0 12px;font-weight:700;color:var(--text);min-height:1.45em}.control{display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px 10px;margin:0 0 10px}label,summary{font-weight:650;font-size:14px}label{grid-column:1/-1}select,.action{min-width:0;border-radius:8px;border:1px solid #5a6c8b;background:var(--panel);color:var(--text);padding:8px 10px;font:600 14px/1.4 Mona,system-ui,sans-serif}.action{cursor:pointer;background:var(--blue);color:#102039;border-color:var(--blue)}.action:hover{background:#a7c7ff}.legend{display:flex;justify-content:center;gap:8px 13px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin:12px 0 0}.legend span{white-space:nowrap}.blue{color:var(--blue)}.orange{color:var(--amber)}.dot{color:#adcfff}.meta,.help{font-size:13px;color:var(--muted)}.meta{margin:10px 0 0;min-height:1.4em}.scores{margin:3px 0 0;display:flex;flex-wrap:wrap;gap:4px;list-style:none;padding:0}.scores li{font:12px/1.3 ui-monospace,monospace;color:var(--muted);padding:3px 5px;background:var(--panel);border-radius:3px}.scores li.chosen{color:#122039;background:var(--blue)}details{margin-top:12px;border-top:1px solid var(--line);padding-top:9px}summary{cursor:pointer}.help{margin-bottom:0}footer{color:var(--muted);font-size:12px;margin-top:22px}
-details.logic{grid-area:logic;min-width:0;margin-top:5px;padding:0;border:0}.logic>summary{display:inline-flex;align-items:center;gap:7px;list-style:none;min-height:36px;background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:6px 9px;color:var(--muted);font-size:13px}.logic>summary::-webkit-details-marker{display:none}.logic>summary span:first-child{font:700 13px ui-monospace,monospace;color:var(--blue)}.logic[open]>summary,.logic>summary:hover{color:var(--text);border-color:var(--blue)}.logic-panel{margin-top:7px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px}.logic-panel h2{margin:0 0 6px;font-size:16px}.logic-step{border:1px solid transparent;border-radius:6px;padding:7px;margin:0 0 3px}.logic-step[aria-current="step"]{border-color:var(--amber)}.logic-step[aria-current="step"] h3{color:var(--amber)}.logic-step h3{margin:0;font-size:14px;color:var(--text)}.logic-step p{font-size:13px;color:var(--muted);margin:4px 0 7px}.logic pre{overflow-x:auto;max-width:100%;margin:0;background:#101a29;border-radius:6px;padding:8px;color:#c7ddff;font:12px/1.45 ui-monospace,monospace;tab-size:2;white-space:pre-wrap;overflow-wrap:anywhere}
-@media(max-width:690px){.logic-panel{min-width:0}.logic>summary{min-height:44px}}
-@media(max-width:690px){main{padding-top:16px}.back{margin-bottom:18px}.layout{grid-template-columns:minmax(0,1fr);grid-template-areas:"hero" "game" "controls" "logic";grid-template-rows:auto;gap:8px}.hero{margin-bottom:3px}.game{padding-top:2px}.board{max-width:490px;margin:auto;gap:3px;padding:7px}.legend{margin-top:7px}aside{width:100%;max-width:none;margin-top:9px}h1{margin:6px 0 8px}}
-/* Arcade keeps the game board clear; code is a small optional corner panel. */
-.in-arcade body{min-height:0}
-.in-arcade main{width:100%;padding:clamp(14px,3vw,26px)}
-.in-arcade .back,.in-arcade footer{display:none}
-.in-arcade h1{font-size:clamp(33px,4.4vw,48px);margin:5px 0 6px}
-.in-arcade .intro{max-width:unset;font-size:clamp(15px,2.2vw,17px)}
-.in-arcade .layout{position:relative;max-width:820px;margin:auto;grid-template-columns:minmax(0,1fr) minmax(205px,264px);grid-template-areas:"hero hero" "game controls" "game logic";grid-template-rows:auto auto 1fr;gap:12px 24px}
-.in-arcade .hero{margin:0 0 3px}
-.in-arcade .game{padding:0}
-.in-arcade .board{max-width:430px;margin:0 auto}
-.in-arcade aside{padding-top:12px}
-.in-arcade .logic{position:relative;justify-self:end;align-self:end;width:100%;text-align:right;margin:0;z-index:2}
-.in-arcade .logic-panel{position:absolute;right:0;bottom:calc(100% + 8px);width:100%;max-height:190px;text-align:left;overflow:auto;overscroll-behavior:contain;margin:0;box-shadow:0 8px 26px #080f1bbb}
-.in-arcade .logic-panel h2{font-size:14px}
-.in-arcade .logic-step p{font-size:12px}
-.in-arcade .logic-step[aria-current="step"]{background:#66402c;color:var(--text)}
-.in-arcade .logic pre{font-size:11px}
-@media(max-width:600px){
-  .in-arcade .layout{grid-template-columns:minmax(0,1fr);grid-template-areas:"hero" "game" "controls" "logic";grid-template-rows:auto;gap:10px}
-  .in-arcade .logic-panel{position:static;width:100%;max-height:250px;margin-top:6px}
-}
-</style>
-</head>
-<body>
-<main>
-<a class="back" href="../">← Back to projects</a>
-<section class="layout" aria-label="Isolation game">
-<header class="hero"><p class="eyebrow">Strategy game · AI reasoning</p><h1>Isolation</h1><p class="intro">Move like a knight, burn where you stood, and leave your opponent nowhere to go.</p></header>
-<div class="game">
-  <div id="board" class="board" role="group" aria-label="Isolation board. Use arrow keys to move focus."></div>
-  <div class="legend"><span><b>●</b> You</span><span><b class="blue">◯</b> Computer</span><span><b class="dot">●</b> Legal move</span><span><b class="orange">■</b> Burned square</span></div>
-
-</div>
-<aside aria-label="Game controls">
-  <h2>Match</h2>
-  <p id="status" class="status" role="status" aria-live="polite"></p>
-  <div class="control"><label for="difficulty">Computer level</label><select id="difficulty">
-      <option value="random">Casual · random</option>
-      <option value="greedy">Tactical · mobility</option>
-      <option value="search" selected>Strategic · search</option>
-  </select>
-  <button id="restart" class="action" type="button">New game</button></div>
-  <p id="stats" class="meta">No moves yet.</p>
-  <details id="thinking" hidden><summary>Computer move scores</summary><ul id="scores" class="scores"></ul></details>
-  <details><summary>How to play</summary><p class="help">You move first. Pick a highlighted square: two squares in one direction, one in the other. You can jump over pieces and burned squares, but can only land on empty squares. Each square you leave burns permanently. The first player with no legal move loses. Use the arrow keys to explore the board and Enter or Space to play.</p></details>
-</aside>
-<details class="logic"><summary><span aria-hidden="true">&lt;/&gt;</span><span>How it works</span></summary><div class="logic-panel" role="region" aria-label="Game logic" tabindex="0">
-<h2>Game logic</h2>
-<section class="logic-step" id="logic-move"><h3>1. Find a legal knight move</h3>
-<p>Each square has a list of in-bounds knight jumps. Only empty destinations are available.</p>
-<pre><code>const moves = (b, p) =&gt;
-  ADJ[p].filter(i =&gt; b[i] === EMPTY);</code></pre></section>
-<section class="logic-step" id="logic-burn"><h3>2. Burn the old square</h3>
-<p>Each move permanently burns the square you left, then hands the turn to your opponent.</p>
-<pre><code>board[pos[turn]] = BURN;
-board[dest] = turn;
-pos[turn] = dest;
-state.plies++;
-state.turn = 3 - turn;
-if (!moves(board, pos[state.turn]).length) state.winner = turn;</code></pre></section>
-<section class="logic-step" id="logic-ai"><h3>3. Pick the computer’s move</h3>
-<p>Strategic mode tests each move with four-ply alpha-beta search. At the depth limit, breadth-first search estimates territory. During search, the computer skips branches that can no longer change the result.</p>
-<pre><code>const candidate = -search(opp, dest, d - 1, 3 - mark, -beta, -alpha);
-b[dest] = EMPTY;
-b[own] = mark;
-value = Math.max(value, candidate);
-alpha = Math.max(alpha, value);
-if (alpha &gt;= beta) { cutoffs++; break; }</code></pre></section>
-</div></details>
+.case-media.isolation-demo{aspect-ratio:auto}
+.isolation-demo iframe{display:block;width:100%;height:630px;border:0;background:#151f2d}
+@media(max-width:700px){.isolation-demo iframe{height:590px}}
+</style></head>
+<body class="clean-portfolio case-page" data-surface="dark">
+<a href="#project" class="skip-link" data-case="skip">Skip to project</a>
+<header class="nav"><div class="nav-inner">
+<a class="nav-brand-link" href="../../" aria-label="Andrea Montaña · Home"><img class="nav-brand" src="../../custom/astronaut.png" alt="" width="44" height="54"></a>
+<nav class="clean-nav-links" aria-label="Main navigation"><a href="../" data-clean-nav="0">Projects</a><a href="../../experience/" data-clean-nav="1">Experience</a><a href="../../contact/" data-clean-nav="2">Contact</a></nav>
+<div class="lang" data-lang-switch role="group" aria-label="Language"><button type="button" data-lang="en" aria-label="English" aria-pressed="true">en</button><span aria-hidden="true">/</span><button type="button" data-lang="es" aria-label="Español" aria-pressed="false">es</button><span aria-hidden="true">/</span><button type="button" data-lang="de" aria-label="Deutsch" aria-pressed="false">de</button></div>
+<a class="portfolio-cv-link" data-taxi-ignore href="mailto:amontana.ieu2023@student.ie.edu?subject=CV%20request" aria-label="Request CV by email">CV</a><details class="case-mobile-menu"><summary data-case="menu">Menu</summary><nav aria-label="Main navigation"><a href="../" data-case="projects">Projects</a><a href="../../experience/" data-case="experience">Experience</a><a href="../../contact/" data-case="contact">Contact</a></nav></details>
+</div></header>
+<main id="project" class="case-main" tabindex="-1">
+<a href="../" class="case-back"><span aria-hidden="true">←</span><span data-case="back">All projects</span></a>
+<header class="case-hero"><p class="case-eyebrow"><span data-case="categoryValue">Algorithms &amp; games</span><span aria-hidden="true">✦</span><span class="case-year">2026</span></p>
+<h1 class="case-title">Isolation</h1><p class="case-intro" data-case="summary">A playable knight strategy game. Every square you leave is burned, so each move changes the board for both players.</p>
+<dl class="case-meta"><div><dt data-case="focus">Focus</dt><dd data-case="focusValue">Adversarial search · Game AI</dd></div></dl>
+<div class="case-stack"><p class="case-stack-label" data-case="languages">Languages</p><ul class="case-chips"><li>JavaScript</li><li>HTML</li><li>CSS</li></ul></div></header>
+<section class="case-showcase" aria-labelledby="demo-heading">
+  <div class="case-showcase-heading"><h2 data-case="action" id="demo-heading">See it in action</h2><span data-case="demoLabel">Playable demo</span></div>
+  <div class="case-media isolation-demo"><iframe id="isolation-demo" src="./play.html?embed=project" title="Play Isolation" loading="eager"></iframe></div>
+  <div class="case-media-caption"><p class="case-media-note" data-case="rules">Move to a highlighted square and leave the computer with no legal move.</p></div>
 </section>
-
-<footer>Local play against the computer. No account or game server needed.</footer>
+<nav class="case-pager" aria-label="More projects" data-surface="dark"><a href="../optitrack/" class="case-previous"><span data-case="previous" class="case-pager-label">Previous project</span><span class="case-pager-title">← OptiTrack</span></a><a href="../" class="case-all"><span data-case="all">All projects</span></a><a href="../arcade/" class="case-next"><span data-case="next" class="case-pager-label">Next project</span><span class="case-pager-title">Arcade →</span></a></nav>
 </main>
+<footer class="s is-footer restored-footer" data-surface="dark"><div class="spacer _14rem"></div><div class="c is-footer"><div class="footer-layout-w"><div data-nav-theme-target="light" class="footer-layout-clip"><div class="footer-inner-layout"><div class="footer-links-w"><div class="footer-links-col"><div class="footer-links-layout"><a data-taxi-ignore data-anim="text-hover" href="../../" class="text-link-w w-inline-block"><div class="text-clip-w"><div data-anim-high="right, lime" split-text="lines,chars" class="btn-text is-footer">Home</div></div></a><a data-taxi-ignore data-anim="text-hover" href="../../online" class="text-link-w w-inline-block"><div class="text-clip-w"><div data-anim-high="right, lime" split-text="lines,chars" class="btn-text is-footer">Projects</div></div></a><a data-site-art-link data-taxi-ignore data-anim="text-hover" href="../../design-art/" class="text-link-w w-inline-block"><div class="text-clip-w"><div data-anim-high="right, lime" split-text="lines,chars" class="btn-text is-footer">Design &amp; Art</div></div></a><a data-taxi-ignore data-anim="text-hover" href="../../experience" class="text-link-w w-inline-block"><div class="text-clip-w"><div data-anim-high="right, lime" split-text="lines,chars" class="btn-text is-footer">Experience</div></div></a><a data-taxi-ignore data-anim="text-hover" href="../../contact" class="text-link-w w-inline-block"><div class="text-clip-w"><div data-anim-high="right, lime" split-text="lines,chars" class="btn-text is-footer">Contact</div></div></a></div></div><div class="footer-links-col"><div class="footer-links-layout"><a data-anim="text-hover" href="https://www.linkedin.com/in/andreaimontana/" target="_blank" rel="noopener noreferrer" class="text-link-w w-inline-block"><div class="text-clip-w"><div data-anim-high="right, lime" split-text="lines,chars" class="btn-text is-footer">LinkedIn</div></div></a><a data-anim="text-hover" href="https://github.com/andreaisabelmontana" target="_blank" rel="noopener noreferrer" class="text-link-w w-inline-block"><div class="text-clip-w"><div data-anim-high="right, lime" split-text="lines,chars" class="btn-text is-footer">GitHub</div></div></a><a data-taxi-ignore data-anim="text-hover" href="https://www.instagram.com/artedelamontana/" target="_blank" rel="noopener noreferrer" class="text-link-w w-inline-block" aria-label="Instagram: @artedelamontana"><div class="text-clip-w"><div data-anim-high="right, lime" split-text="lines,chars" class="btn-text is-footer">Instagram</div></div></a><a data-anim="text-hover" href="mailto:amontana.ieu2023@student.ie.edu" class="text-link-w w-inline-block"><div class="text-clip-w"><div data-anim-high="right, lime" split-text="lines,chars" class="btn-text is-footer">Email</div></div></a></div></div></div><div class="footer-statement-w"><div class="footer-statement-layout"><h2 data-anim-high="right,lime-off" split-text="lines" class="text-impact-sm-mona footer">Computer Science and <span class="text-impact-sm-brier c-lime-off">Artificial Intelligence</span>.</h2></div></div><div class="footer-bg-helmet-w"><div class="footer-bg-helmet-layout"><img src="../../custom/helmet-person.webp?v=20260911k" loading="lazy" alt="Astronaut helmet portrait" class="footer-bg-img"/><div class="footer-bg-bottom-btn-w"><a data-btn-rive-rotate="false" data-anim="text-hover" data-btn-rive-hover="" data-theme="lime" data-wf--button-primary--variant="base" href="mailto:amontana.ieu2023@student.ie.edu" class="btn-w w-inline-block"><div class="btn-inner"><div class="btn-inner-text-w"><div split-text="chars" class="btn-text">contact</div></div><div class="btn-icon-w"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5H19V16M19 5L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div></a></div></div></div><div class="footer-marquee am-org-marquee" role="region" aria-label="Organizations from my experience and education"><div class="am-org-viewport" tabindex="0" aria-label="Organization logos"><div class="am-org-track"><div class="am-org-group"><div class="am-org-lockup am-org-lockup--ie"><img src="../../custom/organizations/ie-university-horizontal.svg" alt="IE University" width="855" height="345" loading="lazy" decoding="async"/></div><div class="am-org-lockup am-org-lockup--cyphy"><img src="../../custom/organizations/cyphy-life.svg" alt="" width="622" height="291" loading="lazy" decoding="async"/><span>CyPhy Life<small>IEX Labs</small></span></div><div class="am-org-lockup am-org-lockup--top"><img src="../../custom/organizations/top-living-dark.png" alt="Top Living Inmobiliaria" width="384" height="188" loading="lazy" decoding="async"/></div><div class="am-org-lockup am-org-lockup--trinity"><img src="../../custom/organizations/trinity-college-dublin.png" alt="Trinity College Dublin" width="464" height="124" loading="lazy" decoding="async"/></div><div class="am-org-lockup am-org-lockup--cng"><img src="../../custom/organizations/colegio-nueva-granada-horizontal.svg" alt="Colegio Nueva Granada" width="397" height="50" loading="lazy" decoding="async"/></div></div><div class="am-org-group" aria-hidden="true"><div class="am-org-lockup am-org-lockup--ie"><img src="../../custom/organizations/ie-university-horizontal.svg" alt="IE University" width="855" height="345" loading="lazy" decoding="async"/></div><div class="am-org-lockup am-org-lockup--cyphy"><img src="../../custom/organizations/cyphy-life.svg" alt="" width="622" height="291" loading="lazy" decoding="async"/><span>CyPhy Life<small>IEX Labs</small></span></div><div class="am-org-lockup am-org-lockup--top"><img src="../../custom/organizations/top-living-dark.png" alt="Top Living Inmobiliaria" width="384" height="188" loading="lazy" decoding="async"/></div><div class="am-org-lockup am-org-lockup--trinity"><img src="../../custom/organizations/trinity-college-dublin.png" alt="Trinity College Dublin" width="464" height="124" loading="lazy" decoding="async"/></div><div class="am-org-lockup am-org-lockup--cng"><img src="../../custom/organizations/colegio-nueva-granada-horizontal.svg" alt="Colegio Nueva Granada" width="397" height="50" loading="lazy" decoding="async"/></div></div></div></div><button class="am-org-motion" type="button" aria-label="Pause organization logos" aria-pressed="false" hidden>Pause</button></div><div class="footer-bg-pattern-w"><img src="../../assets/cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67dbeba158707fa1cd5e5e45_blobs_footer_1.svg" loading="lazy" alt="" class="image"/></div></div></div><div class="footer-legal-links-w"><div class="footer-legal-links-col"><div class="text-title-small-label"><span class="text-title-small-label bold">© 2026 .</span> All rights reserved</div></div><div class="footer-legal-links-col"></div></div></div></div><div class="footer-bg-gradient"></div></footer>
+<script type="application/json" id="case-copy">{"en": {"summary": "A playable knight strategy game. Every square you leave is burned, so each move changes the board for both players.", "focusValue": "Adversarial search · Game AI", "demoLabel": "Playable demo", "rules": "Move to a highlighted square and leave the computer with no legal move."}, "es": {"summary": "Un juego de estrategia con movimientos de caballo. Cada casilla que dejas queda quemada y cambia el tablero para ambos jugadores.", "focusValue": "Búsqueda adversarial · IA para juegos", "demoLabel": "Demo interactiva", "rules": "Elige una casilla resaltada y deja al oponente sin movimientos legales."}, "de": {"summary": "Ein Strategiespiel mit Springerzügen. Jedes verlassene Feld wird gesperrt und verändert das Spielfeld für beide Seiten.", "focusValue": "Adversarielle Suche · Spiele-KI", "demoLabel": "Spielbare Demo", "rules": "Wähle ein markiertes Feld und versperre dem Gegner alle legalen Züge."}}</script>
 <script>
-if (typeof window !== "undefined") {
-  const inFrame = window.parent !== window;
-  const mode = new URLSearchParams(location.search);
-  if (inFrame && mode.get("embed") === "arcade") {
-    document.documentElement.classList.add("in-arcade");
-  } else if (!inFrame && mode.get("view") !== "full" && /\/online\/isolation(?:\/index\.html|\/)?$/.test(location.pathname)) {
-    location.replace(location.pathname.replace(/\/isolation(?:\/index\.html|\/)?$/, "/arcade/play/") + "#isolation");
-  }
-}
 (() => {
-"use strict";
-const SIDE=7, SIZE=49;
-const OFF=[[-2,-1],[-2,1],[-1,-2],[-1,2],[1,-2],[1,2],[2,-1],[2,1]];
-const ADJ=Array.from({length:SIZE},(_,p)=>OFF.map(([dr,dc])=>[Math.floor(p/SIDE)+dr,p%SIDE+dc]).filter(([r,c])=>r>=0&&r<SIDE&&c>=0&&c<SIDE).map(([r,c])=>r*SIDE+c));
-const EMPTY=0, BURN=-1, HUMAN=1, CPU=2, WIN=1e4;
-const boardEl=document.getElementById("board"), statusEl=document.getElementById("status"), statsEl=document.getElementById("stats");
-const difficulty=document.getElementById("difficulty"), thinking=document.getElementById("thinking"), scoreEl=document.getElementById("scores");
-const logicSteps=Object.fromEntries(["move","burn","ai"].map(key=>[key,document.getElementById("logic-"+key)]));
-let state, waiting, timer, generation=0, focusIndex=0, lastSearch=null, logicPhase="move";
-const cells=Array.from({length:SIZE},(_,i)=>{
-  const b=document.createElement("button");
-  b.type="button";
-  b.addEventListener("click",()=>humanMove(i));
-  b.addEventListener("focus",()=>setFocus(i,false));
-  b.addEventListener("keydown",e=>{
-    const delta={ArrowLeft:[0,-1],ArrowRight:[0,1],ArrowUp:[-1,0],ArrowDown:[1,0]}[e.key];
-    if(!delta) return;
-    e.preventDefault();
-    const r=Math.min(6,Math.max(0,Math.floor(i/SIDE)+delta[0]));
-    const c=Math.min(6,Math.max(0,i%SIDE+delta[1]));
-    setFocus(r*SIDE+c,true);
-  });
-  boardEl.append(b); return b;
-});
-function setFocus(i,moveDOM){cells[focusIndex].tabIndex=-1;focusIndex=i;cells[i].tabIndex=0;if(moveDOM)cells[i].focus();}
-function makeStart(){
-  const p=Math.floor(Math.random()*SIZE);
-  const legalStarts=Array.from({length:SIZE},(_,i)=>i).filter(i=>i!==p&&!ADJ[p].includes(i));
-  const q=legalStarts[Math.floor(Math.random()*legalStarts.length)];
-  const board=new Int8Array(SIZE);board[p]=HUMAN;board[q]=CPU;
-  return {board,pos:[-1,p,q],turn:HUMAN,winner:0,plies:0};
-}
-const moves=(b,p)=>ADJ[p].filter(i=>b[i]===EMPTY);
-function apply(dest){
-  const {board,pos,turn}=state;
-  if(!moves(board,pos[turn]).includes(dest))return false;
-  board[pos[turn]]=BURN;
-  board[dest]=turn;
-  pos[turn]=dest;
-  state.plies++;
-  state.turn=3-turn;
-  if(!moves(board,pos[state.turn]).length) state.winner=turn;
-  return true;
-}
-function render(){
-  const {board,pos,turn,winner,plies}=state;
-  const choices=new Set(!winner&&turn===HUMAN&&!waiting?moves(board,pos[HUMAN]):[]);
-  cells.forEach((b,i)=>{
-    const own=board[i], valid=choices.has(i);
-    b.className=["cell",((Math.floor(i/SIDE)+i%SIDE)%2?"alt":""),own===BURN?"burned":own===HUMAN?"human":own===CPU?"computer":"",valid?"legal":""].filter(Boolean).join(" ");
-    const meaning=own===BURN?"burned":own===HUMAN?"your knight":own===CPU?"computer knight":valid?"legal move":"empty";
-    b.setAttribute("aria-label",`Row ${Math.floor(i/SIDE)+1}, column ${i%SIDE+1}: ${meaning}`);
-    b.setAttribute("aria-disabled",String(!valid));
-    b.tabIndex=i===focusIndex?0:-1;
-  });
-  statusEl.textContent=winner===HUMAN?"You win. The computer has no moves.":winner===CPU?"Computer wins. You have no moves.":waiting?"Computer is thinking…":`Your turn. ${choices.size} legal ${choices.size===1?"move":"moves"}.`;
-  for(const [step,el] of Object.entries(logicSteps))el.setAttribute("aria-current",step===logicPhase?"step":"false");
-  thinking.hidden=!lastSearch?.scores?.length;
-  scoreEl.replaceChildren(...(lastSearch?.scores??[]).map(([square,score])=>{
-    const li=document.createElement("li");
-    li.textContent=`R${Math.floor(square/SIDE)+1} C${square%SIDE+1}: ${score}`;
-    if(square===lastSearch.move){li.className="chosen";li.setAttribute("aria-label",li.textContent+"; chosen move");}
-    return li;
-  }));
-  statsEl.textContent=lastSearch?`${plies} moves · ${lastSearch.stats}`:plies?`${plies} moves played.`:"No moves yet.";
-}
-function humanMove(dest){
-  if(waiting||state.winner||state.turn!==HUMAN||!apply(dest))return;
-  logicPhase="burn";
-  if(state.winner){render();return;}
-  const game=generation, level=difficulty.value;
-  waiting=true; render();
-  timer=setTimeout(()=>{
-    if(game!==generation || state.winner || state.turn!==CPU)return;
-    const answer=choose(level,state);
-    if(!apply(answer.move))throw new Error("Computer selected an illegal move.");
-    lastSearch=answer;logicPhase="ai";
-    waiting=false;render();
-  },110);
-}
-function reset(){
-  clearTimeout(timer);generation++;waiting=false;lastSearch=null;logicPhase="move";
-  state=makeStart();focusIndex=state.pos[HUMAN];render();
-}
-function bfs(b,p){
-  const d=new Int8Array(SIZE);d.fill(-1);d[p]=0;
-  const queue=[p];
-  for(let x=0;x<queue.length;x++){
-    const u=queue[x];for(const v of ADJ[u]) if(b[v]===EMPTY&&d[v]<0){d[v]=d[u]+1;queue.push(v);}
-  }
-  d[p]=-1;
-  return d;
-}
-function evaluate(b,p,q,knownMobility){
-  const them=moves(b,q).length;
-  const a=bfs(b,p), c=bfs(b,q);let land=0,overlap=false;
-  for(let i=0;i<SIZE;i++){
-    if(a[i]>=0&&c[i]>=0)overlap=true;
-    if(a[i]>=0&&(c[i]<0||a[i]<c[i]))land++;
-    else if(c[i]>=0&&(a[i]<0||c[i]<a[i]))land--;
-  }
-  // Distances approximate control; disjoint areas shift weight to survival space.
-  return (overlap?1:2)*land+knownMobility-them;
-}
-function choose(level,s){
-  const {board,pos,turn}=s, p=pos[turn], q=pos[3-turn];
-  const b=board.slice(), candidates=moves(b,p);let nodes=0,cutoffs=0;
-  if(level==="random")return {move:candidates[Math.floor(Math.random()*candidates.length)],stats:"computer: random move"};
-  let choice=candidates[0],best=-Infinity;const scores=[];
-  const start=performance.now(), depth=4;
-  function search(own,opp,d,mark,alpha,beta){
-    nodes++;
-    const list=moves(b,own);
-    if(!list.length)return -WIN-d;
-    if(d===0)return evaluate(b,own,opp,list.length);
-    let value=-Infinity;
-    for(const dest of list){
-      b[own]=BURN;b[dest]=mark;
-      const candidate=-search(opp,dest,d-1,3-mark,-beta,-alpha);
-      b[dest]=EMPTY;b[own]=mark;
-      value=Math.max(value,candidate);alpha=Math.max(alpha,value);
-      if(alpha>=beta){cutoffs++;break;}
-    }
-    return value;
-  }
-  for(const dest of candidates){
-    b[p]=BURN;b[dest]=turn;
-    const score=level==="greedy"?moves(b,dest).length-moves(b,q).length:-search(q,dest,depth-1,3-turn,-Infinity,Infinity);
-    scores.push([dest,score]);
-    b[dest]=EMPTY;b[p]=turn;
-    if(score>best){best=score;choice=dest;}
-  }
-  const millis=Math.round(performance.now()-start);
-  return {move:choice,scores,stats:level==="greedy"?"computer: mobility score "+best:`depth ${depth} · ${nodes} states · ${cutoffs} cutoffs · ${millis} ms`};
-}
-document.getElementById("restart").addEventListener("click",reset);
-reset();
+  const frame = document.getElementById('isolation-demo');
+  let observer;
+  const watch = () => {
+    const main = frame.contentDocument?.querySelector('main');
+    if (!main) return;
+    observer?.disconnect();
+    const resize = () => {frame.style.height = Math.ceil(main.getBoundingClientRect().height) + 'px';};
+    observer = new ResizeObserver(resize);
+    observer.observe(main);
+    resize();
+  };
+  frame.addEventListener('load', watch);
+  if (frame.contentDocument?.readyState === 'complete') watch();
 })();
 </script>
-</body>
-</html>
+<script src="../../custom/case-study.js?v=20260919-course" defer></script><script src="../../custom/clean-shell.js?v=20260918-polish2" defer></script><script src="../../ui/i18n.js?v=20261106-portfolio-review" defer></script>
+<script defer src="../../custom/affiliations.js?v=20261012-no-pause"></script></body></html>
 
