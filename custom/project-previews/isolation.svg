@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 824 515" role="img" aria-label="Isolation strategy game board">
+<rect width="824" height="515" fill="#151f2d"/>
+<text x="62" y="218" fill="#ffa767" font-family="system-ui,sans-serif" font-weight="700" font-size="16" letter-spacing="2">AI STRATEGY GAME</text>
+<text x="58" y="291" fill="#f6f5f1" font-family="system-ui,sans-serif" font-weight="750" font-size="69" letter-spacing="-2">Isolation</text>
+<rect x="460" y="106" width="300" height="300" rx="13" fill="#212f49"/>
+<rect x="469" y="115" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="510" y="115" width="36" height="36" rx="4" fill="#c8612a"/>
+<rect x="551" y="115" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="592" y="115" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="633" y="115" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="674" y="115" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="715" y="115" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="469" y="156" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="510" y="156" width="36" height="36" rx="4" fill="#4a6795"/>
+<circle cx="528" cy="174" r="2.4" fill="#b9d5ff"/>
+<rect x="551" y="156" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="592" y="156" width="36" height="36" rx="4" fill="#c8612a"/>
+<rect x="633" y="156" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="674" y="156" width="36" height="36" rx="4" fill="#4a6795"/>
+<circle cx="692" cy="174" r="2.4" fill="#b9d5ff"/>
+<rect x="715" y="156" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="469" y="197" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="510" y="197" width="36" height="36" rx="4" fill="#4a6795"/>
+<circle cx="528" cy="215" r="2.4" fill="#b9d5ff"/>
+<rect x="551" y="197" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="592" y="197" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="633" y="197" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="674" y="197" width="36" height="36" rx="4" fill="#c8612a"/>
+<rect x="715" y="197" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="469" y="238" width="36" height="36" rx="4" fill="#c8612a"/>
+<rect x="510" y="238" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="551" y="238" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="592" y="238" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<circle cx="610" cy="256" r="12" fill="#f6f5f1"/>
+<rect x="633" y="238" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="674" y="238" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="715" y="238" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="469" y="279" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="510" y="279" width="36" height="36" rx="4" fill="#c8612a"/>
+<rect x="551" y="279" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="592" y="279" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="633" y="279" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="674" y="279" width="36" height="36" rx="4" fill="#4a6795"/>
+<circle cx="692" cy="297" r="2.4" fill="#b9d5ff"/>
+<rect x="715" y="279" width="36" height="36" rx="4" fill="#c8612a"/>
+<rect x="469" y="320" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="510" y="320" width="36" height="36" rx="4" fill="#4a6795"/>
+<circle cx="528" cy="338" r="2.4" fill="#b9d5ff"/>
+<rect x="551" y="320" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="592" y="320" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<circle cx="610" cy="338" r="11" fill="none" stroke="#7fa7f0" stroke-width="3.5"/>
+<rect x="633" y="320" width="36" height="36" rx="4" fill="#c8612a"/>
+<rect x="674" y="320" width="36" height="36" rx="4" fill="#4a6795"/>
+<circle cx="692" cy="338" r="2.4" fill="#b9d5ff"/>
+<rect x="715" y="320" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="469" y="361" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="510" y="361" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="551" y="361" width="36" height="36" rx="4" fill="#c8612a"/>
+<rect x="592" y="361" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="633" y="361" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="674" y="361" width="36" height="36" rx="4" fill="#2b3c5b"/>
+<rect x="715" y="361" width="36" height="36" rx="4" fill="#2b3c5b"/>
+</svg>

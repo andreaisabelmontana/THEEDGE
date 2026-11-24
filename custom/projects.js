@@ -473,5 +473,46 @@ window.EDGE_PROJECTS = [
       "es": "Algoritmos y juegos",
       "de": "Algorithmen & Spiele"
     }
+  },
+  {
+    "slug": "isolation",
+    "title": "Isolation",
+    "year": 2026,
+    "date": "2026",
+    "tagline": "A playable knight strategy game using alpha-beta pruning and breadth-first search.",
+    "label": "ALGORITHMS",
+    "track": "Coursework",
+    "categories": [
+      "Algorithms",
+      "Games",
+      "AI & ML"
+    ],
+    "techstack": [
+      "JavaScript",
+      "HTML",
+      "CSS"
+    ],
+    "links": {
+      "live": "https://andreamontana.com/online/isolation/",
+      "github": "https://github.com/andreaisabelmontana/THEEDGE/tree/main/online/isolation"
+    },
+    "featured": false,
+    "subjects": [
+      "ai",
+      "software"
+    ],
+    "typeLabel": "Algorithms & games",
+    "summary": {
+      "en": "A playable knight strategy game with three computer levels and visible AI search.",
+      "es": "Un juego de estrategia con movimientos de caballo, tres niveles y búsqueda de IA visible.",
+      "de": "Ein Strategiespiel mit Springerzügen, drei Schwierigkeitsstufen und sichtbarer KI-Suche."
+    },
+    "caseStudy": "./isolation/",
+    "cover": "../custom/project-previews/isolation.svg",
+    "typeLabels": {
+      "en": "Algorithms & games",
+      "es": "Algoritmos y juegos",
+      "de": "Algorithmen & Spiele"
+    }
   }
 ];
