@@ -466,7 +466,7 @@ window.EDGE_PROJECTS = [
       "es": "Seis juegos clásicos, cada uno con un solucionador que puedes ver pensar.",
       "de": "Sechs Spieleklassiker, jeder mit einem Löser, dem man beim Denken zusieht."
     },
-    "caseStudy": "./arcade/",
+    "caseStudy": "./arcade/play/",
     "cover": "../custom/project-previews/arcade.webp",
     "typeLabels": {
       "en": "Algorithms & games",
@@ -507,7 +507,7 @@ window.EDGE_PROJECTS = [
       "es": "Un juego de estrategia con movimientos de caballo, tres niveles y búsqueda de IA visible.",
       "de": "Ein Strategiespiel mit Springerzügen, drei Schwierigkeitsstufen und sichtbarer KI-Suche."
     },
-    "caseStudy": "./isolation/",
+    "caseStudy": "./arcade/play/#isolation",
     "cover": "../custom/project-previews/isolation.svg",
     "typeLabels": {
       "en": "Algorithms & games",
@@ -516,3 +516,4 @@ window.EDGE_PROJECTS = [
     }
   }
 ];
+
