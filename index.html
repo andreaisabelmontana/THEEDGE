@@ -244,7 +244,8 @@ html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase
   max-width: 62%;
 }
 html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card h2 {
-  font-size: clamp(2.4rem, 4.25vw, 3.75rem);
+  --home-card-title-size: clamp(2.4rem, 4.25vw, 3.75rem);
+  font-size: var(--home-card-title-size);
   letter-spacing: -.045em;
   line-height: .92;
   margin: 0 0 .7rem;
@@ -257,14 +258,20 @@ html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase
 }
 @media (min-width: 751px) and (max-width: 1060px) {
   html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card h2 {
-    font-size: clamp(2.2rem, 4.7vw, 3.2rem);
+    --home-card-title-size: clamp(2.2rem, 4.7vw, 3.2rem);
   }
 }
 @media (max-width: 750px) {
   html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card h2 {
-    font-size: clamp(2rem, 8.5vw, 3.25rem);
+    --home-card-title-size: clamp(2rem, 8.5vw, 3.25rem);
   }
 }
+/* Cap the display type by the card's text column, not the viewport. */
+@supports (font-size: 1cqi) {
+  html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card-text { container-type: inline-size; }
+  html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card h2 { font-size: min(var(--home-card-title-size), 18cqi); }
+}
+
 @media (prefers-reduced-transparency: reduce), (prefers-contrast: more), print {
   html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card,
   html[data-theme] body.clean-portfolio.edge-ready[data-home-shell] .home-showcase .otot-card[data-liquid-lens] {
