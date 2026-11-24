@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#151f2d">
+<link rel="canonical" href="https://andreamontana.com/online/isolation/">
+<meta name="description" content="A playable knight-move strategy game. Move, burn the square behind you, and trap your opponent.">
+<title>Isolation | Knight Strategy</title>
+<style>
+@font-face{font-family:Mona;src:url("../../assets/cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67bc6274c5b4108b123aa4d5_MonaSans-VariableFont_wdth,wght.woff2") format("woff2");font-weight:200 900;font-stretch:75% 125%;font-display:swap}
+:root{color-scheme:dark;--bg:#151f2d;--panel:#212f49;--line:#3a4b65;--blue:#7fa7f0;--orange:#c8612a;--amber:#ffa767;--text:#f6f5f1;--muted:#c4cedc;--tile:#2b3c5b}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--bg);font:18px/1.45 Mona,system-ui,sans-serif;color:var(--text)}
+main{width:min(1120px,100%);padding:32px clamp(16px,6vw,64px);margin:auto}.back{color:var(--muted);text-decoration:none;font-size:14px;display:inline-block;margin-bottom:32px}.back:hover{text-decoration:underline}header{margin-bottom:20px}h1{font-size:clamp(58px,8vw,96px);line-height:1.02;margin:12px 0 14px;letter-spacing:-.035em}h2{font-size:16px;margin:0 0 9px}.eyebrow{font-size:14px;letter-spacing:.11em;margin:0;color:var(--amber);font-weight:750;text-transform:uppercase}.intro{max-width:420px;margin:0;color:var(--muted);font-size:clamp(17px,2.5vw,24px);line-height:1.4}
+.layout{display:grid;grid-template-columns:minmax(280px,1.15fr) minmax(270px,1fr);grid-template-areas:"hero game" "controls game";gap:4px 40px;align-items:start}.hero{grid-area:hero}.game{grid-area:game;padding-top:12px}
+.board{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;padding:10px;border-radius:15px;background:var(--panel);width:100%;aspect-ratio:1}
+.cell{min-width:0;padding:0;border:2px solid transparent;border-radius:6px;display:grid;place-items:center;position:relative;background:var(--tile);touch-action:manipulation;color:var(--text)}
+.cell.burned{background:var(--orange)}.cell.human:before,.cell.computer:before{content:"";width:68%;aspect-ratio:1;border-radius:100%;background:var(--text)}.cell.computer:before{background:transparent;border:clamp(2px,.4vw,5px) solid var(--blue)}
+.cell.legal{cursor:pointer;border-color:#6b96cf;background:#4a6795}.cell.legal:before{content:"";width:15%;aspect-ratio:1;border-radius:100%;background:#b9d5ff}.cell.legal:hover{filter:brightness(1.22)}
+button:focus-visible,select:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid #fff;outline-offset:2px;z-index:1}
+aside{grid-area:controls;max-width:420px;padding:15px 0 0;border-top:1px solid var(--line)}.status{margin:0 0 12px;font-weight:700;color:var(--text);min-height:1.45em}.control{display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px 10px;margin:0 0 10px}label,summary{font-weight:650;font-size:14px}label{grid-column:1/-1}select,.action{min-width:0;border-radius:8px;border:1px solid #5a6c8b;background:var(--panel);color:var(--text);padding:8px 10px;font:600 14px/1.4 Mona,system-ui,sans-serif}.action{cursor:pointer;background:var(--blue);color:#102039;border-color:var(--blue)}.action:hover{background:#a7c7ff}.legend{display:flex;justify-content:center;gap:8px 13px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin:12px 0 0}.legend span{white-space:nowrap}.blue{color:var(--blue)}.orange{color:var(--amber)}.dot{color:#adcfff}.meta,.help{font-size:13px;color:var(--muted)}.meta{margin:10px 0 0;min-height:1.4em}.scores{margin:3px 0 0;display:flex;flex-wrap:wrap;gap:4px;list-style:none;padding:0}.scores li{font:12px/1.3 ui-monospace,monospace;color:var(--muted);padding:3px 5px;background:var(--panel);border-radius:3px}.scores li.chosen{color:#122039;background:var(--blue)}details{margin-top:12px;border-top:1px solid var(--line);padding-top:9px}summary{cursor:pointer}.help{margin-bottom:0}footer{color:var(--muted);font-size:12px;margin-top:22px}
+@media(max-width:690px){main{padding-top:16px}.back{margin-bottom:18px}.layout{grid-template-columns:minmax(0,1fr);grid-template-areas:"hero" "game" "controls";gap:8px}.hero{margin-bottom:3px}.game{padding-top:2px}.board{max-width:490px;margin:auto;gap:3px;padding:7px}.legend{margin-top:7px}aside{width:100%;max-width:none;margin-top:9px}h1{margin:6px 0 8px}}
+</style>
+</head>
+<body>
+<main>
+<a class="back" href="../">← Back to projects</a>
+<section class="layout" aria-label="Isolation game">
+<header class="hero"><p class="eyebrow">Strategy game · AI reasoning</p><h1>Isolation</h1><p class="intro">Move like a knight, burn where you stood, and leave your opponent nowhere to go.</p></header>
+<div class="game">
+  <div id="board" class="board" role="group" aria-label="Isolation board. Use arrow keys to move focus."></div>
+  <div class="legend"><span><b>●</b> You</span><span><b class="blue">◯</b> Computer</span><span><b class="dot">●</b> Legal move</span><span><b class="orange">■</b> Burned square</span></div>
+</div>
+<aside aria-label="Game controls">
+  <h2>Match</h2>
+  <p id="status" class="status" role="status" aria-live="polite"></p>
+  <div class="control"><label for="difficulty">Computer level</label><select id="difficulty">
+      <option value="random">Casual · random</option>
+      <option value="greedy">Tactical · mobility</option>
+      <option value="search" selected>Strategic · search</option>
+  </select>
+  <button id="restart" class="action" type="button">New game</button></div>
+  <p id="stats" class="meta">No moves yet.</p>
+  <details id="thinking" hidden><summary>Computer move scores</summary><ul id="scores" class="scores"></ul></details>
+  <details><summary>How to play</summary><p class="help">You move first. Pick a highlighted square: two squares in one direction, one in the other. You can jump over pieces and burned squares, but can only land on empty squares. Each square you leave burns permanently. The first player with no legal move loses. Use the arrow keys to explore the board and Enter or Space to play.</p></details>
+</aside>
+</section>
+<footer>Local play against the computer. No account or game server needed.</footer>
+</main>
+<script>
+(() => {
+"use strict";
+const SIDE=7, SIZE=49;
+const OFF=[[-2,-1],[-2,1],[-1,-2],[-1,2],[1,-2],[1,2],[2,-1],[2,1]];
+const ADJ=Array.from({length:SIZE},(_,p)=>OFF.map(([dr,dc])=>[Math.floor(p/SIDE)+dr,p%SIDE+dc]).filter(([r,c])=>r>=0&&r<SIDE&&c>=0&&c<SIDE).map(([r,c])=>r*SIDE+c));
+const EMPTY=0, BURN=-1, HUMAN=1, CPU=2, WIN=1e4;
+const boardEl=document.getElementById("board"), statusEl=document.getElementById("status"), statsEl=document.getElementById("stats");
+const difficulty=document.getElementById("difficulty"), thinking=document.getElementById("thinking"), scoreEl=document.getElementById("scores");
+let state, waiting, timer, generation=0, focusIndex=0, lastSearch=null;
+const cells=Array.from({length:SIZE},(_,i)=>{
+  const b=document.createElement("button");
+  b.type="button";
+  b.addEventListener("click",()=>humanMove(i));
+  b.addEventListener("focus",()=>setFocus(i,false));
+  b.addEventListener("keydown",e=>{
+    const delta={ArrowLeft:[0,-1],ArrowRight:[0,1],ArrowUp:[-1,0],ArrowDown:[1,0]}[e.key];
+    if(!delta) return;
+    e.preventDefault();
+    const r=Math.min(6,Math.max(0,Math.floor(i/SIDE)+delta[0]));
+    const c=Math.min(6,Math.max(0,i%SIDE+delta[1]));
+    setFocus(r*SIDE+c,true);
+  });
+  boardEl.append(b); return b;
+});
+function setFocus(i,moveDOM){cells[focusIndex].tabIndex=-1;focusIndex=i;cells[i].tabIndex=0;if(moveDOM)cells[i].focus();}
+function makeStart(){
+  const p=Math.floor(Math.random()*SIZE);
+  const legalStarts=Array.from({length:SIZE},(_,i)=>i).filter(i=>i!==p&&!ADJ[p].includes(i));
+  const q=legalStarts[Math.floor(Math.random()*legalStarts.length)];
+  const board=new Int8Array(SIZE);board[p]=HUMAN;board[q]=CPU;
+  return {board,pos:[-1,p,q],turn:HUMAN,winner:0,plies:0};
+}
+const moves=(b,p)=>ADJ[p].filter(i=>b[i]===EMPTY);
+function apply(dest){
+  const {board,pos,turn}=state;
+  if(!moves(board,pos[turn]).includes(dest))return false;
+  board[pos[turn]]=BURN;
+  board[dest]=turn;
+  pos[turn]=dest;
+  state.plies++;
+  state.turn=3-turn;
+  if(!moves(board,pos[state.turn]).length) state.winner=turn;
+  return true;
+}
+function render(){
+  const {board,pos,turn,winner,plies}=state;
+  const choices=new Set(!winner&&turn===HUMAN&&!waiting?moves(board,pos[HUMAN]):[]);
+  cells.forEach((b,i)=>{
+    const own=board[i], valid=choices.has(i);
+    b.className=["cell",((Math.floor(i/SIDE)+i%SIDE)%2?"alt":""),own===BURN?"burned":own===HUMAN?"human":own===CPU?"computer":"",valid?"legal":""].filter(Boolean).join(" ");
+    const meaning=own===BURN?"burned":own===HUMAN?"your knight":own===CPU?"computer knight":valid?"legal move":"empty";
+    b.setAttribute("aria-label",`Row ${Math.floor(i/SIDE)+1}, column ${i%SIDE+1}: ${meaning}`);
+    b.setAttribute("aria-disabled",String(!valid));
+    b.tabIndex=i===focusIndex?0:-1;
+  });
+  statusEl.textContent=winner===HUMAN?"You win. The computer has no moves.":winner===CPU?"Computer wins. You have no moves.":waiting?"Computer is thinking…":`Your turn. ${choices.size} legal ${choices.size===1?"move":"moves"}.`;
+  thinking.hidden=!lastSearch?.scores?.length;
+  scoreEl.replaceChildren(...(lastSearch?.scores??[]).map(([square,score])=>{
+    const li=document.createElement("li");
+    li.textContent=`R${Math.floor(square/SIDE)+1} C${square%SIDE+1}: ${score}`;
+    if(square===lastSearch.move){li.className="chosen";li.setAttribute("aria-label",li.textContent+"; chosen move");}
+    return li;
+  }));
+  statsEl.textContent=lastSearch?`${plies} moves · ${lastSearch.stats}`:plies?`${plies} moves played.`:"No moves yet.";
+}
+function humanMove(dest){
+  if(waiting||state.winner||state.turn!==HUMAN||!apply(dest))return;
+  if(state.winner){render();return;}
+  const game=generation, level=difficulty.value;
+  waiting=true; render();
+  timer=setTimeout(()=>{
+    if(game!==generation || state.winner || state.turn!==CPU)return;
+    const answer=choose(level,state);
+    if(!apply(answer.move))throw new Error("Computer selected an illegal move.");
+    lastSearch=answer;
+    waiting=false;render();
+  },110);
+}
+function reset(){
+  clearTimeout(timer);generation++;waiting=false;lastSearch=null;
+  state=makeStart();focusIndex=state.pos[HUMAN];render();
+}
+function bfs(b,p){
+  const d=new Int8Array(SIZE);d.fill(-1);d[p]=0;
+  const queue=[p];
+  for(let x=0;x<queue.length;x++){
+    const u=queue[x];for(const v of ADJ[u]) if(b[v]===EMPTY&&d[v]<0){d[v]=d[u]+1;queue.push(v);}
+  }
+  d[p]=-1;
+  return d;
+}
+function evaluate(b,p,q,knownMobility){
+  const them=moves(b,q).length;
+  const a=bfs(b,p), c=bfs(b,q);let land=0,overlap=false;
+  for(let i=0;i<SIZE;i++){
+    if(a[i]>=0&&c[i]>=0)overlap=true;
+    if(a[i]>=0&&(c[i]<0||a[i]<c[i]))land++;
+    else if(c[i]>=0&&(a[i]<0||c[i]<a[i]))land--;
+  }
+  // Distances approximate control; disjoint areas shift weight to survival space.
+  return (overlap?1:2)*land+knownMobility-them;
+}
+function choose(level,s){
+  const {board,pos,turn}=s, p=pos[turn], q=pos[3-turn];
+  const b=board.slice(), candidates=moves(b,p);let nodes=0,cutoffs=0;
+  if(level==="random")return {move:candidates[Math.floor(Math.random()*candidates.length)],stats:"computer: random move"};
+  let choice=candidates[0],best=-Infinity;const scores=[];
+  const start=performance.now(), depth=4;
+  function search(own,opp,d,mark,alpha,beta){
+    nodes++;
+    const list=moves(b,own);
+    if(!list.length)return -WIN-d;
+    if(d===0)return evaluate(b,own,opp,list.length);
+    let value=-Infinity;
+    for(const dest of list){
+      b[own]=BURN;b[dest]=mark;
+      const candidate=-search(opp,dest,d-1,3-mark,-beta,-alpha);
+      b[dest]=EMPTY;b[own]=mark;
+      value=Math.max(value,candidate);alpha=Math.max(alpha,value);
+      if(alpha>=beta){cutoffs++;break;}
+    }
+    return value;
+  }
+  for(const dest of candidates){
+    b[p]=BURN;b[dest]=turn;
+    const score=level==="greedy"?moves(b,dest).length-moves(b,q).length:-search(q,dest,depth-1,3-turn,-Infinity,Infinity);
+    scores.push([dest,score]);
+    b[dest]=EMPTY;b[p]=turn;
+    if(score>best){best=score;choice=dest;}
+  }
+  const millis=Math.round(performance.now()-start);
+  return {move:choice,scores,stats:level==="greedy"?"computer: mobility score "+best:`depth ${depth} · ${nodes} states · ${cutoffs} cutoffs · ${millis} ms`};
+}
+document.getElementById("restart").addEventListener("click",reset);
+reset();
+})();
+</script>
+</body>
+</html>
