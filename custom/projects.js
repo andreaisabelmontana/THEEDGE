@@ -507,7 +507,7 @@ window.EDGE_PROJECTS = [
       "es": "Un juego de estrategia con movimientos de caballo, tres niveles y búsqueda de IA visible.",
       "de": "Ein Strategiespiel mit Springerzügen, drei Schwierigkeitsstufen und sichtbarer KI-Suche."
     },
-    "caseStudy": "./arcade/play/#isolation",
+    "caseStudy": "./isolation/",
     "cover": "../custom/project-previews/isolation.svg",
     "typeLabels": {
       "en": "Algorithms & games",
