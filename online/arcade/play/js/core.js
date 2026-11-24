@@ -53,31 +53,47 @@ const Arcade = (() => {
 
   function register(game) { games.push(game); }
 
-  function renderTabs(active) {
+  const isolation = { id: 'isolation', title: 'Isolation', tag: 'Knight strategy' };
+  const compactIndex = window.matchMedia('(max-width: 640px)');
+
+  function renderTabs() {
     const nav = document.getElementById('tabs');
-    nav.replaceChildren(
-      el('a', { class: 'tab', href: '#', 'aria-current': active ? null : 'page', text: 'All games' }),
-      ...games.map(g => el('a', { class: 'tab', href: '#' + g.id, 'aria-current': active === g.id ? 'page' : null, text: g.title }))
-    );
+    const entries = [...games, isolation];
+    document.getElementById('index-count').textContent = entries.length;
+    nav.replaceChildren(...entries.map((g, index) => el('a', { class: 'tab', href: '#' + g.id },
+      el('span', { class: 'tab-order', 'aria-hidden': 'true', text: String(index + 1).padStart(2, '0') }),
+      el('span', { text: g.title })
+    )));
+    nav.addEventListener('click', event => {
+      const link = event.target.closest('.tab');
+      if (!link || event.button || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+      if (compactIndex.matches) document.getElementById('game-index').open = false;
+      // Keep keyboard focus out of the now-closed disclosure and put it just before play.
+      document.getElementById('app').focus({ preventScroll: true });
+    });
   }
 
-  function renderHub(app) {
-    app.append(
-      el('header', { class: 'hub-head' },
-        el('p', { class: 'eyebrow', text: 'Algorithms & data structures' }),
-        el('h1', { text: 'Arcade' }),
-        el('p', { class: 'lede', text: 'Six classic games. Each one has an opponent or a solver built on a different idea from computer science, and the switch at the top shows you what it is computing while you play.' })
-      ),
-      el('div', { class: 'hub-grid' }, games.map(g =>
-        el('a', { class: 'card', href: '#' + g.id },
-          el('div', { class: 'card-glyph', 'aria-hidden': 'true', html: g.glyph() }),
-          el('p', { class: 'eyebrow', text: g.tag }),
-          el('h2', { text: g.title }),
-          el('p', { text: g.blurb }),
-          el('ul', { class: 'chips' }, g.chips.map(c => el('li', { text: c })))
-        )))
-    );
-    document.title = 'Arcade · Andrea Montaña';
+  function renderIsolation(app) {
+    const frame = el('iframe', {
+      class: 'isolation-frame',
+      src: '../../isolation/?embed=arcade',
+      title: 'Isolation game'
+    });
+    document.title = 'Isolation · Arcade · Andrea Montaña';
+    app.append(frame, el('p', { class: 'isolation-fallback' }, el('a', {
+      href: '../../isolation/?view=full', text: 'Open the full-size Isolation board'
+    })));
+    let observer;
+    frame.addEventListener('load', () => {
+      const content = frame.contentDocument?.querySelector('main');
+      if (!content) return;
+      const resize = () => { frame.style.height = Math.ceil(content.getBoundingClientRect().height) + 2 + 'px'; };
+      observer?.disconnect();
+      observer = new ResizeObserver(resize);
+      observer.observe(content);
+      resize();
+    });
+    return () => observer?.disconnect();
   }
 
   function renderGame(app, g) {
@@ -103,7 +119,7 @@ const Arcade = (() => {
             think)
         )
       ),
-      el('details', { class: 'how', open: true },
+      el('details', { class: 'how' },
         el('summary', { text: 'How it works' }),
         el('div', { class: 'how-grid' },
           el('div', {}, el('h4', { text: 'Algorithm' }), el('p', { html: g.how.algo })),
@@ -143,19 +159,34 @@ const Arcade = (() => {
     if (cleanup) { try { cleanup(); } catch (e) { console.error(e); } cleanup = null; }
     listeners.clear();
     const id = location.hash.slice(1);
-    const g = games.find(x => x.id === id);
+    const g = id === isolation.id ? isolation : (games.find(x => x.id === id) || games[0]);
     const app = document.getElementById('app');
     app.replaceChildren();
-    renderTabs(g && g.id);
-    if (!g) { renderHub(app); return; }
+    const isIsolation = g === isolation;
+    document.getElementById('workspace').classList.toggle('shows-isolation', isIsolation);
+    document.querySelectorAll('#tabs .tab').forEach(link => {
+      if (link.hash === '#' + g.id) link.setAttribute('aria-current', 'page');
+      else link.removeAttribute('aria-current');
+    });
+    if (isIsolation) { cleanup = renderIsolation(app); return; }
     const ctx = renderGame(app, g);
     cleanup = g.mount(ctx) || null;
-    const tab = document.querySelector('.tab[aria-current="page"]');
-    if (tab && tab.scrollIntoView) tab.scrollIntoView({ block: 'nearest', inline: 'center' });
   }
 
   function start() {
     const box = document.getElementById('think-global');
+    renderTabs();
+    document.querySelector('.skip').addEventListener('click', event => {
+      event.preventDefault();
+      document.getElementById('app').focus();
+    });
+    const index = document.getElementById('game-index');
+    // Game shortcuts listen on document; navigation controls must keep native keys.
+    for (const controls of [index, document.querySelector('.top')]) {
+      controls.addEventListener('keydown', event => event.stopPropagation());
+    }
+    if (compactIndex.matches) index.open = false;
+    index.addEventListener('toggle', () => document.getElementById('workspace').classList.toggle('index-collapsed', !index.open));
     box.addEventListener('change', () => setThinking(box.checked));
     setThinking(store('thinking') !== '0'); /* on by default: it is the point of the page */
     window.addEventListener('hashchange', () => { route(); window.scrollTo(0, 0); });
@@ -164,3 +195,4 @@ const Arcade = (() => {
 
   return { register, start, el, heat, games };
 })();
+

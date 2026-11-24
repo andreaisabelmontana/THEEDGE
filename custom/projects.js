@@ -466,7 +466,7 @@ window.EDGE_PROJECTS = [
       "es": "Seis juegos clásicos, cada uno con un solucionador que puedes ver pensar.",
       "de": "Sechs Spieleklassiker, jeder mit einem Löser, dem man beim Denken zusieht."
     },
-    "caseStudy": "./arcade/",
+    "caseStudy": "./arcade/play/",
     "cover": "../custom/project-previews/arcade.webp",
     "typeLabels": {
       "en": "Algorithms & games",
@@ -516,3 +516,4 @@ window.EDGE_PROJECTS = [
     }
   }
 ];
+
