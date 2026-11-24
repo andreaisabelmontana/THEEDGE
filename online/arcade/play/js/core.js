@@ -177,6 +177,10 @@ const Arcade = (() => {
     const box = document.getElementById('think-global');
     renderTabs();
     const index = document.getElementById('game-index');
+    // Game shortcuts listen on document; navigation controls must keep native keys.
+    for (const controls of [index, document.querySelector('.top')]) {
+      controls.addEventListener('keydown', event => event.stopPropagation());
+    }
     if (compactIndex.matches) index.open = false;
     index.addEventListener('toggle', () => document.getElementById('workspace').classList.toggle('index-collapsed', !index.open));
     box.addEventListener('change', () => setThinking(box.checked));
