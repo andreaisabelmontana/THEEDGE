@@ -176,6 +176,10 @@ const Arcade = (() => {
   function start() {
     const box = document.getElementById('think-global');
     renderTabs();
+    document.querySelector('.skip').addEventListener('click', event => {
+      event.preventDefault();
+      document.getElementById('app').focus();
+    });
     const index = document.getElementById('game-index');
     // Game shortcuts listen on document; navigation controls must keep native keys.
     for (const controls of [index, document.querySelector('.top')]) {
