@@ -22,13 +22,27 @@ aside{grid-area:controls;max-width:420px;padding:15px 0 0;border-top:1px solid v
 details.logic{grid-area:logic;min-width:0;margin-top:5px;padding:0;border:0}.logic>summary{display:inline-flex;align-items:center;gap:7px;list-style:none;min-height:36px;background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:6px 9px;color:var(--muted);font-size:13px}.logic>summary::-webkit-details-marker{display:none}.logic>summary span:first-child{font:700 13px ui-monospace,monospace;color:var(--blue)}.logic[open]>summary,.logic>summary:hover{color:var(--text);border-color:var(--blue)}.logic-panel{margin-top:7px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px}.logic-panel h2{margin:0 0 6px;font-size:16px}.logic-step{border:1px solid transparent;border-radius:6px;padding:7px;margin:0 0 3px}.logic-step[aria-current="step"]{border-color:var(--amber)}.logic-step[aria-current="step"] h3{color:var(--amber)}.logic-step h3{margin:0;font-size:14px;color:var(--text)}.logic-step p{font-size:13px;color:var(--muted);margin:4px 0 7px}.logic pre{overflow-x:auto;max-width:100%;margin:0;background:#101a29;border-radius:6px;padding:8px;color:#c7ddff;font:12px/1.45 ui-monospace,monospace;tab-size:2;white-space:pre-wrap;overflow-wrap:anywhere}
 @media(max-width:690px){.logic-panel{min-width:0}.logic>summary{min-height:44px}}
 @media(max-width:690px){main{padding-top:16px}.back{margin-bottom:18px}.layout{grid-template-columns:minmax(0,1fr);grid-template-areas:"hero" "game" "controls" "logic";grid-template-rows:auto;gap:8px}.hero{margin-bottom:3px}.game{padding-top:2px}.board{max-width:490px;margin:auto;gap:3px;padding:7px}.legend{margin-top:7px}aside{width:100%;max-width:none;margin-top:9px}h1{margin:6px 0 8px}}
-/* Compact same-origin Arcade view; the direct game route retains its original layout. */
+/* Arcade keeps the game board clear; code is a small optional corner panel. */
 .in-arcade body{min-height:0}
-.in-arcade main{width:100%;padding:clamp(14px,3vw,30px)}
+.in-arcade main{width:100%;padding:clamp(14px,3vw,26px)}
 .in-arcade .back,.in-arcade footer{display:none}
-.in-arcade h1{font-size:clamp(42px,8vw,74px)}
-.in-arcade .intro{font-size:clamp(16px,2.5vw,21px)}
-.in-arcade .logic{justify-self:end;width:100%;max-width:420px}
+.in-arcade h1{font-size:clamp(33px,4.4vw,48px);margin:5px 0 6px}
+.in-arcade .intro{max-width:unset;font-size:clamp(15px,2.2vw,17px)}
+.in-arcade .layout{position:relative;max-width:820px;margin:auto;grid-template-columns:minmax(0,1fr) minmax(205px,264px);grid-template-areas:"hero hero" "game controls" "game logic";grid-template-rows:auto auto 1fr;gap:12px 24px}
+.in-arcade .hero{margin:0 0 3px}
+.in-arcade .game{padding:0}
+.in-arcade .board{max-width:430px;margin:0 auto}
+.in-arcade aside{padding-top:12px}
+.in-arcade .logic{position:relative;justify-self:end;align-self:end;width:100%;text-align:right;margin:0;z-index:2}
+.in-arcade .logic-panel{position:absolute;right:0;bottom:calc(100% + 8px);width:100%;max-height:190px;text-align:left;overflow:auto;overscroll-behavior:contain;margin:0;box-shadow:0 8px 26px #080f1bbb}
+.in-arcade .logic-panel h2{font-size:14px}
+.in-arcade .logic-step p{font-size:12px}
+.in-arcade .logic-step[aria-current="step"]{background:#66402c;color:var(--text)}
+.in-arcade .logic pre{font-size:11px}
+@media(max-width:600px){
+  .in-arcade .layout{grid-template-columns:minmax(0,1fr);grid-template-areas:"hero" "game" "controls" "logic";grid-template-rows:auto;gap:10px}
+  .in-arcade .logic-panel{position:static;width:100%;max-height:250px;margin-top:6px}
+}
 </style>
 </head>
 <body>
@@ -54,7 +68,7 @@ details.logic{grid-area:logic;min-width:0;margin-top:5px;padding:0;border:0}.log
   <details id="thinking" hidden><summary>Computer move scores</summary><ul id="scores" class="scores"></ul></details>
   <details><summary>How to play</summary><p class="help">You move first. Pick a highlighted square: two squares in one direction, one in the other. You can jump over pieces and burned squares, but can only land on empty squares. Each square you leave burns permanently. The first player with no legal move loses. Use the arrow keys to explore the board and Enter or Space to play.</p></details>
 </aside>
-<details class="logic"><summary><span aria-hidden="true">&lt;/&gt;</span><span>How it works</span></summary><div class="logic-panel">
+<details class="logic"><summary><span aria-hidden="true">&lt;/&gt;</span><span>How it works</span></summary><div class="logic-panel" role="region" aria-label="Game logic" tabindex="0">
 <h2>Game logic</h2>
 <section class="logic-step" id="logic-move"><h3>1. Find a legal knight move</h3>
 <p>Each square has a list of in-bounds knight jumps. Only empty destinations are available.</p>
@@ -82,7 +96,15 @@ if (alpha &gt;= beta) { cutoffs++; break; }</code></pre></section>
 <footer>Local play against the computer. No account or game server needed.</footer>
 </main>
 <script>
-if (typeof window !== "undefined" && window.parent !== window && new URLSearchParams(location.search).get("embed") === "arcade") document.documentElement.classList.add("in-arcade");
+if (typeof window !== "undefined") {
+  const inFrame = window.parent !== window;
+  const mode = new URLSearchParams(location.search);
+  if (inFrame && mode.get("embed") === "arcade") {
+    document.documentElement.classList.add("in-arcade");
+  } else if (!inFrame && mode.get("view") !== "full" && /\/online\/isolation(?:\/index\.html|\/)?$/.test(location.pathname)) {
+    location.replace(location.pathname.replace(/\/isolation(?:\/index\.html|\/)?$/, "/arcade/play/") + "#isolation");
+  }
+}
 (() => {
 "use strict";
 const SIDE=7, SIZE=49;
