@@ -81,7 +81,7 @@ const Arcade = (() => {
     });
     document.title = 'Isolation · Arcade · Andrea Montaña';
     app.append(frame, el('p', { class: 'isolation-fallback' }, el('a', {
-      href: '../../isolation/', text: 'Open the full-size Isolation board'
+      href: '../../isolation/?view=full', text: 'Open the full-size Isolation board'
     })));
     let observer;
     frame.addEventListener('load', () => {
