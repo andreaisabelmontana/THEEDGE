@@ -1,5 +1,5 @@
 const assert=require('node:assert/strict'), vm=require('node:vm'), fs=require('node:fs');
-const script=fs.readFileSync(__dirname+'/index.html','utf8').match(/<script>([\s\S]+)<\/script>/)[1];
+const script=fs.readFileSync(__dirname+'/play.html','utf8').match(/<script>([\s\S]+)<\/script>/)[1];
 class Stub {
   constructor(){this.handlers={};this.children=[];this.attrs={};this.className='';this.value='search';}
   addEventListener(type, fn){this.handlers[type]=fn}
