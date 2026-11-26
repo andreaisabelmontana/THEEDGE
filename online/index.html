@@ -192,6 +192,18 @@ html[data-theme] body.projects-page .project-starfield :is(.s.home-helmets.proje
 }
 </style><script defer src="../custom/projects-rail.js?v=20261126-layout"></script><link rel="stylesheet" href="../custom/link-underline.css?v=20261126"><link rel="stylesheet" href="../custom/un-aura.css?v=20261126"><script defer src="../custom/un-aura.js?v=20261126"></script><script defer src="../custom/projects-opening.js?v=20261126-first-paint"></script><script defer src="../custom/hover-sound.js?v=20261126-timeline-tick"></script><style>
 .project-card-category { display: none; }
+/* Use the generated square tiles once their shared image has loaded. */
+#project-grid[data-layout="grid"].square-thumbnails-ready .project-card.has-square-thumbnail .project-card-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../custom/projects-grid-thumbnails.svg") var(--thumbnail-position) / 400% 400% no-repeat;
+  pointer-events: none;
+}
+#project-grid[data-layout="grid"].square-thumbnails-ready .project-card.has-square-thumbnail .project-card-visual > :is(img, picture) {
+  opacity: 0;
+}
+
 /* The gallery emphasizes the preview, with the caption on its own line. */
 #project-grid[data-layout="grid"] {
   --gallery-step: clamp(64px, 10vw, 144px);
@@ -2957,7 +2969,29 @@ stroke="currentColor"/></svg></div></div></div></div></div><div class="on-t-hero
   };
   const primary = { 'arte-de-la-montana': 'art', 'andreamontana-portfolio': 'software',
     sona: 'ml', arcade: 'spatial', isolation: 'ai' };
+  const thumbnailPositions = {
+    "arte-de-la-montana": "0% 0%",
+    "globo": "33.333333% 0%",
+    "notecrafted": "66.666667% 0%",
+    "top-living": "100% 0%",
+    "andreamontana-portfolio": "0% 33.333333%",
+    "3d-anatomy": "33.333333% 33.333333%",
+    "robopreneur": "66.666667% 33.333333%",
+    "djesthesia": "100% 33.333333%",
+    "sona": "0% 66.666667%",
+    "ladybug-girl": "33.333333% 66.666667%",
+    "alma-de-maria": "66.666667% 66.666667%",
+    "optitrack": "100% 66.666667%",
+    "isolation": "0% 100%",
+    "arcade": "33.333333% 100%"
+  };
+  let thumbnailRequested = false;
   const badges = [...grid.querySelectorAll(':scope > .project-card')].flatMap(card => {
+    const position = thumbnailPositions[card.dataset.slug];
+    if (position) {
+      card.style.setProperty('--thumbnail-position', position);
+      card.classList.add('has-square-thumbnail');
+    }
     const category = primary[card.dataset.slug] || card.dataset.subjects.trim().split(/\s+/)[0];
     if (category !== 'ml' && !subjects.has(category)) return [];
     const badge = document.createElement('span');
@@ -2983,6 +3017,12 @@ stroke="currentColor"/></svg></div></div></div></div></div><div class="on-t-hero
   function readLayout() {
     grid.dataset.layout = new URL(location.href).searchParams.get('view') === 'horizontal'
       ? 'horizontal' : 'grid';
+    if (grid.dataset.layout === 'grid' && !thumbnailRequested) {
+      thumbnailRequested = true;
+      const sheet = new Image();
+      sheet.onload = () => grid.classList.add('square-thumbnails-ready');
+      sheet.src = '../custom/projects-grid-thumbnails.svg';
+    }
     viewButtons.forEach(button => {
       button.setAttribute('aria-pressed', String(button.dataset.view === grid.dataset.layout));
     });
