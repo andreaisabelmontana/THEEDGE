@@ -598,6 +598,38 @@ body.projects-page .project-night:has(#project-grid[data-layout="grid"]) {
   }
 }
 
+</style><style>
+.project-title-code {
+  position: relative;
+  display: inline-block;
+  --title-steps: 8;
+}
+.project-title-word { display: block; }
+.project-title-code:lang(es) { --title-steps: 9; }
+@media (prefers-reduced-motion: no-preference) {
+  .project-title-word {
+    animation: project-title-type .72s steps(var(--title-steps), end) .12s both;
+  }
+  .project-title-code::after {
+    content: "";
+    position: absolute;
+    inset-block: .09em .06em;
+    left: 0;
+    width: .045em;
+    background: #b9d7ff;
+    pointer-events: none;
+    animation: project-title-caret-move .72s steps(var(--title-steps), end) .12s forwards,
+      project-title-caret-blink .28s step-end 3,
+      project-title-caret-exit .18s ease 1.03s forwards;
+  }
+}
+@keyframes project-title-type {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+@keyframes project-title-caret-move { to { left: 100%; } }
+@keyframes project-title-caret-blink { 50% { opacity: 0; } }
+@keyframes project-title-caret-exit { to { opacity: 0; } }
 </style></head><body data-edit="true" class="clean-portfolio projects-page">
 <div class="un-aura project-viewport-aura" data-un-aura aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
 <div class="css-main"><div class="css-root w-embed"><style>
@@ -2792,7 +2824,7 @@ d="M125.417 62.186c-2.382 0-4.395-.357-6.039-1.072-1.619-.714-2.858-1.715-3.716-
 
 
 
---></div></div><div data-start="hidden" overflow-clip="x" class="page-w"><main data-taxi="" class="main-w"><div data-nav-theme-target="light" data-taxi-view="" data-page="on-track" class="taxi-w on-track"><div class="on-track-inner-w"><div data-heroflip="track" class="s-group z-0"><div data-hero-animation-container="" class="s is-on-track-home project-un-header" data-surface="dark"><div class="project-un-earth" aria-hidden="true"><img src="../custom/project-earth-artemis.webp" width="3600" height="2400" alt="" fetchpriority="high"></div><div class="project-intro"><h1 data-project-copy="title">Projects</h1><p data-project-copy="intro">Browse software, robotics and interactive 3D projects by subject.</p></div><div class="c is-on-track-home"><div class="on-t-hero-title-layout"><div class="on-t-hero-title-w"><div class="on-t-hero-title-rive-w"><div class="on-t-hero-title-rive w-embed"><canvas data-rive-object
+--></div></div><div data-start="hidden" overflow-clip="x" class="page-w"><main data-taxi="" class="main-w"><div data-nav-theme-target="light" data-taxi-view="" data-page="on-track" class="taxi-w on-track"><div class="on-track-inner-w"><div data-heroflip="track" class="s-group z-0"><div data-hero-animation-container="" class="s is-on-track-home project-un-header" data-surface="dark"><div class="project-un-earth" aria-hidden="true"><img src="../custom/project-earth-artemis.webp" width="3600" height="2400" alt="" fetchpriority="high"></div><div class="project-intro"><h1><span class="project-title-code"><span class="project-title-word" data-project-copy="title">Projects</span></span></h1><p data-project-copy="intro">Browse software, robotics and interactive 3D projects by subject.</p></div><div class="c is-on-track-home"><div class="on-t-hero-title-layout"><div class="on-t-hero-title-w"><div class="on-t-hero-title-rive-w"><div class="on-t-hero-title-rive w-embed"><canvas data-rive-object
 
         data-rive-file="phrases"
 
