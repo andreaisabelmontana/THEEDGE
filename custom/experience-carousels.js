@@ -7,12 +7,13 @@
     const slides = [...track.children];
     const play = carousel.querySelector('[data-media-play]');
     const videos = slides.map(slide => slide.querySelector('video'));
-    let index = 0, destination = null, rotation = !reduce.matches, visible = false;
+    let index = 0, destination = null, rotation = !!play && !reduce.matches, visible = false;
     let hovering = false, interacting = false, timer = 0, idle = 0, manual = false, drag = null;
     carousel.dataset.carouselReady = 'true';
     track.setAttribute('data-lenis-prevent-touch', '');
 
     function updateButton() {
+      if (!play) return;
       play.hidden = reduce.matches;
       play.textContent = rotation ? 'Pause' : 'Play';
       play.setAttribute('aria-label', (rotation ? 'Pause ' : 'Play ') + play.dataset.title + ' slideshow');
@@ -51,7 +52,7 @@
       control.hidden = false;
       control.addEventListener('click', () => { holdManual(); go(index + offset); });
     });
-    play.addEventListener('click', () => { rotation = !rotation && !reduce.matches;updateButton();schedule(); });
+    play?.addEventListener('click', () => { rotation = !rotation && !reduce.matches;updateButton();schedule(); });
     track.addEventListener('keydown', event => {
       if (event.target !== track || !['ArrowLeft','ArrowRight'].includes(event.key)) return;
       event.preventDefault();holdManual();go(index + (event.key === 'ArrowLeft' ? -1 : 1));
