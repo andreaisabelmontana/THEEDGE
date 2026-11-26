@@ -47,7 +47,11 @@
       const box=el.getBoundingClientRect();
       for (const c of layer.circles) {
         const dx=e.clientX-Math.max(0,box.left+c.node.offsetLeft-c.node.offsetWidth*.5);
-        const dy=e.clientY-Math.max(0,box.top+c.node.offsetTop-c.node.offsetHeight*.5);
+        // In the UN fixed nav the pointer is measured from its top edge.
+        // Treat the Home globe panel's top as that edge.
+        const dy=el.classList.contains('un-aura--globe')
+          ? e.clientY-box.top-Math.max(0,c.node.offsetTop-c.node.offsetHeight*.5)
+          : e.clientY-Math.max(0,box.top+c.node.offsetTop-c.node.offsetHeight*.5);
         const distance=Math.hypot(dx,dy);
         // Port the original 600px repulsion radius and 150px maximum travel.
         const force=distance>0 && distance<600 ? (1-distance/600)*150/distance : 0;

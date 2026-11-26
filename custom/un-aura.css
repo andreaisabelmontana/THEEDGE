@@ -21,3 +21,22 @@
 @media(prefers-reduced-motion:reduce) {
   .un-aura > span::before { animation:none; }
 }
+
+/* On Home the active UN shapes supply the hue; no stationary gradient covers them. */
+.un-aura--globe > span::before { filter:blur(70px); }
+.un-aura--globe > :nth-child(5) { left:auto;right:15vw; }
+.un-aura--globe > :nth-child(6) { left:auto;right:0; }
+@keyframes un-aura-gentle-turn {
+  0%,50%,100% { transform:rotate(0); } 25% { transform:rotate(10deg); } 75% { transform:rotate(-10deg); }
+}
+@media(max-width:700px) {
+  .un-aura--globe { opacity:.7; }
+  .un-aura--globe > span {
+    --h:min(10vh,25vw);width:min(50vh,25vw);height:var(--h);top:calc(var(--h)*-.7);
+  }
+  .un-aura--globe > span::before { filter:blur(50px);animation-name:un-aura-gentle-turn; }
+  .un-aura--globe > :nth-child(3) { left:47vw;top:calc(var(--h)*-.65); }
+  .un-aura--globe > :nth-child(4) { left:0;top:calc(var(--h)*-.65); }
+  .un-aura--globe > :nth-child(5) { top:calc(var(--h)*-.8); }
+  .un-aura--globe > :nth-child(6) { top:calc(var(--h)*-.6); }
+}
