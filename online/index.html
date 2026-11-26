@@ -193,16 +193,16 @@ html[data-theme] body.projects-page .project-starfield :is(.s.home-helmets.proje
 </style><link rel="stylesheet" href="../custom/link-underline.css?v=20261126"><link rel="stylesheet" href="../custom/un-aura.css?v=20261126"><script defer src="../custom/un-aura.js?v=20261126"></script><script defer src="../custom/projects-opening.js?v=20261126-first-paint"></script><script defer src="../custom/hover-sound.js?v=20261126-timeline-tick"></script><style>
 .project-card-category { display: none; }
 /* Helmet SVG outlines and hover behavior from OFF+BRAND's Lando Norris gallery. */
-body.projects-page .project-night:has(#project-grid[data-layout="grid"]) {
-  background: #121212 !important;
-}
 #project-grid[data-layout="grid"] {
   --helmet-stagger: clamp(70px, 13.75vw, 205px);
+  --helmet-offset: 1;
+  --helmet-rise: calc(var(--helmet-stagger) * var(--helmet-offset));
+  overflow-anchor: none;
   --helmet-ease: .75s cubic-bezier(.65,.05,0,1);
   grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: start;
   gap: 18px;
-  padding-bottom: var(--helmet-stagger);
+  padding-bottom: var(--helmet-rise);
 }
 #project-grid[data-layout="grid"] > .project-card {
   position: relative;
@@ -211,7 +211,7 @@ body.projects-page .project-night:has(#project-grid[data-layout="grid"]) {
   background: none;
   box-shadow: none;
 }
-#project-grid[data-layout="grid"] > :nth-child(even of .project-card:not([hidden])) { top: var(--helmet-stagger); }
+#project-grid[data-layout="grid"] > :nth-child(even of .project-card:not([hidden])) { top: var(--helmet-rise); }
 #project-grid[data-layout="grid"] :is(a.project-card, .project-card > .project-card-link) {
   position: relative;
   display: block;
@@ -302,7 +302,7 @@ body.projects-page .project-night:has(#project-grid[data-layout="grid"]) {
 #project-grid[data-layout="grid"] .project-helmet-year {
   display: block;
   flex-shrink: 0;
-  color: #d0ff00;
+  color: #4285f4;
 }
 #project-grid[data-layout="grid"] .project-card-category,
 #project-grid[data-layout="grid"] [data-project-video="globo"] .globo-walkthrough-employer { display: none; }
@@ -322,6 +322,7 @@ body.projects-page .project-night:has(#project-grid[data-layout="grid"]) {
   #project-grid[data-layout="grid"] .project-helmet-caption { font-size: 12px; }
 }
 @media (prefers-reduced-motion: reduce) {
+  #project-grid[data-layout="grid"] { --helmet-stagger: 0px; }
   #project-grid[data-layout="grid"] :is(.project-card-visual > img,.project-card-visual > picture,.project-helmet-frame .is-overlay,.project-helmet-reveal) { transition: none; }
 }
 .project-view { display: flex; margin-inline-start: auto; gap: 14px; }
@@ -3283,10 +3284,31 @@ stroke="currentColor"/></svg></div></div></div></div></div><div class="on-t-hero
     }).observe(grid, { subtree: true, attributes: true, attributeFilter: ['hidden'] });
   }
 
+  const gridMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  let gridMotionFrame = 0;
+  function updateGridStagger() {
+    gridMotionFrame = 0;
+    if (grid.dataset.layout !== 'grid') return;
+    const viewport = innerHeight;
+    if (!viewport) return;
+    const top = grid.getBoundingClientRect().top;
+    const offset = gridMotion.matches ? 0 : Math.max(0, Math.min(1, (top - viewport * .15) / (viewport * .6)));
+    grid.style.setProperty('--helmet-offset', offset.toFixed(3));
+  }
+  function queueGridStagger() {
+    if (grid.dataset.layout === 'grid' && !gridMotionFrame) {
+      gridMotionFrame = requestAnimationFrame(updateGridStagger);
+    }
+  }
+  addEventListener('scroll', queueGridStagger, { passive: true });
+  addEventListener('resize', queueGridStagger, { passive: true });
+  gridMotion.addEventListener?.('change', queueGridStagger);
+
   function readLayout() {
     grid.dataset.layout = new URL(location.href).searchParams.get('view') === 'horizontal'
       ? 'horizontal' : 'grid';
     listCards.forEach(syncListReveal);
+    updateGridStagger();
     if (grid.dataset.layout === 'grid' && !thumbnailRequested) {
       thumbnailRequested = true;
       const sheet = new Image();
