@@ -260,3 +260,28 @@ body.contact-page .s.am-contact > #stargazing {
 #stargazing > .am-contact-orbit-credit { left:clamp(16px,4vw,70px);text-underline-offset:.2em; }
 #stargazing :is(a,button):focus-visible { outline:2px solid #dde7ff;outline-offset:4px; }
 @media(max-width:600px){body.contact-page .s.am-contact > #stargazing{min-height:68svh;}#stargazing > .am-contact-orbit-credit{max-width:50%;text-align:left;}}
+
+
+/* Keep the star scene behind the raised top of the Contact footer card. */
+body.contact-page { --contact-star-overlap:clamp(70px,8vw,140px); }
+body.contact-page .s.am-contact > #stargazing {
+  min-height:calc(min(92svh,960px) + var(--contact-star-overlap));
+  padding-bottom:calc(clamp(75px,13vw,155px) + var(--contact-star-overlap));
+}
+body.contact-page #stargazing > :is(.am-contact-orbit-credit,.am-contact-orbit-control) {
+  bottom:calc(clamp(14px,3vw,35px) + var(--contact-star-overlap));
+}
+html[data-theme] body.contact-page #contact.is-footer {
+  position:relative;z-index:2;
+  margin-top:calc(-1 * var(--contact-star-overlap));
+  background:transparent !important;
+}
+html[data-theme] body.contact-page #contact.is-footer .footer-bg-gradient {
+  background:
+    linear-gradient(180deg,transparent 0,#0c1327 calc(var(--contact-star-overlap) + 8px),#253e82 60%,var(--theme-accent,#3369e8) 100%),
+    url("home-sky-near.svg") center top / auto 760px repeat;
+}
+@media(max-width:600px) {
+  body.contact-page { --contact-star-overlap:80px; }
+  body.contact-page .s.am-contact > #stargazing { min-height:calc(68svh + var(--contact-star-overlap)); }
+}
