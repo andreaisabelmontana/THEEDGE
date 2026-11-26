@@ -366,8 +366,8 @@ html[data-theme] body.projects-page .project-starfield :is(.s.home-helmets.proje
 #project-grid[data-layout="horizontal"] :is(a.project-card, .project-card > .project-card-link) {
   display: grid;
   grid-template-columns: minmax(0, 1.3fr) minmax(0, .82fr) minmax(0, 1.25fr);
-  grid-template-areas: "visual title description" "visual title category";
-  grid-template-rows: 1fr auto;
+  grid-template-areas: "visual title description";
+  grid-template-rows: minmax(0, 1fr);
   align-items: center;
   gap: 0 clamp(18px, 3vw, 42px);
   padding: 10px 16px 10px 10px;
@@ -375,17 +375,29 @@ html[data-theme] body.projects-page .project-starfield :is(.s.home-helmets.proje
   min-width: 0;
   text-decoration: none;
   color: #f6f5ff;
-  background: #191f3bed;
+  position: relative;
+  isolation: isolate;
+  --list-panel: #192443df;
+}
+#project-grid[data-layout="horizontal"] :is(a.project-card, .project-card > .project-card-link)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 12px;
+  background: var(--list-panel);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 57px), calc(100% - 148px) calc(100% - 57px), calc(100% - 184px) 100%, 0 100%);
+  transition: background-color .3s ease;
 }
 #project-grid[data-layout="horizontal"] :is(a.project-card, .project-card > .project-card-link):hover {
-  background: #202948;
+  --list-panel: #243459e8;
 }
 #project-grid[data-layout="horizontal"] .project-card-visual {
   grid-area: visual;
   align-self: stretch;
   position: relative;
   width: 100%;
-  min-height: clamp(184px, 18vw, 228px);
+  min-height: clamp(196px, 20vw, 232px);
   aspect-ratio: auto;
   border: 0;
   border-radius: 6px;
@@ -413,18 +425,25 @@ html[data-theme] body.projects-page .project-starfield :is(.s.home-helmets.proje
 }
 #project-grid[data-layout="horizontal"] .project-card-description {
   grid-area: description;
-  margin: 12px 0 8px;
+  margin: 12px 0 44px;
+  max-width: 33ch;
   color: #e5e9f6;
   font-size: clamp(15px, 1.3vw, 18px);
   line-height: 1.38;
   overflow-wrap: anywhere;
 }
 #project-grid[data-layout="horizontal"] .project-card-category {
-  grid-area: category;
-  justify-self: end;
-  display: inline-block;
-  padding: 8px 14px;
-  border-radius: 4px 8px 4px 4px;
+  position: absolute;
+  inset: auto 8px 6px auto;
+  display: grid;
+  place-items: center;
+  min-width: 132px;
+  min-height: 42px;
+  box-sizing: border-box;
+  padding: 8px 12px 8px 24px;
+  border-radius: 7px;
+  clip-path: polygon(16% 0, 100% 0, 100% 100%, 0 100%);
+  transition: transform .25s ease;
   color: #111a32;
   background: #b7c9f5;
   font: 600 13px/1.25 system-ui, sans-serif;
@@ -432,6 +451,15 @@ html[data-theme] body.projects-page .project-starfield :is(.s.home-helmets.proje
 #project-grid[data-layout="horizontal"] .project-card-category:is([data-category="ai"], [data-category="ml"]) { background: #cebbf7; }
 #project-grid[data-layout="horizontal"] .project-card-category[data-category="robotics"] { background: #9bd8be; }
 #project-grid[data-layout="horizontal"] .project-card-category[data-category="art"] { background: #f1bc9a; }
+@media (prefers-reduced-motion: no-preference) {
+  #project-grid[data-layout="horizontal"] .project-card.motion-ready {
+    transform: translateY(18px);
+    transition: opacity .55s ease, transform .65s cubic-bezier(.2,.75,.26,1);
+  }
+  #project-grid[data-layout="horizontal"] .project-card.motion-ready.is-visible { transform: none; }
+  #project-grid[data-layout="horizontal"] .project-card:focus-within { opacity: 1; transform: none; }
+  #project-grid[data-layout="horizontal"] .project-card:is(:hover, :focus-within) .project-card-category { transform: translateX(-3px); }
+}
 @media (max-width: 850px) {
   #project-grid[data-layout="horizontal"] :is(a.project-card, .project-card > .project-card-link) {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -440,6 +468,14 @@ html[data-theme] body.projects-page .project-starfield :is(.s.home-helmets.proje
     column-gap: 18px;
   }
   #project-grid[data-layout="horizontal"] .project-card h2 { margin-top: 6px; }
+  #project-grid[data-layout="horizontal"] .project-card-description { margin: 8px 0; }
+  #project-grid[data-layout="horizontal"] .project-card-category {
+    position: static;
+    grid-area: category;
+    justify-self: end;
+    min-height: 34px;
+  }
+  #project-grid[data-layout="horizontal"] :is(a.project-card, .project-card > .project-card-link)::before { clip-path: none; }
 }
 @media (max-width: 540px) {
   #project-grid[data-layout="horizontal"] :is(a.project-card, .project-card > .project-card-link) {
