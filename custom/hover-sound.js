@@ -10,7 +10,7 @@
   // The UN sidebar uses "mouse"; its changing timeline numbers use "numbers".
   const base='https://projects.elkanodata.com/WIP/unhq-space/audio/';
   const buffers=new Map(),pending=new Map();
-  let engine,last=-Infinity,playing;
+  let engine,last=-Infinity,playing,timelineFallback;
   function load(name){
     if(buffers.has(name))return Promise.resolve(buffers.get(name));
     if(pending.has(name))return pending.get(name);
@@ -41,8 +41,24 @@
     cue.onended=()=>{cue.disconnect();gain.disconnect();if(playing===cue)playing=null;};
     playing=cue;cue.start();
   }
+  function fallbackTimelineTick() {
+    if (timelineFallback) return timelineFallback;
+    const rate = engine.sampleRate;
+    const length = Math.ceil(rate * .065);
+    timelineFallback = engine.createBuffer(1, length, rate);
+    const samples = timelineFallback.getChannelData(0);
+    for (let i = 0; i < length; i++) {
+      const time = i / rate;
+      const envelope = Math.min(1, time / .002) * Math.exp(-time * 90);
+      const phase = 2 * Math.PI * (1350 * time - 4500 * time * time);
+      samples[i] = envelope * (.65 * Math.sin(phase) + .23 * Math.sin(phase * 2.04));
+    }
+    return timelineFallback;
+  }
   function prepare(e){
-    if(e.isTrusted&&unlock())load('mouse');
+    if(!e.isTrusted||!unlock())return;
+    load('mouse');
+    load('numbers');
   }
   document.addEventListener('pointerdown',prepare,{passive:true,capture:true});
   document.addEventListener('keydown',prepare,{capture:true});
@@ -50,8 +66,10 @@
     const lang=e.target instanceof Element?e.target.closest(languages):null;
     if(!e.isTrusted||!lang||lang.getAttribute('aria-pressed')==='true'||lang.disabled||!unlock())return;
     const time=performance.now();
-    const cue=await load('numbers');
-    if(performance.now()-time<1200)play(cue);
+    if(engine.state!=='running') {
+      try{await engine.resume();}catch{return;}
+    }
+    if(performance.now()-time<300)play(buffers.get('numbers')||fallbackTimelineTick());
   },true);
   document.addEventListener('pointerover',e=>{
     if(e.pointerType!=='mouse'||document.hidden||!engine||engine.state!=='running')return;
