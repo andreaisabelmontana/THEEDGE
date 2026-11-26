@@ -7,3 +7,16 @@ html[data-theme] body.clean-portfolio .nav[data-nav-wrap] .btn-layout.is-nav>a.p
 .portfolio-cv-arcade-tools{display:flex;flex-wrap:wrap;align-items:center;justify-content:end;gap:4px}
 @media screen and (max-width:370px){html[data-theme] body.clean-portfolio .nav[data-nav-wrap]{--top-control-size:48px;--top-control-gap:7px}}
 @media (prefers-reduced-motion:reduce){a.portfolio-cv-link{transition:none}}
+
+/* Draw the line beneath the letters, not along the button edge. */
+a.portfolio-cv-link { position:relative; }
+a.portfolio-cv-link::after {
+  content:"";position:absolute;pointer-events:none;
+  inset-block-start:calc(50% + .65em);inset-inline-start:calc(50% - .68em);
+  inline-size:1.36em;border-block-end:1px solid currentColor;
+  transform:scaleX(0);transform-origin:left center;
+  transition:transform .65s cubic-bezier(.22,.61,.2,1);
+}
+a.portfolio-cv-link:focus-visible::after { transform:scaleX(1); }
+@media (hover:hover) { a.portfolio-cv-link:hover::after { transform:scaleX(1); } }
+@media (prefers-reduced-motion:reduce) { a.portfolio-cv-link::after { transition:none; } }
