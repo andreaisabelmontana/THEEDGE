@@ -1,0 +1,35 @@
+/* The draw-on motion references the UN's The Race to Save Space.
+   Independent CSS implementation; no third-party scripts or assets. */
+.clean-portfolio .footer-links-col a.text-link-w {
+  position:relative;
+  inline-size:fit-content;
+  max-inline-size:100%;
+  color:var(--theme-ink,#281f30);
+}
+.clean-portfolio .project-card-cta-label,
+.clean-portfolio a.am-contact-link .am-contact-value {
+  position:relative;
+}
+.clean-portfolio a.am-contact-link .am-contact-value { justify-self:start; }
+.clean-portfolio :is(.footer-links-col a.text-link-w,.project-card-cta-label,a.am-contact-link .am-contact-value)::after {
+  content:"";
+  position:absolute;
+  inset-inline:0;
+  inset-block-end:-.12em;
+  border-block-end:1px solid currentColor;
+  transform:scaleX(0);
+  transform-origin:left center;
+  transition:transform .65s cubic-bezier(.22,.61,.2,1);
+  pointer-events:none;
+}
+.clean-portfolio :is(.footer-links-col a.text-link-w:focus-visible,.project-card:focus-visible .project-card-cta-label,a.am-contact-link:focus-visible .am-contact-value)::after {
+  transform:scaleX(1);
+}
+@media (hover:hover) {
+  .clean-portfolio :is(.footer-links-col a.text-link-w:hover,.project-card:hover .project-card-cta-label,a.am-contact-link:hover .am-contact-value)::after {
+    transform:scaleX(1);
+  }
+}
+@media (prefers-reduced-motion:reduce) {
+  .clean-portfolio :is(.footer-links-col a.text-link-w,.project-card-cta-label,a.am-contact-link .am-contact-value)::after { transition:none; }
+}
