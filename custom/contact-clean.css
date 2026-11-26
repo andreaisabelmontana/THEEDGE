@@ -212,3 +212,27 @@ body.contact-page .reach-portrait img {
   body.contact-page .am-contact-list { grid-row: 1; }
   body.contact-page .reach-portrait { width: min(100%, 300px); aspect-ratio: 2 / 3; }
 }
+
+/* The restored warp field sits quietly behind the closing Contact quote. */
+body.contact-page .am-contact-stargazing {
+  position:relative;isolation:isolate;overflow:hidden;
+  grid-column:1/-1;min-height:clamp(230px,26vw,340px);
+  margin:0;padding:clamp(24px,6vw,72px) clamp(20px,8vw,100px);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1rem;
+  border-radius:.85rem;background:#111a32;color:#f7f8ff;text-align:center;
+}
+.am-contact-stargazing > canvas { opacity:.52; }
+.am-contact-stargazing::after {
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(ellipse at center,#111a32e6 0%,#111a32af 44%,#111a321f 100%);
+}
+.am-contact-stargazing > :is(blockquote,figcaption) { position:relative;z-index:2;margin:0; }
+.am-contact-stargazing blockquote {
+  max-width:26ch;font:500 clamp(22px,3.45vw,43px)/1.18 Brier,Georgia,serif;
+  letter-spacing:-.025em;text-wrap:balance;
+}
+.am-contact-stargazing blockquote p { margin:0; }
+.am-contact-stargazing figcaption a {
+  color:#dde7ff;font-size:.875rem;text-decoration:underline;text-underline-offset:.22em;
+}
+.am-contact-stargazing figcaption a:focus-visible { outline:2px solid #dde7ff;outline-offset:4px; }

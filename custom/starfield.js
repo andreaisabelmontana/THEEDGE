@@ -5,18 +5,21 @@
   var canvas = document.querySelector('.am-warp');
   if (!canvas) return;
   var ctx = canvas.getContext('2d');
+  if (!ctx) return;
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   var COLORS = ['#ffffff', '#ffffff', '#9fd8cf', '#e8c27a', '#e0b3d6', '#b9c7e8'];
   var N = 130;
   var stars = [];
-  var running = true;
+  var running = !("IntersectionObserver" in window);
+  var raf = 0, started = null;
 
   function resize() {
     var r = canvas.parentElement.getBoundingClientRect();
     canvas.width = Math.max(2, Math.floor(r.width));
     canvas.height = Math.max(2, Math.floor(r.height));
+    draw(false);
   }
-  resize();
-  window.addEventListener('resize', resize);
+
 
   function spawn(s) {
     s.a = Math.random() * Math.PI * 2;
@@ -32,21 +35,26 @@
     stars.push(s);
   }
 
+  resize();
+  if ("ResizeObserver" in window) new ResizeObserver(resize).observe(canvas.parentElement);
+  else window.addEventListener("resize", resize);
+
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (en) {
+      if (running === en[0].isIntersecting) return;
       running = en[0].isIntersecting;
+      reset();
     }).observe(canvas);
   }
 
-  function frame() {
-    if (running) {
+  function draw(animate) {
       var w = canvas.width, h = canvas.height;
       var cx = w / 2, cy = h * 0.45;
       var R = Math.max(w, h);
       ctx.clearRect(0, 0, w, h);
       for (var i = 0; i < stars.length; i++) {
         var s = stars[i];
-        s.d += s.v * (0.4 + s.d * 3.2);   /* accelerate as they approach */
+        if (animate) s.d += s.v * (0.4 + s.d * 3.2);   /* accelerate as they approach */
         if (s.d > 1.05) spawn(s);
         var x0 = cx + Math.cos(s.a) * s.d * R;
         var y0 = cy + Math.sin(s.a) * s.d * R * 0.72;
@@ -63,8 +71,22 @@
         ctx.stroke();
       }
       ctx.globalAlpha = 1;
-    }
-    requestAnimationFrame(frame);
   }
-  requestAnimationFrame(frame);
+  function frame(now) {
+    raf = 0;
+    if (!running || reduceMotion.matches || document.hidden) return;
+    if (started === null) started = now;
+    if (now - started >= 4500) return;
+    draw(true);
+    raf = requestAnimationFrame(frame);
+  }
+  function reset() {
+    cancelAnimationFrame(raf);
+    raf = 0;
+    started = null;
+    if (running && !reduceMotion.matches && !document.hidden) raf = requestAnimationFrame(frame);
+  }
+  reduceMotion.addEventListener?.("change", reset);
+  document.addEventListener("visibilitychange", reset);
+  reset();
 })();

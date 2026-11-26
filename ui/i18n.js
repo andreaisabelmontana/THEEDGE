@@ -22,6 +22,7 @@
   const STORE = 'edge-lang';
 
   const DICT = {
+    "“If people sat outside and looked at the stars each night, I'll bet they'd live a lot differently.”": {"es":"«Si la gente se sentara afuera a mirar las estrellas cada noche, apuesto a que viviría de otra manera».","de":"„Wenn die Leute jeden Abend draußen säßen und die Sterne anschauten, würden sie bestimmt ganz anders leben.“"},
     es: {
       "hero.experience": "Experiencia",
       'nav.menu': 'menú',
