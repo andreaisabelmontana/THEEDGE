@@ -160,11 +160,23 @@ html[data-theme] body .nav-menu-w:has(.nav-menu-link-w[href$="/online/"][aria-cu
 body.projects-page .page-edge-pos .page-edge-svg :is(canvas,img) {
   filter: url(#projects-astronaut-cutouts) !important;
 }
+body.projects-page::before,
 body.projects-page > .project-viewport-aura {
   position: fixed;
   inset: 0 0 auto;
   height: min(34vh, 280px);
-  z-index: 4;
+  pointer-events: none;
+}
+body.projects-page::before {
+  content: "";
+  z-index: 39;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  -webkit-mask-image: linear-gradient(to bottom, #000 12%, transparent 82%);
+  mask-image: linear-gradient(to bottom, #000 12%, transparent 82%);
+}
+body.projects-page > .project-viewport-aura {
+  z-index: 40;
   opacity: .76;
   mix-blend-mode: screen;
   mask-image: linear-gradient(to bottom, #000, transparent);
