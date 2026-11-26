@@ -446,64 +446,33 @@ document.addEventListener('DOMContentLoaded', function () {
   addEventListener('scroll',queue,{passive:true});
 })();
 </script>
-<style id="home-card-heading-wipe">
-  [data-home-shell] .home-showcase .otot-card h2 {
-    position: relative;
-    width: fit-content;
-    max-width: 100%;
-    isolation: isolate;
-    --card-wipe-blue: #3369e8;
-  }
-  [data-home-shell] .home-showcase .otot-card:focus-visible h2 {
-    --card-wipe-run: card-heading-scan 370ms cubic-bezier(.33,0,.24,1) both;
-    color: var(--card-wipe-blue) !important;
-    transition: color 0s steps(1, end) 165ms;
-  }
-  @media (hover: hover) and (pointer: fine) {
-    [data-home-shell] .home-showcase .otot-card:hover h2 {
-      --card-wipe-run: card-heading-scan 370ms cubic-bezier(.33,0,.24,1) both;
-      color: var(--card-wipe-blue) !important;
-      transition: color 0s steps(1, end) 165ms;
+<style id="home-card-heading-fill">
+  @supports ((background-clip: text) or (-webkit-background-clip: text)) {
+    @media (forced-colors: none) {
+      [data-home-shell] .home-showcase .otot-card h2 {
+        width: fit-content;
+        max-width: 100%;
+        background-image: linear-gradient(90deg, #2458cd 49.5%, currentColor 50.5%);
+        background-size: 200% 100%;
+        background-position: 100% center;
+        background-repeat: no-repeat;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: background-position 400ms cubic-bezier(.22,.61,.2,1);
+      }
+      [data-home-shell] .home-showcase .otot-card:focus-visible h2 {
+        background-position: 0% center;
+      }
+      @media (hover: hover) and (pointer: fine) {
+        [data-home-shell] .home-showcase .otot-card:hover h2 {
+          background-position: 0% center;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        [data-home-shell] .home-showcase .otot-card h2 { transition: none; }
+      }
     }
-  }
-  [data-home-shell] .home-showcase .otot-card h2::before,
-  [data-home-shell] .home-showcase .otot-card h2::after {
-    content: "";
-    position: absolute;
-    display: block !important;
-    z-index: 1;
-    inset: .10em -.035em .02em;
-    pointer-events: none;
-    background: var(--card-wipe-blue);
-    clip-path: inset(0 100% 0 0);
-    animation: var(--card-wipe-run, none);
-  }
-  [data-home-shell] .home-showcase .otot-card h2::before {
-    opacity: .17;
-    transform: translate(.035em, .055em);
-    animation-delay: 18ms;
-  }
-  @keyframes card-heading-scan {
-    0% {
-      clip-path: polygon(0 0,0 0,0 33%,0 33%,0 67%,0 67%,0 100%,0 100%,0 67%,0 67%,0 33%,0 33%);
-    }
-    22% {
-      clip-path: polygon(0 0,50% 0,50% 33%,39% 33%,39% 67%,26% 67%,26% 100%,0 100%,0 67%,0 67%,0 33%,0 33%);
-    }
-    42%, 49% {
-      clip-path: polygon(0 0,100% 0,100% 33%,100% 33%,100% 67%,100% 67%,100% 100%,0 100%,0 67%,0 67%,0 33%,0 33%);
-    }
-    72% {
-      clip-path: polygon(75% 0,100% 0,100% 33%,100% 33%,100% 67%,100% 67%,100% 100%,49% 100%,49% 67%,62% 67%,62% 33%,75% 33%);
-    }
-    100% {
-      clip-path: polygon(100% 0,100% 0,100% 33%,100% 33%,100% 67%,100% 67%,100% 100%,100% 100%,100% 67%,100% 67%,100% 33%,100% 33%);
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    [data-home-shell] .home-showcase .otot-card h2::before,
-    [data-home-shell] .home-showcase .otot-card h2::after { display: none !important; }
-    [data-home-shell] .home-showcase .otot-card:is(:hover,:focus-visible) h2 { transition: none; }
   }
 </style>
 <style id="contact-menu-summit">
