@@ -114,3 +114,34 @@ html body.projects-page .project-un-header .project-intro p {
   .project-un-earth img { object-position:53% 50%; }
   html body.projects-page .project-un-header .project-intro { bottom:43px; }
 }
+
+/* Frame the illuminated Artemis II limb as an edge-to-edge horizon. */
+.project-un-header .project-un-earth {
+  background:#070d1b url("home-sky-near.svg") center top / auto 760px repeat;
+  mask-image:linear-gradient(#000 60%,transparent 100%);
+}
+html body.projects-page .taxi-w.on-track .s.project-un-header {
+  background:#0d1327 !important;
+}
+.project-un-earth img {
+  position:absolute;
+  left:49%;
+  top:13%;
+  width:max(225%,1060px);
+  max-width:none;
+  height:auto;
+  mix-blend-mode:screen;
+  filter:brightness(.64) saturate(.86);
+  transform:translate(-50%,calc(var(--un-scroll-y,0px) - 3.1%))
+    scale(var(--un-scroll-scale,1)) rotate(180deg);
+}
+.project-un-source a { color:inherit; }
+.project-un-source a:hover { text-decoration:underline; }
+body.projects-page .page-edge-pos .page-edge-svg :is(canvas,img),
+body.projects-page .page-edge-pos .nav-middle > img {
+  filter:brightness(0) invert(1) drop-shadow(0 1px 2px #0b1638a0) !important;
+}
+@media(max-width:620px) {
+  .project-un-earth img { top:17%;left:48%; }
+  .project-un-source { max-width:calc(100% - 32px);text-align:right; }
+}
