@@ -190,25 +190,31 @@ html[data-theme] body.projects-page .project-starfield :is(.s.home-helmets.proje
 </style><script defer src="../custom/projects-rail.js?v=20261126-layout"></script><link rel="stylesheet" href="../custom/link-underline.css?v=20261126"><link rel="stylesheet" href="../custom/un-aura.css?v=20261126"><script defer src="../custom/un-aura.js?v=20261126"></script><script defer src="../custom/projects-opening.js?v=20261126"></script><script defer src="../custom/hover-sound.js?v=20261126-lang-click"></script><style>
 .project-layout-switch {
   display: inline-flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  padding: 4px;
-  border: 1px solid #8aa6d45c;
-  border-radius: 10px;
-  background: #111b2e;
+  flex: 0 0 auto;
+  border: 1px solid #8391a1;
+  border-radius: 999px;
+  background: #f8fafc;
 }
 .project-layout-switch[hidden], .project-card-category { display: none; }
 .project-layout-switch button {
-  cursor: pointer;
-  padding: 6px 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 54px;
+  min-height: 32px;
+  padding: 0 8px;
   border: 0;
-  border-radius: 6px;
-  color: #c5d5ef;
+  color: #182435;
   background: transparent;
-  font: inherit;
+  cursor: pointer;
 }
-.project-layout-switch button[aria-pressed="true"] { color: #101b2d; background: #bfdbff; }
-.project-layout-switch button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.project-layout-switch button:first-child { border-radius: 999px 0 0 999px; }
+.project-layout-switch button:last-child { border-radius: 0 999px 999px 0; border-inline-start: 1px solid #8391a1; }
+.project-layout-switch button[aria-pressed="true"] { color: #093753; background: #bfe3fa; }
+.project-layout-check { display: none; }
+.project-layout-switch button[aria-pressed="true"] .project-layout-check { display: inline-flex; }
+.project-layout-switch button:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 #project-grid[data-layout="horizontal"] {
   grid-template-columns: minmax(0, 1fr);
   width: min(1080px, 100%);
@@ -2695,7 +2701,7 @@ stroke="currentColor"/></svg></div></div></div></div></div><div class="on-t-hero
 
         >
 
-</canvas></div></div></div></div></div></div></div><div class="on-t-hero-stats-ui-img-fill is-3"></div></div></div></div><div data-heroflip="pos1" class="on-t-helm-scroll-pos1"><div data-gl="helmet-scroll" class="on-t-helm-scroll-object"></div></div></div></div></div></div></div></div><div class="s-group z-10 project-starfield"><div class="s-group"><section class="s home-helmets project-night" id="project-collection" data-surface="dark" aria-label="Project collection"><div class="c home-helmets"><div class="project-browser"><nav class="project-subjects" aria-label="Project subjects"><button type="button" data-subject="all" aria-pressed="true" aria-controls="project-grid">All work</button><button type="button" data-subject="ai" aria-pressed="false" aria-controls="project-grid">AI &amp; ML</button><button type="button" data-subject="robotics" aria-pressed="false" aria-controls="project-grid">Robotics</button><button type="button" data-subject="software" aria-pressed="false" aria-controls="project-grid">Software &amp; Web</button><button type="button" data-subject="spatial" aria-pressed="false" aria-controls="project-grid">3D &amp; Games</button><button type="button" data-subject="ux" aria-pressed="false" aria-controls="project-grid">UX &amp; Interaction</button><button type="button" data-subject="art" aria-pressed="false" aria-controls="project-grid">Design &amp; Art</button></nav><div class="project-index-meta"><p class="project-count" aria-live="polite" aria-atomic="true">13 projects</p><div class="project-layout-switch" role="group" aria-label="Project layout" hidden><button type="button" data-layout-choice="grid" aria-controls="project-grid" aria-pressed="true">Grid</button><button type="button" data-layout-choice="horizontal" aria-controls="project-grid" aria-pressed="false">Horizontal</button></div></div><nav class="project-rail" aria-label="Browse project rows" hidden><div class="project-rail__list"></div><button class="project-rail__top" type="button"><b aria-hidden="true">⌃</b><span>Top</span></button></nav><div class="project-grid" id="project-grid" data-helmet-grid><a class="project-card" href="https://andreaisabelmontana.github.io/Arte-De-La-Montana/" data-taxi-ignore data-slug="arte-de-la-montana" data-subjects="" target="_blank" rel="noopener noreferrer"><div class="project-card-visual"><img src="../custom/design-art-assets/caracas-skyline-2026-watercolor-large.jpg" alt="Caracas Skyline, a watercolor by Andrea Montaña" loading="lazy" decoding="async"><span class="project-card-open" aria-hidden="true">↗</span></div><div class="project-card-meta"><span data-project-copy="artType">Website</span></div><h2>Arte de la Montaña</h2><p class="project-card-description" data-project-copy="artIntro">My online gallery for paintings, drawings and ceramics.</p><span class="project-card-cta"><span class="project-card-cta-label" data-project-copy="artCTA">Visit website</span><span aria-hidden="true">↗</span></span></a>
+</canvas></div></div></div></div></div></div></div><div class="on-t-hero-stats-ui-img-fill is-3"></div></div></div></div><div data-heroflip="pos1" class="on-t-helm-scroll-pos1"><div data-gl="helmet-scroll" class="on-t-helm-scroll-object"></div></div></div></div></div></div></div></div><div class="s-group z-10 project-starfield"><div class="s-group"><section class="s home-helmets project-night" id="project-collection" data-surface="dark" aria-label="Project collection"><div class="c home-helmets"><div class="project-browser"><nav class="project-subjects" aria-label="Project subjects"><button type="button" data-subject="all" aria-pressed="true" aria-controls="project-grid">All work</button><button type="button" data-subject="ai" aria-pressed="false" aria-controls="project-grid">AI &amp; ML</button><button type="button" data-subject="robotics" aria-pressed="false" aria-controls="project-grid">Robotics</button><button type="button" data-subject="software" aria-pressed="false" aria-controls="project-grid">Software &amp; Web</button><button type="button" data-subject="spatial" aria-pressed="false" aria-controls="project-grid">3D &amp; Games</button><button type="button" data-subject="ux" aria-pressed="false" aria-controls="project-grid">UX &amp; Interaction</button><button type="button" data-subject="art" aria-pressed="false" aria-controls="project-grid">Design &amp; Art</button></nav><div class="project-index-meta"><p class="project-count" aria-live="polite" aria-atomic="true">13 projects</p><div class="project-layout-switch" role="group" aria-label="Project layout" hidden><button type="button" data-layout-choice="horizontal" aria-controls="project-grid" aria-label="Horizontal" title="Horizontal" aria-pressed="false"><span class="project-layout-check"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m4 10 4 4 8-8"/></svg></span><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h14M3 10h14M3 15h14"/></svg></button><button type="button" data-layout-choice="grid" aria-controls="project-grid" aria-label="Grid" title="Grid" aria-pressed="true"><span class="project-layout-check"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m4 10 4 4 8-8"/></svg></span><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h5v5H3zM12 3h5v5h-5zM3 12h5v5H3zM12 12h5v5h-5z"/></svg></button></div></div><nav class="project-rail" aria-label="Browse project rows" hidden><div class="project-rail__list"></div><button class="project-rail__top" type="button"><b aria-hidden="true">⌃</b><span>Top</span></button></nav><div class="project-grid" id="project-grid" data-helmet-grid><a class="project-card" href="https://andreaisabelmontana.github.io/Arte-De-La-Montana/" data-taxi-ignore data-slug="arte-de-la-montana" data-subjects="" target="_blank" rel="noopener noreferrer"><div class="project-card-visual"><img src="../custom/design-art-assets/caracas-skyline-2026-watercolor-large.jpg" alt="Caracas Skyline, a watercolor by Andrea Montaña" loading="lazy" decoding="async"><span class="project-card-open" aria-hidden="true">↗</span></div><div class="project-card-meta"><span data-project-copy="artType">Website</span></div><h2>Arte de la Montaña</h2><p class="project-card-description" data-project-copy="artIntro">My online gallery for paintings, drawings and ceramics.</p><span class="project-card-cta"><span class="project-card-cta-label" data-project-copy="artCTA">Visit website</span><span aria-hidden="true">↗</span></span></a>
 <a class="project-card project-artwork" href="https://andreaisabelmontana.github.io/Arte-De-La-Montana/assets/2000-2026-acrylic-large.jpg" data-taxi-ignore data-slug="artwork-2000" data-subjects="art" data-artwork hidden target="_blank" rel="noopener noreferrer"><div class="project-card-visual"><img src="../custom/design-art-assets/2000-2026-acrylic-large.jpg" alt="" loading="lazy" decoding="async"><span class="project-card-open" aria-hidden="true">↗</span></div><div class="project-card-meta"><span>Acrylic</span><span>2026</span></div><h2>Two Thousand</h2></a>
 <a class="project-card project-artwork" href="https://andreaisabelmontana.github.io/Arte-De-La-Montana/assets/bogota-2026-acrylic-large.jpg" data-taxi-ignore data-slug="artwork-bogota" data-subjects="art" data-artwork hidden target="_blank" rel="noopener noreferrer"><div class="project-card-visual"><img src="../custom/design-art-assets/bogota-2026-acrylic-large.jpg" alt="" loading="lazy" decoding="async"><span class="project-card-open" aria-hidden="true">↗</span></div><div class="project-card-meta"><span>Acrylic</span><span>2026</span></div><h2>Bogotá</h2></a>
 <a class="project-card project-artwork" href="https://andreaisabelmontana.github.io/Arte-De-La-Montana/assets/caracas-skyline-2026-watercolor-large.jpg" data-taxi-ignore data-slug="artwork-caracas-skyline" data-subjects="art" data-artwork hidden target="_blank" rel="noopener noreferrer"><div class="project-card-visual"><img src="../custom/design-art-assets/caracas-skyline-2026-watercolor-large.jpg" alt="" loading="lazy" decoding="async"><span class="project-card-open" aria-hidden="true">↗</span></div><div class="project-card-meta"><span>Watercolour</span><span>2026</span></div><h2>Caracas Skyline</h2></a>
@@ -2851,7 +2857,11 @@ stroke="currentColor"/></svg></div></div></div></div></div><div class="on-t-hero
   function renderLabels() {
     const copy = labels[document.documentElement.lang] || labels.en;
     controls.setAttribute('aria-label', copy.group);
-    buttons.forEach(button => { button.textContent = copy[button.dataset.layoutChoice]; });
+    buttons.forEach(button => {
+      const label = copy[button.dataset.layoutChoice];
+      button.setAttribute('aria-label', label);
+      button.title = label;
+    });
     badges.forEach(badge => {
       const category = badge.dataset.category;
       badge.textContent = category === 'ml' ? copy.ml : subjects.get(category).textContent;
