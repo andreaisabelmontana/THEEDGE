@@ -160,6 +160,15 @@ html[data-theme] body .nav-menu-w:has(.nav-menu-link-w[href$="/online/"][aria-cu
 body.projects-page .page-edge-pos .page-edge-svg :is(canvas,img) {
   filter: url(#projects-astronaut-cutouts) !important;
 }
+body.projects-page > .project-viewport-aura {
+  position: fixed;
+  inset: 0 0 auto;
+  height: min(34vh, 280px);
+  z-index: 4;
+  opacity: .76;
+  mix-blend-mode: screen;
+  mask-image: linear-gradient(to bottom, #000, transparent);
+}
 </style><script defer src="../custom/projects-rail.js?v=20261126-un-opening"></script><link rel="stylesheet" href="../custom/link-underline.css?v=20261126"><link rel="stylesheet" href="../custom/un-aura.css?v=20261126"><script defer src="../custom/un-aura.js?v=20261126"></script><script defer src="../custom/projects-opening.js?v=20261126"></script><script defer src="../custom/hover-sound.js?v=20261126-lang-click"></script></head><body data-edit="true" class="clean-portfolio projects-page">
 <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <filter id="projects-astronaut-cutouts" color-interpolation-filters="sRGB">
@@ -169,7 +178,9 @@ body.projects-page .page-edge-pos .page-edge-svg :is(canvas,img) {
                                          0.2126 0.7152 0.0722 0 0"/>
     <feComposite in2="SourceGraphic" operator="in"/>
   </filter>
-</svg><div class="css-main"><div class="css-root w-embed"><style>
+</svg>
+<div class="un-aura project-viewport-aura" data-un-aura aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<div class="css-main"><div class="css-root w-embed"><style>
 
 
 
@@ -2361,7 +2372,7 @@ d="M125.417 62.186c-2.382 0-4.395-.357-6.039-1.072-1.619-.714-2.858-1.715-3.716-
 
 
 
---></div></div><div data-start="hidden" overflow-clip="x" class="page-w"><main data-taxi="" class="main-w"><div data-nav-theme-target="light" data-taxi-view="" data-page="on-track" class="taxi-w on-track"><div class="on-track-inner-w"><div data-heroflip="track" class="s-group z-0"><div data-hero-animation-container="" class="s is-on-track-home project-un-header" data-surface="dark"><div class="project-un-earth" aria-hidden="true"><img src="../custom/project-earth-artemis.jpg" width="5568" height="3712" alt="" fetchpriority="high"></div><div class="un-aura" data-un-aura aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="project-intro"><h1 data-project-copy="title">Projects</h1><p data-project-copy="intro">Browse software, robotics and interactive 3D projects by subject.</p></div><div class="project-un-source"><a href="https://www.nasa.gov/image-detail/amf-art002e000190/">Earth photo: NASA / Reid Wiseman</a><span aria-hidden="true"> · </span><a href="https://projects.elkanodata.com/WIP/unhq-space/en/">Motion reference: UN / Elkanodata</a></div><div class="c is-on-track-home"><div class="on-t-hero-title-layout"><div class="on-t-hero-title-w"><div class="on-t-hero-title-rive-w"><div class="on-t-hero-title-rive w-embed"><canvas data-rive-object
+--></div></div><div data-start="hidden" overflow-clip="x" class="page-w"><main data-taxi="" class="main-w"><div data-nav-theme-target="light" data-taxi-view="" data-page="on-track" class="taxi-w on-track"><div class="on-track-inner-w"><div data-heroflip="track" class="s-group z-0"><div data-hero-animation-container="" class="s is-on-track-home project-un-header" data-surface="dark"><div class="project-un-earth" aria-hidden="true"><img src="../custom/project-earth-artemis.jpg" width="5568" height="3712" alt="" fetchpriority="high"></div><div class="project-intro"><h1 data-project-copy="title">Projects</h1><p data-project-copy="intro">Browse software, robotics and interactive 3D projects by subject.</p></div><div class="project-un-source"><a href="https://www.nasa.gov/image-detail/amf-art002e000190/">Earth photo: NASA / Reid Wiseman</a><span aria-hidden="true"> · </span><a href="https://projects.elkanodata.com/WIP/unhq-space/en/">Motion reference: UN / Elkanodata</a></div><div class="c is-on-track-home"><div class="on-t-hero-title-layout"><div class="on-t-hero-title-w"><div class="on-t-hero-title-rive-w"><div class="on-t-hero-title-rive w-embed"><canvas data-rive-object
 
         data-rive-file="phrases"
 
