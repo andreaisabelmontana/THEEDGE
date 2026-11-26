@@ -285,3 +285,10 @@ html[data-theme] body.contact-page #contact.is-footer .footer-bg-gradient {
   body.contact-page { --contact-star-overlap:80px; }
   body.contact-page .s.am-contact > #stargazing { min-height:calc(68svh + var(--contact-star-overlap)); }
 }
+
+/* Give the biography the same type, baseline and divider as the contact details. */
+body.contact-page .am-contact-about .am-contact-bio {
+  max-width:60ch;margin:0;color:var(--theme-ink,#281f30);line-height:1.65;text-wrap:pretty;
+}
+body.contact-page .am-contact-about .am-contact-link { align-items:start; }
+body.contact-page .am-contact-about .am-contact-label { padding-top:.26em; }
