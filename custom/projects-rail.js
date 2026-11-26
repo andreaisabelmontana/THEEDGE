@@ -59,6 +59,6 @@
   addEventListener('scroll',queueUpdate,{passive:true});
   addEventListener('resize',queueRefresh,{passive:true});
   document.addEventListener('edge:lang',queueRefresh);
-  new MutationObserver(queueRefresh).observe(grid,{attributes:true,attributeFilter:['hidden'],subtree:true,childList:true});
+  new MutationObserver(queueRefresh).observe(grid,{attributes:true,attributeFilter:['hidden','data-layout'],subtree:true,childList:true});
   queueRefresh();
 })();
