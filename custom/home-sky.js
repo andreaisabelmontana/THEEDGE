@@ -1,17 +1,46 @@
 (() => {
   const sky = document.querySelector('.home-showcase > .home-sky');
-  if (!sky) return;
+  const video = sky?.querySelector('video');
+  const button = document.querySelector('[data-home-sky-toggle]');
+  if (!video || !button) return;
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
-  if (!('IntersectionObserver' in window)) {
-    if (!motion.matches) sky.classList.add('is-visible');
-    return;
+  const labels = {
+    en: ['Pause stars', 'Play stars'],
+    es: ['Pausar estrellas', 'Animar estrellas'],
+    de: ['Sterne anhalten', 'Sterne abspielen'],
+  };
+  let visible = !('IntersectionObserver' in window);
+  let enabled = !motion.matches;
+  function label() {
+    const lang = document.documentElement.lang.split('-')[0];
+    button.textContent = (labels[lang] || labels.en)[enabled ? 0 : 1];
   }
-  let visible = false;
-  const render = () => sky.classList.toggle('is-visible', visible && !motion.matches && !document.hidden);
-  new IntersectionObserver(([entry]) => {
-    visible = entry.isIntersecting;
-    render();
-  }).observe(sky);
-  motion.addEventListener?.('change', render);
-  document.addEventListener('visibilitychange', render);
+  function update() {
+    label();
+    if (!visible || !enabled || document.hidden) {
+      video.pause();
+      return;
+    }
+    if (!video.querySelector('source[src]')) {
+      for (const source of video.querySelectorAll('source')) source.src = source.dataset.src;
+      video.load();
+    }
+    video.muted = true;
+    video.play().catch(() => {});
+  }
+  video.addEventListener('playing', () => {
+    sky.classList.add('has-film');
+    button.hidden = false;
+  });
+  button.addEventListener('click', () => { enabled = !enabled; update(); });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      update();
+    }).observe(sky);
+  }
+  document.addEventListener('visibilitychange', update);
+  document.addEventListener('edge:lang', label);
+  motion.addEventListener?.('change', () => { enabled = !motion.matches; update(); });
+  update();
 })();
