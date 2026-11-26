@@ -187,7 +187,101 @@ body.projects-page .project-starfield {
 html[data-theme] body.projects-page .project-starfield :is(.s.home-helmets.project-night[data-surface], .s.is-footer) {
   background: transparent !important;
 }
-</style><script defer src="../custom/projects-rail.js?v=20261126-un-opening"></script><link rel="stylesheet" href="../custom/link-underline.css?v=20261126"><link rel="stylesheet" href="../custom/un-aura.css?v=20261126"><script defer src="../custom/un-aura.js?v=20261126"></script><script defer src="../custom/projects-opening.js?v=20261126"></script><script defer src="../custom/hover-sound.js?v=20261126-lang-click"></script></head><body data-edit="true" class="clean-portfolio projects-page">
+</style><script defer src="../custom/projects-rail.js?v=20261126-layout"></script><link rel="stylesheet" href="../custom/link-underline.css?v=20261126"><link rel="stylesheet" href="../custom/un-aura.css?v=20261126"><script defer src="../custom/un-aura.js?v=20261126"></script><script defer src="../custom/projects-opening.js?v=20261126"></script><script defer src="../custom/hover-sound.js?v=20261126-lang-click"></script><style>
+.project-layout-switch {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid #8aa6d45c;
+  border-radius: 10px;
+  background: #111b2e;
+}
+.project-layout-switch[hidden], .project-card-category { display: none; }
+.project-layout-switch button {
+  cursor: pointer;
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 6px;
+  color: #c5d5ef;
+  background: transparent;
+  font: inherit;
+}
+.project-layout-switch button[aria-pressed="true"] { color: #101b2d; background: #bfdbff; }
+.project-layout-switch button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.projects-page .project-grid[data-layout="horizontal"] {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+}
+.project-grid[data-layout="horizontal"] :is(a.project-card, .project-card > .project-card-link) {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .85fr) minmax(0, 1.25fr);
+  grid-template-areas: "visual meta meta" "visual title description" "visual cta category";
+  grid-template-rows: auto 1fr auto;
+  align-items: center;
+  column-gap: clamp(16px, 2.6vw, 34px);
+  row-gap: 10px;
+  padding: 14px;
+  min-width: 0;
+  text-decoration: none;
+  color: #eef5ff;
+  border: 1px solid #8aa6d44a;
+  border-radius: 18px;
+  background: linear-gradient(115deg, #182843f5, #111b30f5);
+}
+.project-grid[data-layout="horizontal"] :is(a.project-card, .project-card > .project-card-link):is(:hover, :focus-visible) {
+  border-color: #9abff9;
+}
+.project-grid[data-layout="horizontal"] .project-card-visual {
+  grid-area: visual;
+  align-self: stretch;
+  width: 100%;
+  min-height: 170px;
+  aspect-ratio: auto;
+  border-radius: 10px;
+}
+.project-grid[data-layout="horizontal"] .project-card-visual > :is(img, picture) { position: absolute; inset: 0; }
+.project-grid[data-layout="horizontal"] .project-card-meta { grid-area: meta; margin: 0; color: #b3c7e6; }
+.project-grid[data-layout="horizontal"] .project-card h2 { grid-area: title; margin: 0; color: #eef5ff; overflow-wrap: anywhere; }
+.project-grid[data-layout="horizontal"] .project-card-description {
+  grid-area: description;
+  margin: 0;
+  color: #d3e0f4;
+  overflow-wrap: anywhere;
+}
+.project-grid[data-layout="horizontal"] .project-card-cta { grid-area: cta; margin: 0; color: #c2dcff; }
+.project-grid[data-layout="horizontal"] .project-card-category {
+  grid-area: category;
+  justify-self: end;
+  align-self: end;
+  display: inline-block;
+  padding: 7px 12px;
+  border-radius: 6px 12px 6px 6px;
+  border: 1px solid currentColor;
+  background: #101c31;
+  color: #b5d6ff;
+  font: 600 12px/1.25 system-ui, sans-serif;
+}
+.project-grid[data-layout="horizontal"] .project-card-category[data-category="ai"],
+.project-grid[data-layout="horizontal"] .project-card-category[data-category="ml"] { color: #dfc1ff; }
+.project-grid[data-layout="horizontal"] .project-card-category[data-category="robotics"] { color: #85eacc; }
+.project-grid[data-layout="horizontal"] .project-card-category[data-category="art"] { color: #ffccad; }
+@media (max-width: 900px) {
+  .project-grid[data-layout="horizontal"] :is(a.project-card, .project-card > .project-card-link) {
+    grid-template-columns: minmax(0, .85fr) minmax(0, 1fr);
+    grid-template-areas: "visual meta" "visual title" "visual description" "visual cta" "visual category";
+    grid-template-rows: auto auto 1fr auto auto;
+  }
+}
+@media (max-width: 560px) {
+  .project-grid[data-layout="horizontal"] :is(a.project-card, .project-card > .project-card-link) {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "visual" "meta" "title" "description" "cta" "category";
+    grid-template-rows: auto;
+  }
+  .project-grid[data-layout="horizontal"] .project-card-visual { aspect-ratio: 16 / 10; min-height: 0; }
+}
+</style></head><body data-edit="true" class="clean-portfolio projects-page">
 <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <filter id="projects-astronaut-cutouts" color-interpolation-filters="sRGB">
     <feColorMatrix type="matrix" values="0 0 0 0 1
@@ -2530,7 +2624,7 @@ stroke="currentColor"/></svg></div></div></div></div></div><div class="on-t-hero
 
         >
 
-</canvas></div></div></div></div></div></div></div><div class="on-t-hero-stats-ui-img-fill is-3"></div></div></div></div><div data-heroflip="pos1" class="on-t-helm-scroll-pos1"><div data-gl="helmet-scroll" class="on-t-helm-scroll-object"></div></div></div></div></div></div></div></div><div class="s-group z-10 project-starfield"><div class="s-group"><section class="s home-helmets project-night" id="project-collection" data-surface="dark" aria-label="Project collection"><div class="c home-helmets"><div class="project-browser"><nav class="project-subjects" aria-label="Project subjects"><button type="button" data-subject="all" aria-pressed="true" aria-controls="project-grid">All work</button><button type="button" data-subject="ai" aria-pressed="false" aria-controls="project-grid">AI &amp; ML</button><button type="button" data-subject="robotics" aria-pressed="false" aria-controls="project-grid">Robotics</button><button type="button" data-subject="software" aria-pressed="false" aria-controls="project-grid">Software &amp; Web</button><button type="button" data-subject="spatial" aria-pressed="false" aria-controls="project-grid">3D &amp; Games</button><button type="button" data-subject="ux" aria-pressed="false" aria-controls="project-grid">UX &amp; Interaction</button><button type="button" data-subject="art" aria-pressed="false" aria-controls="project-grid">Design &amp; Art</button></nav><div class="project-index-meta"><p class="project-count" aria-live="polite" aria-atomic="true">13 projects</p></div><nav class="project-rail" aria-label="Browse project rows" hidden><div class="project-rail__list"></div><button class="project-rail__top" type="button"><b aria-hidden="true">⌃</b><span>Top</span></button></nav><div class="project-grid" id="project-grid" data-helmet-grid><a class="project-card" href="https://andreaisabelmontana.github.io/Arte-De-La-Montana/" data-taxi-ignore data-slug="arte-de-la-montana" data-subjects="" target="_blank" rel="noopener noreferrer"><div class="project-card-visual"><img src="../custom/design-art-assets/caracas-skyline-2026-watercolor-large.jpg" alt="Caracas Skyline, a watercolor by Andrea Montaña" loading="lazy" decoding="async"><span class="project-card-open" aria-hidden="true">↗</span></div><div class="project-card-meta"><span data-project-copy="artType">Website</span></div><h2>Arte de la Montaña</h2><p class="project-card-description" data-project-copy="artIntro">My online gallery for paintings, drawings and ceramics.</p><span class="project-card-cta"><span class="project-card-cta-label" data-project-copy="artCTA">Visit website</span><span aria-hidden="true">↗</span></span></a>
+</canvas></div></div></div></div></div></div></div><div class="on-t-hero-stats-ui-img-fill is-3"></div></div></div></div><div data-heroflip="pos1" class="on-t-helm-scroll-pos1"><div data-gl="helmet-scroll" class="on-t-helm-scroll-object"></div></div></div></div></div></div></div></div><div class="s-group z-10 project-starfield"><div class="s-group"><section class="s home-helmets project-night" id="project-collection" data-surface="dark" aria-label="Project collection"><div class="c home-helmets"><div class="project-browser"><nav class="project-subjects" aria-label="Project subjects"><button type="button" data-subject="all" aria-pressed="true" aria-controls="project-grid">All work</button><button type="button" data-subject="ai" aria-pressed="false" aria-controls="project-grid">AI &amp; ML</button><button type="button" data-subject="robotics" aria-pressed="false" aria-controls="project-grid">Robotics</button><button type="button" data-subject="software" aria-pressed="false" aria-controls="project-grid">Software &amp; Web</button><button type="button" data-subject="spatial" aria-pressed="false" aria-controls="project-grid">3D &amp; Games</button><button type="button" data-subject="ux" aria-pressed="false" aria-controls="project-grid">UX &amp; Interaction</button><button type="button" data-subject="art" aria-pressed="false" aria-controls="project-grid">Design &amp; Art</button></nav><div class="project-index-meta"><p class="project-count" aria-live="polite" aria-atomic="true">13 projects</p><div class="project-layout-switch" role="group" aria-label="Project layout" hidden><button type="button" data-layout-choice="grid" aria-controls="project-grid" aria-pressed="true">Grid</button><button type="button" data-layout-choice="horizontal" aria-controls="project-grid" aria-pressed="false">Horizontal</button></div></div><nav class="project-rail" aria-label="Browse project rows" hidden><div class="project-rail__list"></div><button class="project-rail__top" type="button"><b aria-hidden="true">⌃</b><span>Top</span></button></nav><div class="project-grid" id="project-grid" data-helmet-grid><a class="project-card" href="https://andreaisabelmontana.github.io/Arte-De-La-Montana/" data-taxi-ignore data-slug="arte-de-la-montana" data-subjects="" target="_blank" rel="noopener noreferrer"><div class="project-card-visual"><img src="../custom/design-art-assets/caracas-skyline-2026-watercolor-large.jpg" alt="Caracas Skyline, a watercolor by Andrea Montaña" loading="lazy" decoding="async"><span class="project-card-open" aria-hidden="true">↗</span></div><div class="project-card-meta"><span data-project-copy="artType">Website</span></div><h2>Arte de la Montaña</h2><p class="project-card-description" data-project-copy="artIntro">My online gallery for paintings, drawings and ceramics.</p><span class="project-card-cta"><span class="project-card-cta-label" data-project-copy="artCTA">Visit website</span><span aria-hidden="true">↗</span></span></a>
 <a class="project-card project-artwork" href="https://andreaisabelmontana.github.io/Arte-De-La-Montana/assets/2000-2026-acrylic-large.jpg" data-taxi-ignore data-slug="artwork-2000" data-subjects="art" data-artwork hidden target="_blank" rel="noopener noreferrer"><div class="project-card-visual"><img src="../custom/design-art-assets/2000-2026-acrylic-large.jpg" alt="" loading="lazy" decoding="async"><span class="project-card-open" aria-hidden="true">↗</span></div><div class="project-card-meta"><span>Acrylic</span><span>2026</span></div><h2>Two Thousand</h2></a>
 <a class="project-card project-artwork" href="https://andreaisabelmontana.github.io/Arte-De-La-Montana/assets/bogota-2026-acrylic-large.jpg" data-taxi-ignore data-slug="artwork-bogota" data-subjects="art" data-artwork hidden target="_blank" rel="noopener noreferrer"><div class="project-card-visual"><img src="../custom/design-art-assets/bogota-2026-acrylic-large.jpg" alt="" loading="lazy" decoding="async"><span class="project-card-open" aria-hidden="true">↗</span></div><div class="project-card-meta"><span>Acrylic</span><span>2026</span></div><h2>Bogotá</h2></a>
 <a class="project-card project-artwork" href="https://andreaisabelmontana.github.io/Arte-De-La-Montana/assets/caracas-skyline-2026-watercolor-large.jpg" data-taxi-ignore data-slug="artwork-caracas-skyline" data-subjects="art" data-artwork hidden target="_blank" rel="noopener noreferrer"><div class="project-card-visual"><img src="../custom/design-art-assets/caracas-skyline-2026-watercolor-large.jpg" alt="" loading="lazy" decoding="async"><span class="project-card-open" aria-hidden="true">↗</span></div><div class="project-card-meta"><span>Watercolour</span><span>2026</span></div><h2>Caracas Skyline</h2></a>
@@ -2659,4 +2753,63 @@ stroke="currentColor"/></svg></div></div></div></div></div><div class="on-t-hero
 
 <div class="stars-overlay"></div><script defer src="../custom/helmet-spin.js?v=20260918-release"></script><script defer src="../custom/projects.js?v=20261121-globo-ir"></script><link rel="stylesheet" href="../ui/ui.css?v=20260911k"/><script defer src="../custom/page-guard.js?v=20260911k"></script><script src="../ui/i18n.js?v=20261121-letter-roll" defer></script>
 <script defer src="../custom/clean-shell.js?v=20260918-polish2"></script><script defer src="../custom/projects-clean.js?v=20261121-globo-video"></script><script src="../custom/project-preview.js?v=20261121-portfolioplay" defer></script>
-<script defer src="../custom/affiliations.js?v=20261120-badge-fit"></script><script defer src="../custom/edolus-type.js?v=20261121-first-frame"></script></body></html>
+<script defer src="../custom/affiliations.js?v=20261120-badge-fit"></script><script defer src="../custom/edolus-type.js?v=20261121-first-frame"></script><script>
+(() => {
+  const grid = document.querySelector('#project-grid');
+  const controls = document.querySelector('.project-layout-switch');
+  const buttons = [...controls.querySelectorAll('[data-layout-choice]')];
+  const subjects = new Map([...document.querySelectorAll('.project-subjects [data-subject]')]
+    .map(button => [button.dataset.subject, button]));
+  const labels = {
+    en: { group: 'Project layout', grid: 'Grid', horizontal: 'Horizontal', ml: 'Machine Learning' },
+    es: { group: 'Vista de proyectos', grid: 'Cuadrícula', horizontal: 'Horizontal', ml: 'Aprendizaje automático' },
+    de: { group: 'Projektansicht', grid: 'Raster', horizontal: 'Horizontal', ml: 'Maschinelles Lernen' }
+  };
+  const primary = { 'arte-de-la-montana': 'art', 'andreamontana-portfolio': 'software',
+    sona: 'ml', arcade: 'spatial', isolation: 'ai' };
+  const badges = [...grid.querySelectorAll(':scope > .project-card')].flatMap(card => {
+    const category = primary[card.dataset.slug] || card.dataset.subjects.trim().split(/\s+/)[0];
+    if (category !== 'ml' && !subjects.has(category)) return [];
+    const badge = document.createElement('span');
+    badge.className = 'project-card-category';
+    badge.dataset.category = category;
+    (card.querySelector(':scope > .project-card-link') || card).append(badge);
+    return [badge];
+  });
+
+  function renderLabels() {
+    const copy = labels[document.documentElement.lang] || labels.en;
+    controls.setAttribute('aria-label', copy.group);
+    buttons.forEach(button => { button.textContent = copy[button.dataset.layoutChoice]; });
+    badges.forEach(badge => {
+      const category = badge.dataset.category;
+      badge.textContent = category === 'ml' ? copy.ml : subjects.get(category).textContent;
+    });
+  }
+
+  function setLayout(layout) {
+    grid.dataset.layout = layout;
+    buttons.forEach(button => {
+      button.setAttribute('aria-pressed', String(button.dataset.layoutChoice === layout));
+    });
+  }
+
+  controls.addEventListener('click', event => {
+    const button = event.target.closest('[data-layout-choice]');
+    if (!button) return;
+    setLayout(button.dataset.layoutChoice);
+    const url = new URL(location.href);
+    if (grid.dataset.layout === 'horizontal') url.searchParams.set('view', 'horizontal');
+    else url.searchParams.delete('view');
+    history.replaceState(history.state, '', url);
+  });
+
+  const readLayout = () => setLayout(new URL(location.href).searchParams.get('view') === 'horizontal'
+    ? 'horizontal' : 'grid');
+  addEventListener('popstate', readLayout);
+  document.addEventListener('edge:lang', () => queueMicrotask(renderLabels));
+  readLayout();
+  renderLabels();
+  controls.hidden = false;
+})();
+</script></body></html>
