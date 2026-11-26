@@ -193,7 +193,7 @@ html[data-theme] body.projects-page .project-starfield :is(.s.home-helmets.proje
 .project-card-category { display: none; }
 /* The gallery emphasizes the preview, with the caption on its own line. */
 #project-grid[data-layout="grid"] {
-  --gallery-step: clamp(56px, 8vw, 112px);
+  --gallery-step: clamp(64px, 10vw, 144px);
   grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: start;
   padding-bottom: var(--gallery-step);
@@ -217,30 +217,75 @@ html[data-theme] body.projects-page .project-starfield :is(.s.home-helmets.proje
   color: #edf1ff;
   text-decoration: none;
 }
+/* Square crops share the project media with List view and the video previews. */
+#project-grid[data-layout="grid"] .project-card {
+  --thumb-mat: #151d31;
+  --thumb-light: #35456b;
+  --thumb-gap: 13%;
+  --thumb-fit: contain;
+  --thumb-focus: center;
+}
+#project-grid[data-layout="grid"] :is([data-slug="globo"], [data-slug="top-living"]) {
+  --thumb-light: #674b42;
+  --thumb-gap: 8%;
+}
+#project-grid[data-layout="grid"] [data-slug="notecrafted"] {
+  --thumb-light: #2c5063;
+  --thumb-gap: 8%;
+}
+#project-grid[data-layout="grid"] :is([data-slug="andreamontana-portfolio"], [data-slug="ladybug-girl"], [data-slug="djesthesia"], [data-slug="alma-de-maria"]) {
+  --thumb-fit: cover;
+  --thumb-gap: 0%;
+}
+#project-grid[data-layout="grid"] [data-slug="andreamontana-portfolio"] { --thumb-focus: 50% 48%; }
+#project-grid[data-layout="grid"] [data-slug="djesthesia"] { --thumb-focus: 58% 50%; }
+#project-grid[data-layout="grid"] [data-slug="ladybug-girl"] { --thumb-focus: 50% 56%; }
+#project-grid[data-layout="grid"] [data-slug="alma-de-maria"] { --thumb-focus: 58% 50%; }
+#project-grid[data-layout="grid"] :is([data-slug="3d-anatomy"], [data-slug="robopreneur"], [data-slug="optitrack"]) {
+  --thumb-light: #235668;
+  --thumb-gap: 9%;
+}
+#project-grid[data-layout="grid"] :is([data-slug="sona"], [data-slug="isolation"], [data-slug="arcade"]) {
+  --thumb-light: #514374;
+  --thumb-gap: 8%;
+}
+#project-grid[data-layout="grid"] :is(.project-artwork, [data-slug="arte-de-la-montana"]) {
+  --thumb-mat: #211b2a;
+  --thumb-light: #59475f;
+  --thumb-gap: 11%;
+}
 #project-grid[data-layout="grid"] .project-card-visual {
   grid-column: 1 / -1;
+  position: relative;
   box-sizing: border-box;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1;
   min-width: 0;
-  padding: 12%;
-  border: 1px solid #7181a56e;
-  border-radius: 10px 10px 3px 10px;
-  background: #12192a;
+  padding: 0;
+  border: 1px solid #8d9cc080;
+  border-radius: 9px;
+  background: radial-gradient(ellipse at 50% 42%, var(--thumb-light), var(--thumb-mat) 76%);
   transition: border-color .2s ease;
 }
 #project-grid[data-layout="grid"] .project-card:hover .project-card-visual,
 #project-grid[data-layout="grid"] .project-card:focus-within .project-card-visual {
-  border-color: #accbff;
+  border-color: #b4ccff;
 }
-#project-grid[data-layout="grid"] .project-card-visual img {
-  object-fit: contain;
-  border-radius: 4px;
-}
-#project-grid[data-layout="grid"] .project-preview-media .project-preview-video,
+#project-grid[data-layout="grid"] .project-card-visual > :is(img, picture, video),
 #project-grid[data-layout="grid"] [data-project-video="globo"] .globo-walkthrough-loop {
+  position: absolute;
+  inset: var(--thumb-gap);
+  width: calc(100% - 2 * var(--thumb-gap));
+  height: calc(100% - 2 * var(--thumb-gap));
   box-sizing: border-box;
-  padding: 12%;
-  object-fit: contain;
+  padding: 0;
+  object-fit: var(--thumb-fit);
+  object-position: var(--thumb-focus);
+}
+#project-grid[data-layout="grid"] .project-card-visual > picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: var(--thumb-fit);
+  object-position: var(--thumb-focus);
 }
 #project-grid[data-layout="grid"] .project-card h2 {
   margin: 0;
@@ -270,7 +315,6 @@ html[data-theme] body.projects-page .project-starfield :is(.s.home-helmets.proje
 }
 @media (max-width: 520px) {
   #project-grid[data-layout="grid"] { --gallery-step: 0px; grid-template-columns: minmax(0, 1fr); }
-  #project-grid[data-layout="grid"] .project-card-visual { aspect-ratio: 5 / 4; }
 }
 @media (prefers-reduced-motion: reduce) {
   #project-grid[data-layout="grid"] .project-card-visual { transition: none; }
