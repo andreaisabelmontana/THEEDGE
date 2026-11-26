@@ -161,7 +161,7 @@ html[data-theme] body .nav-menu-w:has(.nav-menu-link-w[href$="/online/"][aria-cu
 /* Retain the original raster's shading and transparent spaces on both logo mounts. */
 html body.clean-portfolio.projects-page .nav .nav-brand,
 html body.clean-portfolio.projects-page .page-edge-pos .page-edge-svg :is(canvas,img) {
-  filter: grayscale(1) brightness(1.18) drop-shadow(0 1px 2px #0b1638a0) !important;
+  filter: url("#projects-astronaut-navy") drop-shadow(0 1px 2px #0b1638a0) !important;
 }
 body.projects-page::before,
 body.projects-page > .project-viewport-aura {
@@ -632,6 +632,16 @@ html[data-theme] body.projects-page .project-starfield :is(.s.home-helmets.proje
 @keyframes project-title-caret-blink { 50% { opacity: 0; } }
 @keyframes project-title-caret-exit { to { opacity: 0; } }
 </style></head><body data-edit="true" class="clean-portfolio projects-page">
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <filter id="projects-astronaut-navy" color-interpolation-filters="sRGB">
+    <feColorMatrix type="saturate" values="0"/>
+    <feComponentTransfer>
+      <feFuncR type="table" tableValues=".018 .033 .043 .058 .075 .108 .21 .64 1"/>
+      <feFuncG type="table" tableValues=".035 .06 .087 .112 .146 .192 .3 .72 1"/>
+      <feFuncB type="table" tableValues=".075 .135 .19 .248 .31 .39 .5 .84 1"/>
+    </feComponentTransfer>
+  </filter>
+</svg>
 <div class="un-aura project-viewport-aura" data-un-aura aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
 <div class="css-main"><div class="css-root w-embed"><style>
 
