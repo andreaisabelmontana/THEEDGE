@@ -232,8 +232,8 @@ body.projects-page .project-night:has(#project-grid[data-layout="grid"]) {
 }
 #project-grid[data-layout="grid"] .project-card-visual > :is(img, picture) {
   position: relative;
-  width: 69%;
-  height: 69%;
+  width: 76%;
+  height: 76%;
   object-fit: contain;
   object-position: center;
   z-index: 1;
@@ -242,10 +242,11 @@ body.projects-page .project-night:has(#project-grid[data-layout="grid"]) {
 #project-grid[data-layout="grid"] .project-card-visual > picture img { object-fit: contain; }
 #project-grid[data-layout="grid"] .project-card:is(:hover,:focus-within) .project-card-visual > :is(img,picture) { transform: scale(1.1); }
 #project-grid[data-layout="grid"] .project-helmet-frame {
+  display: block;
   position: absolute;
   inset: 0;
   z-index: 4;
-  color: #555;
+  color: #737373;
   pointer-events: none;
 }
 #project-grid[data-layout="grid"] .project-helmet-frame .is-overlay { transition: opacity var(--helmet-ease); }
@@ -272,29 +273,39 @@ body.projects-page .project-night:has(#project-grid[data-layout="grid"]) {
   box-sizing: border-box;
   padding: 15%;
 }
-#project-grid[data-layout="grid"] .project-card h2,
-#project-grid[data-layout="grid"] .project-card-category {
+.project-helmet-caption { display: contents; }
+.project-helmet-year { display: none; }
+#project-grid[data-layout="grid"] .project-helmet-caption {
   position: absolute;
-  bottom: 1.5%;
-  margin: 0;
   z-index: 5;
-  font: 600 clamp(8px, .91vw, 13px)/1.1 system-ui, sans-serif;
-}
-#project-grid[data-layout="grid"] .project-card h2 {
-  right: 17%;
-  max-width: 35%;
+  bottom: 0;
+  right: 2%;
+  width: 43%;
+  height: 8%;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: right;
   color: #fff;
-  overflow-wrap: anywhere;
-  text-align: right;
+  font: 600 clamp(9px, .91vw, 13px)/1 system-ui, sans-serif;
 }
-#project-grid[data-layout="grid"] .project-card-category {
-  right: 1%;
+#project-grid[data-layout="grid"] .project-helmet-caption h2 {
+  margin: 0;
+  min-width: 0;
+  font: inherit;
+  color: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#project-grid[data-layout="grid"] .project-helmet-year {
   display: block;
-  max-width: 15%;
+  flex-shrink: 0;
   color: #d0ff00;
-  overflow-wrap: anywhere;
-  text-align: right;
 }
+#project-grid[data-layout="grid"] .project-card-category,
+#project-grid[data-layout="grid"] [data-project-video="globo"] .globo-walkthrough-employer { display: none; }
 #project-grid[data-layout="grid"] :is(.project-card-meta,.project-card-description,.project-card-cta) {
   position: absolute;
   width: 1px;
@@ -308,7 +319,7 @@ body.projects-page .project-night:has(#project-grid[data-layout="grid"]) {
 }
 @media (max-width: 520px) {
   #project-grid[data-layout="grid"] { --helmet-stagger: 0px; grid-template-columns: minmax(0, 1fr); }
-  #project-grid[data-layout="grid"] :is(.project-card h2,.project-card-category) { font-size: 12px; }
+  #project-grid[data-layout="grid"] .project-helmet-caption { font-size: 12px; }
 }
 @media (prefers-reduced-motion: reduce) {
   #project-grid[data-layout="grid"] :is(.project-card-visual > img,.project-card-visual > picture,.project-helmet-frame .is-overlay,.project-helmet-reveal) { transition: none; }
@@ -3142,6 +3153,21 @@ stroke="currentColor"/></svg></div></div></div></div></div><div class="on-t-hero
   const badges = [...grid.querySelectorAll(':scope > .project-card')].flatMap(card => {
     const slug = card.dataset.slug;
     const link = card.querySelector(':scope > .project-card-link') || card;
+    const title = link.querySelector('h2');
+    if (title) {
+      const caption = document.createElement('div');
+      caption.className = 'project-helmet-caption';
+      title.before(caption);
+      caption.append(title);
+      const date = link.querySelector('.project-card-meta span:nth-child(2)')?.textContent;
+      const year = date?.match(/\b\d{4}\b/g)?.at(-1);
+      if (year) {
+        const label = document.createElement('span');
+        label.className = 'project-helmet-year';
+        label.textContent = year;
+        caption.append(label);
+      }
+    }
     const visual = link.querySelector('.project-card-visual');
     visual?.insertAdjacentHTML('afterbegin', helmetFrame);
     link.insertAdjacentHTML('afterbegin', listFrame);
