@@ -22,6 +22,7 @@
   const STORE = 'edge-lang';
 
   const DICT = {
+    "I'm curious by nature and happiest when I'm making something or trying something new. I like moving between code, art, and the outdoors, and I'm always open to a new perspective or a change of plans.": {"es":"Soy curiosa por naturaleza y disfruto creando cosas y probando algo nuevo. Me gusta pasar del código al arte y a las actividades al aire libre, y estoy abierta a otras perspectivas y a los cambios de planes.","de":"Ich bin von Natur aus neugierig und am liebsten kreativ oder dabei, etwas Neues auszuprobieren. Ich bewege mich gern zwischen Programmieren, Kunst und Aktivitäten draußen und bin offen für neue Perspektiven und spontane Planänderungen."},
     "“If people sat outside and looked at the stars each night, I'll bet they'd live a lot differently.”": {"es":"«Si la gente se sentara afuera a mirar las estrellas cada noche, apuesto a que viviría de otra manera».","de":"„Wenn die Leute jeden Abend draußen säßen und die Sterne anschauten, würden sie bestimmt ganz anders leben.“"},
     es: {
       "hero.experience": "Experiencia",
