@@ -239,13 +239,12 @@ body.contact-page .s.am-contact > #stargazing {
   background:radial-gradient(ellipse 52% 56% at 11% 0%,#343186,transparent 88%),
     radial-gradient(ellipse 55% 60% at 92% 0%,#315e8b,transparent 90%),#0c1327;
 }
-#stargazing > .am-contact-orbit-video {
-  position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%;object-fit:cover;
-  pointer-events:none;mix-blend-mode:screen;
+#stargazing > .am-contact-velocity {
+  position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%;pointer-events:none;
 }
 #stargazing::after {
   content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:radial-gradient(ellipse at center,#0c1327bb 0%,#0c132760 47%,transparent 72%);
+  background:radial-gradient(ellipse at center,#0c132778 0%,#0c132729 49%,transparent 76%);
 }
 #stargazing > :is(blockquote,figcaption,button,a) { position:relative;z-index:2;margin:0; }
 #stargazing > blockquote {
