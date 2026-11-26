@@ -16,7 +16,7 @@
   function update() {
     frame = 0;
     const bounds = root.getBoundingClientRect();
-    rail.hidden = !rows.length || (!compact.matches && (bounds.top > innerHeight * .8 || bounds.bottom < innerHeight * .25));
+    rail.hidden = !rows.length || (!compact.matches && (bounds.top > innerHeight * .5 || bounds.bottom < innerHeight * .25));
     const marker = Math.min(250, innerHeight * .36);
     let current = 0;
     rows.forEach((row,i) => { if (row[0].getBoundingClientRect().top <= marker) current = i; });

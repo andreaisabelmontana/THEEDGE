@@ -67,3 +67,50 @@ html[data-theme] .projects-page .project-night .project-card {
   .project-rail__stop span { display:none !important; }
   .project-rail__top b { display:none; }
 }
+
+html body.projects-page .taxi-w.on-track .s.is-on-track-home.project-un-header {
+  height:clamp(420px,56svh,640px) !important;
+  overflow:hidden;isolation:isolate;background:transparent !important;
+}
+html body.projects-page .s.home-helmets.project-night[data-surface] {
+  background:#0d1327 url("home-sky-near.svg") center top / auto 760px repeat !important;
+}
+.project-night::before { content:none; }
+.project-un-header .is-on-track-home.c { visibility:hidden;pointer-events:none; }
+.project-un-header .project-un-earth {
+  position:absolute;inset:0 0 -36%;pointer-events:none;
+  mask-image:linear-gradient(#000 62%,transparent 100%);
+}
+.project-un-earth img {
+  display:block;width:100%;height:100%;object-fit:cover;object-position:center 44%;
+  transform:translateY(var(--un-scroll-y,0px)) scale(var(--un-scroll-scale,1));
+}
+.project-un-header .un-aura { z-index:1;opacity:.76;mix-blend-mode:screen; }
+.project-un-header::after {
+  content:"";position:absolute;z-index:2;inset:0;pointer-events:none;
+  background:linear-gradient(0deg,#0d1327 0%,#0d132795 22%,transparent 65%),
+    linear-gradient(90deg,#0d1327a0 0%,transparent 70%);
+}
+html body.projects-page .project-un-header .project-intro {
+  color:#fff;bottom:clamp(48px,7vh,82px);
+}
+html body.projects-page .project-un-header .project-intro h1 {
+  color:#fff !important;font:760 clamp(42px,6.2vw,94px)/1 'Mona Sans Variable',Arial,sans-serif;
+  letter-spacing:-.045em;margin:0 0 18px;text-transform:uppercase;
+}
+.project-un-header .project-intro h1::before { content:'// ' / '';opacity:.66; }
+html body.projects-page .project-un-header .project-intro p {
+  color:#e2ecff !important;max-width:58ch;
+}
+.project-un-source {
+  position:absolute;z-index:6;bottom:16px;right:clamp(16px,3vw,56px);
+  color:#cad8ef;font:500 11px/1.2 system-ui,sans-serif;text-underline-offset:.2em;
+}
+.project-un-source:focus-visible { outline:2px solid white;outline-offset:4px; }
+@media(max-width:620px) {
+  html body.projects-page .taxi-w.on-track .s.is-on-track-home.project-un-header {
+    height:clamp(365px,53svh,500px) !important;
+  }
+  .project-un-earth img { object-position:53% 50%; }
+  html body.projects-page .project-un-header .project-intro { bottom:43px; }
+}

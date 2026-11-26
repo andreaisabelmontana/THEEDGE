@@ -113,6 +113,7 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
   .home-showcase > .home-sky {
     position:absolute;inset:0;overflow:hidden;pointer-events:none;
   }
+  .home-showcase > .un-aura { mix-blend-mode:screen;opacity:.82; }
   .home-sky video {
     width:100%;height:100%;display:block;object-fit:cover;object-position:center;
     mix-blend-mode:lighten;opacity:0;
@@ -533,7 +534,7 @@ document.addEventListener('DOMContentLoaded', function () {
 html[data-theme] body .nav-menu-w:has(.nav-menu-link-w[href$="/online/"][aria-current="page"]) .nav-menu-img-w[data-nav-img="2"] .menu-img-top,
 html[data-theme] body .nav-menu-w:has(.nav-menu-link-w[href$="/experience/"][aria-current="page"]) .nav-menu-img-w[data-nav-img="3"] .menu-img-top { opacity:1 !important; }
 html[data-theme] body .nav-menu-w:has(.nav-menu-link-w[href$="/online/"][aria-current="page"]) .nav-menu-img-w[data-nav-img="2"] { background-color:var(--theme-accent); }
-</style><link rel="stylesheet" href="./custom/link-underline.css?v=20261126"></head><body data-edit="" class="clean-portfolio" data-home-shell><div class="edge-ui">
+</style><link rel="stylesheet" href="./custom/link-underline.css?v=20261126"><link rel="stylesheet" href="custom/un-aura.css?v=20261126"><script defer src="custom/un-aura.js?v=20261126"></script></head><body data-edit="" class="clean-portfolio" data-home-shell><div class="edge-ui">
 
   <!-- The original nav supplies the astronaut and animated menu. ui.js adopts
        this language switcher; the original menu supplies page navigation. -->
@@ -579,6 +580,7 @@ html[data-theme] body .nav-menu-w:has(.nav-menu-link-w[href$="/online/"][aria-cu
     <hr class="rule">
 
     <div class="home-showcase">
+    <div class="un-aura" data-un-aura aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
     <div class="home-sky" aria-hidden="true">
       <video muted loop playsinline preload="none">
         <source data-src="https://projects.elkanodata.com/WIP/unhq-space/video/stars.webm" type="video/webm" />

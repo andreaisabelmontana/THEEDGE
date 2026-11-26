@@ -1,0 +1,23 @@
+/* Palette, six layers, and spin timing adapted from Elkanodata’s UN Nav effect. */
+.un-aura { position:absolute;inset:0;overflow:hidden;pointer-events:none; }
+.un-aura > span { position:absolute;top:var(--t);left:var(--l);width:25%;height:20vw; }
+.un-aura > span::before {
+  content:"";display:block;width:100%;height:100%;
+  background:var(--c);filter:blur(clamp(34px,5vw,70px));transform-origin:var(--o);
+  animation:un-aura-turn var(--d) linear var(--delay) infinite;
+  animation-play-state:paused;
+}
+.un-aura[data-active] > span::before { animation-play-state:running; }
+.un-aura > :nth-child(1) { --t:-15vw;--l:0%;--c:#4b39b4;--o:50% 50%;--d:15s;--delay:0s; }
+.un-aura > :nth-child(2) { --t:-15vw;--l:12%;--c:#293a9f;--o:55% 45%;--d:16s;--delay:.5s; }
+.un-aura > :nth-child(3) { --t:-20vw;--l:18%;--c:#1e4cbb;--o:45% 55%;--d:17s;--delay:1s; }
+.un-aura > :nth-child(4) { --t:-18vw;--l:40%;--c:#2451a2;--o:60% 50%;--d:18s;--delay:1.5s; }
+.un-aura > :nth-child(5) { --t:-13vw;--l:60%;--c:#3267a5;--o:50% 45%;--d:19s;--delay:2s; }
+.un-aura > :nth-child(6) { --t:-15vw;--l:75%;--c:#3267a5;--o:55% 55%;--d:20s;--delay:2.5s; }
+@keyframes un-aura-turn { to { transform:rotate(1turn); } }
+@media(max-width:700px) {
+  .un-aura > span { height:31vw;top:-18vw; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .un-aura > span::before { animation:none; }
+}
