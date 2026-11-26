@@ -281,6 +281,37 @@ html[data-theme] body.projects-page .project-starfield :is(.s.home-helmets.proje
   }
   .project-grid[data-layout="horizontal"] .project-card-visual { aspect-ratio: 16 / 10; min-height: 0; }
 }
+</style><style>
+.project-credits-trigger, .project-credits-close {
+  padding: 6px 12px;
+  border: 1px solid currentColor;
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.project-credits {
+  box-sizing: border-box;
+  width: min(680px, calc(100% - 32px));
+  max-height: 85dvh;
+  margin: auto;
+  padding: clamp(18px, 4vw, 36px);
+  overflow: auto;
+  color: #eef5ff;
+  background: #111b30;
+  border: 1px solid #728bb4;
+  border-radius: 16px;
+  font: 15px/1.55 system-ui, sans-serif;
+}
+.project-credits::backdrop { background: #060b17cc; }
+.project-credits header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.project-credits h2 { margin: 0; font-size: 26px; }
+.project-credits h3 { margin: 22px 0 6px; font-size: 17px; }
+.project-credits ul { margin: 0; padding-inline-start: 1.25em; list-style: disc; }
+.project-credits li + li { margin-top: 5px; }
+.project-credits a { color: #c1dcff; text-decoration: underline; text-underline-offset: .18em; }
+.project-credits :focus-visible, .project-credits-trigger:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
 </style></head><body data-edit="true" class="clean-portfolio projects-page">
 <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <filter id="projects-astronaut-cutouts" color-interpolation-filters="sRGB">
@@ -2707,7 +2738,7 @@ stroke="currentColor"/></svg></div></div></div></div></div><div class="on-t-hero
 
         >
 
-</canvas></div></div></div></a></div></div></div><div class="footer-marquee am-org-marquee" role="region" aria-label="Organizations from my experience and education"><div class="am-org-viewport" tabindex="0" aria-label="Organization logos"><div class="am-org-track"><div class="am-org-group"><div class="am-org-lockup am-org-lockup--ie"><img src="../custom/organizations/ie-university-horizontal.svg" alt="IE University" width="855" height="345" loading="lazy" decoding="async"/></div><div class="am-org-lockup am-org-lockup--cyphy"><img src="../custom/organizations/cyphy-life.svg" alt="" width="622" height="291" loading="lazy" decoding="async"/><span>CyPhy Life<small>IEX Labs</small></span></div><div class="am-org-lockup am-org-lockup--top"><img src="../custom/organizations/top-living-dark.png" alt="Top Living Inmobiliaria" width="384" height="188" loading="lazy" decoding="async"/></div><div class="am-org-lockup am-org-lockup--trinity"><img src="../custom/organizations/trinity-college-dublin.png" alt="Trinity College Dublin" width="464" height="124" loading="lazy" decoding="async"/></div><div class="am-org-lockup am-org-lockup--cng"><img src="../custom/organizations/colegio-nueva-granada-horizontal.svg" alt="Colegio Nueva Granada" width="397" height="50" loading="lazy" decoding="async"/></div></div><div class="am-org-group" aria-hidden="true"><div class="am-org-lockup am-org-lockup--ie"><img src="../custom/organizations/ie-university-horizontal.svg" alt="IE University" width="855" height="345" loading="lazy" decoding="async"/></div><div class="am-org-lockup am-org-lockup--cyphy"><img src="../custom/organizations/cyphy-life.svg" alt="" width="622" height="291" loading="lazy" decoding="async"/><span>CyPhy Life<small>IEX Labs</small></span></div><div class="am-org-lockup am-org-lockup--top"><img src="../custom/organizations/top-living-dark.png" alt="Top Living Inmobiliaria" width="384" height="188" loading="lazy" decoding="async"/></div><div class="am-org-lockup am-org-lockup--trinity"><img src="../custom/organizations/trinity-college-dublin.png" alt="Trinity College Dublin" width="464" height="124" loading="lazy" decoding="async"/></div><div class="am-org-lockup am-org-lockup--cng"><img src="../custom/organizations/colegio-nueva-granada-horizontal.svg" alt="Colegio Nueva Granada" width="397" height="50" loading="lazy" decoding="async"/></div></div></div></div><button class="am-org-motion" type="button" aria-label="Pause organization logos" aria-pressed="false" hidden>Pause</button></div><div class="footer-bg-pattern-w"><img src="../assets/cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67dbeba158707fa1cd5e5e45_blobs_footer_1.svg" loading="lazy" alt="" class="image"/></div></div></div><div class="footer-legal-links-w"><div class="footer-legal-links-col"><div class="text-title-small-label"><span class="text-title-small-label bold">© 2026 .</span> All rights reserved</div></div><div class="footer-legal-links-col"></div></div></div></div><div class="footer-bg-gradient"></div></section></div><div class="gl-wrap on-track w-embed"><!--
+</canvas></div></div></div></a></div></div></div><div class="footer-marquee am-org-marquee" role="region" aria-label="Organizations from my experience and education"><div class="am-org-viewport" tabindex="0" aria-label="Organization logos"><div class="am-org-track"><div class="am-org-group"><div class="am-org-lockup am-org-lockup--ie"><img src="../custom/organizations/ie-university-horizontal.svg" alt="IE University" width="855" height="345" loading="lazy" decoding="async"/></div><div class="am-org-lockup am-org-lockup--cyphy"><img src="../custom/organizations/cyphy-life.svg" alt="" width="622" height="291" loading="lazy" decoding="async"/><span>CyPhy Life<small>IEX Labs</small></span></div><div class="am-org-lockup am-org-lockup--top"><img src="../custom/organizations/top-living-dark.png" alt="Top Living Inmobiliaria" width="384" height="188" loading="lazy" decoding="async"/></div><div class="am-org-lockup am-org-lockup--trinity"><img src="../custom/organizations/trinity-college-dublin.png" alt="Trinity College Dublin" width="464" height="124" loading="lazy" decoding="async"/></div><div class="am-org-lockup am-org-lockup--cng"><img src="../custom/organizations/colegio-nueva-granada-horizontal.svg" alt="Colegio Nueva Granada" width="397" height="50" loading="lazy" decoding="async"/></div></div><div class="am-org-group" aria-hidden="true"><div class="am-org-lockup am-org-lockup--ie"><img src="../custom/organizations/ie-university-horizontal.svg" alt="IE University" width="855" height="345" loading="lazy" decoding="async"/></div><div class="am-org-lockup am-org-lockup--cyphy"><img src="../custom/organizations/cyphy-life.svg" alt="" width="622" height="291" loading="lazy" decoding="async"/><span>CyPhy Life<small>IEX Labs</small></span></div><div class="am-org-lockup am-org-lockup--top"><img src="../custom/organizations/top-living-dark.png" alt="Top Living Inmobiliaria" width="384" height="188" loading="lazy" decoding="async"/></div><div class="am-org-lockup am-org-lockup--trinity"><img src="../custom/organizations/trinity-college-dublin.png" alt="Trinity College Dublin" width="464" height="124" loading="lazy" decoding="async"/></div><div class="am-org-lockup am-org-lockup--cng"><img src="../custom/organizations/colegio-nueva-granada-horizontal.svg" alt="Colegio Nueva Granada" width="397" height="50" loading="lazy" decoding="async"/></div></div></div></div><button class="am-org-motion" type="button" aria-label="Pause organization logos" aria-pressed="false" hidden>Pause</button></div><div class="footer-bg-pattern-w"><img src="../assets/cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67dbeba158707fa1cd5e5e45_blobs_footer_1.svg" loading="lazy" alt="" class="image"/></div></div></div><div class="footer-legal-links-w"><div class="footer-legal-links-col"><div class="text-title-small-label"><span class="text-title-small-label bold">© 2026 .</span> All rights reserved</div></div><div class="footer-legal-links-col"><button type="button" class="project-credits-trigger" aria-haspopup="dialog" aria-controls="project-credits">Credits</button></div></div></div></div><div class="footer-bg-gradient"></div></section></div><div class="gl-wrap on-track w-embed"><!--
 
 <canvas class="gl"></canvas>
 
@@ -2811,5 +2842,44 @@ stroke="currentColor"/></svg></div></div></div></div></div><div class="on-t-hero
   readLayout();
   renderLabels();
   controls.hidden = false;
+})();
+</script><dialog class="project-credits" id="project-credits" aria-labelledby="project-credits-title">
+  <header><h2 id="project-credits-title">Credits</h2><form method="dialog"><button type="submit" class="project-credits-close" autofocus>Close</button></form></header>
+  <h3>Design inspiration</h3>
+  <ul>
+    <li><a href="https://winners.webbyawards.com/2025/websites-and-mobile-sites/general-desktop-mobile-sites/sustainability-environment/339955/the-race-to-save-space">The Race to Save Space</a> by the United Nations and Elkanodata. Reference for the starfield, animated top glow, and horizontal project rows.</li>
+    <li><a href="https://www.itsoffbrand.com/our-work/lando-norris">Lando Norris by OFF+BRAND.</a> Source for the portfolio’s original site framework, WebGL motion, and legacy decorative graphics.</li>
+  </ul>
+  <h3>Earth and portfolio artwork</h3>
+  <ul>
+    <li><a href="https://www.nasa.gov/image-detail/amf-art002e000190/">Artemis II Captures the Terminator Line</a>. Earth photograph by NASA / Reid Wiseman.</li>
+    <li><a href="https://andreaisabelmontana.github.io/Arte-De-La-Montana/">Arte de la Montaña</a>. Caracas Skyline and the paintings, drawings, and ceramics shown in the Design &amp; Art filter are by Andrea Montaña.</li>
+    <li>Portfolio graphics include the <a href="../custom/menu-astronaut-eva.webp">astronaut EVA image</a>, <a href="../custom/helmet-person.webp">helmet portrait</a>, <a href="../custom/off-fleece.webp">fleece portrait</a>, <a href="../custom/devfest-menu-composite.webp">DevFest photo composite</a>, <a href="../custom/menu-4-v2.webp">menu artwork</a>, and <a href="../custom/home-sky-near.svg">starfield</a>. Original creator details are unconfirmed for some assets.</li>
+  </ul>
+  <h3>Project previews</h3>
+  <ul>
+    <li><a href="../custom/globo/walkthrough-cover.jpg">GLOBO walkthrough</a>. Bogotá skyline cover. Photographer unconfirmed.</li>
+    <li><a href="../custom/plia/plia-thumbnail.webp">NoteCrafted</a>. AI-generated concept illustration.</li>
+    <li><a href="../custom/project-previews/top-living-preview.webp">Top Living</a>. Screenshot of the Top Living property website.</li>
+    <li><a href="../custom/project-previews/portfolio-helmet-stars.webp">Personal Portfolio</a>. Astronaut helmet artwork. Creator unconfirmed.</li>
+    <li><a href="../custom/project-previews/3d-anatomy-preview.webp">3D Anatomy</a>. Project screenshot using the BodyParts3D anatomy dataset.</li>
+    <li><a href="../custom/project-previews/robopreneur-preview.webp">Robopreneur</a>. RODEO research demo still.</li>
+    <li><a href="../custom/project-previews/djesthesia-preview.webp">DJESTHESIA</a>. Project team demo still.</li>
+    <li><a href="../custom/project-previews/sona.webp">Sona</a>. PCA plot from the project.</li>
+    <li><a href="../custom/project-previews/ladybug-girl.webp">Ladybug Girl</a>. Game preview.</li>
+    <li><a href="../custom/project-previews/alma-hand-preview.webp">Alma de María</a>. AI-animated still based on a brand photograph.</li>
+    <li><a href="../custom/project-previews/optitrack.webp">OptiTrack</a>. Motion capture project still.</li>
+    <li><a href="../custom/project-previews/isolation.svg">Isolation</a>. Strategy game board illustration.</li>
+    <li><a href="../custom/project-previews/arcade.webp">Arcade</a>. Project preview.</li>
+  </ul>
+  <h3>Organization marks</h3>
+  <p>Alcaldía Mayor de Bogotá, IE University, CyPhy Life, Top Living Inmobiliaria, Trinity College Dublin, and Colegio Nueva Granada. Each mark identifies its respective organization.</p>
+</dialog>
+<script>
+(() => {
+  const trigger = document.querySelector('.project-credits-trigger');
+  const dialog = document.querySelector('#project-credits');
+  trigger.addEventListener('click', () => dialog.showModal());
+  dialog.addEventListener('close', () => trigger.focus());
 })();
 </script></body></html>
