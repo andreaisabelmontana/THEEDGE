@@ -118,12 +118,6 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
     mix-blend-mode:lighten;opacity:0;
   }
   .home-sky.has-film video { opacity:1; }
-  .home-sky-toggle {
-    position:absolute;top:1rem;right:1rem;z-index:5;padding:.4rem .65rem;
-    background:#0d1327;color:#fff;border:1px solid #ffffff70;border-radius:4px;
-    font:inherit;font-size:.72rem;cursor:pointer;
-  }
-  .home-sky-toggle:focus-visible { outline:2px solid white;outline-offset:3px; }
   /* Blend the outer footer rim over the globe without changing the icy card. */
   html[data-theme] body.edge-ready[data-home-shell] #contact.is-footer .footer-bg-gradient {
     background: linear-gradient(180deg, transparent 0%, #041e49 clamp(30px, 8vw, 140px), #173b7e 37%, var(--theme-accent, #3369e8) 75%);
@@ -591,7 +585,6 @@ html[data-theme] body .nav-menu-w:has(.nav-menu-link-w[href$="/online/"][aria-cu
         <source data-src="https://projects.elkanodata.com/WIP/unhq-space/video/stars.mov" type="video/quicktime" />
       </video>
     </div>
-    <button class="home-sky-toggle" data-home-sky-toggle type="button" hidden>Pause stars</button>
     <div class="container panels-wrap" data-surface="light">
       <div class="panels">
 
@@ -1879,4 +1872,4 @@ stroke="currentColor"/>
   const schedule = () => setTimeout(show,3000);
   schedule();
 })();</script>
-<script defer src="custom/home-sky.js?v=20261126-un-stars"></script></body></html>
+<script defer src="custom/home-sky.js?v=20261126-un-stars-clean"></script></body></html>
