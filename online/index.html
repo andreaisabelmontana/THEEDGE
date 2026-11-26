@@ -2847,7 +2847,7 @@ stroke="currentColor"/></svg></div></div></div></div></div><div class="on-t-hero
   <header><h2 id="project-credits-title">Credits</h2><form method="dialog"><button type="submit" class="project-credits-close" autofocus>Close</button></form></header>
   <h3>Design inspiration</h3>
   <ul>
-    <li><a href="https://winners.webbyawards.com/2025/websites-and-mobile-sites/general-desktop-mobile-sites/sustainability-environment/339955/the-race-to-save-space">The Race to Save Space</a> by the United Nations and Elkanodata. Reference for the starfield, animated top glow, and horizontal project rows.</li>
+    <li><a href="https://winners.webbyawards.com/2025/websites-and-mobile-sites/general-desktop-mobile-sites/sustainability-environment/339955/the-race-to-save-space">The Race to Save Space</a> by the United Nations and Elkanodata. Reference for the Projects starfield, animated top glow, and horizontal project rows, as well as the orbit animation on Contact. <a href="https://projects.elkanodata.com/WIP/unhq-space/en/" data-taxi-ignore>View the original experience</a>.</li>
     <li><a href="https://www.itsoffbrand.com/our-work/lando-norris">Lando Norris by OFF+BRAND.</a> Source for the portfolio’s original site framework, WebGL motion, and legacy decorative graphics.</li>
   </ul>
   <h3>Earth and portfolio artwork</h3>
@@ -2880,6 +2880,11 @@ stroke="currentColor"/></svg></div></div></div></div></div><div class="on-t-hero
   const trigger = document.querySelector('.project-credits-trigger');
   const dialog = document.querySelector('#project-credits');
   trigger.addEventListener('click', () => dialog.showModal());
+  function openLinkedCredits() {
+    if (location.hash === '#project-credits' && !dialog.open) dialog.showModal();
+  }
+  addEventListener('hashchange', openLinkedCredits);
+  openLinkedCredits();
   dialog.addEventListener('close', () => trigger.focus());
 })();
 </script></body></html>
