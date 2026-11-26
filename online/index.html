@@ -118,7 +118,7 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
 </style><link href="../custom/custom.css?v=20260917-helmet" rel="stylesheet"/><style id="ontrack-helmet-only">.main-w .taxi-w section.s:not(:first-of-type):not(.is-footer) { display: none !important; }.on-track-impact-text-w, .impact-content-w .eyebrow-w, [class*="f1-highlight"] { display: none !important; }</style><link rel="canonical" href="https://andreamontana.com/online/"/><script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Andrea Montaña","url":"https://andreamontana.com/","sameAs":["https://github.com/andreaisabelmontana","https://www.linkedin.com/in/andreaimontana/"],"jobTitle":["Research Assistant"],"affiliation":[{"@type":"Organization","name":"IEX Labs, CyPhy Life at IE University"},{"@type":"CollegeOrUniversity","name":"IE University"}],"knowsAbout":["Artificial intelligence","Machine learning","Computer vision","Human-computer interaction","Robotics","Python","JavaScript","TypeScript","Interactive 3D","Full-stack development"]}</script><link rel="stylesheet" href="../custom/clean-shell.css?v=20261014-menu-startup"><link rel="stylesheet" href="../custom/projects-clean.css?v=20261120-tight-tabs"><link rel="stylesheet" href="../custom/globo.css?v=20261119-globo-scroll"><link rel="stylesheet" href="../custom/project-preview.css?v=20260922-alma-fill">
 <link rel="stylesheet" href="../custom/theme.css?v=20261121-contour-motion"/>
 <link rel="stylesheet" href="../custom/affiliations.css?v=20261119-links"/><link rel="stylesheet" href="../custom/notecrafted.css?v=20261106-portfolio-review">
-<style id="project-artwork-style">#project-grid:not([data-layout="horizontal"]) > .project-artwork:not([hidden]){display:block !important}#project-grid > .project-artwork:not([hidden]){opacity:1 !important;visibility:visible !important;transform:none !important}.project-artwork .project-card-visual{background:#ece8ee}.project-artwork .project-card-visual img{object-fit:contain}.project-artwork:hover .project-card-visual img{transform:none}.project-artwork .project-card-meta{margin-top:14px}</style>
+<style id="project-artwork-style">#project-grid > .project-artwork:not([hidden]){opacity:1 !important;visibility:visible !important;transform:none !important}.project-artwork .project-card-visual{background:#ece8ee}.project-artwork .project-card-visual img{object-fit:contain}.project-artwork:hover .project-card-visual img{transform:none}.project-artwork .project-card-meta{margin-top:14px}</style>
 <link rel="stylesheet" href="../custom/edolus-type.css?v=20261120-layout2"/>
 <link rel="stylesheet" href="../custom/nav-islands.css?v=20261121-subtle-language">
 <style id="contact-menu-summit">
@@ -191,6 +191,91 @@ html[data-theme] body.projects-page .project-starfield :is(.s.home-helmets.proje
 }
 </style><script defer src="../custom/projects-rail.js?v=20261126-layout"></script><link rel="stylesheet" href="../custom/link-underline.css?v=20261126"><link rel="stylesheet" href="../custom/un-aura.css?v=20261126"><script defer src="../custom/un-aura.js?v=20261126"></script><script defer src="../custom/projects-opening.js?v=20261126"></script><script defer src="../custom/hover-sound.js?v=20261126-timeline-tick"></script><style>
 .project-card-category { display: none; }
+/* The gallery emphasizes the preview, with the caption on its own line. */
+#project-grid[data-layout="grid"] {
+  --gallery-step: clamp(56px, 8vw, 112px);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: start;
+  padding-bottom: var(--gallery-step);
+  gap: 22px 16px;
+}
+#project-grid[data-layout="grid"] > .project-card {
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+#project-grid[data-layout="grid"] > :nth-child(even of .project-card:not([hidden])) {
+  top: var(--gallery-step);
+}
+#project-grid[data-layout="grid"] :is(a.project-card, .project-card > .project-card-link) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 9px 10px;
+  color: #edf1ff;
+  text-decoration: none;
+}
+#project-grid[data-layout="grid"] .project-card-visual {
+  grid-column: 1 / -1;
+  box-sizing: border-box;
+  aspect-ratio: 1 / 1;
+  min-width: 0;
+  padding: 12%;
+  border: 1px solid #7181a56e;
+  border-radius: 10px 10px 3px 10px;
+  background: #12192a;
+  transition: border-color .2s ease;
+}
+#project-grid[data-layout="grid"] .project-card:hover .project-card-visual,
+#project-grid[data-layout="grid"] .project-card:focus-within .project-card-visual {
+  border-color: #accbff;
+}
+#project-grid[data-layout="grid"] .project-card-visual img {
+  object-fit: contain;
+  border-radius: 4px;
+}
+#project-grid[data-layout="grid"] .project-preview-media .project-preview-video,
+#project-grid[data-layout="grid"] [data-project-video="globo"] .globo-walkthrough-loop {
+  box-sizing: border-box;
+  padding: 12%;
+  object-fit: contain;
+}
+#project-grid[data-layout="grid"] .project-card h2 {
+  margin: 0;
+  color: #edf1ff;
+  font-size: 14px;
+  line-height: 1.25;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+#project-grid[data-layout="grid"] .project-card-category {
+  display: inline-block;
+  max-width: 13ch;
+  color: #a5ccff;
+  text-align: end;
+  font: 600 11px/1.25 system-ui, sans-serif;
+}
+#project-grid[data-layout="grid"] :is(.project-card-meta, .project-card-description, .project-card-cta) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+#project-grid[data-layout="grid"] .project-card-open { display: none; }
+@media (max-width: 1000px) {
+  #project-grid[data-layout="grid"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 520px) {
+  #project-grid[data-layout="grid"] { --gallery-step: 0px; grid-template-columns: minmax(0, 1fr); }
+  #project-grid[data-layout="grid"] .project-card-visual { aspect-ratio: 5 / 4; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #project-grid[data-layout="grid"] .project-card-visual { transition: none; }
+}
+
 .project-view { display: flex; margin-inline-start: auto; gap: 14px; }
 .project-view[hidden] { display: none; }
 .project-view button {
@@ -2684,7 +2769,7 @@ stroke="currentColor"/></svg></div></div></div></div></div><div class="on-t-hero
 
         >
 
-</canvas></div></div></div></div></div></div></div><div class="on-t-hero-stats-ui-img-fill is-3"></div></div></div></div><div data-heroflip="pos1" class="on-t-helm-scroll-pos1"><div data-gl="helmet-scroll" class="on-t-helm-scroll-object"></div></div></div></div></div></div></div></div><div class="s-group z-10 project-starfield"><div class="s-group"><section class="s home-helmets project-night" id="project-collection" data-surface="dark" aria-label="Project collection"><div class="c home-helmets"><div class="project-browser"><nav class="project-subjects" aria-label="Project subjects"><button type="button" data-subject="all" aria-pressed="true" aria-controls="project-grid">All work</button><button type="button" data-subject="ai" aria-pressed="false" aria-controls="project-grid">AI &amp; ML</button><button type="button" data-subject="robotics" aria-pressed="false" aria-controls="project-grid">Robotics</button><button type="button" data-subject="software" aria-pressed="false" aria-controls="project-grid">Software &amp; Web</button><button type="button" data-subject="spatial" aria-pressed="false" aria-controls="project-grid">3D &amp; Games</button><button type="button" data-subject="ux" aria-pressed="false" aria-controls="project-grid">UX &amp; Interaction</button><button type="button" data-subject="art" aria-pressed="false" aria-controls="project-grid">Design &amp; Art</button></nav><div class="project-index-meta"><p class="project-count" aria-live="polite" aria-atomic="true">13 projects</p><div class="project-view" role="group" aria-label="Project layout" hidden><button type="button" data-view="grid" aria-controls="project-grid" aria-pressed="true">Grid</button><button type="button" data-view="horizontal" aria-controls="project-grid" aria-pressed="false">List</button></div></div><nav class="project-rail" aria-label="Browse project rows" hidden><div class="project-rail__list"></div><button class="project-rail__top" type="button"><b aria-hidden="true">⌃</b><span>Top</span></button></nav><div class="project-grid" id="project-grid" data-helmet-grid><a class="project-card" href="https://andreaisabelmontana.github.io/Arte-De-La-Montana/" data-taxi-ignore data-slug="arte-de-la-montana" data-subjects="" target="_blank" rel="noopener noreferrer"><div class="project-card-visual"><img src="../custom/design-art-assets/caracas-skyline-2026-watercolor-large.jpg" alt="Caracas Skyline, a watercolor by Andrea Montaña" loading="lazy" decoding="async"><span class="project-card-open" aria-hidden="true">↗</span></div><div class="project-card-meta"><span data-project-copy="artType">Website</span></div><h2>Arte de la Montaña</h2><p class="project-card-description" data-project-copy="artIntro">My online gallery for paintings, drawings and ceramics.</p><span class="project-card-cta"><span class="project-card-cta-label" data-project-copy="artCTA">Visit website</span><span aria-hidden="true">↗</span></span></a>
+</canvas></div></div></div></div></div></div></div><div class="on-t-hero-stats-ui-img-fill is-3"></div></div></div></div><div data-heroflip="pos1" class="on-t-helm-scroll-pos1"><div data-gl="helmet-scroll" class="on-t-helm-scroll-object"></div></div></div></div></div></div></div></div><div class="s-group z-10 project-starfield"><div class="s-group"><section class="s home-helmets project-night" id="project-collection" data-surface="dark" aria-label="Project collection"><div class="c home-helmets"><div class="project-browser"><nav class="project-subjects" aria-label="Project subjects"><button type="button" data-subject="all" aria-pressed="true" aria-controls="project-grid">All work</button><button type="button" data-subject="ai" aria-pressed="false" aria-controls="project-grid">AI &amp; ML</button><button type="button" data-subject="robotics" aria-pressed="false" aria-controls="project-grid">Robotics</button><button type="button" data-subject="software" aria-pressed="false" aria-controls="project-grid">Software &amp; Web</button><button type="button" data-subject="spatial" aria-pressed="false" aria-controls="project-grid">3D &amp; Games</button><button type="button" data-subject="ux" aria-pressed="false" aria-controls="project-grid">UX &amp; Interaction</button><button type="button" data-subject="art" aria-pressed="false" aria-controls="project-grid">Design &amp; Art</button></nav><div class="project-index-meta"><p class="project-count" aria-live="polite" aria-atomic="true">13 projects</p><div class="project-view" role="group" aria-label="Project layout" hidden><button type="button" data-view="grid" aria-controls="project-grid" aria-pressed="true">Grid</button><button type="button" data-view="horizontal" aria-controls="project-grid" aria-pressed="false">List</button></div></div><nav class="project-rail" aria-label="Browse project rows" hidden><div class="project-rail__list"></div><button class="project-rail__top" type="button"><b aria-hidden="true">⌃</b><span>Top</span></button></nav><div class="project-grid" id="project-grid" data-layout="grid" data-helmet-grid><a class="project-card" href="https://andreaisabelmontana.github.io/Arte-De-La-Montana/" data-taxi-ignore data-slug="arte-de-la-montana" data-subjects="" target="_blank" rel="noopener noreferrer"><div class="project-card-visual"><img src="../custom/design-art-assets/caracas-skyline-2026-watercolor-large.jpg" alt="Caracas Skyline, a watercolor by Andrea Montaña" loading="lazy" decoding="async"><span class="project-card-open" aria-hidden="true">↗</span></div><div class="project-card-meta"><span data-project-copy="artType">Website</span></div><h2>Arte de la Montaña</h2><p class="project-card-description" data-project-copy="artIntro">My online gallery for paintings, drawings and ceramics.</p><span class="project-card-cta"><span class="project-card-cta-label" data-project-copy="artCTA">Visit website</span><span aria-hidden="true">↗</span></span></a>
 <a class="project-card project-artwork" href="https://andreaisabelmontana.github.io/Arte-De-La-Montana/assets/2000-2026-acrylic-large.jpg" data-taxi-ignore data-slug="artwork-2000" data-subjects="art" data-artwork hidden target="_blank" rel="noopener noreferrer"><div class="project-card-visual"><img src="../custom/design-art-assets/2000-2026-acrylic-large.jpg" alt="" loading="lazy" decoding="async"><span class="project-card-open" aria-hidden="true">↗</span></div><div class="project-card-meta"><span>Acrylic</span><span>2026</span></div><h2>Two Thousand</h2></a>
 <a class="project-card project-artwork" href="https://andreaisabelmontana.github.io/Arte-De-La-Montana/assets/bogota-2026-acrylic-large.jpg" data-taxi-ignore data-slug="artwork-bogota" data-subjects="art" data-artwork hidden target="_blank" rel="noopener noreferrer"><div class="project-card-visual"><img src="../custom/design-art-assets/bogota-2026-acrylic-large.jpg" alt="" loading="lazy" decoding="async"><span class="project-card-open" aria-hidden="true">↗</span></div><div class="project-card-meta"><span>Acrylic</span><span>2026</span></div><h2>Bogotá</h2></a>
 <a class="project-card project-artwork" href="https://andreaisabelmontana.github.io/Arte-De-La-Montana/assets/caracas-skyline-2026-watercolor-large.jpg" data-taxi-ignore data-slug="artwork-caracas-skyline" data-subjects="art" data-artwork hidden target="_blank" rel="noopener noreferrer"><div class="project-card-visual"><img src="../custom/design-art-assets/caracas-skyline-2026-watercolor-large.jpg" alt="" loading="lazy" decoding="async"><span class="project-card-open" aria-hidden="true">↗</span></div><div class="project-card-meta"><span>Watercolour</span><span>2026</span></div><h2>Caracas Skyline</h2></a>
