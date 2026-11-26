@@ -118,7 +118,7 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
 </style><link href="../custom/custom.css?v=20260917-helmet" rel="stylesheet"/><style id="ontrack-helmet-only">.main-w .taxi-w section.s:not(:first-of-type):not(.is-footer) { display: none !important; }.on-track-impact-text-w, .impact-content-w .eyebrow-w, [class*="f1-highlight"] { display: none !important; }</style><link rel="canonical" href="https://andreamontana.com/online/"/><script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Andrea Montaña","url":"https://andreamontana.com/","sameAs":["https://github.com/andreaisabelmontana","https://www.linkedin.com/in/andreaimontana/"],"jobTitle":["Research Assistant"],"affiliation":[{"@type":"Organization","name":"IEX Labs, CyPhy Life at IE University"},{"@type":"CollegeOrUniversity","name":"IE University"}],"knowsAbout":["Artificial intelligence","Machine learning","Computer vision","Human-computer interaction","Robotics","Python","JavaScript","TypeScript","Interactive 3D","Full-stack development"]}</script><link rel="stylesheet" href="../custom/clean-shell.css?v=20261014-menu-startup"><link rel="stylesheet" href="../custom/projects-clean.css?v=20261120-tight-tabs"><link rel="stylesheet" href="../custom/globo.css?v=20261119-globo-scroll"><link rel="stylesheet" href="../custom/project-preview.css?v=20260922-alma-fill">
 <link rel="stylesheet" href="../custom/theme.css?v=20261121-contour-motion"/>
 <link rel="stylesheet" href="../custom/affiliations.css?v=20261119-links"/><link rel="stylesheet" href="../custom/notecrafted.css?v=20261106-portfolio-review">
-<style id="project-artwork-style">#project-grid > .project-artwork:not([hidden]){display:block !important;opacity:1 !important;visibility:visible !important;transform:none !important}.project-artwork .project-card-visual{background:#ece8ee}.project-artwork .project-card-visual img{object-fit:contain}.project-artwork:hover .project-card-visual img{transform:none}.project-artwork .project-card-meta{margin-top:14px}</style>
+<style id="project-artwork-style">#project-grid:not([data-layout="horizontal"]) > .project-artwork:not([hidden]){display:block !important}#project-grid > .project-artwork:not([hidden]){opacity:1 !important;visibility:visible !important;transform:none !important}.project-artwork .project-card-visual{background:#ece8ee}.project-artwork .project-card-visual img{object-fit:contain}.project-artwork:hover .project-card-visual img{transform:none}.project-artwork .project-card-meta{margin-top:14px}</style>
 <link rel="stylesheet" href="../custom/edolus-type.css?v=20261120-layout2"/>
 <link rel="stylesheet" href="../custom/nav-islands.css?v=20261121-subtle-language">
 <style id="contact-menu-summit">
@@ -209,77 +209,108 @@ html[data-theme] body.projects-page .project-starfield :is(.s.home-helmets.proje
 }
 .project-layout-switch button[aria-pressed="true"] { color: #101b2d; background: #bfdbff; }
 .project-layout-switch button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
-.projects-page .project-grid[data-layout="horizontal"] {
+#project-grid[data-layout="horizontal"] {
   grid-template-columns: minmax(0, 1fr);
-  gap: 20px;
+  width: min(1080px, 100%);
+  margin-inline: auto;
+  gap: 16px;
 }
-.project-grid[data-layout="horizontal"] :is(a.project-card, .project-card > .project-card-link) {
+/* The horizontal list owns its surface. Reset the grid frame on both card types. */
+#project-grid[data-layout="horizontal"] > .project-card {
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: none;
+  box-shadow: none;
+}
+#project-grid[data-layout="horizontal"] :is(a.project-card, .project-card > .project-card-link) {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, .85fr) minmax(0, 1.25fr);
-  grid-template-areas: "visual meta meta" "visual title description" "visual cta category";
-  grid-template-rows: auto 1fr auto;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, .82fr) minmax(0, 1.25fr);
+  grid-template-areas: "visual title description" "visual title category";
+  grid-template-rows: 1fr auto;
   align-items: center;
-  column-gap: clamp(16px, 2.6vw, 34px);
-  row-gap: 10px;
-  padding: 14px;
+  gap: 0 clamp(18px, 3vw, 42px);
+  padding: 10px 16px 10px 10px;
+  border-radius: 12px;
   min-width: 0;
   text-decoration: none;
-  color: #eef5ff;
-  border: 1px solid #8aa6d44a;
-  border-radius: 18px;
-  background: linear-gradient(115deg, #182843f5, #111b30f5);
+  color: #f6f5ff;
+  background: #191f3bed;
 }
-.project-grid[data-layout="horizontal"] :is(a.project-card, .project-card > .project-card-link):is(:hover, :focus-visible) {
-  border-color: #9abff9;
+#project-grid[data-layout="horizontal"] :is(a.project-card, .project-card > .project-card-link):hover {
+  background: #202948;
 }
-.project-grid[data-layout="horizontal"] .project-card-visual {
+#project-grid[data-layout="horizontal"] .project-card-visual {
   grid-area: visual;
   align-self: stretch;
+  position: relative;
   width: 100%;
-  min-height: 170px;
+  min-height: clamp(184px, 18vw, 228px);
   aspect-ratio: auto;
-  border-radius: 10px;
+  border: 0;
+  border-radius: 6px;
+  background: #0e172d;
 }
-.project-grid[data-layout="horizontal"] .project-card-visual > :is(img, picture) { position: absolute; inset: 0; }
-.project-grid[data-layout="horizontal"] .project-card-meta { grid-area: meta; margin: 0; color: #b3c7e6; }
-.project-grid[data-layout="horizontal"] .project-card h2 { grid-area: title; margin: 0; color: #eef5ff; overflow-wrap: anywhere; }
-.project-grid[data-layout="horizontal"] .project-card-description {
+#project-grid[data-layout="horizontal"] .project-card-visual > :is(img, picture) { position: absolute; inset: 0; }
+#project-grid[data-layout="horizontal"] .project-card-visual > img { object-fit: cover; }
+#project-grid[data-layout="horizontal"] .project-card-visual .globo-walkthrough-employer img { object-fit: contain; }
+#project-grid[data-layout="horizontal"] .project-artwork .project-card-visual > img { object-fit: contain; }
+#project-grid[data-layout="horizontal"] :is(.project-card-meta, .project-card-open, .project-card-cta) { display: none; }
+#project-grid[data-layout="horizontal"] .project-artwork .project-card-meta {
+  display: flex;
   grid-area: description;
+  justify-content: flex-start;
   margin: 0;
-  color: #d3e0f4;
+  color: #d3ddf4;
+}
+#project-grid[data-layout="horizontal"] .project-card h2 {
+  grid-area: title;
+  margin: 0;
+  color: #f6f5ff;
+  font: 400 clamp(23px, 2.45vw, 34px)/1.12 Georgia, serif;
+  letter-spacing: -.025em;
   overflow-wrap: anywhere;
 }
-.project-grid[data-layout="horizontal"] .project-card-cta { grid-area: cta; margin: 0; color: #c2dcff; }
-.project-grid[data-layout="horizontal"] .project-card-category {
+#project-grid[data-layout="horizontal"] .project-card-description {
+  grid-area: description;
+  margin: 12px 0 8px;
+  color: #e5e9f6;
+  font-size: clamp(15px, 1.3vw, 18px);
+  line-height: 1.38;
+  overflow-wrap: anywhere;
+}
+#project-grid[data-layout="horizontal"] .project-card-category {
   grid-area: category;
   justify-self: end;
-  align-self: end;
   display: inline-block;
-  padding: 7px 12px;
-  border-radius: 6px 12px 6px 6px;
-  border: 1px solid currentColor;
-  background: #101c31;
-  color: #b5d6ff;
-  font: 600 12px/1.25 system-ui, sans-serif;
+  padding: 8px 14px;
+  border-radius: 4px 8px 4px 4px;
+  color: #111a32;
+  background: #b7c9f5;
+  font: 600 13px/1.25 system-ui, sans-serif;
 }
-.project-grid[data-layout="horizontal"] .project-card-category[data-category="ai"],
-.project-grid[data-layout="horizontal"] .project-card-category[data-category="ml"] { color: #dfc1ff; }
-.project-grid[data-layout="horizontal"] .project-card-category[data-category="robotics"] { color: #85eacc; }
-.project-grid[data-layout="horizontal"] .project-card-category[data-category="art"] { color: #ffccad; }
-@media (max-width: 900px) {
-  .project-grid[data-layout="horizontal"] :is(a.project-card, .project-card > .project-card-link) {
-    grid-template-columns: minmax(0, .85fr) minmax(0, 1fr);
-    grid-template-areas: "visual meta" "visual title" "visual description" "visual cta" "visual category";
-    grid-template-rows: auto auto 1fr auto auto;
+#project-grid[data-layout="horizontal"] .project-card-category:is([data-category="ai"], [data-category="ml"]) { background: #cebbf7; }
+#project-grid[data-layout="horizontal"] .project-card-category[data-category="robotics"] { background: #9bd8be; }
+#project-grid[data-layout="horizontal"] .project-card-category[data-category="art"] { background: #f1bc9a; }
+@media (max-width: 850px) {
+  #project-grid[data-layout="horizontal"] :is(a.project-card, .project-card > .project-card-link) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: "visual title" "visual description" "visual category";
+    grid-template-rows: auto 1fr auto;
+    column-gap: 18px;
   }
+  #project-grid[data-layout="horizontal"] .project-card h2 { margin-top: 6px; }
 }
-@media (max-width: 560px) {
-  .project-grid[data-layout="horizontal"] :is(a.project-card, .project-card > .project-card-link) {
+@media (max-width: 540px) {
+  #project-grid[data-layout="horizontal"] :is(a.project-card, .project-card > .project-card-link) {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "visual" "meta" "title" "description" "cta" "category";
+    grid-template-areas: "visual" "title" "description" "category";
     grid-template-rows: auto;
+    gap: 8px;
+    padding: 10px;
   }
-  .project-grid[data-layout="horizontal"] .project-card-visual { aspect-ratio: 16 / 10; min-height: 0; }
+  #project-grid[data-layout="horizontal"] .project-card-visual { min-height: 0; aspect-ratio: 16 / 10; }
+  #project-grid[data-layout="horizontal"] .project-card-description { margin: 0; }
 }
 </style><style>
 .project-credits-trigger {
