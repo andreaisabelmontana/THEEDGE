@@ -119,7 +119,7 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
 </style><link href="../custom/custom.css?v=20260917-helmet" rel="stylesheet"/><style id="ontrack-helmet-only">.main-w .taxi-w section.s:not(:first-of-type):not(.is-footer) { display: none !important; }.on-track-impact-text-w, .impact-content-w .eyebrow-w, [class*="f1-highlight"] { display: none !important; }</style><link rel="canonical" href="https://andreamontana.com/online/"/><script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Andrea Montaña","url":"https://andreamontana.com/","sameAs":["https://github.com/andreaisabelmontana","https://www.linkedin.com/in/andreaimontana/"],"jobTitle":["Research Assistant"],"affiliation":[{"@type":"Organization","name":"IEX Labs, CyPhy Life at IE University"},{"@type":"CollegeOrUniversity","name":"IE University"}],"knowsAbout":["Artificial intelligence","Machine learning","Computer vision","Human-computer interaction","Robotics","Python","JavaScript","TypeScript","Interactive 3D","Full-stack development"]}</script><link rel="stylesheet" href="../custom/clean-shell.css?v=20261014-menu-startup"><link rel="stylesheet" href="../custom/projects-clean.css?v=20261120-tight-tabs"><link rel="stylesheet" href="../custom/globo.css?v=20261119-globo-scroll"><link rel="stylesheet" href="../custom/project-preview.css?v=20260922-alma-fill">
 <link rel="stylesheet" href="../custom/theme.css?v=20261121-contour-motion"/>
 <link rel="stylesheet" href="../custom/affiliations.css?v=20261119-links"/><link rel="stylesheet" href="../custom/notecrafted.css?v=20261106-portfolio-review">
-<style id="project-artwork-style">#project-grid > .project-artwork:not([hidden]){opacity:1 !important;visibility:visible !important;transform:none !important}.project-artwork .project-card-visual{background:#ece8ee}.project-artwork .project-card-visual img{object-fit:contain}.project-artwork:hover .project-card-visual img{transform:none}.project-artwork .project-card-meta{margin-top:14px}</style>
+<style id="project-artwork-style">#project-grid:not([data-layout="horizontal"]) > .project-artwork:not([hidden]){opacity:1 !important;visibility:visible !important;transform:none !important}.project-artwork .project-card-visual{background:#ece8ee}.project-artwork .project-card-visual img{object-fit:contain}.project-artwork:hover .project-card-visual img{transform:none}.project-artwork .project-card-meta{margin-top:14px}</style>
 <link rel="stylesheet" href="../custom/edolus-type.css?v=20261120-layout2"/>
 <link rel="stylesheet" href="../custom/nav-islands.css?v=20261121-subtle-language">
 <style id="contact-menu-summit">
@@ -443,12 +443,21 @@ body.projects-page .project-night:has(#project-grid[data-layout="grid"]) {
 #project-grid[data-layout="horizontal"] .project-card-category[data-category="robotics"] { background: #9bd8be; }
 #project-grid[data-layout="horizontal"] .project-card-category[data-category="art"] { background: #f1bc9a; }
 @media (prefers-reduced-motion: no-preference) {
-  #project-grid[data-layout="horizontal"] .project-card.motion-ready {
-    transform: translateY(18px);
-    transition: opacity .55s ease, transform .65s cubic-bezier(.2,.75,.26,1);
+  #project-grid[data-layout="horizontal"] .project-card {
+    opacity: 1;
+    transform: none;
   }
-  #project-grid[data-layout="horizontal"] .project-card.motion-ready.is-visible { transform: none; }
-  #project-grid[data-layout="horizontal"] .project-card:focus-within { opacity: 1; transform: none; }
+  #project-grid[data-layout="horizontal"] .project-card.list-reveal-pending:not(:focus-within) {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  #project-grid[data-layout="horizontal"] .project-card.list-reveal-entered:not(:focus-within) {
+    animation: project-list-card-in .65s cubic-bezier(.2,.75,.26,1) backwards;
+  }
+  @keyframes project-list-card-in {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: none; }
+  }
   #project-grid[data-layout="horizontal"] .project-card:is(:hover, :focus-within) .project-card-category { transform: translateX(-3px); }
 }
 @media (max-width: 850px) {
@@ -3211,9 +3220,41 @@ stroke="currentColor"/></svg></div></div></div></div></div><div class="on-t-hero
     });
   }
 
+  const listCards = [...grid.querySelectorAll(':scope > .project-card')];
+  const listReveal = 'IntersectionObserver' in window
+    ? new IntersectionObserver(entries => {
+        for (const { target, isIntersecting } of entries) {
+          if (!isIntersecting || target.hidden || grid.dataset.layout !== 'horizontal') continue;
+          target.classList.remove('list-reveal-pending');
+          target.classList.add('list-reveal-entered');
+          listReveal.unobserve(target);
+        }
+      }, { threshold: .15 })
+    : null;
+
+  function syncListReveal(card) {
+    if (!listReveal) return;
+    if (grid.dataset.layout !== 'horizontal' || card.hidden) {
+      listReveal.unobserve(card);
+      card.classList.remove('list-reveal-pending', 'list-reveal-entered');
+    } else if (!card.classList.contains('list-reveal-entered')) {
+      card.classList.add('list-reveal-pending');
+      listReveal.observe(card);
+    }
+  }
+
+  if (listReveal) {
+    new MutationObserver(records => {
+      for (const { target } of records) {
+        if (target.parentElement === grid && target.classList.contains('project-card')) syncListReveal(target);
+      }
+    }).observe(grid, { subtree: true, attributes: true, attributeFilter: ['hidden'] });
+  }
+
   function readLayout() {
     grid.dataset.layout = new URL(location.href).searchParams.get('view') === 'horizontal'
       ? 'horizontal' : 'grid';
+    listCards.forEach(syncListReveal);
     if (grid.dataset.layout === 'grid' && !thumbnailRequested) {
       thumbnailRequested = true;
       const sheet = new Image();
